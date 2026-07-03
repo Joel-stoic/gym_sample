@@ -435,8 +435,56 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                     </Field>
                     
                     {planAmount > 0 && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <Field label="Amount Collected Today (₹)" error={errors.paidAmount?.message}>
+                      <>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <Field label="Discount (₹)" error={errors.discount?.message}>
+                            <input
+                              className={inputCls}
+                              type="number" inputMode="numeric"
+                              placeholder="0" min={0}
+                              {...register('discount')}
+                              onChange={e => { register('discount').onChange(e); handleDiscountChange(e.target.value) }}
+                            />
+                          </Field>
+
+                          <Field label="Extra Charge (₹)" error={errors.additionalFee?.message}>
+                            <input
+                              className={inputCls}
+                              type="number" inputMode="numeric"
+                              placeholder="0" min={0}
+                              {...register('additionalFee')}
+                              onChange={e => { register('additionalFee').onChange(e); handleAdditionalFeeChange(e.target.value) }}
+                            />
+                          </Field>
+                        </div>
+
+                        {(discount > 0 || additionalFee > 0) && (
+                          <div className="rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 p-3 space-y-2 mt-2">
+                            <div className="flex items-center justify-between text-[13px]">
+                              <span className="text-muted-foreground">Plan price</span>
+                              <span className="text-foreground">₹{planAmount}</span>
+                            </div>
+                            {discount > 0 && (
+                              <div className="flex items-center justify-between text-[13px]">
+                                <span className="text-muted-foreground">Discount</span>
+                                <span className="text-emerald-500">− ₹{discount}</span>
+                              </div>
+                            )}
+                            {additionalFee > 0 && (
+                              <div className="flex items-center justify-between text-[13px]">
+                                <span className="text-muted-foreground">Extra charge</span>
+                                <span className="text-amber-500">+ ₹{additionalFee}</span>
+                              </div>
+                            )}
+                            <div className="flex items-center justify-between border-t border-black/10 dark:border-white/10 pt-2">
+                              <span className="text-[13px] font-semibold text-foreground">Total to collect</span>
+                              <span className="text-[16px] font-bold text-foreground">₹{netDue}</span>
+                            </div>
+                          </div>
+                        )}
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                          <Field label="Amount Collected Today (₹)" error={errors.paidAmount?.message}>
                           <input
                             className={inputCls}
                             type="number" inputMode="numeric"
@@ -454,7 +502,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                             ))}
                           </select>
                         </Field>
-                      </div>
+                      </>
                     )}
                     
                     {planAmount > 0 && (
@@ -483,9 +531,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                       </div>
                     )}
 
-                    {/* Hidden advanced fields for compatibility with existing schema */}
-                    <input type="hidden" {...register('discount')} />
-                    <input type="hidden" {...register('additionalFee')} />
+                    {/* Removed hidden advanced fields */}
                   </div>
                 </Section>
               </div>
