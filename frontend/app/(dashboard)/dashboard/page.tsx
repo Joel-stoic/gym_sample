@@ -331,12 +331,12 @@ export default function DashboardPage() {
                       <Cell
                         key={`cell-${index}`}
                         fill={
-                          Number(entry.revenue) === 0
-                            ? '#33353F'
-                            : index === monthlyRevenue.length - 1
-                              ? '#D9782E'
-                              : '#FB5102'
-                        }
+  Number(entry.revenue) === 0
+    ? 'var(--border)'
+    : index === monthlyRevenue.length - 1
+      ? 'var(--chart-2)'
+      : 'var(--chart-1)'
+}
                       />
                     ))}
                   </Bar>

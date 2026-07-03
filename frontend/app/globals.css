@@ -33,21 +33,7 @@
   --font-heading: 'Orbitron', ui-sans-serif, sans-serif;
   --font-mono:    var(--font-geist-mono);
 
-  /* ── Orange accent scale ── */
-  --color-ember:        #FB5102;
-  --color-ember-dim:    #D9782E;   /* muted orange for secondary chart series  */
-  --color-ember-wash:   rgba(251,81,2,0.12); /* used for active-row / badge bg  */
 
-  /* ── Surface scale ── */
-  --color-surface:      #1C1E2A;   /* page background                          */
-  --color-surface-1:    #23252F;   /* card / elevated surface                  */
-  --color-surface-2:    #2C2E3A;   /* secondary / muted surface                */
-  --color-surface-3:    #33353F;   /* border / input / divider                 */
-  --color-surface-sidebar: #17181F; /* sidebar — slightly darker than page     */
-
-  /* ── Text scale ── */
-  --color-text:         #E4E4E2;   /* primary text                             */
-  --color-text-muted:   #8C8D95;   /* timestamps, placeholders, secondary      */
 
   /* ─── shadcn primitive bridges ────────────────────────────────────────────  */
   --color-card:                var(--card);
