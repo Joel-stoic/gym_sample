@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
+/* @import "shadcn/tailwind.css"; */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -142,6 +142,7 @@
   --sidebar-border:             #2C2E3A;
   --sidebar-ring:               #FB5102;
 }
+
 
 /* ─── Base layer ─────────────────────────────────────────────────────────────  */
 @layer base {
