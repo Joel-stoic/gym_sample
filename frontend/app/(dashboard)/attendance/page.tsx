@@ -236,68 +236,64 @@ export default function AttendancePage() {
 
   return (
     <div className="space-y-6">
-      <PageHeader
-        title="Attendance"
-        description="Track member check-ins and daily activity"
-        action={
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => queryClient.invalidateQueries({ queryKey: ['attendance-today'] })}
-              className="border-border bg-card text-foreground hover:bg-muted"
-            >
-              <RefreshCw className="mr-2 h-4 w-4" />
-              Refresh
-            </Button>
+      <div className="flex items-center justify-end">
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => queryClient.invalidateQueries({ queryKey: ['attendance-today'] })}
+            className="border-border bg-card text-foreground hover:bg-muted"
+          >
+            <RefreshCw className="mr-2 h-4 w-4" />
+            Refresh
+          </Button>
 
-            <Dialog open={dialogOpen} onOpenChange={handleDialogChange}>
-              <DialogTrigger asChild>
-                <Button className="bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
-                  <UserCheck className="mr-2 h-4 w-4" />
-                  Mark Attendance
-                </Button>
-              </DialogTrigger>
+          <Dialog open={dialogOpen} onOpenChange={handleDialogChange}>
+            <DialogTrigger asChild>
+              <Button className="bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                <UserCheck className="mr-2 h-4 w-4" />
+                Mark Attendance
+              </Button>
+            </DialogTrigger>
 
-              <DialogContent className="border-border bg-card text-foreground">
-                <DialogHeader>
-                  <DialogTitle className="text-xl">Mark Attendance</DialogTitle>
-                </DialogHeader>
+            <DialogContent className="border-border bg-card text-foreground">
+              <DialogHeader>
+                <DialogTitle className="text-xl">Mark Attendance</DialogTitle>
+              </DialogHeader>
 
-                <div className="space-y-4 pt-2">
-                  <MemberSearch onSelect={setSelectedMember} />
+              <div className="space-y-4 pt-2">
+                <MemberSearch onSelect={setSelectedMember} />
 
-                  {selectedMember && (
-                    <div className="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-3">
-                      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-[11px] font-semibold text-violet-500">
-                        {selectedMember.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-medium text-foreground">{selectedMember.name}</p>
-                        <p className="text-[11px] text-muted-foreground">{selectedMember.phone}</p>
-                      </div>
-                      <button onClick={() => setSelectedMember(null)} className="flex-shrink-0 text-muted-foreground hover:text-foreground">
-                        <X className="h-4 w-4" />
-                      </button>
+                {selectedMember && (
+                  <div className="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-3">
+                    <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-[11px] font-semibold text-violet-500">
+                      {selectedMember.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
                     </div>
-                  )}
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-sm font-medium text-foreground">{selectedMember.name}</p>
+                      <p className="text-[11px] text-muted-foreground">{selectedMember.phone}</p>
+                    </div>
+                    <button onClick={() => setSelectedMember(null)} className="flex-shrink-0 text-muted-foreground hover:text-foreground">
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                )}
 
-                  <Button
-                    className="h-11 w-full bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
-                    onClick={handleMarkAttendance}
-                    disabled={markMutation.isPending || !selectedMember}
-                  >
-                    {markMutation.isPending
-                      ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Marking...</>
-                      : 'Mark Present'
-                    }
-                  </Button>
-                </div>
-              </DialogContent>
-            </Dialog>
-          </div>
-        }
-      />
+                <Button
+                  className="h-11 w-full bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+                  onClick={handleMarkAttendance}
+                  disabled={markMutation.isPending || !selectedMember}
+                >
+                  {markMutation.isPending
+                    ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Marking...</>
+                    : 'Mark Present'
+                  }
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
+        </div>
+      </div>
 
       {/* Stats — Today tab only */}
       {activeTab === 'today' && (
