@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
-import { DM_Sans, Fraunces, Geist_Mono } from 'next/font/google'
+import { Geist_Mono } from 'next/font/google'
 import './globals.css'
 import Providers from './providers'
 
-const dmSans = DM_Sans({ variable: '--font-sans', subsets: ['latin'] })
-const fraunces = Fraunces({ variable: '--font-heading', subsets: ['latin'] })
+// Geist Mono remains from Google Fonts (used for code/mono snippets only)
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] })
+
+// Orbitron and Aspekta are self-hosted via @font-face in globals.css
+// CSS variables --font-heading and --font-sans are set directly in globals.css
 
 export const metadata: Metadata = {
   title: 'Jovifitx - Gym Management',
@@ -14,8 +16,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${fraunces.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-sans bg-cream text-ink">
+    <html lang="en" className={`${geistMono.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col bg-background text-foreground">
         <Providers>
           {children}
         </Providers>

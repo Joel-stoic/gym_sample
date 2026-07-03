@@ -11,7 +11,7 @@ const pageTitles: Record<string, string> = {
   '/plans': 'Manage Plans',
   '/payments': 'Payments',
   '/attendance': 'Attendance',
-  '/pt': 'Personal training',
+  '/pt': 'Personal Training',
   '/leads': 'Add Leads',
   '/staff': 'Add Staff',
   '/notification':'Notification',
@@ -47,24 +47,26 @@ export default function Header() {
   const roleLabel = staff?.role || 'STAFF'
 
   return (
-    <header
-      className="flex flex-shrink-0 items-center justify-between px-4 py-7 md:px-6 bg-cream-50 border-b border-cream-200 font-sans"
-    >
+    <header className="flex flex-shrink-0 items-center justify-between px-4 py-5 md:px-6 bg-card border-b border-border">
       {/* Left: hamburger (mobile) + page title */}
       <div className="flex items-center gap-4">
         {/* Hamburger — mobile only */}
         <button
           onClick={toggle}
-          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm border border-cream-200 text-cream-400 hover:text-ink hover:bg-cream-200 transition-colors md:hidden"
+          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors md:hidden"
         >
           <Menu className="h-4 w-4" />
         </button>
 
-        <div className="mt-1">
-          <h1 className="font-serif text-[30px] md:text-[34px] font-medium tracking-tight text-ink">
+        <div>
+          {/* Page title uses Orbitron (heading font) */}
+          <h1
+            className="text-[24px] md:text-[28px] font-medium tracking-wide text-foreground"
+            style={{ fontFamily: 'Orbitron, sans-serif', letterSpacing: '0.04em' }}
+          >
             {title}
           </h1>
-          <p className="text-[11px] font-medium tracking-wide text-cream-400 uppercase hidden sm:block min-h-[14px]">
+          <p className="text-[11px] font-semibold tracking-widest text-muted-foreground uppercase hidden sm:block min-h-[14px] mt-0.5">
             {subtitle}
           </p>
         </div>
@@ -72,14 +74,10 @@ export default function Header() {
 
       {/* Right: role badge + avatar */}
       <div className="flex items-center gap-3">
-        <span
-          className="hidden sm:inline-flex items-center justify-center rounded-sm bg-cream-200 px-3 py-1.5 text-[10px] font-bold tracking-widest uppercase text-ink-600"
-        >
+        <span className="hidden sm:inline-flex items-center justify-center rounded-md bg-secondary px-3 py-1.5 text-[10px] font-bold tracking-widest uppercase text-muted-foreground border border-border">
           {roleLabel}
         </span>
-        <div
-          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-cream-200 text-[13px] font-bold text-ink"
-        >
+        <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-primary text-[13px] font-bold text-primary-foreground">
           {initials}
         </div>
       </div>

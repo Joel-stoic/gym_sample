@@ -50,42 +50,43 @@ interface NewMemberModalProps {
 
 const toDateInputValue = (d: Date) => d.toISOString().split('T')[0]
 
+// Active/positive: orange wash. Inactive/partial: muted. No third hue.
 const STATUS_CONFIG = {
-  PAID:    { label: 'Fully Paid',  color: 'text-cola', bg: 'bg-cola-100', border: 'border-cola-100', icon: CheckCircle },
-  PARTIAL: { label: 'Partial',     color: 'text-ink-600', bg: 'bg-cream-200', border: 'border-cream-200', icon: AlertCircle },
-  PENDING: { label: 'Pending',     color: 'text-ink-600', bg: 'bg-cream-200', border: 'border-cream-200', icon: Clock       },
+  PAID:    { label: 'Fully Paid',  color: 'text-primary', bg: 'bg-accent', border: 'border-border', icon: CheckCircle },
+  PARTIAL: { label: 'Partial',     color: 'text-muted-foreground', bg: 'bg-muted', border: 'border-border', icon: AlertCircle },
+  PENDING: { label: 'Pending',     color: 'text-muted-foreground', bg: 'bg-muted', border: 'border-border', icon: Clock },
 }
 
 const inputCls = `
-  w-full rounded-xl border border-cream-200 bg-cream-50
-  px-4 py-2.5 text-sm text-ink placeholder:text-cream-400
-  focus:border-cola/50 focus:ring-2 focus:ring-cola/20 focus:outline-none transition-all
+  w-full rounded-xl border border-border bg-secondary
+  px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground
+  focus:border-primary/60 focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all
 `
 const selectCls = `
-  w-full rounded-xl border border-cream-200 bg-cream-50
-  px-4 py-2.5 text-sm text-ink
-  focus:border-cola/50 focus:ring-2 focus:ring-cola/20 focus:outline-none transition-all
+  w-full rounded-xl border border-border bg-secondary
+  px-4 py-2.5 text-sm text-foreground
+  focus:border-primary/60 focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all
   appearance-none cursor-pointer
 `
 
 function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
   return (
     <div className="space-y-1.5">
-      <label className="text-xs font-semibold text-ink-600 uppercase tracking-widest">{label}</label>
+      <label className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">{label}</label>
       {children}
-      {error && <p className="text-[11px] text-cola">{error}</p>}
+      {error && <p className="text-[11px] text-primary">{error}</p>}
     </div>
   )
 }
 
 function Section({ icon: Icon, title, children }: { icon: React.ElementType; title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-cream-200 bg-cream-50 p-5 shadow-sm">
+    <div className="rounded-2xl border border-border bg-card p-5">
       <div className="mb-4 flex items-center gap-2.5">
-        <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-cream border border-cream-200 text-ink">
+        <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-secondary border border-border text-muted-foreground">
           <Icon size={16} />
         </div>
-        <p className="text-[14px] font-semibold text-ink">{title}</p>
+        <p className="text-[14px] font-semibold text-foreground">{title}</p>
       </div>
       {children}
     </div>
@@ -255,34 +256,34 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-ink/60 backdrop-blur-sm font-sans">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-sm">
       
       {createdMember ? (
-        <div className="w-full max-w-[400px] overflow-hidden rounded-2xl bg-cream border border-cream-200 shadow-xl animate-in fade-in-0 zoom-in-95 duration-150">
+        <div className="w-full max-w-[400px] overflow-hidden rounded-2xl bg-card border border-border shadow-2xl animate-in fade-in-0 zoom-in-95 duration-150">
           <div className="p-5 sm:p-6 space-y-5">
             <div className="flex flex-col items-center text-center">
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-cola-100 border border-cola-100">
-                <CheckCircle size={22} className="text-cola" strokeWidth={2} />
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-accent border border-border">
+                <CheckCircle size={22} className="text-primary" strokeWidth={2} />
               </div>
-              <p className="text-[18px] font-semibold text-ink tracking-tight">
+              <p className="text-[18px] font-semibold text-foreground tracking-tight">
                 Member Added!
               </p>
-              <p className="mt-1.5 text-sm leading-relaxed text-cream-400">
-                Share these login details with <span className="text-ink font-medium">{createdMember.name}</span>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                Share these login details with <span className="text-foreground font-medium">{createdMember.name}</span>
               </p>
             </div>
 
-            <div className="h-px bg-cream-200" />
+            <div className="h-px bg-border" />
 
-            <div className="rounded-xl border border-cream-200 bg-cream-50 p-4 space-y-3">
+            <div className="rounded-xl border border-border bg-secondary p-4 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-widest text-ink-600">📱 Phone</span>
-                <span className="text-sm font-mono font-medium text-ink">{createdMember.phone}</span>
+                <span className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">📱 Phone</span>
+                <span className="text-sm font-mono font-medium text-foreground">{createdMember.phone}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-widest text-ink-600">🔑 Temp Password</span>
+                <span className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">🔑 Temp Password</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-mono font-semibold text-ink">
+                  <span className="text-sm font-mono font-semibold text-foreground">
                     {createdMember.tempPassword}
                   </span>
                   <button
@@ -290,14 +291,14 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                       navigator.clipboard.writeText(createdMember.tempPassword)
                       toast.success('Password copied!')
                     }}
-                    className="rounded-lg p-1.5 text-cream-400 hover:text-ink hover:bg-cream-200 transition-colors"
+                    className="rounded-lg p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                   >
                     <Copy size={14} />
                   </button>
                 </div>
               </div>
-              <div className="pt-2 border-t border-cream-200">
-                <p className="text-xs text-cream-400">
+              <div className="pt-2 border-t border-border">
+                <p className="text-xs text-muted-foreground">
                   Member must change this password on first login.
                 </p>
               </div>
@@ -312,13 +313,13 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   setPlanAmount(0)
                   setValue('planStartDate', toDateInputValue(new Date()))
                 }}
-                className="h-10 flex-1 rounded-xl border border-cream-200 bg-cream-50 hover:bg-cream-200 text-sm font-medium text-ink-600 hover:text-ink transition-all sm:flex-none px-4"
+                className="h-10 flex-1 rounded-xl border border-border bg-secondary hover:bg-muted text-sm font-medium text-foreground transition-all sm:flex-none px-4"
               >
                 Add Another
               </button>
               <button
                 onClick={onClose}
-                className="h-10 flex-1 rounded-xl border-0 bg-cola hover:bg-cola-700 text-sm font-medium text-white transition-all sm:flex-none px-6 shadow-sm"
+                className="h-10 flex-1 rounded-xl bg-primary hover:bg-primary/90 text-sm font-semibold text-primary-foreground transition-all sm:flex-none px-6 shadow-sm"
               >
                 Done
               </button>
@@ -326,24 +327,24 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
           </div>
         </div>
       ) : (
-        <div className="relative w-full max-w-2xl max-h-full flex flex-col overflow-hidden rounded-2xl bg-cream border border-cream-200 shadow-xl animate-in fade-in-0 zoom-in-95 duration-150">
+        <div className="relative w-full max-w-2xl max-h-full flex flex-col overflow-hidden rounded-2xl bg-background border border-border shadow-2xl animate-in fade-in-0 zoom-in-95 duration-150">
           
-          <div className="flex items-center justify-between border-b border-cream-200 px-5 sm:px-6 py-4 bg-cream shrink-0">
+          <div className="flex items-center justify-between border-b border-border px-5 sm:px-6 py-4 bg-card shrink-0">
             <div>
-              <h2 className="text-[18px] font-semibold tracking-tight text-ink">
+              <h2 className="text-[18px] font-semibold tracking-tight text-foreground">
                 Add Member
               </h2>
-              <p className="text-xs text-cream-400 mt-0.5">Register a new gym member</p>
+              <p className="text-xs text-muted-foreground mt-0.5">Register a new gym member</p>
             </div>
             <button
               onClick={onClose}
-              className="flex h-9 w-9 items-center justify-center rounded-lg text-cream-400 transition-colors hover:bg-cream-200 hover:text-ink"
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
             >
               <X size={16} />
             </button>
           </div>
 
-          <form id="new-member-form" onSubmit={handleSubmit(onSubmit)} className="flex-1 overflow-y-auto px-5 sm:px-6 py-5 space-y-5 bg-cream">
+          <form id="new-member-form" onSubmit={handleSubmit(onSubmit)} className="flex-1 overflow-y-auto px-5 sm:px-6 py-5 space-y-5 bg-background">
             
             <Section icon={User} title="Personal Information">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -358,10 +359,10 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                 </Field>
                 <Field label="Gender">
                   <select className={selectCls} {...register('gender')}>
-                    <option value="" className="bg-cream-50 text-ink">Select gender</option>
-                    <option value="MALE"   className="bg-cream-50 text-ink">Male</option>
-                    <option value="FEMALE" className="bg-cream-50 text-ink">Female</option>
-                    <option value="OTHER"  className="bg-cream-50 text-ink">Other</option>
+                    <option value="" className="bg-secondary text-muted-foreground">Select gender</option>
+                    <option value="MALE"   className="bg-secondary text-foreground">Male</option>
+                    <option value="FEMALE" className="bg-secondary text-foreground">Female</option>
+                    <option value="OTHER"  className="bg-secondary text-foreground">Other</option>
                   </select>
                 </Field>
                 <Field label="Date of Birth">
@@ -385,7 +386,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               </Field>
             </Section>
 
-            <div className="rounded-2xl border border-cream-200 bg-cream-50 shadow-sm overflow-hidden">
+            <div className="rounded-2xl border border-border bg-card overflow-hidden">
               <button
                 type="button"
                 onClick={() => {
@@ -400,23 +401,23 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                     setPlanAmount(0)
                   }
                 }}
-                className="w-full flex items-center justify-between p-5 text-left hover:bg-cream-200 transition-colors"
+                className="w-full flex items-center justify-between p-5 text-left hover:bg-secondary transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-cream border border-cream-200 text-ink">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-secondary border border-border text-muted-foreground">
                     <Dumbbell size={16} />
                   </div>
                   <div>
-                    <p className="text-[14px] font-semibold text-ink">Membership Plan & Payment</p>
-                    <p className="text-xs text-cream-400 mt-0.5">
+                    <p className="text-[14px] font-semibold text-foreground">Membership Plan & Payment</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">
                       {addPayment ? 'Will be saved when you click Add Member' : 'Tap to assign a plan now'}
                     </p>
                   </div>
                 </div>
                 <div className={`flex-shrink-0 flex items-center gap-1.5 rounded-lg px-3 h-8 text-xs font-semibold transition-colors ${
                   addPayment
-                    ? 'bg-cola-100 text-cola border border-cola-100'
-                    : 'bg-cream text-cream-400 border border-cream-200'
+                    ? 'bg-accent text-primary border border-border'
+                    : 'bg-secondary text-muted-foreground border border-border'
                 }`}>
                   {addPayment ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                   {addPayment ? 'Hide' : 'Add Plan'}
@@ -424,50 +425,50 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               </button>
 
               {addPayment && (
-                <div className="border-t border-cream-200 p-5 space-y-6">
+                <div className="border-t border-border p-5 space-y-6">
+                  {/* Step 1: Choose Plan */}
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-cream border border-cream-200 text-[10px] font-bold text-ink">1</span>
-                      <span className="text-xs font-semibold text-ink-600 uppercase tracking-widest">Choose Plan</span>
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-secondary border border-border text-[10px] font-bold text-foreground">1</span>
+                      <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Choose Plan</span>
                     </div>
                     <select
                       className={selectCls}
                       {...register('planId')}
                       onChange={e => { register('planId').onChange(e); handlePlanChange(e.target.value) }}
                     >
-                      <option value="" className="bg-cream-50">— Select a membership plan —</option>
+                      <option value="" className="bg-secondary">— Select a membership plan —</option>
                       {plans.map(plan => (
-                        <option key={plan.id} value={plan.id} className="bg-cream-50 text-ink">
+                        <option key={plan.id} value={plan.id} className="bg-secondary text-foreground">
                           {plan.name}  •  ₹{(plan.price / 100).toLocaleString('en-IN')}  •  {plan.durationDays} days
                         </option>
                       ))}
                     </select>
-                    {errors.planId && <p className="text-[11px] text-cola">{errors.planId.message}</p>}
+                    {errors.planId && <p className="text-[11px] text-primary">{errors.planId.message}</p>}
                     {plans.length === 0 && (
-                      <p className="text-xs text-cream-400">
-                        No plans found. Please create a plan first.
-                      </p>
+                      <p className="text-xs text-muted-foreground">No plans found. Please create a plan first.</p>
                     )}
                     {planAmount > 0 && (
-                      <div className="flex items-center justify-between rounded-xl border border-cream-200 bg-cream px-4 py-3">
+                      <div className="flex items-center justify-between rounded-xl border border-border bg-secondary px-4 py-3">
                         <div>
-                          <p className="text-sm font-semibold text-ink">{plans.find(p => p.id === planId)?.name}</p>
-                          <p className="text-xs text-cream-400 mt-0.5">{plans.find(p => p.id === planId)?.durationDays} days membership</p>
+                          <p className="text-sm font-semibold text-foreground">{plans.find(p => p.id === planId)?.name}</p>
+                          <p className="text-xs text-muted-foreground mt-0.5">{plans.find(p => p.id === planId)?.durationDays} days membership</p>
                         </div>
-                        <p className="text-[18px] font-bold text-ink">₹{planAmount}</p>
+                        <p className="text-[18px] font-bold text-foreground tabular-nums">₹{planAmount}</p>
                       </div>
                     )}
                   </div>
 
+                  {/* Step 2: Adjust Amount */}
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-cream border border-cream-200 text-[10px] font-bold text-ink">2</span>
-                      <span className="text-xs font-semibold text-ink-600 uppercase tracking-widest">Adjust Amount</span>
-                      <span className="text-[11px] text-cream-400 font-medium">(optional)</span>
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-secondary border border-border text-[10px] font-bold text-foreground">2</span>
+                      <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Adjust Amount</span>
+                      <span className="text-[11px] text-muted-foreground font-medium">(optional)</span>
                     </div>
                     <div className="grid grid-cols-2 gap-3">
                       <div className="space-y-1.5">
-                        <label className="text-xs font-semibold text-ink-600 uppercase tracking-widest">Discount (₹)</label>
+                        <label className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Discount (₹)</label>
                         <input
                           className={inputCls} type="number" inputMode="numeric" placeholder="0" min={0}
                           {...register('discount')}
@@ -475,7 +476,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                         />
                       </div>
                       <div className="space-y-1.5">
-                        <label className="text-xs font-semibold text-ink-600 uppercase tracking-widest">Extra Charge (₹)</label>
+                        <label className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Extra Charge (₹)</label>
                         <input
                           className={inputCls} type="number" inputMode="numeric" placeholder="0" min={0}
                           {...register('additionalFee')}
@@ -484,39 +485,40 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                       </div>
                     </div>
                     {planAmount > 0 && (
-                      <div className="rounded-xl border border-cream-200 bg-cream p-3 space-y-2 mt-2">
+                      <div className="rounded-xl border border-border bg-secondary p-3 space-y-2 mt-2">
                         <div className="flex items-center justify-between text-sm">
-                          <span className="text-cream-400">Plan price</span>
-                          <span className="text-ink font-medium">₹{planAmount}</span>
+                          <span className="text-muted-foreground">Plan price</span>
+                          <span className="text-foreground font-medium tabular-nums">₹{planAmount}</span>
                         </div>
                         {discount > 0 && (
                           <div className="flex items-center justify-between text-sm">
-                            <span className="text-cream-400">Discount</span>
-                            <span className="text-cola font-medium">− ₹{discount}</span>
+                            <span className="text-muted-foreground">Discount</span>
+                            <span className="text-primary font-medium tabular-nums">− ₹{discount}</span>
                           </div>
                         )}
                         {additionalFee > 0 && (
                           <div className="flex items-center justify-between text-sm">
-                            <span className="text-cream-400">Extra charge</span>
-                            <span className="text-ink-600 font-medium">+ ₹{additionalFee}</span>
+                            <span className="text-muted-foreground">Extra charge</span>
+                            <span className="text-foreground font-medium tabular-nums">+ ₹{additionalFee}</span>
                           </div>
                         )}
-                        <div className="flex items-center justify-between border-t border-cream-200 pt-2 mt-2">
-                          <span className="text-sm font-semibold text-ink">Total to collect</span>
-                          <span className="text-base font-bold text-ink">₹{netDue}</span>
+                        <div className="flex items-center justify-between border-t border-border pt-2 mt-2">
+                          <span className="text-sm font-semibold text-foreground">Total to collect</span>
+                          <span className="text-base font-bold text-foreground tabular-nums">₹{netDue}</span>
                         </div>
                       </div>
                     )}
                   </div>
 
+                  {/* Step 3: Amount Collected */}
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-cream border border-cream-200 text-[10px] font-bold text-ink">3</span>
-                      <span className="text-xs font-semibold text-ink-600 uppercase tracking-widest">Amount Collected Today</span>
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-secondary border border-border text-[10px] font-bold text-foreground">3</span>
+                      <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Amount Collected Today</span>
                     </div>
                     <div className="space-y-1.5">
                       <div className="relative">
-                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[14px] font-semibold text-cream-400">₹</span>
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[14px] font-semibold text-muted-foreground">₹</span>
                         <input
                           className={`${inputCls} pl-7 text-[16px] font-semibold`}
                           type="number" inputMode="numeric"
@@ -525,7 +527,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                           {...register('paidAmount')}
                         />
                       </div>
-                      {errors.paidAmount && <p className="text-[11px] text-cola">{errors.paidAmount.message}</p>}
+                      {errors.paidAmount && <p className="text-[11px] text-primary">{errors.paidAmount.message}</p>}
                     </div>
                     {planAmount > 0 && (
                       <div className={`flex items-center gap-2.5 rounded-xl border px-4 py-3 ${statusCfg.bg} ${statusCfg.border}`}>
@@ -537,34 +539,36 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                             {paymentStatus === 'PENDING' && 'Nothing paid — member will be Inactive'}
                           </p>
                           {paymentStatus === 'PARTIAL' && paidAmount > 0 && (
-                            <p className="text-[11px] text-cream-400 mt-0.5">You can collect the rest later from Payments</p>
+                            <p className="text-[11px] text-muted-foreground mt-0.5">You can collect the rest later from Payments</p>
                           )}
                         </div>
                       </div>
                     )}
                   </div>
 
+                  {/* Step 4: Start Date */}
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-cream border border-cream-200 text-[10px] font-bold text-ink">4</span>
-                      <span className="text-xs font-semibold text-ink-600 uppercase tracking-widest">Membership Start Date</span>
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-secondary border border-border text-[10px] font-bold text-foreground">4</span>
+                      <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Membership Start Date</span>
                     </div>
                     <input className={inputCls} type="date" {...register('planStartDate')} />
                     {expiryPreview && (
-                      <div className="flex items-center justify-between rounded-xl border border-cola-100 bg-cola-100 px-4 py-2.5">
-                        <div className="flex items-center gap-2 text-xs font-medium text-cola">
-                          <CalendarDays size={14} className="text-cola" />
+                      <div className="flex items-center justify-between rounded-xl border border-border bg-accent px-4 py-2.5">
+                        <div className="flex items-center gap-2 text-xs font-medium text-primary">
+                          <CalendarDays size={14} />
                           Membership expires on
                         </div>
-                        <span className="text-sm font-semibold text-cola">{expiryPreview}</span>
+                        <span className="text-sm font-semibold text-primary">{expiryPreview}</span>
                       </div>
                     )}
                   </div>
 
+                  {/* Step 5: Payment Method */}
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-cream border border-cream-200 text-[10px] font-bold text-ink">5</span>
-                      <span className="text-xs font-semibold text-ink-600 uppercase tracking-widest">How Did They Pay?</span>
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-secondary border border-border text-[10px] font-bold text-foreground">5</span>
+                      <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">How Did They Pay?</span>
                     </div>
                     <div className="grid grid-cols-2 gap-2.5">
                       {PAYMENT_METHODS.map(m => {
@@ -581,11 +585,11 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                             onClick={() => setValue('paymentMethod', m.value)}
                             className={`flex items-center justify-center gap-2.5 h-12 rounded-xl border text-sm font-semibold transition-all ${
                               selected
-                                ? 'border-cola-100 bg-cola-100 text-cola'
-                                : 'border-cream-200 bg-cream-50 text-cream-400 hover:bg-cream-200 hover:text-ink'
+                                ? 'border-border bg-accent text-primary'
+                                : 'border-border bg-secondary text-muted-foreground hover:bg-muted hover:text-foreground'
                             }`}
                           >
-                            <span className={selected ? 'text-cola' : 'text-cream-400'}>
+                            <span className={selected ? 'text-primary' : 'text-muted-foreground'}>
                               {icons[m.value] ?? <Wallet size={16} />}
                             </span>
                             {m.label}
@@ -593,12 +597,12 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                         )
                       })}
                     </div>
-                    {errors.paymentMethod && <p className="text-[11px] text-cola">{errors.paymentMethod.message}</p>}
+                    {errors.paymentMethod && <p className="text-[11px] text-primary">{errors.paymentMethod.message}</p>}
                   </div>
 
                   <div className="space-y-1.5 pt-1">
-                    <label className="text-xs font-semibold text-ink-600 uppercase tracking-widest">
-                      Notes <span className="text-cream-400 normal-case font-medium tracking-normal">(optional)</span>
+                    <label className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">
+                      Notes <span className="text-muted-foreground normal-case font-medium tracking-normal">(optional)</span>
                     </label>
                     <input className={inputCls} placeholder="e.g. Paid via GPay, receipt #123" {...register('paymentNotes')} />
                   </div>
@@ -608,11 +612,11 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
             </div>
           </form>
 
-          <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 px-5 sm:px-6 py-4 border-t border-cream-200 bg-cream shrink-0">
+          <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 px-5 sm:px-6 py-4 border-t border-border bg-card shrink-0">
             <button
               type="button"
               onClick={onClose}
-              className="w-full sm:w-auto h-10 rounded-xl border border-cream-200 bg-cream-50 px-6 text-sm font-semibold text-ink-600 transition-colors hover:bg-cream-200 hover:text-ink"
+              className="w-full sm:w-auto h-10 rounded-xl border border-border bg-secondary px-6 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
             >
               Cancel
             </button>
@@ -620,7 +624,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               type="submit"
               form="new-member-form"
               disabled={loading}
-              className="flex w-full sm:w-auto h-10 items-center justify-center gap-2 rounded-xl px-6 text-sm font-semibold text-white transition-colors disabled:opacity-60 bg-cola hover:bg-cola-700 shadow-sm"
+              className="flex w-full sm:w-auto h-10 items-center justify-center gap-2 rounded-xl px-6 text-sm font-semibold text-primary-foreground transition-colors disabled:opacity-60 bg-primary hover:bg-primary/90 shadow-sm"
             >
               {loading && <Loader2 size={16} className="animate-spin" />}
               {loading ? 'Saving...' : addPayment && planId ? 'Add Member & Record Payment' : 'Add Member'}
