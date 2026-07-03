@@ -66,11 +66,7 @@ function PlanCard({
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
           <div
-            className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl"
-            style={{
-              background: inactive ? '#ffffff08' : '#7c3aed20',
-              color: inactive ? '#6b6b80' : '#a855f7',
-            }}
+            className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl ${inactive ? 'bg-muted text-muted-foreground' : 'bg-violet-500/10 text-violet-500'}`}
           >
             <CreditCard className="h-4 w-4" />
           </div>
@@ -93,27 +89,7 @@ function PlanCard({
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button
-                className="flex h-8 w-8 items-center justify-center rounded-lg transition-all duration-150"
-                style={{
-                  background: 'transparent',
-                  border: '1px solid transparent',
-                  color: 'var(--muted-foreground)',
-                }}
-                onMouseEnter={(e) => {
-                  ; (e.currentTarget as HTMLButtonElement).style.background =
-                    '#ffffff08'
-                    ; (e.currentTarget as HTMLButtonElement).style.border =
-                      '1px solid #ffffff0f'
-                    ; (e.currentTarget as HTMLButtonElement).style.color = '#fff'
-                }}
-                onMouseLeave={(e) => {
-                  ; (e.currentTarget as HTMLButtonElement).style.background =
-                    'transparent'
-                    ; (e.currentTarget as HTMLButtonElement).style.border =
-                      '1px solid transparent'
-                    ; (e.currentTarget as HTMLButtonElement).style.color =
-                      '#6b6b80'
-                }}
+                className="flex h-8 w-8 items-center justify-center rounded-lg transition-colors bg-transparent text-muted-foreground hover:bg-muted hover:text-foreground border border-transparent hover:border-border"
               >
                 <MoreHorizontal className="h-4 w-4" />
               </button>
@@ -170,8 +146,7 @@ function PlanCard({
       {/* Meta row */}
       <div className="flex items-center gap-3">
         <div
-          className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12px]"
-          style={{ background: '#ffffff08', color: 'var(--muted-foreground)' }}
+          className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12px] bg-muted/50 text-muted-foreground"
         >
           <Clock className="h-3.5 w-3.5 text-red-300" />
           {plan.durationDays} days
@@ -179,8 +154,7 @@ function PlanCard({
 
         {plan._count && (
           <div
-            className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12px]"
-            style={{ background: '#ffffff08', color: 'var(--muted-foreground)' }}
+            className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12px] bg-muted/50 text-muted-foreground"
           >
             <Users className="h-3.5 w-3.5 text-green-400" />
             {plan._count.members} members
@@ -188,20 +162,7 @@ function PlanCard({
         )}
 
         <span
-          className="ml-auto rounded-full px-2.5 py-1 text-[11px] font-medium"
-          style={
-            inactive
-              ? {
-                background: '#ffffff08',
-                color: 'var(--muted-foreground)',
-                border: '1px solid var(--border)',
-              }
-              : {
-                background: '#10b98115',
-                color: '#10b981',
-                border: '1px solid #10b98125',
-              }
-          }
+          className={`ml-auto rounded-full px-2.5 py-1 text-[11px] font-medium border ${inactive ? 'bg-muted/50 text-muted-foreground border-border' : 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20'}`}
         >
           {inactive ? 'Inactive' : 'Active'}
         </span>
@@ -251,23 +212,7 @@ export default function PlansPage() {
         {canManage && (
           <button
             onClick={() => router.push('/plans/new')}
-            className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-[13px] font-medium text-foreground transition-all duration-150"
-            style={{
-              background: 'linear-gradient(135deg, #7c3aed, #a855f7)',
-              boxShadow: '0 4px 20px #7c3aed30',
-            }}
-            onMouseEnter={(e) => {
-              ; (e.currentTarget as HTMLButtonElement).style.boxShadow =
-                '0 4px 28px #7c3aed55'
-                ; (e.currentTarget as HTMLButtonElement).style.transform =
-                  'translateY(-1px)'
-            }}
-            onMouseLeave={(e) => {
-              ; (e.currentTarget as HTMLButtonElement).style.boxShadow =
-                '0 4px 20px #7c3aed30'
-                ; (e.currentTarget as HTMLButtonElement).style.transform =
-                  'translateY(0)'
-            }}
+            className="flex h-10 items-center justify-center gap-2 px-5 text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground hover:-translate-y-0.5"
           >
             <Plus className="h-4 w-4" />
             Add Plan
@@ -282,10 +227,9 @@ export default function PlansPage() {
           
         >
           <div
-            className="flex h-12 w-12 items-center justify-center rounded-2xl"
-            style={{ background: '#7c3aed20' }}
+            className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/10 text-violet-500"
           >
-            <CreditCard className="h-5 w-5 text-violet-400" />
+            <CreditCard className="h-5 w-5" />
           </div>
           <div className="text-center">
             <p className="text-[14px] font-medium text-foreground">No plans yet</p>
@@ -296,8 +240,7 @@ export default function PlansPage() {
           {canManage && (
             <button
               onClick={() => router.push('/plans/new')}
-              className="flex items-center gap-2 rounded-xl px-4 py-2 text-[13px] font-medium text-foreground"
-              style={{ background: '#7c3aed', boxShadow: '0 4px 16px #7c3aed30' }}
+              className="flex h-10 items-center justify-center gap-2 px-5 text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground hover:-translate-y-0.5"
             >
               <Plus className="h-4 w-4" />
               Add Plan

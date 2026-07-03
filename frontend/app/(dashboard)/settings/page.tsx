@@ -185,13 +185,12 @@ function DefaultPasswordsModal({
     [&>button]:hover:text-foreground
   "
       >
-        <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, #7c3aed, #a855f7)' }} />
+        <div className="h-1 w-full bg-black/10 dark:bg-white/10" />
 
         <div className="p-6">
           <DialogHeader className="mb-5">
             <div
-              className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl"
-              style={{ background: '#7c3aed15', border: '1px solid #7c3aed25' }}
+              className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/10 border border-violet-500/20"
             >
               <KeyRound size={20} className="text-violet-400" />
             </div>
@@ -206,7 +205,7 @@ function DefaultPasswordsModal({
             </p>
           </DialogHeader>
 
-          <div className="mb-6 h-px" style={{ background: '#7c3aed20' }} />
+          <div className="mb-6 h-px bg-violet-500/20" />
 
           <div className="space-y-5">
             <div className="space-y-2">
@@ -273,11 +272,7 @@ function DefaultPasswordsModal({
             <button
               onClick={handleSave}
               disabled={saving}
-              className="flex-1 h-11 rounded-xl text-[14px] font-medium text-foreground transition-all flex items-center justify-center gap-2 disabled:opacity-60"
-              style={{
-                background: 'linear-gradient(135deg, #7c3aed, #a855f7)',
-                boxShadow: '0 4px 16px #7c3aed28',
-              }}
+              className="flex-1 h-11 flex items-center justify-center gap-2 rounded-xl text-[14px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground disabled:opacity-50"
             >
               {saving && <Loader2 size={16} className="animate-spin" />}
               {saving ? 'Saving...' : 'Save Passwords'}
@@ -464,7 +459,7 @@ export default function SettingsPage() {
                         <button
                           type="submit"
                           disabled={gymLoading}
-                          className="flex h-11 items-center gap-2 px-6 text-[14px] font-medium text-foreground transition-colors hover: bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+                          className="flex h-11 items-center gap-2 px-6 rounded-xl text-[14px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground disabled:opacity-50"
                         >
                           {gymLoading && <Loader2 size={16} className="animate-spin" />}
                           {gymLoading ? 'Saving...' : 'Save Changes'}
@@ -503,19 +498,7 @@ export default function SettingsPage() {
                   </div>
                   <button
                     onClick={() => setShowDefaultPwModal(true)}
-                    className="flex items-center justify-center gap-2 rounded-xl px-5 h-10 text-[14px] font-medium text-foreground transition-all flex-shrink-0"
-                    style={{
-                      background: 'linear-gradient(135deg, #7c3aed, #a855f7)',
-                      boxShadow: '0 4px 16px #7c3aed28',
-                    }}
-                    onMouseEnter={e => {
-                      ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 24px #7c3aed48'
-                      ;(e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-1px)'
-                    }}
-                    onMouseLeave={e => {
-                      ;(e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 16px #7c3aed28'
-                      ;(e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0)'
-                    }}
+                    className="flex h-10 flex-shrink-0 items-center justify-center gap-2 rounded-xl px-5 text-[14px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground hover:-translate-y-0.5"
                   >
                     <ShieldCheck size={16} />
                     Set Passwords
@@ -699,7 +682,7 @@ export default function SettingsPage() {
                         <button
                           type="submit"
                           disabled={passLoading}
-                          className="flex h-11 items-center gap-2 px-6 text-[14px] font-medium text-foreground transition-colors hover: bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+                          className="flex h-11 items-center gap-2 px-6 rounded-xl text-[14px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground disabled:opacity-50"
                         >
                           {passLoading && <Loader2 size={16} className="animate-spin" />}
                           {passLoading ? 'Changing...' : 'Change Password'}

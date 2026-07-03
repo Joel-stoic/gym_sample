@@ -202,8 +202,7 @@ function DeleteConfirmModal({
           <button
             onClick={handleDelete}
             disabled={deleting}
-            className="flex flex-1 items-center justify-center gap-2 rounded-xl py-2.5 text-[13px] font-semibold text-foreground transition-all hover:opacity-90 disabled:opacity-50"
-            style={{ background: 'linear-gradient(135deg, #dc2626, #ef4444)' }}
+            className="flex flex-1 items-center justify-center gap-2 rounded-xl py-2.5 text-[13px] font-semibold text-red-500 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 transition-all hover:opacity-90 disabled:opacity-50"
           >
             {deleting
               ? <Loader2 size={13} className="animate-spin" />
@@ -488,8 +487,7 @@ function EditPaymentModal({
             <button
               onClick={handleSave}
               disabled={saving}
-              className="flex flex-1 items-center justify-center gap-2 rounded-xl py-2.5 text-[13px] font-semibold text-foreground transition-all hover:opacity-90 disabled:opacity-50"
-              style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)' }}
+              className="flex flex-1 items-center justify-center gap-2 h-10 px-5 text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground hover:-translate-y-0.5 disabled:opacity-50"
             >
               {saving
                 ? <Loader2 size={13} className="animate-spin" />
@@ -605,8 +603,7 @@ function CollectDueModal({
           <button
             onClick={handleSubmit}
             disabled={submitting}
-            className="flex flex-1 items-center justify-center gap-2 rounded-xl py-2.5 text-[13px] font-semibold text-foreground transition-all hover:opacity-90 disabled:opacity-50"
-            style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)' }}
+            className="flex flex-1 items-center justify-center gap-2 h-10 px-5 text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground hover:-translate-y-0.5 disabled:opacity-50"
           >
             {submitting && <Loader2 size={13} className="animate-spin" />}
             {submitting ? 'Collecting...' : 'Collect'}
@@ -662,12 +659,7 @@ function Pagination({
           <button
             key={p}
             onClick={() => onPageChange(p as number)}
-            className={btnBase}
-            style={
-              p === page
-                ? { background: 'linear-gradient(135deg,#7c3aed,#a855f7)', color: '#fff', border: '1px solid transparent' }
-                : { background: 'var(--background)', color: 'var(--muted-foreground)', border: '1px solid var(--border)' }
-            }
+            className={`${btnBase} ${p === page ? 'bg-black/10 dark:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground' : 'bg-transparent text-muted-foreground border border-border hover:bg-muted'}`}
           >
             {p}
           </button>
@@ -775,12 +767,7 @@ export default function PaymentsPage() {
             <button
               key={p}
               onClick={() => setPeriod(p)}
-              className="rounded-full px-4 py-1.5 text-[13px] font-medium transition-all"
-              style={
-                period === p
-                  ? { background: 'linear-gradient(135deg,#7c3aed,#a855f7)', color: '#fff' }
-                  : { background: 'var(--background)', color: 'var(--muted-foreground)', border: '1px solid var(--border)' }
-              }
+              className={`rounded-full px-4 py-1.5 text-[13px] font-medium transition-all ${period === p ? 'bg-black/10 dark:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground' : 'bg-transparent text-muted-foreground border border-border hover:bg-muted'}`}
             >
               {PERIOD_LABELS[p]}
             </button>

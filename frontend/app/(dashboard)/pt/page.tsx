@@ -148,8 +148,7 @@ function AddPackageModal({ onClose, onSuccess }: {
               value={description} onChange={e => setDescription(e.target.value)} />
           </div>
           <button onClick={handleSave} disabled={saving}
-            className="w-full h-11 rounded-xl text-[13px] font-medium text-foreground flex items-center justify-center gap-2 disabled:opacity-60 transition-all mt-2"
-            style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)', boxShadow: '0 4px 20px #7c3aed35' }}>
+            className="w-full h-11 flex items-center justify-center gap-2 rounded-xl text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground hover:-translate-y-0.5 mt-2 disabled:opacity-50">
             {saving && <Loader2 className="h-4 w-4 animate-spin" />}
             {saving ? 'Creating...' : 'Create Package'}
           </button>
@@ -299,8 +298,7 @@ function ScheduleSessionModal({ enrollments, trainers, onClose, onSuccess }: {
           </div>
 
           <button onClick={handleSave} disabled={saving}
-            className="w-full h-11 rounded-xl text-[13px] font-medium text-foreground flex items-center justify-center gap-2 disabled:opacity-60 transition-all mt-2"
-            style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)', boxShadow: '0 4px 20px #7c3aed35' }}>
+            className="w-full h-11 flex items-center justify-center gap-2 rounded-xl text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground hover:-translate-y-0.5 mt-2 disabled:opacity-50">
             {saving && <Loader2 className="h-4 w-4 animate-spin" />}
             {saving ? 'Scheduling...' : 'Schedule Session'}
           </button>
@@ -461,8 +459,7 @@ function EnrollMemberModal({ packages, onClose, onSuccess }: {
           </div>
 
           <button onClick={handleSave} disabled={saving || !memberId || !packageId}
-            className="w-full h-11 rounded-xl text-[13px] font-medium text-foreground flex items-center justify-center gap-2 disabled:opacity-60 transition-all mt-2"
-            style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)', boxShadow: '0 4px 20px #7c3aed35' }}>
+            className="w-full h-11 flex items-center justify-center gap-2 rounded-xl text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground hover:-translate-y-0.5 mt-2 disabled:opacity-50">
             {saving && <Loader2 className="h-4 w-4 animate-spin" />}
             {saving ? 'Enrolling...' : 'Enroll Member'}
           </button>
@@ -665,8 +662,7 @@ export default function PtPage() {
            
           )}
           <button onClick={() => setShowSchedule(true)}
-            className="flex items-center gap-2 h-9 px-4 rounded-xl text-[13px] font-medium text-foreground transition-all"
-            style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)', boxShadow: '0 4px 16px #7c3aed30' }}>
+            className="flex h-9 items-center justify-center gap-2 px-4 text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-xl text-foreground hover:-translate-y-0.5">
             <Plus className="h-3.5 w-3.5" /> Schedule Session to Members
           </button>
         </div>
@@ -697,10 +693,7 @@ export default function PtPage() {
         style={{ background: '#ffffff08' }}>
         {(['sessions', 'enrollments', 'packages'] as const).map(tab => (
           <button key={tab} onClick={() => setActiveTab(tab)}
-            className="px-4 py-2 rounded-lg text-[13px] font-medium transition-all capitalize"
-            style={activeTab === tab
-              ? { background: 'linear-gradient(135deg, #7c3aed, #a855f7)', color: 'var(--foreground)' }
-              : { color: 'var(--muted-foreground)' }}>
+            className={`px-4 py-2 rounded-lg text-[13px] font-medium transition-all capitalize ${activeTab === tab ? 'bg-black/10 dark:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground' : 'bg-transparent text-muted-foreground hover:bg-muted border border-transparent'}`}>
             {tab}
           </button>
         ))}

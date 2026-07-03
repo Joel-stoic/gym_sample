@@ -453,8 +453,8 @@ export default function LeadsPage() {
             onClick={() => setStatusFilter(status)}
             className={
               statusFilter === status
-                ? 'bg-violet-600 hover:bg-violet-500'
-                : 'border-border bg-transparent text-foreground hover:bg-muted'
+                ? 'bg-black/10 dark:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground'
+                : 'border-border bg-transparent text-muted-foreground hover:bg-muted'
             }
           >
             {status === ''
@@ -629,12 +629,12 @@ function LeadCard({
       {/* INFO */}
 
       <div className="space-y-3">
-        <div className="flex items-center gap-2 text-sm text-[#b4b4c7]">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Phone className="h-4 w-4 text-violet-400" />
           {lead.phone}
         </div>
 
-        <div className="flex items-center gap-2 text-sm text-[#b4b4c7]">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Calendar className="h-4 w-4 text-violet-400" />
           {formatDate(lead.createdAt)}
         </div>
@@ -660,7 +660,7 @@ function LeadCard({
 
       {lead.notes && (
         <div className="mt-4 rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3">
-          <p className="text-sm text-[#b4b4c7]">
+          <p className="text-sm text-muted-foreground">
             {lead.notes}
           </p>
         </div>

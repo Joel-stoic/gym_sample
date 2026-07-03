@@ -96,8 +96,8 @@ const NotificationPage = () => {
               onClick={() => setFilter(opt.value)}
               className={`rounded-lg px-3 py-1.5 text-[11px] font-medium transition-all duration-150
                 ${filter === opt.value
-                  ? 'bg-violet-600 text-foreground shadow'
-                  : 'text-muted-foreground hover:text-zinc-300'
+                  ? 'bg-black/10 dark:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground shadow'
+                  : 'bg-transparent text-muted-foreground hover:bg-muted border border-transparent'
                 }`}
             >
               {opt.label}
