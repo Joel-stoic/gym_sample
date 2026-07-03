@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { Bebas_Neue, Inter } from 'next/font/google'
 import {
   LayoutDashboard,
   Users,
@@ -22,10 +21,6 @@ import { toast } from 'sonner'
 import api from '@/src/lib/api'
 import { useSidebar } from '../../store/sidebarStore'
 import { useNotificationBadge } from '@/src/hooks/useNotificationBadge'
-
-// ─── Fonts ────────────────────────────────────────────────────────────────────
-const bebas = Bebas_Neue({ weight: '400', subsets: ['latin'] })
-const inter = Inter({ subsets: ['latin'] })
 
 // ✅ every item has roles — filter never crashes on undefined
 const navItems: {
@@ -73,9 +68,9 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
     <div
       className={cn(
         'flex h-full w-[82vw] max-w-[280px] flex-shrink-0 flex-col overflow-hidden',
-        'bg-[#050505] border-r border-[#1A1A1A]',
+        'bg-surface-base border-r border-border-strong',
         'md:w-64 md:max-w-none',
-        inter.className
+        'font-sans'
       )}
     >
       {/* Logo — compact on mobile so the whole rail fits without scrolling */}
@@ -84,7 +79,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
           <Dumbbell className="h-3.5 w-3.5 text-violet-500 sm:h-4 sm:w-4" />
         </div>
         <div className="min-w-0 flex-1">
-          <p className={`text-lg leading-none tracking-widest text-white sm:text-2xl ${bebas.className}`}>
+          <p className="text-lg leading-none tracking-widest text-white sm:text-2xl font-heading">
             JOVIFITX
           </p>
           <p className="mt-0.5 truncate text-[9.5px] font-medium tracking-wide text-[#555555] uppercase sm:mt-1 sm:text-[11px]">

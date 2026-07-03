@@ -1,14 +1,9 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { Bebas_Neue, Inter } from 'next/font/google'
 import { useAuthStore } from '@/src/store/authStore'
 import { useSidebar } from '@/src/store/sidebarStore'
 import { Menu } from 'lucide-react'
-
-// ─── Fonts ────────────────────────────────────────────────────────────────────
-const bebas = Bebas_Neue({ weight: '400', subsets: ['latin'] })
-const inter = Inter({ subsets: ['latin'] })
 
 const pageTitles: Record<string, string> = {
   '/dashboard': 'Dashboard',
@@ -53,7 +48,7 @@ export default function Header() {
 
   return (
     <header
-      className={`flex flex-shrink-0 items-center justify-between px-4 py-7 md:px-6 bg-[#050505] border-b border-[#1A1A1A] ${inter.className}`}
+      className="flex flex-shrink-0 items-center justify-between px-4 py-7 md:px-6 bg-surface-base border-b border-border-strong font-sans"
     >
       {/* Left: hamburger (mobile) + page title */}
       <div className="flex items-center gap-4">
@@ -66,7 +61,7 @@ export default function Header() {
         </button>
 
         <div className="mt-1">
-          <h1 className={`text-2xl tracking-widest text-white uppercase ${bebas.className}`}>
+          <h1 className="text-2xl tracking-widest text-white uppercase font-heading">
             {title}
           </h1>
           <p className="text-[11px] font-medium tracking-wide text-[#555555] uppercase hidden sm:block min-h-[14px]">
