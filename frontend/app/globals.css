@@ -79,47 +79,46 @@
 
 /* ─── :root — single source of truth, no parallel token system ─────────────── */
 :root {
-  --background:           #F2EEBF;
-  --foreground:           #320C35;
-  --card:                 #EDE97A1A; /* F2EEBF slightly darker — use below */
-  --card:                 #E8E4A8;
-  --card-foreground:      #320C35;
-  --popover:              #E8E4A8;
-  --popover-foreground:   #320C35;
+  --background:           #320C35;
+  --foreground:           #F2EEBF;
+  --card:                 #3E1042;
+  --card-foreground:      #F2EEBF;
+  --popover:              #3E1042;
+  --popover-foreground:   #F2EEBF;
 
-  --primary:              #320C35;
-  --primary-foreground:   #F2EEBF;
+  --primary:              #F2EEBF;
+  --primary-foreground:   #320C35;
 
-  --secondary:            #DDD98F;
-  --secondary-foreground: #320C35;
-  --muted:                #DDD98F;
-  --muted-foreground:     #6B4070;
+  --secondary:            #4A1A4D;
+  --secondary-foreground: #F2EEBF;
+  --muted:                #4A1A4D;
+  --muted-foreground:     #A888B0;
 
-  --accent:               rgba(50,12,53,0.10);
-  --accent-foreground:    #320C35;
+  --accent:               rgba(242,238,191,0.10);
+  --accent-foreground:    #F2EEBF;
 
-  --destructive:          #8B1A1A;
+  --destructive:          #C0504D;
 
-  --border:               #CECA7A;
-  --input:                #CECA7A;
-  --ring:                 #320C35;
+  --border:               #5C2A60;
+  --input:                #5C2A60;
+  --ring:                 #F2EEBF;
 
-  --chart-1:              #320C35;
-  --chart-2:              #6B4070;
-  --chart-3:              #9B6FA0;
-  --chart-4:              #E8E4A8;
-  --chart-5:              #CECA7A;
+  --chart-1:              #F2EEBF;
+  --chart-2:              #A888B0;
+  --chart-3:              #6B4070;
+  --chart-4:              #4A1A4D;
+  --chart-5:              #5C2A60;
 
   --radius: 0.625rem;
 
-  --sidebar:                    #320C35;
+  --sidebar:                    #270930;
   --sidebar-foreground:         #F2EEBF;
-  --sidebar-primary:            #6B4070;
-  --sidebar-primary-foreground: #F2EEBF;
-  --sidebar-accent:             rgba(242,238,191,0.10);
+  --sidebar-primary:            #F2EEBF;
+  --sidebar-primary-foreground: #320C35;
+  --sidebar-accent:             rgba(242,238,191,0.08);
   --sidebar-accent-foreground:  #F2EEBF;
   --sidebar-border:             #4A1A4D;
-  --sidebar-ring:               #6B4070;
+  --sidebar-ring:               #F2EEBF;
 }
 
 /* ─── Base layer ─────────────────────────────────────────────────────────────  */
