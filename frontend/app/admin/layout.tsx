@@ -43,7 +43,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   if (pathname === '/admin/login') return <>{children}</>
 
   return (
-    <div className="min-h-screen bg-[#0b0b12] text-white flex">
+    <div className="min-h-screen bg-[#0a0a0f] text-white flex">
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div

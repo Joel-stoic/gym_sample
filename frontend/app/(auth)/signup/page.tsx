@@ -167,7 +167,7 @@ export default function SignupPage() {
   // ── Success screen ────────────────────────────────────────────────────────
   if (success) {
     return (
-      <div className={`min-h-screen bg-[#050505] flex items-stretch ${inter.className}`}>
+      <div className={`min-h-screen bg-[#0a0a0f] flex items-stretch ${inter.className}`}>
         <BrandPanel />
 
         <div className="flex-1 flex items-center justify-center px-6 py-12">
@@ -222,7 +222,7 @@ export default function SignupPage() {
 
   // ── Signup form ───────────────────────────────────────────────────────────
   return (
-    <div className={`min-h-screen bg-[#050505] flex items-stretch ${inter.className}`}>
+    <div className={`min-h-screen bg-[#0a0a0f] flex items-stretch ${inter.className}`}>
       <BrandPanel />
 
       <div className="flex-1 flex items-center justify-center px-6 py-12">

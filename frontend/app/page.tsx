@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600'], variabl
 
 export default function HomePage() {
   return (
-    <div className={`${oswald.variable} ${inter.variable} min-h-screen bg-[#0a0a12] text-[#F4F2EC] font-[family-name:var(--font-body)]`}>
+    <div className={`${oswald.variable} ${inter.variable} min-h-screen bg-[#0a0a0f] text-[#F4F2EC] font-[family-name:var(--font-body)]`}>
 
       {/* ── Nav ── */}
       <header className="flex items-center justify-between px-6 sm:px-10 py-6 max-w-6xl mx-auto">
@@ -87,7 +87,7 @@ export default function HomePage() {
             { title: 'Attendance', body: 'A single QR at the door logs every check-in — no manual sign-in sheets.' },
             { title: 'Payments', body: 'See who\u2019s paid, who\u2019s due, and where your revenue actually stands.' },
           ].map((f) => (
-            <div key={f.title} className="bg-[#0a0a12] p-7">
+            <div key={f.title} className="bg-[#0a0a0f] p-7">
               <h3 className="font-[family-name:var(--font-display)] uppercase font-semibold text-lg tracking-tight mb-2">
                 {f.title}
               </h3>

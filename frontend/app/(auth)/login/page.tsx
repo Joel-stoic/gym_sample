@@ -224,7 +224,7 @@ function ForgotPasswordModal({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className={`!bg-[#050505] !text-white border border-[#2A2A2A] p-0 overflow-hidden gap-0 rounded-xl sm:max-w-[420px] ${inter.className}`}>
+      <DialogContent className={`!bg-[#0a0a0f] !text-white border border-[#2A2A2A] p-0 overflow-hidden gap-0 rounded-xl sm:max-w-[420px] ${inter.className}`}>
         <div className="p-8">
           <DialogHeader className="mb-6">
             <div className="flex items-center justify-between mb-6">
@@ -441,7 +441,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className={`min-h-screen bg-[#050505] flex items-stretch ${inter.className}`}>
+    <div className={`min-h-screen bg-[#0a0a0f] flex items-stretch ${inter.className}`}>
 
       {/* ── Brand panel ─────────────────────────────────────────────────── */}
       <div className="relative hidden lg:flex lg:w-[45%] flex-col justify-between overflow-hidden bg-black px-16 py-12 border-r border-[#1A1A1A]">
@@ -484,7 +484,7 @@ export default function LoginPage() {
       </div>
 
       {/* ── Form panel ──────────────────────────────────────────────────── */}
-      <div className="flex-1 flex items-center justify-center px-6 py-12 relative bg-[#050505]">
+      <div className="flex-1 flex items-center justify-center px-6 py-12 relative bg-[#0a0a0f]">
 
         <div className="relative z-10 w-full max-w-[400px]">
           {/* Mobile wordmark */}

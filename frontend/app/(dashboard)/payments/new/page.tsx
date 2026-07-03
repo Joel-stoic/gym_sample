@@ -233,7 +233,7 @@ export default function NewPaymentPage() {
       <div className="grid gap-6 lg:grid-cols-[1fr_340px]">
 
         {/* ── Form ── */}
-        <div className="rounded-3xl border border-white/[0.06] bg-[#0b0b12] p-6">
+        <div className="rounded-3xl border border-white/[0.06] bg-[#0a0a0f] p-6">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
 

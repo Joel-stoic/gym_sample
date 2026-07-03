@@ -135,7 +135,7 @@ export default function MemberLoginPage() {
   return (
     <div
       className="min-h-screen flex items-center justify-center p-4"
-      style={{ background: '#0a0a12' }}
+      style={{ background: '#0a0a0f' }}
     >
       {/* Glow */}
       <div

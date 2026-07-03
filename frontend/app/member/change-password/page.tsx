@@ -147,7 +147,7 @@ export default function MemberChangePasswordPage() {
   return (
     <div
       className="min-h-screen flex items-center justify-center p-4"
-      style={{ background: '#0a0a12', fontFamily: "'DM Sans', sans-serif" }}
+      style={{ background: '#0a0a0f', fontFamily: "'DM Sans', sans-serif" }}
     >
       {/* Background glow */}
       <div

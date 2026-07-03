@@ -259,7 +259,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#050505]/75 backdrop-blur-[4px]" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#0a0a0f]/75 backdrop-blur-[4px]" style={{ fontFamily: "'DM Sans', sans-serif" }}>
       
       {/* ── Success View ─────────────────────────────────────────────── */}
       {createdMember ? (
