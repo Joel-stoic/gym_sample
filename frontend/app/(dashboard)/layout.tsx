@@ -19,7 +19,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   if (!hydrated) {
     return (
-      <div className="flex min-h-screen items-center justify-center" style={{ background: '#0a0a0f' }}>
+      <div className="flex min-h-screen items-center justify-center bg-[#050505]">
         <div className="flex flex-col items-center gap-4">
           <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-violet-600/20">
             <div className="h-5 w-5 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
@@ -33,7 +33,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   if (!isAuthenticated) return null
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: '#0a0a0f' }}>
+    <div className="flex h-screen overflow-hidden bg-[#050505]">
       {/* Sidebar handles its own mobile/desktop rendering */}
       <Sidebar />
 
@@ -41,9 +41,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="flex flex-1 flex-col overflow-hidden min-w-0">
         <Header />
         <main
-          className="flex-1 overflow-y-auto"
+          className="flex-1 overflow-y-auto bg-[#050505]"
           style={{
-            background: '#0a0a0f',
             scrollbarWidth: 'thin',
             scrollbarColor: '#ffffff10 transparent',
           }}

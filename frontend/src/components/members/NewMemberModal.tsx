@@ -59,12 +59,12 @@ const STATUS_CONFIG = {
 const inputCls = `
   w-full rounded-xl border border-border-subtle bg-surface-base
   px-4 py-2.5 text-sm text-white placeholder:text-zinc-500
-  focus:border-ember-500/50 focus:ring-2 focus:ring-ember-500/50 focus:outline-none transition-all
+  focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/50 focus:outline-none transition-all
 `
 const selectCls = `
   w-full rounded-xl border border-border-subtle bg-surface-base
   px-4 py-2.5 text-sm text-white
-  focus:border-ember-500/50 focus:ring-2 focus:ring-ember-500/50 focus:outline-none transition-all
+  focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/50 focus:outline-none transition-all
   appearance-none cursor-pointer
 `
 
@@ -318,7 +318,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               </button>
               <button
                 onClick={onClose}
-                className="h-10 flex-1 rounded-xl border-0 bg-ember-500 hover:bg-ember-600 text-sm font-medium text-white transition-all sm:flex-none px-6"
+                className="h-10 flex-1 rounded-xl border-0 bg-violet-600 hover:bg-violet-700 text-sm font-medium text-white transition-all sm:flex-none px-6"
               >
                 Done
               </button>
@@ -415,7 +415,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                 </div>
                 <div className={`flex-shrink-0 flex items-center gap-1.5 rounded-lg px-3 h-8 text-xs font-medium transition-colors ${
                   addPayment
-                    ? 'bg-ember-500/10 text-ember-400 border border-ember-500/20'
+                    ? 'bg-violet-500/10 text-violet-400 border border-violet-500/20'
                     : 'bg-surface-base text-zinc-400 border border-border-strong'
                 }`}>
                   {addPayment ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
@@ -581,11 +581,11 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                             onClick={() => setValue('paymentMethod', m.value)}
                             className={`flex items-center justify-center gap-2.5 h-12 rounded-xl border text-sm font-medium transition-all ${
                               selected
-                                ? 'border-ember-500 bg-ember-500/10 text-ember-400'
+                                ? 'border-violet-500 bg-violet-500/10 text-violet-400'
                                 : 'border-border-subtle bg-surface-base text-zinc-400 hover:bg-white/5 hover:text-zinc-300'
                             }`}
                           >
-                            <span className={selected ? 'text-ember-400' : 'text-zinc-500'}>
+                            <span className={selected ? 'text-violet-400' : 'text-zinc-500'}>
                               {icons[m.value] ?? <Wallet size={16} />}
                             </span>
                             {m.label}
@@ -620,7 +620,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               type="submit"
               form="new-member-form"
               disabled={loading}
-              className="flex w-full sm:w-auto h-10 items-center justify-center gap-2 rounded-xl px-6 text-sm font-medium text-white transition-colors disabled:opacity-60 bg-ember-500 hover:bg-ember-600"
+              className="flex w-full sm:w-auto h-10 items-center justify-center gap-2 rounded-xl px-6 text-sm font-medium text-white transition-colors disabled:opacity-60 bg-violet-600 hover:bg-violet-700"
             >
               {loading && <Loader2 size={16} className="animate-spin" />}
               {loading ? 'Saving...' : addPayment && planId ? 'Add Member & Record Payment' : 'Add Member'}

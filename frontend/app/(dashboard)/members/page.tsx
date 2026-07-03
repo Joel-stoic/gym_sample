@@ -40,7 +40,7 @@ const surfaceClass = "bg-surface-raised border border-border-subtle rounded-2xl"
 const inputCls = `
   w-full rounded-xl px-4 py-2.5 text-sm text-white outline-none transition-all
   placeholder:text-zinc-500 bg-surface-base border border-border-subtle
-  focus:border-ember-500/50 focus:ring-2 focus:ring-ember-500/50
+  focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/50
 `
 
 // Status → color mapping
@@ -218,7 +218,7 @@ function DarkSelect({
       <select
         value={value || 'ALL'}
         onChange={(e) => onChange(e.target.value === 'ALL' ? '' : e.target.value)}
-        className="w-full appearance-none rounded-xl px-4 py-2.5 text-sm font-medium outline-none transition-colors cursor-pointer bg-surface-base border border-border-subtle focus:border-ember-500/50 focus:ring-2 focus:ring-ember-500/50 shadow-sm"
+        className="w-full appearance-none rounded-xl px-4 py-2.5 text-sm font-medium outline-none transition-colors cursor-pointer bg-surface-base border border-border-subtle focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/50 shadow-sm"
         style={{ color: value ? 'white' : '#71717a' }}
       >
         <option value="ALL" className="bg-surface-base">{placeholder}</option>
@@ -270,19 +270,11 @@ export default function MembersPage() {
     <div className="space-y-8 font-sans pb-10 max-w-7xl mx-auto">
       
       {/* Header row */}
-      <div className="flex flex-col gap-4 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-0">
-        <div>
-          <h1 className="text-[28px] sm:text-[32px] font-semibold tracking-tight text-white">
-            Members
-          </h1>
-          <p className="text-[14px] text-zinc-400 mt-1">
-            Manage your gym members, plans, and attendance.
-          </p>
-        </div>
+      <div className="flex flex-col gap-4 px-4 sm:flex-row sm:items-center sm:justify-end sm:px-0">
         <button
           type="button"
           onClick={() => setIsModalOpen(true)}
-          className="flex w-full items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-colors sm:w-auto bg-ember-500 hover:bg-ember-600 focus-visible:ring-2 focus-visible:ring-ember-500/50"
+          className="flex w-full items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-colors sm:w-auto bg-violet-600 hover:bg-violet-700 focus-visible:ring-2 focus-visible:ring-violet-500/50"
         >
           <Plus className="h-4 w-4" />
           Add Member
