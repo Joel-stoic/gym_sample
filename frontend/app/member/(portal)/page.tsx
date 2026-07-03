@@ -87,7 +87,7 @@ export default function MemberPortalPage() {
               ? 'Your membership has expired. Please contact your gym to renew your plan.'
               : daysLeft === 0
                 ? 'Your membership expires today! Renew now to keep your access.'
-                : `Your membership expires in ${daysLeft} day${daysLeft > 1 ? 's' : ''}. Please renew to avoid interruption.`
+                : `Your membership expires in ${daysLeft} day${(daysLeft ?? 0) > 1 ? 's' : ''}. Please renew to avoid interruption.`
             }
           </p>
         </div>
