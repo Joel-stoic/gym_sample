@@ -30,7 +30,7 @@ function PwField({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] pl-9 pr-10 py-2.5 text-[13px] text-foreground placeholder:text-[#3d3d52] focus:border-violet-500/50 focus:outline-none transition-colors"
+          className="w-full rounded-xl border border-border bg-white/[0.04] pl-9 pr-10 py-2.5 text-[13px] text-foreground placeholder:text-[#3d3d52] focus:border-violet-500/50 focus:outline-none transition-colors"
         />
         <button
           type="button"

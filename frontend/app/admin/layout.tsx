@@ -86,7 +86,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-150
                   ${active
                     ? 'bg-violet-600/20 text-violet-400 font-medium'
-                    : 'text-foreground/50 hover:text-foreground hover:bg-white/5'
+                    : 'text-foreground/50 hover:text-foreground hover:bg-muted'
                   }
                 `}
               >

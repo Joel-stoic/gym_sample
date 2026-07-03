@@ -222,7 +222,7 @@ export default function NewPaymentPage() {
           <Button
             variant="outline"
             onClick={() => router.back()}
-            className="border-white/[0.08] bg-transparent text-foreground hover:bg-white/[0.05]"
+            className="border-border bg-transparent text-foreground hover:bg-muted"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back
@@ -247,7 +247,7 @@ export default function NewPaymentPage() {
                     <FormControl>
                       <div className="relative">
                         <input
-                          className="h-12 w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 text-[13px] text-foreground outline-none placeholder:text-[#3d3d52] transition-all focus:border-violet-500/50"
+                          className="h-12 w-full rounded-xl border border-border bg-white/[0.03] px-4 text-[13px] text-foreground outline-none placeholder:text-[#3d3d52] transition-all focus:border-violet-500/50"
                           placeholder="Search member by name or phone..."
                           value={selectedMember ? `${selectedMember.name} — ${selectedMember.phone}` : memberSearch}
                           onChange={e => {
@@ -275,7 +275,7 @@ export default function NewPaymentPage() {
                                   setShowMemberDropdown(false)
                                   field.onChange(m.id)
                                 }}
-                                className="w-full border-b border-white/[0.05] px-4 py-3 text-left last:border-0 transition-colors hover:bg-white/[0.05]"
+                                className="w-full border-b border-white/[0.05] px-4 py-3 text-left last:border-0 transition-colors hover:bg-muted"
                               >
                                 <p className="text-[13px] font-medium text-foreground">{m.name}</p>
                                 <p className="text-xs text-muted-foreground">{m.phone} · {m.status}</p>
@@ -311,7 +311,7 @@ export default function NewPaymentPage() {
                       value={field.value}
                     >
                       <FormControl>
-                        <SelectTrigger className="h-12 border-white/[0.08] bg-white/[0.03] text-foreground">
+                        <SelectTrigger className="h-12 border-border bg-white/[0.03] text-foreground">
                           <SelectValue placeholder="Select plan" />
                         </SelectTrigger>
                       </FormControl>
@@ -361,7 +361,7 @@ export default function NewPaymentPage() {
                           max={planAmount}
                           {...field}
                           onChange={e => { field.onChange(e); handleDiscountChange(e.target.value) }}
-                          className="h-12 border-white/[0.08] bg-white/[0.03] text-foreground"
+                          className="h-12 border-border bg-white/[0.03] text-foreground"
                         />
                       </FormControl>
                       <FormMessage />
@@ -386,7 +386,7 @@ export default function NewPaymentPage() {
                           min={0}
                           {...field}
                           onChange={e => { field.onChange(e); handleAdditionalFeeChange(e.target.value) }}
-                          className="h-12 border-white/[0.08] bg-white/[0.03] text-foreground"
+                          className="h-12 border-border bg-white/[0.03] text-foreground"
                         />
                       </FormControl>
                       <p className="text-[11px] text-[#3d3d52]">Joining fee, locker, etc.</p>
@@ -417,7 +417,7 @@ export default function NewPaymentPage() {
                         min={0}
                         max={netDue}
                         {...field}
-                        className="h-12 border-white/[0.08] bg-white/[0.03] text-foreground"
+                        className="h-12 border-border bg-white/[0.03] text-foreground"
                       />
                     </FormControl>
                     <FormMessage />
@@ -458,7 +458,7 @@ export default function NewPaymentPage() {
                       <input
                         type="date"
                         {...field}
-                        className="h-12 w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 text-[13px] text-foreground outline-none transition-all focus:border-violet-500/50"
+                        className="h-12 w-full rounded-xl border border-border bg-white/[0.03] px-4 text-[13px] text-foreground outline-none transition-all focus:border-violet-500/50"
                         style={{ colorScheme: 'dark' }}
                       />
                     </FormControl>
@@ -479,7 +479,7 @@ export default function NewPaymentPage() {
                     <FormLabel className="text-[#d4d4dc]">Payment Method</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
-                        <SelectTrigger className="h-12 border-white/[0.08] bg-white/[0.03] text-foreground">
+                        <SelectTrigger className="h-12 border-border bg-white/[0.03] text-foreground">
                           <SelectValue placeholder="Select payment method" />
                         </SelectTrigger>
                       </FormControl>
@@ -507,7 +507,7 @@ export default function NewPaymentPage() {
                       <Input
                         placeholder="Optional notes..."
                         {...field}
-                        className="h-12 border-white/[0.08] bg-white/[0.03] text-foreground"
+                        className="h-12 border-border bg-white/[0.03] text-foreground"
                       />
                     </FormControl>
                     <FormMessage />

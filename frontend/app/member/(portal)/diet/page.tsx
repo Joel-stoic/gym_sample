@@ -43,8 +43,8 @@ const mealConfig: Record<string, { color: string; bg: string; border: string }> 
   Snacks: { color: 'text-orange-400', bg: 'bg-orange-500/10', border: 'border-orange-500/20' },
 }
 const defaultMeal = { color: 'text-zinc-400', bg: 'bg-zinc-500/10', border: 'border-zinc-500/20' }
-const card = 'rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5'
-const inputBase = 'w-full bg-black/30 border border-white/[0.08] rounded-xl px-3 py-2.5 text-sm text-foreground placeholder:text-zinc-600 outline-none focus:border-violet-500/40 transition-colors'
+const card = 'rounded-2xl border border-border bg-white/[0.03] p-5'
+const inputBase = 'w-full bg-black/30 border border-border rounded-xl px-3 py-2.5 text-sm text-foreground placeholder:text-zinc-600 outline-none focus:border-violet-500/40 transition-colors'
 
 function Label({ children }: { children: React.ReactNode }) {
   return <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground mb-3">{children}</p>

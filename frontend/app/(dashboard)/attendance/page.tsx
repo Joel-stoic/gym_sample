@@ -107,7 +107,7 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
           value={query}
           onChange={handleChange}
           placeholder="Search by name or phone..."
-          className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-9 text-sm text-foreground placeholder:text-muted-foreground focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30"
+          className="w-full rounded-xl border border-border bg-white/[0.03] py-2.5 pl-9 pr-9 text-sm text-foreground placeholder:text-muted-foreground focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30"
         />
         {query && (
           <button onClick={handleClear} className="absolute right-3 text-muted-foreground hover:text-foreground">
@@ -117,7 +117,7 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
       </div>
 
       {open && (
-        <div className="absolute z-50 mt-1 w-full overflow-hidden rounded-xl border border-white/[0.08] bg-[#0f0f0f] shadow-2xl">
+        <div className="absolute z-50 mt-1 w-full overflow-hidden rounded-xl border border-border bg-[#0f0f0f] shadow-2xl">
           {results.length === 0 ? (
             <div className="px-4 py-3 text-sm text-muted-foreground">No members found</div>
           ) : (
@@ -150,7 +150,7 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
 
 function StatsCard({ title, value, icon: Icon, iconClassName }: any) {
   return (
-    <div className="rounded-3xl border border-border bg-[#0a0a0a] p-5">
+    <div className="rounded-3xl border border-border bg-card p-5">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm text-muted-foreground">{title}</p>
@@ -245,7 +245,7 @@ export default function AttendancePage() {
               variant="outline"
               size="sm"
               onClick={() => queryClient.invalidateQueries({ queryKey: ['attendance-today'] })}
-              className="border-white/[0.08] bg-[#0a0a0a] text-foreground hover:bg-white/[0.05]"
+              className="border-border bg-card text-foreground hover:bg-muted"
             >
               <RefreshCw className="mr-2 h-4 w-4" />
               Refresh
@@ -259,7 +259,7 @@ export default function AttendancePage() {
                 </Button>
               </DialogTrigger>
 
-              <DialogContent className="border-white/[0.08] bg-[#0a0a0a] text-foreground">
+              <DialogContent className="border-border bg-card text-foreground">
                 <DialogHeader>
                   <DialogTitle className="text-xl">Mark Attendance</DialogTitle>
                 </DialogHeader>
@@ -304,7 +304,7 @@ export default function AttendancePage() {
         loading ? (
           <div className="grid gap-4 md:grid-cols-3">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="h-28 animate-pulse rounded-3xl border border-border bg-[#0a0a0a]" />
+              <div key={i} className="h-28 animate-pulse rounded-3xl border border-border bg-card" />
             ))}
           </div>
         ) : (
@@ -317,7 +317,7 @@ export default function AttendancePage() {
       )}
 
       {/* Tab switcher */}
-      <div className="flex w-fit gap-1 rounded-2xl border border-border bg-[#0a0a0a] p-1">
+      <div className="flex w-fit gap-1 rounded-2xl border border-border bg-card p-1">
         <TabButton active={activeTab === 'today'} onClick={() => setActiveTab('today')}>Today</TabButton>
         <TabButton active={activeTab === 'all'}   onClick={() => setActiveTab('all')}>All Records</TabButton>
       </div>
@@ -326,17 +326,17 @@ export default function AttendancePage() {
       {activeTab === 'today' ? (
         loading ? (
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            <div className="h-[320px] animate-pulse rounded-3xl border border-border bg-[#0a0a0a]" />
-            <div className="h-[320px] animate-pulse rounded-3xl border border-border bg-[#0a0a0a] lg:col-span-2" />
+            <div className="h-[320px] animate-pulse rounded-3xl border border-border bg-card" />
+            <div className="h-[320px] animate-pulse rounded-3xl border border-border bg-card lg:col-span-2" />
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            <div className="rounded-3xl border border-border bg-[#0a0a0a] p-5">
+            <div className="rounded-3xl border border-border bg-card p-5">
               <h2 className="text-lg font-semibold text-foreground">Gym QR</h2>
               <GymQRCode qrCode={gymQR ?? null} loading={qrLoading} />
             </div>
 
-            <div className="rounded-3xl border border-border bg-[#0a0a0a] p-5 lg:col-span-2">
+            <div className="rounded-3xl border border-border bg-card p-5 lg:col-span-2">
               <div className="mb-5">
                 <h2 className="text-lg font-semibold text-foreground">Today's Attendance</h2>
                 <p className="mt-1 text-sm text-muted-foreground">Real-time check-ins</p>

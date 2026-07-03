@@ -261,7 +261,7 @@ export default function CheckInPage() {
             )}
             <button
               onClick={() => router.push('/member')}
-              className="w-full rounded-2xl border border-white/[0.10] py-3 text-[13px] font-medium text-foreground transition-all hover:bg-white/[0.05] active:scale-95"
+              className="w-full rounded-2xl border border-white/[0.10] py-3 text-[13px] font-medium text-foreground transition-all hover:bg-muted active:scale-95"
             >
               Back to Home
             </button>

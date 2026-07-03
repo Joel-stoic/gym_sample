@@ -44,36 +44,31 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
   return (
     <Table>
       <TableHeader>
-        <TableRow
-          style={{
-            background: '#0a0a0a',
-            borderBottom: '1px solid #ffffff0a',
-          }}
-        >
+        <TableRow>
           <TableHead className="text-muted-foreground text-[11px] font-semibold uppercase tracking-[0.12em]">
             Name
           </TableHead>
-
+ 
           <TableHead className="text-muted-foreground text-[11px] font-semibold uppercase tracking-[0.12em]">
             Phone
           </TableHead>
-
+ 
           <TableHead className="text-muted-foreground text-[11px] font-semibold uppercase tracking-[0.12em]">
             Plan
           </TableHead>
-
+ 
           <TableHead className="text-muted-foreground text-[11px] font-semibold uppercase tracking-[0.12em]">
             Expiry
           </TableHead>
-
+ 
           <TableHead className="text-muted-foreground text-[11px] font-semibold uppercase tracking-[0.12em]">
             Status
           </TableHead>
-
+ 
           <TableHead className="w-12" />
         </TableRow>
       </TableHeader>
-
+ 
       <TableBody>
         {members.map((member) => {
           const avatar = getAvatarColor(member.name)
@@ -104,14 +99,14 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
                   </div>
                 </div>
               </TableCell>
-
+ 
               {/* Phone */}
               <TableCell>
-                <span className="text-[13px] text-[#9898b0]">
+                <span className="text-[13px] text-muted-foreground">
                   {member.phone}
                 </span>
               </TableCell>
-
+ 
               {/* Plan */}
               <TableCell>
                 {member.plan?.name ? (
@@ -126,21 +121,21 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
                     {member.plan.name}
                   </span>
                 ) : (
-                  <span className="text-[12px] text-[#3d3d52]">No plan</span>
+                  <span className="text-[12px] text-muted-foreground">No plan</span>
                 )}
               </TableCell>
-
+ 
               {/* Expiry */}
               <TableCell>
                 {member.membershipExpiry ? (
-                  <span className="text-[13px] text-[#9898b0]">
+                  <span className="text-[13px] text-muted-foreground">
                     {formatDate(member.membershipExpiry)}
                   </span>
                 ) : (
-                  <span className="text-[12px] text-[#3d3d52]">—</span>
+                  <span className="text-[12px] text-muted-foreground">—</span>
                 )}
               </TableCell>
-
+ 
               {/* Status */}
               <TableCell>
                 {(() => {
@@ -158,20 +153,20 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
                       </span>
                     )
                   }
-
+ 
                   const today = new Date()
-
+ 
                   today.setHours(0, 0, 0, 0)
-
+ 
                   const expiry = new Date(member.membershipExpiry)
-
+ 
                   expiry.setHours(0, 0, 0, 0)
-
+ 
                   const daysLeft = Math.ceil(
                     (expiry.getTime() - today.getTime()) /
                     (1000 * 60 * 60 * 24)
                   )
-
+ 
                   if (daysLeft < 0) {
                     return (
                       <span
@@ -186,7 +181,7 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
                       </span>
                     )
                   }
-
+ 
                   if (daysLeft === 0) {
                     return (
                       <span
@@ -201,7 +196,7 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
                       </span>
                     )
                   }
-
+ 
                   if (daysLeft <= 3) {
                     return (
                       <span
@@ -216,7 +211,7 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
                       </span>
                     )
                   }
-
+ 
                   if (daysLeft <= 7) {
                     return (
                       <span
@@ -231,7 +226,7 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
                       </span>
                     )
                   }
-
+ 
                   return (
                     <span
                       className="rounded-lg px-2 py-1 text-[11px] font-medium"
@@ -246,53 +241,32 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
                   )
                 })()}
               </TableCell>
-
+ 
               {/* Actions */}
               <TableCell onClick={(e) => e.stopPropagation()}>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <button
-                      className="flex h-8 w-8 items-center justify-center rounded-lg transition-all duration-150"
-                      style={{
-                        background: 'transparent',
-                        border: '1px solid transparent',
-                        color: '#6b6b80',
-                      }}
-                      onMouseEnter={(e) => {
-                        ; (e.currentTarget as HTMLButtonElement).style.background = '#ffffff08'
-                          ; (e.currentTarget as HTMLButtonElement).style.border = '1px solid #ffffff0f'
-                          ; (e.currentTarget as HTMLButtonElement).style.color = '#ffffff'
-                      }}
-                      onMouseLeave={(e) => {
-                        ; (e.currentTarget as HTMLButtonElement).style.background = 'transparent'
-                          ; (e.currentTarget as HTMLButtonElement).style.border = '1px solid transparent'
-                          ; (e.currentTarget as HTMLButtonElement).style.color = '#6b6b80'
-                      }}
+                      className="flex h-8 w-8 items-center justify-center rounded-lg border border-transparent bg-transparent text-muted-foreground hover:bg-muted hover:text-foreground transition-all duration-150"
                     >
                       <MoreHorizontal className="h-4 w-4" />
                     </button>
                   </DropdownMenuTrigger>
-
+ 
                   <DropdownMenuContent
                     align="end"
-                    style={{
-                      background: '#0a0a0a',
-                      border: '1px solid #ffffff0f',
-                      borderRadius: '12px',
-                      padding: '4px',
-                      boxShadow: '0 16px 40px #00000060',
-                    }}
+                    className="bg-popover text-popover-foreground border border-border rounded-xl p-1 shadow-lg"
                   >
                     <DropdownMenuItem
-                      className="rounded-lg text-[13px] text-[#9898b0] focus:bg-white/5 focus:text-foreground"
+                      className="rounded-lg text-[13px] text-muted-foreground focus:bg-muted focus:text-foreground cursor-pointer"
                       onClick={() => router.push(`/members/${member.id}`)}
                     >
                       <Eye className="mr-2 h-4 w-4" />
                       View Details
                     </DropdownMenuItem>
-
+ 
                     <DropdownMenuItem
-                      className="rounded-lg text-[13px] focus:bg-red-500/10 focus:text-red-400"
+                      className="rounded-lg text-[13px] focus:bg-red-500/10 focus:text-red-400 cursor-pointer"
                       style={{ color: '#ef4444' }}
                       onClick={() => onDelete(member.id)}
                     >

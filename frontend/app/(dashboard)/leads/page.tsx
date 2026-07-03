@@ -257,7 +257,7 @@ export default function LeadsPage() {
 
             {/* ───────────────── MODAL ───────────────── */}
 
-            <DialogContent className="border-white/[0.08] bg-[#0f0f18] text-foreground">
+            <DialogContent className="border-border bg-[#0f0f18] text-foreground">
               <DialogHeader>
                 <DialogTitle className="text-xl">
                   Add New Lead
@@ -282,7 +282,7 @@ export default function LeadsPage() {
                           <Input
                             placeholder="Ravi Kumar"
                             {...field}
-                            className="border-white/[0.08] bg-white/[0.03]"
+                            className="border-border bg-white/[0.03]"
                           />
                         </FormControl>
 
@@ -304,7 +304,7 @@ export default function LeadsPage() {
                           <Input
                             placeholder="9876543210"
                             {...field}
-                            className="border-white/[0.08] bg-white/[0.03]"
+                            className="border-border bg-white/[0.03]"
                           />
                         </FormControl>
 
@@ -327,7 +327,7 @@ export default function LeadsPage() {
                           defaultValue={field.value}
                         >
                           <FormControl>
-                            <SelectTrigger className="border-white/[0.08] bg-white/[0.03]">
+                            <SelectTrigger className="border-border bg-white/[0.03]">
                               <SelectValue placeholder="Lead source" />
                             </SelectTrigger>
                           </FormControl>
@@ -373,7 +373,7 @@ export default function LeadsPage() {
                           <Input
                             placeholder="Interested in fat loss..."
                             {...field}
-                            className="border-white/[0.08] bg-white/[0.03]"
+                            className="border-border bg-white/[0.03]"
                           />
                         </FormControl>
 
@@ -454,7 +454,7 @@ export default function LeadsPage() {
             className={
               statusFilter === status
                 ? 'bg-violet-600 hover:bg-violet-500'
-                : 'border-white/[0.08] bg-transparent text-foreground hover:bg-white/[0.05]'
+                : 'border-border bg-transparent text-foreground hover:bg-muted'
             }
           >
             {status === ''
@@ -599,7 +599,7 @@ function LeadCard({
             <Button
               size="icon"
               variant="ghost"
-              className="text-foreground hover:bg-white/[0.05]"
+              className="text-foreground hover:bg-muted"
             >
               <MoreHorizontal className="h-4 w-4" />
             </Button>
@@ -607,7 +607,7 @@ function LeadCard({
 
           <DropdownMenuContent
             align="end"
-            className="border-white/[0.08] bg-[#11111a] text-foreground"
+            className="border-border bg-[#11111a] text-foreground"
           >
             {Object.entries(STATUS_CONFIG).map(
               ([status, cfg]) => (

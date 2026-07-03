@@ -56,7 +56,7 @@ export default function GymQRCode({
 
             {/* QR */}
 
-            <div className="rounded-3xl border border-white/[0.08] bg-white p-5 shadow-lg">
+            <div className="rounded-3xl border border-border bg-white p-5 shadow-lg">
               <img
                 src={qrCode}
                 alt="Gym QR Code"
@@ -78,7 +78,7 @@ export default function GymQRCode({
 
             <Button
               variant="outline"
-              className="h-11 w-full border-white/[0.08] bg-white/[0.03] text-green-500 hover:bg-white/[0.06]"
+              className="h-11 w-full border-border bg-white/[0.03] text-green-500 hover:bg-white/[0.06]"
               onClick={downloadQR}
             >
               <Download className="mr-2 h-4 w-4" />

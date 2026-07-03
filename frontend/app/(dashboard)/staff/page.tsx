@@ -145,7 +145,7 @@ function FormField({
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="border-white/[0.08] bg-black/20 text-foreground placeholder:text-zinc-600 h-10 rounded-xl focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-violet-500 transition-all"
+        className="border-border bg-black/20 text-foreground placeholder:text-zinc-600 h-10 rounded-xl focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-violet-500 transition-all"
       />
     </div>
   )
@@ -247,8 +247,8 @@ export default function StaffPage() {
     }
   }
 
-  const selectClass = 'border-white/[0.08] bg-black/20 text-foreground rounded-xl h-10 focus:ring-1 focus:ring-violet-500'
-  const selectContentClass = 'border-white/[0.08] bg-[#11111a] text-foreground'
+  const selectClass = 'border-border bg-black/20 text-foreground rounded-xl h-10 focus:ring-1 focus:ring-violet-500'
+  const selectContentClass = 'border-border bg-[#11111a] text-foreground'
 
   return (
     <div className="space-y-6 pb-12 max-w-7xl mx-auto">
@@ -267,7 +267,7 @@ export default function StaffPage() {
               </Button>
             </DialogTrigger>
 
-            <DialogContent className="border-white/[0.08] bg-[#0f0f18] text-foreground rounded-2xl shadow-2xl sm:max-w-md">
+            <DialogContent className="border-border bg-[#0f0f18] text-foreground rounded-2xl shadow-2xl sm:max-w-md">
               <DialogHeader>
                 <DialogTitle className="text-lg font-semibold">New Staff Member</DialogTitle>
                 <DialogDescription className="text-zinc-400">
@@ -311,7 +311,7 @@ export default function StaffPage() {
 
       {/* Edit Modal */}
       <Dialog open={editOpen} onOpenChange={setEditOpen}>
-        <DialogContent className="border-white/[0.08] bg-[#0f0f18] text-foreground rounded-2xl shadow-2xl sm:max-w-md">
+        <DialogContent className="border-border bg-[#0f0f18] text-foreground rounded-2xl shadow-2xl sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-lg font-semibold">Edit Staff Profile</DialogTitle>
           </DialogHeader>
@@ -359,7 +359,7 @@ export default function StaffPage() {
 
       {/* Delete Confirmation Prompt */}
       <Dialog open={!!deleteId} onOpenChange={(isOpen) => !isOpen && setDeleteId(null)}>
-        <DialogContent className="border-white/[0.08] bg-[#0f0f18] text-foreground rounded-2xl shadow-2xl sm:max-w-sm">
+        <DialogContent className="border-border bg-[#0f0f18] text-foreground rounded-2xl shadow-2xl sm:max-w-sm">
           <DialogHeader>
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-500/10 mb-2">
               <AlertTriangle className="h-6 w-6 text-red-500" />
@@ -370,7 +370,7 @@ export default function StaffPage() {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="flex-col sm:flex-row gap-2 mt-4 sm:space-x-0">
-            <Button variant="ghost" onClick={() => setDeleteId(null)} className="w-full sm:w-1/2 rounded-xl text-zinc-300 hover:text-foreground hover:bg-white/[0.05]">
+            <Button variant="ghost" onClick={() => setDeleteId(null)} className="w-full sm:w-1/2 rounded-xl text-zinc-300 hover:text-foreground hover:bg-muted">
               Cancel
             </Button>
             <Button disabled={saving} onClick={removeStaff} className="w-full sm:w-1/2 rounded-xl bg-red-500/90 hover:bg-red-500 text-foreground shadow-lg shadow-red-900/20">
@@ -420,7 +420,7 @@ export default function StaffPage() {
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-48 border-white/[0.08] bg-[#11111a] text-foreground p-1 rounded-xl shadow-xl">
+                  <DropdownMenuContent align="end" className="w-48 border-border bg-[#11111a] text-foreground p-1 rounded-xl shadow-xl">
                     <DropdownMenuItem
                       className="gap-2.5 rounded-lg cursor-pointer hover:bg-white/[0.06] focus:bg-white/[0.06]"
                       onClick={() => { setEditingStaff(member); setEditOpen(true) }}
@@ -451,7 +451,7 @@ export default function StaffPage() {
                 </DropdownMenu>
               </div>
 
-              <div className="border-t border-white/[0.05] mb-4 transition-colors group-hover:border-white/[0.08]" />
+              <div className="border-t border-white/[0.05] mb-4 transition-colors group-hover:border-border" />
 
               {/* Contact Info & Status */}
               <div className="flex flex-col justify-between h-auto gap-4">

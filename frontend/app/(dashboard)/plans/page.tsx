@@ -130,7 +130,7 @@ function PlanCard({
             >
               {onEdit && (
                 <DropdownMenuItem
-                  className="rounded-lg text-[13px] text-[#9898b0] focus:bg-white/5 focus:text-foreground cursor-pointer"
+                  className="rounded-lg text-[13px] text-[#9898b0] focus:bg-muted focus:text-foreground cursor-pointer"
                   onClick={onEdit}
                 >
                   <Pencil className="mr-2 h-4 w-4" />

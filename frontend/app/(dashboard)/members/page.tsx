@@ -72,7 +72,7 @@ function MemberTableSkeleton() {
   return (
     <div className="hidden overflow-hidden rounded-2xl md:block" style={surface}>
       <div
-        className="grid px-5 py-3 border-b border-[#ffffff08] bg-[#0a0a0a]"
+        className="grid px-5 py-3 border-b border-border bg-card"
         style={{ gridTemplateColumns: '2fr 1.2fr 1fr 1fr 1fr 80px' }}
       >
         {['Member', 'Phone', 'Plan', 'Status', 'Expires', ''].map((h) => (
@@ -580,7 +580,7 @@ export default function MembersPage() {
       <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>
         <AlertDialogOverlay style={{ background: 'rgba(5, 5, 5, 0.75)', backdropFilter: 'blur(4px)' }} />
         <AlertDialogContent
-          className="w-[calc(100%-2rem)] overflow-hidden p-0 sm:w-full bg-[#0a0a0a] border border-[#ffffff08] rounded-3xl max-w-[400px] shadow-[0_24px_64px_#00000080,0_0_0_1px_#ffffff05]"
+          className="w-[calc(100%-2rem)] overflow-hidden p-0 sm:w-full bg-card border border-border rounded-3xl max-w-[400px] shadow-[0_24px_64px_#00000080,0_0_0_1px_#ffffff05]"
         >
           <div className="h-1 w-full bg-gradient-to-r from-[#ef4444] to-[#f87171]" />
           <div className="p-5 sm:p-6">

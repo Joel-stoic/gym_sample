@@ -156,8 +156,7 @@ function DeleteConfirmModal({
       onClick={onClose}
     >
       <div
-        className="w-full sm:max-w-sm rounded-t-2xl sm:rounded-2xl p-5 sm:p-6 shadow-2xl"
-        style={{ background: '#0a0a0a', border: '1px solid #ffffff10' }}
+        className="w-full sm:max-w-sm rounded-t-2xl sm:rounded-2xl p-5 sm:p-6 shadow-2xl border border-border bg-card"
         onClick={e => e.stopPropagation()}
       >
         <div className="mb-4 flex items-start justify-between">
@@ -335,8 +334,8 @@ function EditPaymentModal({
       onClick={onClose}
     >
       <div
-        className="w-full sm:max-w-md rounded-t-2xl sm:rounded-2xl p-5 sm:p-6 shadow-2xl overflow-y-auto max-h-[92vh] sm:max-h-[90vh]"
-        style={{ background: '#0a0a0a', border: '1px solid #ffffff10' }}
+        className="w-full sm:max-w-md rounded-t-2xl sm:rounded-2xl p-5 sm:p-6 shadow-2xl overflow-y-auto max-h-[92vh] sm:max-h-[90vh] border border-border bg-card"
+        
         onClick={e => e.stopPropagation()}
       >
         <div className="mb-5 flex items-center justify-between">
@@ -553,8 +552,8 @@ function CollectDueModal({
       onClick={onClose}
     >
       <div
-        className="w-full sm:max-w-sm rounded-t-2xl sm:rounded-2xl p-5 sm:p-6 shadow-2xl"
-        style={{ background: '#0a0a0a', border: '1px solid #ffffff10' }}
+        className="w-full sm:max-w-sm rounded-t-2xl sm:rounded-2xl p-5 sm:p-6 shadow-2xl border border-border bg-card"
+        
         onClick={e => e.stopPropagation()}
       >
         <div className="mb-5 flex items-start justify-between">
@@ -792,7 +791,7 @@ export default function PaymentsPage() {
       {/* ── Stats ── */}
       {(isOwner || isManager) && (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl p-5" style={{ background: '#0a0a0a', border: '1px solid #7c3aed22' }}>
+          <div className="rounded-2xl p-5 border border-border bg-card" >
             <div className="mb-2 flex items-center gap-2">
               <TrendingUp size={14} className="text-violet-400" />
               <p className="text-sm text-muted-foreground">Revenue · {PERIOD_LABELS[period]}</p>
@@ -804,7 +803,7 @@ export default function PaymentsPage() {
             )}
           </div>
 
-          <div className="rounded-2xl border border-border bg-[#0a0a0a] p-5">
+          <div className="rounded-2xl border border-border bg-card p-5">
             <p className="text-sm text-muted-foreground">Pending Dues</p>
             {summaryLoading ? (
               <div className="mt-2 h-8 w-24 animate-pulse rounded-lg bg-white/5" />
@@ -815,7 +814,7 @@ export default function PaymentsPage() {
             )}
           </div>
 
-          <div className="rounded-2xl border border-border bg-[#0a0a0a] p-5">
+          <div className="rounded-2xl border border-border bg-card p-5">
             <p className="text-sm text-muted-foreground">All-Time Revenue</p>
             {summaryLoading ? (
               <div className="mt-2 h-8 w-28 animate-pulse rounded-lg bg-white/5" />
@@ -841,7 +840,7 @@ export default function PaymentsPage() {
         <>
           {/* ── Table / Cards ── */}
           <div
-            className="overflow-hidden rounded-3xl border border-border bg-[#0a0a0a]"
+            className="overflow-hidden rounded-3xl border border-border bg-card"
             style={{ opacity: isFetching && payments.length > 0 ? 0.6 : 1, transition: 'opacity 0.15s' }}
           >
             {/* desktop header */}

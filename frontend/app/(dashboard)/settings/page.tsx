@@ -53,7 +53,7 @@ function Section({
   action?: React.ReactNode
 }) {
   return (
-    <div className="rounded-2xl border border-border bg-[#0a0a0a] p-6 sm:p-8">
+    <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600/20 text-violet-400">
@@ -92,14 +92,14 @@ function InfoRow({
 
 // ─── Styled input ─────────────────────────────────────
 const inputClass =
-  'h-11 rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 text-[14px] text-foreground placeholder:text-muted-foreground focus:border-violet-500/50 focus:outline-none focus:ring-0 w-full transition-colors'
+  'h-11 rounded-xl border border-border bg-white/[0.04] px-4 text-[14px] text-foreground placeholder:text-muted-foreground focus:border-violet-500/50 focus:outline-none focus:ring-0 w-full transition-colors'
 
 // ─── Edit button ──────────────────────────────────────
 function EditButton({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 h-9 text-[13px] font-medium text-[#9898b0] hover:text-foreground hover:bg-white/[0.08] transition-all"
+      className="flex items-center gap-2 rounded-xl border border-border bg-white/[0.04] px-4 h-9 text-[13px] font-medium text-[#9898b0] hover:text-foreground hover:bg-white/[0.08] transition-all"
     >
       <Pencil size={14} />
       Edit
@@ -112,7 +112,7 @@ function CancelButton({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 h-9 text-[13px] font-medium text-[#9898b0] hover:text-foreground hover:bg-white/[0.08] transition-all"
+      className="flex items-center gap-2 rounded-xl border border-border bg-white/[0.04] px-4 h-9 text-[13px] font-medium text-[#9898b0] hover:text-foreground hover:bg-white/[0.08] transition-all"
     >
       <X size={14} />
       Cancel
@@ -175,7 +175,7 @@ function DefaultPasswordsModal({
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent
         className="
-    !bg-[#0a0a0a]
+    !bg-card
     !text-foreground
     border border-violet-500/20
     p-0 overflow-hidden gap-0
@@ -457,7 +457,7 @@ export default function SettingsPage() {
                         <button
                           type="button"
                           onClick={handleCancelGym}
-                          className="h-11 rounded-xl border border-white/[0.08] bg-white/[0.04] px-6 text-[14px] font-medium text-[#9898b0] transition-colors hover:bg-white/[0.08] hover:text-foreground"
+                          className="h-11 rounded-xl border border-border bg-white/[0.04] px-6 text-[14px] font-medium text-[#9898b0] transition-colors hover:bg-white/[0.08] hover:text-foreground"
                         >
                           Cancel
                         </button>
@@ -526,7 +526,7 @@ export default function SettingsPage() {
 
             {/* ── Subscription ──────────────────────────────────── */}
             {gymInfo === null ? (
-              <div className="rounded-2xl border border-border bg-[#0a0a0a] p-6">
+              <div className="rounded-2xl border border-border bg-card p-6">
                 <div className="flex items-center gap-4">
                   <div className="h-12 w-12 rounded-xl bg-white/[0.06] animate-pulse" />
                   <div className="space-y-3">
@@ -598,7 +598,7 @@ export default function SettingsPage() {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={copyUrl}
-                      className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-white/[0.05] hover:text-foreground"
+                      className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                       title="Copy URL"
                     >
                       <Copy size={15} />
@@ -607,7 +607,7 @@ export default function SettingsPage() {
                       href={`https://${gymUrl}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-white/[0.05] hover:text-foreground"
+                      className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                       title="Open URL"
                     >
                       <ExternalLink size={15} />
@@ -692,7 +692,7 @@ export default function SettingsPage() {
                         <button
                           type="button"
                           onClick={handleCancelPassword}
-                          className="h-11 rounded-xl border border-white/[0.08] bg-white/[0.04] px-6 text-[14px] font-medium text-[#9898b0] transition-colors hover:bg-white/[0.08] hover:text-foreground"
+                          className="h-11 rounded-xl border border-border bg-white/[0.04] px-6 text-[14px] font-medium text-[#9898b0] transition-colors hover:bg-white/[0.08] hover:text-foreground"
                         >
                           Cancel
                         </button>

@@ -80,7 +80,7 @@ function Field({ label, error, children }: { label: string; error?: string; chil
 
 function Section({ icon: Icon, title, children }: { icon: React.ElementType; title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-[#ffffff08] bg-[#0a0a0a] p-5">
+    <div className="rounded-2xl border border-border bg-card p-5">
       <div className="mb-4 flex items-center gap-2.5">
         <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#7c3aed15] border border-[#7c3aed25] text-[#a855f7]">
           <Icon size={15} />
@@ -258,7 +258,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-card/75 backdrop-blur-[4px]" style={{ fontFamily: "'DM Sans', sans-serif" }}>
       
       {createdMember ? (
-        <div className="w-full max-w-[400px] overflow-hidden rounded-3xl bg-[#0a0a0a] border border-[#ffffff08] shadow-[0_24px_64px_#00000080,0_0_0_1px_#ffffff05] animate-in fade-in-0 zoom-in-95 duration-150">
+        <div className="w-full max-w-[400px] overflow-hidden rounded-3xl bg-card border border-border shadow-[0_24px_64px_#00000080,0_0_0_1px_#ffffff05] animate-in fade-in-0 zoom-in-95 duration-150">
           <div className="h-1 w-full bg-gradient-to-r from-[#10b981] to-[#34d399]" />
           <div className="p-5 sm:p-6 space-y-5">
             <div className="flex flex-col items-center text-center">
@@ -297,7 +297,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   </button>
                 </div>
               </div>
-              <div className="pt-1 border-t border-[#ffffff08]">
+              <div className="pt-1 border-t border-border">
                 <p className="text-[11px] text-muted-foreground">
                   Member must change this password on first login.
                 </p>
@@ -333,9 +333,9 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
           </div>
         </div>
       ) : (
-        <div className="relative w-full max-w-2xl max-h-full flex flex-col overflow-hidden rounded-3xl bg-[#0a0a0a] border border-[#ffffff08] shadow-[0_24px_64px_#00000080,0_0_0_1px_#ffffff05] animate-in fade-in-0 zoom-in-95 duration-150">
+        <div className="relative w-full max-w-2xl max-h-full flex flex-col overflow-hidden rounded-3xl bg-card border border-border shadow-[0_24px_64px_#00000080,0_0_0_1px_#ffffff05] animate-in fade-in-0 zoom-in-95 duration-150">
           
-          <div className="flex items-center justify-between border-b border-[#ffffff08] px-5 sm:px-6 py-4 bg-[#0a0a0a] shrink-0">
+          <div className="flex items-center justify-between border-b border-border px-5 sm:px-6 py-4 bg-card shrink-0">
             <div>
               <h2 className="text-[18px] font-bold tracking-tight text-foreground sm:text-[20px]" style={{ fontFamily: "'Syne', sans-serif" }}>
                 Add Member
@@ -392,7 +392,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               </Field>
             </Section>
 
-            <div className="rounded-2xl border border-[#ffffff08] bg-[#0a0a0a] overflow-hidden">
+            <div className="rounded-2xl border border-border bg-card overflow-hidden">
               <button
                 type="button"
                 onClick={() => {
@@ -431,7 +431,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               </button>
 
               {addPayment && (
-                <div className="border-t border-[#ffffff08] p-5 space-y-6">
+                <div className="border-t border-border p-5 space-y-6">
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
                       <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7c3aed20] text-[10px] font-bold text-violet-300">1</span>
@@ -615,7 +615,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
             </div>
           </form>
 
-          <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 px-5 sm:px-6 py-4 border-t border-[#ffffff08] bg-[#0a0a0a] shrink-0">
+          <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 px-5 sm:px-6 py-4 border-t border-border bg-card shrink-0">
             <button
               type="button"
               onClick={onClose}

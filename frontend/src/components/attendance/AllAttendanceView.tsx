@@ -147,7 +147,7 @@ export default function AllAttendanceView() {
   }
 
   return (
-    <div className="rounded-3xl border border-border bg-[#0a0a0a] p-5">
+    <div className="rounded-3xl border border-border bg-card p-5">
 
       {/* Header */}
       <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -184,7 +184,7 @@ export default function AllAttendanceView() {
               value={search}
               onChange={(e) => handleSearchChange(e.target.value)}
               placeholder="Name or phone..."
-              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-9 text-sm text-foreground placeholder:text-muted-foreground focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30"
+              className="w-full rounded-xl border border-border bg-white/[0.03] py-2.5 pl-9 pr-9 text-sm text-foreground placeholder:text-muted-foreground focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30"
             />
             {search && (
               <button onClick={() => handleSearchChange('')} className="absolute right-3 text-muted-foreground hover:text-foreground">
@@ -203,7 +203,7 @@ export default function AllAttendanceView() {
               type="date"
               value={startDate}
               onChange={(e) => handleDateChange('start', e.target.value)}
-              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-3 text-sm text-foreground focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30 [color-scheme:dark]"
+              className="w-full rounded-xl border border-border bg-white/[0.03] py-2.5 pl-9 pr-3 text-sm text-foreground focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30 [color-scheme:dark]"
             />
           </div>
         </div>
@@ -217,7 +217,7 @@ export default function AllAttendanceView() {
               type="date"
               value={endDate}
               onChange={(e) => handleDateChange('end', e.target.value)}
-              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-3 text-sm text-foreground focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30 [color-scheme:dark]"
+              className="w-full rounded-xl border border-border bg-white/[0.03] py-2.5 pl-9 pr-3 text-sm text-foreground focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30 [color-scheme:dark]"
             />
           </div>
         </div>
@@ -288,7 +288,7 @@ export default function AllAttendanceView() {
               size="sm"
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1 || isFetching}
-              className="h-8 border-white/[0.08] bg-[#0a0a0a] px-3 text-foreground hover:bg-white/[0.05] disabled:opacity-40"
+              className="h-8 border-border bg-card px-3 text-foreground hover:bg-muted disabled:opacity-40"
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
@@ -297,7 +297,7 @@ export default function AllAttendanceView() {
               size="sm"
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page === totalPages || isFetching}
-              className="h-8 border-white/[0.08] bg-[#0a0a0a] px-3 text-foreground hover:bg-white/[0.05] disabled:opacity-40"
+              className="h-8 border-border bg-card px-3 text-foreground hover:bg-muted disabled:opacity-40"
             >
               <ChevronRight className="h-4 w-4" />
             </Button>

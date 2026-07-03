@@ -104,7 +104,7 @@ function DietPlanCard({
         )
 
     return (
-        <div className="rounded-3xl border border-white/[0.08] bg-gradient-to-b from-white/[0.04] to-white/[0.02] overflow-hidden shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
+        <div className="rounded-3xl border border-border bg-gradient-to-b from-white/[0.04] to-white/[0.02] overflow-hidden shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
 
             {/* HEADER */}
 
@@ -412,7 +412,7 @@ function AddDietModal({
         }
     }
 
-    const inputCls = 'w-full bg-black/30 border border-white/[0.08] rounded-xl px-3 py-2 text-sm text-foreground placeholder:text-zinc-600 outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-all'
+    const inputCls = 'w-full bg-black/30 border border-border rounded-xl px-3 py-2 text-sm text-foreground placeholder:text-zinc-600 outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-all'
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
@@ -460,7 +460,7 @@ function AddDietModal({
                                         <select
                                             value={meal.time}
                                             onChange={e => { const u = [...meals]; u[mealIdx].time = e.target.value; setMeals(u) }}
-                                            className="bg-black/40 border border-white/[0.08] rounded-lg px-2 py-1.5 text-xs text-foreground outline-none flex-1"
+                                            className="bg-black/40 border border-border rounded-lg px-2 py-1.5 text-xs text-foreground outline-none flex-1"
                                         >
                                             {mealTimes.map(t => <option key={t} value={t}>{t}</option>)}
                                         </select>
@@ -469,7 +469,7 @@ function AddDietModal({
                                             placeholder="kcal"
                                             value={meal.calories}
                                             onChange={e => { const u = [...meals]; u[mealIdx].calories = e.target.value; setMeals(u) }}
-                                            className="bg-black/40 border border-white/[0.08] rounded-lg px-2 py-1.5 text-xs text-foreground outline-none w-20 placeholder:text-zinc-600"
+                                            className="bg-black/40 border border-border rounded-lg px-2 py-1.5 text-xs text-foreground outline-none w-20 placeholder:text-zinc-600"
                                         />
                                         {meals.length > 1 && (
                                             <button onClick={() => removeMeal(mealIdx)} className="text-red-400/60 hover:text-red-400 transition-colors">

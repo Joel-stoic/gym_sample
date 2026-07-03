@@ -114,7 +114,7 @@ function AddPackageModal({ onClose, onSuccess }: {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
-      <div className="w-full max-w-md rounded-2xl" style={{ background: '#0a0a0a', border: '1px solid #ffffff12' }}>
+      <div className="w-full max-w-md rounded-2xl border border-border bg-card">
         <div className="px-6 py-4 flex items-center justify-between" style={{ borderBottom: '1px solid #ffffff08' }}>
           <h2 className="text-[15px] font-semibold text-foreground">New PT Package</h2>
           <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors text-lg leading-none">✕</button>
@@ -217,7 +217,7 @@ function ScheduleSessionModal({ enrollments, trainers, onClose, onSuccess }: {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
-      <div className="w-full max-w-md rounded-2xl" style={{ background: '#0a0a0a', border: '1px solid #ffffff12' }}>
+      <div className="w-full max-w-md rounded-2xl border border-border bg-card" >
         <div className="px-6 py-4 flex items-center justify-between" style={{ borderBottom: '1px solid #ffffff08' }}>
           <h2 className="text-[15px] font-semibold text-foreground">Schedule PT Session</h2>
           <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors text-lg leading-none">✕</button>
@@ -368,10 +368,10 @@ function EnrollMemberModal({ packages, onClose, onSuccess }: {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
-      <div className="w-full max-w-md rounded-2xl max-h-[90vh] overflow-y-auto"
-        style={{ background: '#0a0a0a', border: '1px solid #ffffff12' }}>
-        <div className="sticky top-0 px-6 py-4 flex items-center justify-between"
-          style={{ background: '#0a0a0a', borderBottom: '1px solid #ffffff08' }}>
+      <div className="w-full max-w-md rounded-2xl max-h-[90vh] overflow-y-auto border border-border bg-card"
+        >
+        <div className="sticky top-0 px-6 py-4 flex items-center justify-between border-b border-border bg-card"
+          >
           <h2 className="text-[15px] font-semibold text-foreground">Enroll Member in PT</h2>
           <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors text-lg leading-none">✕</button>
         </div>
@@ -682,8 +682,8 @@ export default function PtPage() {
           { label: 'Enrollments', value: enrollments.length, color: '#22d3ee' },
         ].map(stat => (
           <div key={stat.label}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl"
-            style={{ background: '#0a0a0a', border: '1px solid #ffffff0a' }}>
+            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border bg-card"
+            >
             <span className="text-[18px] font-bold" style={{ color: stat.color }}>
               {stat.value}
             </span>
@@ -771,8 +771,8 @@ export default function PtPage() {
               {enrollments.map((e) => {
                 const progress = (e.usedSessions / e.totalSessions) * 100
                 return (
-                  <div key={e.id} className="rounded-2xl p-5 transition-all"
-                    style={{ background: '#0a0a0a', border: '1px solid #ffffff0a' }}>
+                  <div key={e.id} className="rounded-2xl p-5 transition-all border border-border bg-card"
+                    >
 
                     {/* Member info */}
                     <div className="flex items-center justify-between mb-4">
