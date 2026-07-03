@@ -374,7 +374,7 @@ export default function MembersPage() {
             onChange={(e) => { setSearch(e.target.value); setPage(1) }}
           />
         </div>
-        <div className="flex gap-2.5 sm:gap-3">
+        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
           <DarkSelect
             value={status}
             onChange={(v) => { setStatus(v); setPage(1) }}
@@ -394,36 +394,30 @@ export default function MembersPage() {
             width={180}
             options={plans.map((p: GymPlan) => ({ label: p.name, value: p.id }))}
           />
+          <button
+            type="button"
+            onClick={() => setIsModalOpen(true)}
+            className="flex h-10 items-center justify-center gap-2 px-5 text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+          >
+            <Plus className="h-4 w-4" />
+            Add Member
+          </button>
         </div>
       </div>
 
-      {/* Header row */}
-      <div className="flex flex-col gap-3 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-0">
-        <div className="flex items-center gap-2.5">
-          <div
-            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl sm:hidden"
-            style={{ background: '#7c3aed1a', border: '1px solid #7c3aed30' }}
-          >
-            <Users className="h-4 w-4 text-violet-400" />
-          </div>
-          <div className="flex items-baseline gap-2">
-            <span className="text-[24px] font-bold tracking-tight text-foreground sm:text-[28px]">
-              {displayTotal}
-            </span>
-            <span className="text-[13px] font-medium text-muted-foreground sm:text-[14px]">
-              total members
-            </span>
-          </div>
+      {/* Total Members Count */}
+      <div className="px-4 sm:px-0 pt-1">
+        <div className="flex items-baseline gap-2">
+          <span className="text-[18px] font-bold tracking-tight text-foreground sm:text-[22px]">
+            {displayTotal}
+          </span>
+          <span className="text-[12px] font-medium text-muted-foreground sm:text-[13px]">
+            total members
+          </span>
         </div>
-        <button
-          type="button"
-          onClick={() => setIsModalOpen(true)}
-          className="flex w-full items-center justify-center gap-2 px-4 py-2.5 text-[13px] font-medium text-foreground transition-all duration-150 sm:w-auto bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
-        >
-          <Plus className="h-4 w-4" />
-          Add Member
-        </button>
       </div>
+
+
 
       {/* Content */}
       {loading ? (
@@ -449,7 +443,7 @@ export default function MembersPage() {
           <button
             type="button"
             onClick={() => setIsModalOpen(true)}
-            className="flex items-center gap-2 rounded-xl px-4 py-2 text-[13px] font-medium text-foreground bg-[#7c3aed] shadow-[0_4px_16px_#7c3aed30] hover:bg-[#8b5cf6] transition-colors"
+            className="flex h-10 items-center justify-center gap-2 px-5 text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
           >
             <Plus className="h-4 w-4" />
             Add Member
