@@ -79,11 +79,10 @@ function RevenueRangeToggle({
         <button
           key={months}
           onClick={() => onChange(months)}
-          className={`rounded-md px-2.5 sm:px-3 py-1 text-[11px] font-semibold transition-all duration-150 ${
-            value === months
+          className={`rounded-md px-2.5 sm:px-3 py-1 text-[11px] font-semibold transition-all duration-150 ${value === months
               ? 'bg-primary text-primary-foreground shadow-sm'
               : 'text-muted-foreground hover:text-foreground'
-          }`}
+            }`}
         >
           {label}
         </button>
@@ -140,9 +139,8 @@ function ExpiringMemberRow({ name, daysLeft }: { name: string; daysLeft: number 
   const isCritical = daysLeft <= 2
   return (
     <div className="flex items-center gap-3 py-2">
-      <div className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl text-[11px] font-bold ${
-        isCritical ? 'bg-secondary text-foreground' : 'bg-accent text-primary'
-      }`}>
+      <div className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl text-[11px] font-bold ${isCritical ? 'bg-secondary text-foreground' : 'bg-accent text-primary'
+        }`}>
         {initials}
       </div>
       <div className="min-w-0 flex-1">
@@ -151,11 +149,10 @@ function ExpiringMemberRow({ name, daysLeft }: { name: string; daysLeft: number 
           {daysLeft === 0 ? 'Expires today' : `Expires in ${daysLeft} day${daysLeft > 1 ? 's' : ''}`}
         </p>
       </div>
-      <span className={`flex-shrink-0 rounded-full border px-2 py-1 text-[10px] font-semibold ${
-        isCritical
+      <span className={`flex-shrink-0 rounded-full border px-2 py-1 text-[10px] font-semibold ${isCritical
           ? 'border-border bg-secondary text-muted-foreground'
           : 'border-primary/20 bg-accent text-primary'
-      }`}>
+        }`}>
         {isCritical ? 'Critical' : 'Soon'}
       </span>
     </div>
@@ -331,12 +328,12 @@ export default function DashboardPage() {
                       <Cell
                         key={`cell-${index}`}
                         fill={
-  Number(entry.revenue) === 0
-    ? 'var(--border)'
-    : index === monthlyRevenue.length - 1
-      ? 'var(--chart-2)'
-      : 'var(--chart-1)'
-}
+                          Number(entry.revenue) === 0
+                            ? 'var(--border)'
+                            : index === monthlyRevenue.length - 1
+                              ? 'var(--chart-2)'
+                              : 'var(--chart-1)'
+                        }
                       />
                     ))}
                   </Bar>
