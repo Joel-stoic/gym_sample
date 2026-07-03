@@ -360,61 +360,66 @@ export default function MembersPage() {
         select option { background: #0f0f0f; color: white; }
       `}</style>
 
-      {/* Filters */}
-      <div className="flex flex-col gap-2.5 px-4 sm:flex-row sm:items-center sm:gap-3 sm:px-0">
-        <div className="relative min-w-0 flex-1">
-          <Search
-            className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"
-            style={{ color: 'var(--muted-foreground)' }}
-          />
-          <input
-            className={`${inputCls} pl-9`}
-            placeholder="Search by name or phone..."
-            value={search}
-            onChange={(e) => { setSearch(e.target.value); setPage(1) }}
-          />
+      {/* Sticky Top Header Section (Search + Filters + Total) */}
+      <div className="sticky top-0 z-20 -mx-4 px-4 pt-1 pb-4 sm:-mx-6 sm:px-6 mb-5 border-b border-border shadow-sm" style={{ background: 'hsl(var(--background) / 0.9)', backdropFilter: 'blur(8px)' }}>
+        
+        {/* Filters */}
+        <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:gap-3">
+          <div className="relative min-w-0 flex-1">
+            <Search
+              className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"
+              style={{ color: 'var(--muted-foreground)' }}
+            />
+            <input
+              className={`${inputCls} pl-9`}
+              placeholder="Search by name or phone..."
+              value={search}
+              onChange={(e) => { setSearch(e.target.value); setPage(1) }}
+            />
+          </div>
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+            <DarkSelect
+              value={status}
+              onChange={(v) => { setStatus(v); setPage(1) }}
+              placeholder="All Status"
+              width={150}
+              options={[
+                { label: 'Active',         value: 'ACTIVE' },
+                { label: 'Expired',        value: 'EXPIRED' },
+                { label: 'Suspended',      value: 'SUSPENDED' },
+                { label: 'Plan Not Added', value: 'PLAN_NOT_ADDED' },
+              ]}
+            />
+            <DarkSelect
+              value={plan}
+              onChange={(v) => { setPlan(v); setPage(1) }}
+              placeholder="All Plans"
+              width={180}
+              options={plans.map((p: GymPlan) => ({ label: p.name, value: p.id }))}
+            />
+            <button
+              type="button"
+              onClick={() => setIsModalOpen(true)}
+              className="flex h-10 items-center justify-center gap-2 px-5 text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+            >
+              <Plus className="h-4 w-4" />
+              Add Member
+            </button>
+          </div>
         </div>
-        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
-          <DarkSelect
-            value={status}
-            onChange={(v) => { setStatus(v); setPage(1) }}
-            placeholder="All Status"
-            width={150}
-            options={[
-              { label: 'Active',         value: 'ACTIVE' },
-              { label: 'Expired',        value: 'EXPIRED' },
-              { label: 'Suspended',      value: 'SUSPENDED' },
-              { label: 'Plan Not Added', value: 'PLAN_NOT_ADDED' },
-            ]}
-          />
-          <DarkSelect
-            value={plan}
-            onChange={(v) => { setPlan(v); setPage(1) }}
-            placeholder="All Plans"
-            width={180}
-            options={plans.map((p: GymPlan) => ({ label: p.name, value: p.id }))}
-          />
-          <button
-            type="button"
-            onClick={() => setIsModalOpen(true)}
-            className="flex h-10 items-center justify-center gap-2 px-5 text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
-          >
-            <Plus className="h-4 w-4" />
-            Add Member
-          </button>
-        </div>
-      </div>
 
-      {/* Total Members Count */}
-      <div className="px-4 sm:px-0 pt-1">
-        <div className="flex items-baseline gap-2">
-          <span className="text-[18px] font-bold tracking-tight text-foreground sm:text-[22px]">
-            {displayTotal}
-          </span>
-          <span className="text-[12px] font-medium text-muted-foreground sm:text-[13px]">
-            total members
-          </span>
+        {/* Total Members Count */}
+        <div className="pt-4">
+          <div className="flex items-baseline gap-2">
+            <span className="text-[18px] font-bold tracking-tight text-foreground sm:text-[22px]">
+              {displayTotal}
+            </span>
+            <span className="text-[12px] font-medium text-muted-foreground sm:text-[13px]">
+              total members
+            </span>
+          </div>
         </div>
+        
       </div>
 
 
