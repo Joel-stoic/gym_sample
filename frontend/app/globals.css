@@ -79,19 +79,19 @@
 
 /* ─── :root — single source of truth, no parallel token system ─────────────── */
 :root {
-  --background:           #060517;
+  --background:           #000000;
   --foreground:           #F2EDE8;
-  --card:                 #0D0C22;
+  --card:                 #060517;
   --card-foreground:      #F2EDE8;
-  --popover:              #0D0C22;
+  --popover:              #060517;
   --popover-foreground:   #F2EDE8;
 
   --primary:              #D05B37;
   --primary-foreground:   #F2EDE8;
 
-  --secondary:            #131228;
+  --secondary:            #0A0920;
   --secondary-foreground: #F2EDE8;
-  --muted:                #131228;
+  --muted:                #0A0920;
   --muted-foreground:     #7A7898;
 
   --accent:               rgba(208,91,55,0.14);
@@ -99,25 +99,25 @@
 
   --destructive:          #C0392B;
 
-  --border:               #1E1D35;
-  --input:                #1E1D35;
+  --border:               #0F0E28;
+  --input:                #0F0E28;
   --ring:                 #D05B37;
 
   --chart-1:              #D05B37;
   --chart-2:              #A8432A;
   --chart-3:              #7A7898;
-  --chart-4:              #131228;
-  --chart-5:              #1E1D35;
+  --chart-4:              #0A0920;
+  --chart-5:              #0F0E28;
 
   --radius: 0.625rem;
 
-  --sidebar:                    #030412;
+  --sidebar:                    #060517;
   --sidebar-foreground:         #F2EDE8;
   --sidebar-primary:            #D05B37;
   --sidebar-primary-foreground: #F2EDE8;
   --sidebar-accent:             rgba(208,91,55,0.10);
   --sidebar-accent-foreground:  #F2EDE8;
-  --sidebar-border:             #131228;
+  --sidebar-border:             #0F0E28;
   --sidebar-ring:               #D05B37;
 }
 
