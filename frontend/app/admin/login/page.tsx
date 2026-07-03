@@ -41,7 +41,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-violet-600 flex items-center justify-center mb-4">
+          <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
             <Shield size={24} className="text-foreground" />
           </div>
           <h1 className="text-xl font-bold text-foreground font-[Syne]">GymFlow Admin</h1>
@@ -92,7 +92,7 @@ export default function AdminLoginPage() {
           <button
             onClick={handleLogin}
             disabled={loading}
-            className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed text-foreground font-medium py-3 rounded-xl text-sm transition-all duration-150 mt-2"
+            className="w-full disabled:cursor-not-allowed text-foreground font-medium py-3 text-sm transition-all duration-150 mt-2 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
           >
             {loading ? 'Signing in...' : 'Sign in'}
           </button>

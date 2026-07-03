@@ -418,7 +418,7 @@ export default function MembersPage() {
         <button
           type="button"
           onClick={() => setIsModalOpen(true)}
-          className="flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-[13px] font-medium text-foreground transition-all duration-150 sm:w-auto bg-gradient-to-br from-[#7c3aed] to-[#a855f7] shadow-[0_4px_20px_#7c3aed30] hover:shadow-[0_4px_28px_#7c3aed55] hover:-translate-y-[1px]"
+          className="flex w-full items-center justify-center gap-2 px-4 py-2.5 text-[13px] font-medium text-foreground transition-all duration-150 sm:w-auto bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
         >
           <Plus className="h-4 w-4" />
           Add Member
@@ -608,7 +608,7 @@ export default function MembersPage() {
               </AlertDialogCancel>
               <AlertDialogAction
                 onClick={handleDelete}
-                className="h-10 flex-1 rounded-xl border-0 bg-gradient-to-br from-[#dc2626] to-[#ef4444] shadow-[0_4px_16px_#ef444428] hover:shadow-[0_6px_20px_#ef444448] hover:-translate-y-[1px] text-[13px] font-medium text-foreground transition-all sm:flex-none"
+                className="h-10 flex-1 border-0 text-[13px] font-medium text-foreground transition-all sm:flex-none bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
               >
                 Delete Member
               </AlertDialogAction>

@@ -56,7 +56,7 @@ function Section({
     <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600/20 text-violet-400">
+          <div className="flex h-10 w-10 items-center justify-center /20 text-violet-400 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
             <Icon size={18} />
           </div>
           <h2 className="text-[15px] font-semibold text-foreground">{title}</h2>
@@ -253,7 +253,7 @@ function DefaultPasswordsModal({
               </div>
             </div>
 
-            <div className="rounded-xl border border-violet-500/20 bg-violet-500/5 px-4 py-3.5">
+            <div className="border border-violet-500/20 /5 px-4 py-3.5 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
               <p className="text-[13px] text-violet-300">
                 Applies only to newly created members and staff. Existing accounts are not affected.
               </p>
@@ -464,7 +464,7 @@ export default function SettingsPage() {
                         <button
                           type="submit"
                           disabled={gymLoading}
-                          className="flex h-11 items-center gap-2 rounded-xl bg-violet-600 px-6 text-[14px] font-medium text-foreground transition-colors hover:bg-violet-700 disabled:opacity-60"
+                          className="flex h-11 items-center gap-2 px-6 text-[14px] font-medium text-foreground transition-colors hover: bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
                         >
                           {gymLoading && <Loader2 size={16} className="animate-spin" />}
                           {gymLoading ? 'Saving...' : 'Save Changes'}
@@ -699,7 +699,7 @@ export default function SettingsPage() {
                         <button
                           type="submit"
                           disabled={passLoading}
-                          className="flex h-11 items-center gap-2 rounded-xl bg-violet-600 px-6 text-[14px] font-medium text-foreground transition-colors hover:bg-violet-700 disabled:opacity-60"
+                          className="flex h-11 items-center gap-2 px-6 text-[14px] font-medium text-foreground transition-colors hover: bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
                         >
                           {passLoading && <Loader2 size={16} className="animate-spin" />}
                           {passLoading ? 'Changing...' : 'Change Password'}

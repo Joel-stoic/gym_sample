@@ -125,9 +125,9 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
               <button
                 key={member.id}
                 onClick={() => handleSelect(member)}
-                className="flex w-full items-center gap-3 px-4 py-2.5 text-left transition-colors hover:bg-violet-600/10"
+                className="flex w-full items-center gap-3 px-4 py-2.5 text-left transition-colors hover:/10 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
               >
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-violet-600/20 text-[11px] font-semibold text-violet-300">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center /20 text-[11px] font-semibold text-violet-300 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                   {member.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
                 </div>
                 <div className="min-w-0 flex-1">
@@ -253,7 +253,7 @@ export default function AttendancePage() {
 
             <Dialog open={dialogOpen} onOpenChange={handleDialogChange}>
               <DialogTrigger asChild>
-                <Button className="bg-violet-600 hover:bg-violet-500">
+                <Button className="bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                   <UserCheck className="mr-2 h-4 w-4" />
                   Mark Attendance
                 </Button>
@@ -268,8 +268,8 @@ export default function AttendancePage() {
                   <MemberSearch onSelect={setSelectedMember} />
 
                   {selectedMember && (
-                    <div className="flex items-center gap-3 rounded-xl border border-violet-500/20 bg-violet-600/10 px-4 py-3">
-                      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-violet-600/20 text-[11px] font-semibold text-violet-300">
+                    <div className="flex items-center gap-3 border border-violet-500/20 /10 px-4 py-3 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center /20 text-[11px] font-semibold text-violet-300 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                         {selectedMember.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
                       </div>
                       <div className="min-w-0 flex-1">
@@ -283,7 +283,7 @@ export default function AttendancePage() {
                   )}
 
                   <Button
-                    className="h-11 w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-50"
+                    className="h-11 w-full bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
                     onClick={handleMarkAttendance}
                     disabled={markMutation.isPending || !selectedMember}
                   >

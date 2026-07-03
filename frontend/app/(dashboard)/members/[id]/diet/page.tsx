@@ -123,7 +123,7 @@ function DietPlanCard({
 
                     <div className="flex items-center gap-3 mb-3">
 
-                        <div className="h-11 w-11 rounded-2xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center flex-shrink-0">
+                        <div className="h-11 w-11 rounded-2xl /10 border border-violet-500/20 flex items-center justify-center flex-shrink-0 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                             <Utensils className="h-5 w-5 text-violet-400" />
                         </div>
 
@@ -179,7 +179,7 @@ function DietPlanCard({
                             </div>
                         )}
 
-                        <div className="flex items-center gap-1.5 text-sm text-violet-300 bg-violet-500/10 border border-violet-500/20 rounded-xl px-3 py-1.5">
+                        <div className="flex items-center gap-1.5 text-sm text-violet-300 /10 border border-violet-500/20 px-3 py-1.5 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
 
                             {plan.meals.length} meals
 
@@ -289,7 +289,7 @@ function DietPlanCard({
                                                         className="flex items-start gap-3 text-[15px] leading-7 text-zinc-300"
                                                     >
 
-                                                        <span className="h-2 w-2 rounded-full bg-violet-400 mt-2 flex-shrink-0" />
+                                                        <span className="h-2 w-2 rounded-full mt-2 flex-shrink-0 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground" />
 
                                                         {item}
 
@@ -312,7 +312,7 @@ function DietPlanCard({
 
                     {plan.notes && (
 
-                        <div className="mt-5 rounded-2xl border border-violet-500/10 bg-violet-500/[0.03] p-5">
+                        <div className="mt-5 rounded-2xl border border-violet-500/10 /[0.03] p-5 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
 
                             <p className="text-sm font-semibold text-violet-300 mb-2">
                                 Trainer Notes
@@ -669,7 +669,7 @@ export default function MemberDietWeightPage() {
                                     const diff = prev !== undefined ? +(entry.weight - prev).toFixed(1) : null
                                     return (
                                         <div key={entry.id} className="rounded-xl border border-border bg-background/20 px-3 py-2.5 flex items-center gap-3">
-                                            <div className="h-8 w-8 rounded-lg bg-violet-500/10 flex items-center justify-center flex-shrink-0">
+                                            <div className="h-8 w-8 /10 flex items-center justify-center flex-shrink-0 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                                                 <Scale className="h-3.5 w-3.5 text-violet-400" />
                                             </div>
                                             <div className="flex-1 min-w-0">

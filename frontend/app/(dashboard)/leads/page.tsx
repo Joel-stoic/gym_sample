@@ -249,7 +249,7 @@ export default function LeadsPage() {
             onOpenChange={setDialogOpen}
           >
             <DialogTrigger asChild>
-              <Button className="bg-violet-600 hover:bg-violet-500">
+              <Button className="bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                 <Plus className="mr-2 h-4 w-4" />
                 Add Lead
               </Button>
@@ -387,7 +387,7 @@ export default function LeadsPage() {
                   <Button
                     type="submit"
                     disabled={submitting}
-                    className="h-11 w-full bg-violet-600 hover:bg-violet-500"
+                    className="h-11 w-full bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
                   >
                     {submitting && (
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />

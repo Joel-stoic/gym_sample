@@ -181,7 +181,7 @@ export default function CheckInPage() {
         {/* IDLE */}
         {state === 'idle' && (
           <div className="flex flex-col items-center gap-6 text-center">
-            <div className="relative flex h-28 w-28 items-center justify-center rounded-3xl bg-violet-600/10">
+            <div className="relative flex h-28 w-28 items-center justify-center rounded-3xl /10 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
               <span className="absolute left-3 top-3 h-4 w-4 rounded-tl-lg border-l-2 border-t-2 border-violet-500/50" />
               <span className="absolute right-3 top-3 h-4 w-4 rounded-tr-lg border-r-2 border-t-2 border-violet-500/50" />
               <span className="absolute bottom-3 left-3 h-4 w-4 rounded-bl-lg border-b-2 border-l-2 border-violet-500/50" />
@@ -198,7 +198,7 @@ export default function CheckInPage() {
             </div>
             <button
               onClick={startScanner}
-              className="flex items-center gap-2.5 rounded-2xl bg-violet-600 px-8 py-3.5 text-[14px] font-semibold text-foreground transition-all hover:bg-violet-500 active:scale-95"
+              className="flex items-center gap-2.5 rounded-2xl px-8 py-3.5 text-[14px] font-semibold text-foreground transition-all hover:active:scale-95 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
             >
               <Camera size={16} />
               Open Camera
@@ -282,7 +282,7 @@ export default function CheckInPage() {
             </div>
             <button
               onClick={reset}
-              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-violet-600 py-3 text-[13px] font-semibold text-foreground transition-all hover:bg-violet-500 active:scale-95"
+              className="flex w-full items-center justify-center gap-2 rounded-2xl py-3 text-[13px] font-semibold text-foreground transition-all hover:active:scale-95 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
             >
               <Camera size={14} />
               Try Again

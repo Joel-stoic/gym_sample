@@ -21,7 +21,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     return (
       <div className="flex min-h-screen items-center justify-center" >
         <div className="flex flex-col items-center gap-4">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-violet-600/20">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl /20 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
             <div className="h-5 w-5 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
           </div>
           <p className="text-[12px] font-medium uppercase tracking-widest text-muted-foreground">Loading</p>

@@ -261,7 +261,7 @@ export default function StaffPage() {
             if (!val) setForm(EMPTY_FORM) // Reset on close
           }}>
             <DialogTrigger asChild>
-              <Button className="bg-violet-600 hover:bg-violet-500 text-foreground rounded-xl h-10 px-4 text-sm font-medium gap-2 shadow-lg shadow-violet-900/20 transition-all active:scale-95">
+              <Button className="text-foreground h-10 px-4 text-sm font-medium gap-2 shadow-lg shadow-violet-900/20 transition-all active:scale-95 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                 <Plus className="h-4 w-4" />
                 Add Staff Member
               </Button>
@@ -293,7 +293,7 @@ export default function StaffPage() {
                 <div className="pt-2">
                   <Button
                     disabled={saving || !form.name || !form.phone}
-                    className="w-full bg-violet-600 hover:bg-violet-500 rounded-xl h-11 text-base font-medium transition-all"
+                    className="w-full h-11 text-base font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
                     onClick={addStaff}
                   >
                     {saving ? (
@@ -348,7 +348,7 @@ export default function StaffPage() {
               </div>
 
               <div className="pt-2">
-                <Button disabled={saving} className="w-full bg-violet-600 hover:bg-violet-500 rounded-xl h-11" onClick={updateStaff}>
+                <Button disabled={saving} className="w-full h-11 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground" onClick={updateStaff}>
                   {saving ? <RefreshCcw className="h-4 w-4 mr-2 animate-spin" /> : 'Save Changes'}
                 </Button>
               </div>
@@ -457,7 +457,7 @@ export default function StaffPage() {
               <div className="flex flex-col justify-between h-auto gap-4">
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 text-sm text-zinc-300 group-hover:text-zinc-200 transition-colors">
-                    <div className="flex h-7 w-7 items-center justify-center rounded-md bg-violet-500/10 text-violet-400">
+                    <div className="flex h-7 w-7 items-center justify-center /10 text-violet-400 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                       <Phone className="h-3.5 w-3.5" />
                     </div>
                     <span>{member.phone}</span>
@@ -465,7 +465,7 @@ export default function StaffPage() {
                   
                   {member.email && (
                     <div className="flex items-center gap-3 text-sm text-zinc-300 group-hover:text-zinc-200 transition-colors">
-                      <div className="flex h-7 w-7 items-center justify-center rounded-md bg-violet-500/10 text-violet-400">
+                      <div className="flex h-7 w-7 items-center justify-center /10 text-violet-400 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                         <Mail className="h-3.5 w-3.5" />
                       </div>
                       <span className="truncate">{member.email}</span>

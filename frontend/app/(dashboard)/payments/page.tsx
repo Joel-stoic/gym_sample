@@ -760,7 +760,7 @@ export default function PaymentsPage() {
         action={
           <Button
             onClick={() => router.push('/payments/new')}
-            className="h-10 w-full sm:w-auto rounded-xl bg-violet-600 px-4 text-foreground hover:bg-violet-500"
+            className="h-10 w-full sm:w-auto px-4 text-foreground hover: bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
           >
             <Plus className="mr-2 h-4 w-4" />
             Record Payment

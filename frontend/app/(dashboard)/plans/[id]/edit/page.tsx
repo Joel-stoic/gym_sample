@@ -155,7 +155,7 @@ export default function EditPlanPage() {
         <button
           type="submit"
           disabled={saving}
-          className="rounded-xl bg-violet-600 px-5 py-3 text-foreground transition hover:bg-violet-500"
+          className="px-5 py-3 text-foreground transition hover: bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
         >
           {saving ? 'Updating...' : 'Update Plan'}
         </button>

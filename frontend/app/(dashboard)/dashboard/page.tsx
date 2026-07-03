@@ -74,11 +74,11 @@ function MetricCard({
 }) {
   return (
     <div className={`relative overflow-hidden rounded-2xl border p-4 sm:p-5 transition-all duration-200 ${redAccent
-      ? 'border-red-500/20 bg-gradient-to-br from-[#16161f] to-[#1a0f0f]'
+      ? 'border-red-500/20 bg-red-500/10 hover:border-red-500/30'
       : 'border-border bg-card hover:border-white/[0.10]'
       }`}>
       {redAccent && (
-        <div className="pointer-events-none absolute -right-4 -top-4 h-20 w-20 rounded-full bg-red-600 opacity-10 blur-2xl" />
+        <div className="pointer-events-none absolute -right-4 -top-4 h-20 w-20 rounded-full bg-red-500 opacity-20 blur-2xl" />
       )}
       <div className={`mb-3 sm:mb-4 flex h-9 w-9 items-center justify-center rounded-xl ${iconClass ?? 'bg-white/[0.06] text-foreground'}`}>
         <Icon size={16} />

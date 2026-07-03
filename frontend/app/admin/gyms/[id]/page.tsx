@@ -443,7 +443,7 @@ export default function AdminGymDetailPage() {
 
           <div className="flex items-start justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-violet-600/20 flex items-center justify-center text-violet-400 text-lg font-bold flex-shrink-0">
+              <div className="w-12 h-12 rounded-2xl /20 flex items-center justify-center text-violet-400 text-lg font-bold flex-shrink-0 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                 {tenant.name.charAt(0).toUpperCase()}
               </div>
               <div>
@@ -490,7 +490,7 @@ export default function AdminGymDetailPage() {
                 </button>
               )}
               <button onClick={() => setShowMemberModal(true)}
-                className="flex items-center gap-1.5 px-3 py-2 bg-violet-600/20 hover:bg-violet-600/30 text-violet-400 text-xs font-medium rounded-xl transition-all">
+                className="flex items-center gap-1.5 px-3 py-2 /20 hover:/30 text-violet-400 text-xs font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                 <Plus size={13} />Add Member
               </button>
               <button onClick={handleDelete} disabled={actionLoading}
@@ -656,18 +656,18 @@ export default function AdminGymDetailPage() {
                 {/* Impersonate */}
                 <div className="rounded-xl bg-white/[0.02] border border-border p-4">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-violet-500/10 flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 /10 flex items-center justify-center flex-shrink-0 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                       <LogIn size={15} className="text-violet-400" />
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-medium text-foreground">Login as Owner</p>
                       <p className="text-xs text-foreground/30 mt-0.5">Get a 1-hour access token to support this gym</p>
                       <button onClick={handleImpersonate} disabled={actionLoading}
-                        className="mt-3 px-3 py-1.5 bg-violet-500/10 hover:bg-violet-500/20 text-violet-400 text-xs font-medium rounded-lg transition-all disabled:opacity-50">
+                        className="mt-3 px-3 py-1.5 /10 hover:/20 text-violet-400 text-xs font-medium transition-all disabled:opacity-50 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                         Generate Token
                       </button>
                       {impersonateResult && (
-                        <div className="mt-2 p-2 rounded-lg bg-violet-500/5 border border-violet-500/10 space-y-1">
+                        <div className="mt-2 p-2 /5 border border-violet-500/10 space-y-1 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                           <p className="text-[11px] text-violet-400/80">
                             Token for {impersonateResult.ownerName} (expires in {impersonateResult.expiresIn}):
                           </p>
@@ -783,7 +783,7 @@ export default function AdminGymDetailPage() {
             <div className="px-6 py-4 border-b border-border flex items-center justify-between">
               <p className="text-sm font-semibold text-foreground">{members.length} Members</p>
               <button onClick={() => setShowMemberModal(true)}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-violet-600/20 hover:bg-violet-600/30 text-violet-400 text-xs font-medium rounded-lg transition-all">
+                className="flex items-center gap-1.5 px-3 py-1.5 /20 hover:/30 text-violet-400 text-xs font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                 <Plus size={12} />Add Member
               </button>
             </div>
@@ -984,7 +984,7 @@ export default function AdminGymDetailPage() {
                   Cancel
                 </button>
                 <button type="submit" disabled={memberSubmitting}
-                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-foreground text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 text-foreground text-sm font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                   {memberSubmitting ? 'Adding...' : 'Add Member'}
                 </button>
               </div>
@@ -1009,7 +1009,7 @@ export default function AdminGymDetailPage() {
                   Cancel
                 </button>
                 <button type="submit" disabled={actionLoading}
-                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-foreground text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 text-foreground text-sm font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                   {actionLoading ? 'Saving...' : 'Save'}
                 </button>
               </div>
@@ -1036,7 +1036,7 @@ export default function AdminGymDetailPage() {
                   Cancel
                 </button>
                 <button type="submit" disabled={actionLoading}
-                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-foreground text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 text-foreground text-sm font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                   {actionLoading ? 'Saving...' : 'Save'}
                 </button>
               </div>
@@ -1099,7 +1099,7 @@ export default function AdminGymDetailPage() {
                   Cancel
                 </button>
                 <button type="submit" disabled={ownerSubmitting}
-                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-foreground text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 text-foreground text-sm font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                   {ownerSubmitting ? 'Saving...' : editingOwner ? 'Save Changes' : 'Add Owner'}
                 </button>
               </div>

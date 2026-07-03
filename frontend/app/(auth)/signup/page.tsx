@@ -174,14 +174,14 @@ export default function SignupPage() {
           <div className="w-full max-w-[400px] text-center">
 
             <div className="lg:hidden flex flex-col items-center mb-8">
-              <div className="h-14 w-14 bg-violet-600 rounded-lg flex items-center justify-center mb-4">
+              <div className="h-14 w-14 flex items-center justify-center mb-4 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                 <Dumbbell className="h-6 w-6 text-foreground" />
               </div>
               <h1 className={`text-4xl tracking-widest text-foreground ${bebas.className}`}>JOVIFITX</h1>
             </div>
 
             <div className="flex justify-center mb-6">
-              <div className="h-16 w-16 rounded-full bg-violet-600/10 border border-violet-500/20 flex items-center justify-center">
+              <div className="h-16 w-16 rounded-full /10 border border-violet-500/20 flex items-center justify-center bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                 <Check size={28} className="text-violet-500" strokeWidth={2.5} />
               </div>
             </div>
@@ -229,7 +229,7 @@ export default function SignupPage() {
         <div className="w-full max-w-[400px]">
 
           <div className="lg:hidden flex flex-col items-center text-center mb-10">
-            <div className="h-14 w-14 bg-violet-600 rounded-lg flex items-center justify-center mb-4">
+            <div className="h-14 w-14 flex items-center justify-center mb-4 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
               <Dumbbell className="h-6 w-6 text-foreground" />
             </div>
             <h1 className={`text-4xl tracking-widest text-foreground ${bebas.className}`}>JOVIFITX</h1>

@@ -325,7 +325,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               </button>
               <button
                 onClick={onClose}
-                className="h-10 flex-1 rounded-xl border-0 bg-gradient-to-br from-[#10b981] to-[#059669] shadow-[0_4px_16px_#10b98128] hover:shadow-[0_6px_20px_#10b98148] hover:-translate-y-[1px] text-[13px] font-medium text-foreground transition-all sm:flex-none px-6"
+                className="h-10 flex-1 border-0 text-[13px] font-medium text-foreground transition-all sm:flex-none px-6 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
               >
                 Done
               </button>
@@ -627,7 +627,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               type="submit"
               form="new-member-form"
               disabled={loading}
-              className="flex w-full sm:w-auto h-11 items-center justify-center gap-2 rounded-xl px-6 text-[13px] font-medium text-foreground transition-all duration-150 disabled:opacity-60 bg-gradient-to-br from-[#7c3aed] to-[#a855f7] shadow-[0_4px_20px_#7c3aed30] hover:shadow-[0_4px_28px_#7c3aed55] hover:-translate-y-[1px]"
+              className="flex w-full sm:w-auto h-11 items-center justify-center gap-2 px-6 text-[13px] font-medium text-foreground transition-all duration-150 disabled:opacity-60 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
             >
               {loading && <Loader2 size={16} className="animate-spin" />}
               {loading ? 'Saving...' : addPayment && planId ? 'Add Member & Record Payment' : 'Add Member'}

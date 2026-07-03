@@ -168,7 +168,7 @@ function AdminGymsContent() {
         </div>
         <button
           onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-violet-600 hover:bg-violet-500 text-foreground text-sm font-medium rounded-xl transition-all"
+          className="flex items-center gap-2 px-4 py-2 text-foreground text-sm font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
         >
           <Plus size={15} />Add Gym
         </button>
@@ -223,7 +223,7 @@ function AdminGymsContent() {
                   className="px-6 py-4 flex items-center justify-between hover:bg-white/[0.02] transition-colors cursor-pointer group"
                 >
                   <div className="flex items-center gap-4 min-w-0">
-                    <div className="w-9 h-9 rounded-xl bg-violet-600/15 flex items-center justify-center text-violet-400 text-sm font-bold flex-shrink-0">
+                    <div className="w-9 h-9 /15 flex items-center justify-center text-violet-400 text-sm font-bold flex-shrink-0 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                       {gym.name.charAt(0).toUpperCase()}
                     </div>
                     <div className="min-w-0">
@@ -357,7 +357,7 @@ function AdminGymsContent() {
                   Cancel
                 </button>
                 <button type="submit" disabled={submitting}
-                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-foreground text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 text-foreground text-sm font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                   {submitting ? 'Creating...' : 'Create Gym'}
                 </button>
               </div>

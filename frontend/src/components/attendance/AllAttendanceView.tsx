@@ -245,7 +245,7 @@ export default function AllAttendanceView() {
                 className="group grid grid-cols-[1fr_auto_auto] items-center gap-4 rounded-2xl border border-transparent px-4 py-3 transition-colors hover:border-border hover:bg-white/[0.02] sm:grid-cols-[2fr_1fr_1fr_auto]"
               >
                 <div className="flex min-w-0 items-center gap-3">
-                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-violet-600/20 text-[11px] font-semibold text-violet-300">
+                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center /20 text-[11px] font-semibold text-violet-300 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                     {initials(rec.member.name)}
                   </div>
                   <div className="min-w-0">

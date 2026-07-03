@@ -408,8 +408,8 @@ function AddPaymentModal({ open, onClose, memberId, memberName, onSaved }: {
   return (
     <Modal open={open} onClose={onClose} title="Record Payment" wide>
       {/* Member chip */}
-      <div className="flex items-center gap-2 mb-5 px-3 py-2 rounded-xl bg-violet-500/10 border border-violet-500/20">
-        <div className="h-6 w-6 rounded-full bg-violet-600/30 flex items-center justify-center text-[10px] font-bold text-violet-300">
+      <div className="flex items-center gap-2 mb-5 px-3 py-2 /10 border border-violet-500/20 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+        <div className="h-6 w-6 rounded-full /30 flex items-center justify-center text-[10px] font-bold text-violet-300 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
           {memberName[0]?.toUpperCase()}
         </div>
         <span className="text-sm text-violet-300 font-medium">{memberName}</span>
@@ -526,7 +526,7 @@ function AddPaymentModal({ open, onClose, memberId, memberName, onSaved }: {
           <button
             onClick={handleSubmit}
             disabled={saving || !planId}
-            className="flex-1 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 py-2.5 text-sm text-foreground font-medium flex items-center justify-center gap-2 transition-colors"
+            className="flex-1 py-2.5 text-sm text-foreground font-medium flex items-center justify-center gap-2 transition-colors bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
           >
             {saving
               ? <span className="h-4 w-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
@@ -600,7 +600,7 @@ function EditProfileModal({ open, onClose, member, onSaved }: {
         </div>
         <div className="flex gap-2 pt-1">
           <button onClick={onClose} className="flex-1 rounded-xl border border-border bg-white/[0.03] py-2.5 text-sm text-zinc-400 hover:text-foreground transition-colors">Cancel</button>
-          <button onClick={handleSave} disabled={saving} className="flex-1 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 py-2.5 text-sm text-foreground font-medium flex items-center justify-center gap-2 transition-colors">
+          <button onClick={handleSave} disabled={saving} className="flex-1 py-2.5 text-sm text-foreground font-medium flex items-center justify-center gap-2 transition-colors bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
             {saving ? <span className="h-4 w-4 rounded-full border-2 border-white/30 border-t-white animate-spin" /> : <Save className="h-3.5 w-3.5" />}
             Save Changes
           </button>
@@ -696,7 +696,7 @@ export default function MemberDetailPage() {
             </button>
             <Button
               onClick={() => router.push(`/members/${id}/diet`)}
-              className="bg-violet-600 hover:bg-violet-500 text-foreground rounded-xl h-9 px-4 text-sm gap-2"
+              className="text-foreground h-9 px-4 text-sm gap-2 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
             >
               <Utensils className="h-3.5 w-3.5" />
               Diet & Weight
@@ -711,7 +711,7 @@ export default function MemberDetailPage() {
           <div className="space-y-4">
             <Panel>
               <div className="flex flex-col items-center text-center pb-5 border-b border-border">
-                <div className="h-20 w-20 rounded-full bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-xl font-bold text-violet-400 mb-3">
+                <div className="h-20 w-20 rounded-full /20 border border-violet-500/30 flex items-center justify-center text-xl font-bold text-violet-400 mb-3 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                   {getInitials(member.name)}
                 </div>
                 <h2 className="text-base font-semibold text-foreground">{member.name}</h2>
@@ -755,7 +755,7 @@ export default function MemberDetailPage() {
 
               <div className="grid grid-cols-2 gap-3 mt-5">
                 <div className="rounded-xl border border-border bg-background/20 p-3 text-center">
-                  <div className="h-9 w-9 rounded-lg bg-violet-500/10 flex items-center justify-center mx-auto mb-2">
+                  <div className="h-9 w-9 /10 flex items-center justify-center mx-auto mb-2 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                     <Activity className="h-4 w-4 text-violet-400" />
                   </div>
                   <p className="text-xl font-bold text-foreground">{member.attendance?.length || 0}</p>
@@ -846,7 +846,7 @@ export default function MemberDetailPage() {
                 <div className="space-y-2">
                   {member.attendance.map((record: Attendance) => (
                     <ListRow key={record.id}>
-                      <IconBox className="bg-violet-500/10">
+                      <IconBox className="/10 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                         <CheckCircle2 className="h-4 w-4 text-green-400" />
                       </IconBox>
                       <div className="flex-1 min-w-0">

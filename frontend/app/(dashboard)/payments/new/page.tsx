@@ -519,7 +519,7 @@ export default function NewPaymentPage() {
               <Button
                 type="submit"
                 disabled={loading}
-                className="h-12 w-full rounded-xl bg-violet-600 text-foreground hover:bg-violet-500"
+                className="h-12 w-full text-foreground hover: bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
               >
                 {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 {loading ? 'Recording...' : 'Record Payment'}
@@ -533,7 +533,7 @@ export default function NewPaymentPage() {
 
           <div className="rounded-3xl border border-border bg-background p-5">
             <div className="mb-5 flex items-center gap-3">
-              <div className="rounded-2xl bg-violet-600/15 p-3 text-violet-400">
+              <div className="rounded-2xl /15 p-3 text-violet-400 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                 <IndianRupee className="h-5 w-5" />
               </div>
               <div>

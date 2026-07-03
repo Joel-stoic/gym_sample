@@ -88,7 +88,7 @@ function PtEnrollmentCard({ enrollment }: { enrollment: PtEnrollment }) {
           <div className="flex items-center gap-2 mt-2">
             <div className="flex-1 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
               <div
-                className="h-full bg-violet-500 rounded-full transition-all"
+                className="h-full rounded-full transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
                 style={{ width: `${pct}%` }}
               />
             </div>
@@ -502,7 +502,7 @@ const setData =
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-semibold text-foreground flex items-center gap-2">
                           {entry.weight} kg
-                          {fresh && <span className="text-[10px] text-violet-400 bg-violet-500/10 border border-violet-500/20 px-1.5 py-0.5 rounded">Today</span>}
+                          {fresh && <span className="text-[10px] text-violet-400 /10 border border-violet-500/20 px-1.5 py-0.5 rounded bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">Today</span>}
                         </p>
                         <p className="text-[11px] text-muted-foreground">{format(parseISO(entry.loggedAt), 'd MMM yyyy')}</p>
                       </div>
@@ -532,7 +532,7 @@ const setData =
             </div>
             {diets.length === 0 ? (
               <div className="py-12 flex flex-col items-center gap-3 text-zinc-600">
-                <div className="h-12 w-12 rounded-2xl bg-violet-500/10 flex items-center justify-center">
+                <div className="h-12 w-12 rounded-2xl /10 flex items-center justify-center bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                   <Utensils className="h-5 w-5 text-violet-400/60" />
                 </div>
                 <div className="text-center">
@@ -557,7 +557,7 @@ const setData =
             </div>
             {ptEnrollments.length === 0 ? (
               <div className="py-12 flex flex-col items-center gap-3 text-zinc-600">
-                <div className="h-12 w-12 rounded-2xl bg-violet-500/10 flex items-center justify-center">
+                <div className="h-12 w-12 rounded-2xl /10 flex items-center justify-center bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                   <Dumbbell className="h-5 w-5 text-violet-400/60" />
                 </div>
                 <div className="text-center">

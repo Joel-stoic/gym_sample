@@ -193,7 +193,7 @@ export default function AdminDashboardPage() {
                 className="px-6 py-4 flex items-center justify-between hover:bg-white/[0.02] transition-colors cursor-pointer group"
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-8 h-8 rounded-xl bg-violet-600/20 flex items-center justify-center text-violet-400 text-xs font-bold flex-shrink-0">
+                  <div className="w-8 h-8 /20 flex items-center justify-center text-violet-400 text-xs font-bold flex-shrink-0 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
                     {gym.name.charAt(0).toUpperCase()}
                   </div>
                   <div className="min-w-0">
