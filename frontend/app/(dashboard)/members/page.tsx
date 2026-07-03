@@ -35,27 +35,27 @@ export interface GymPlan {
   name: string
 }
 
-// ─── Shared dark style tokens ─────────────────────────────────────────────────
-const surfaceClass = "bg-gunmetal-800 border border-gunmetal-600 rounded-2xl"
+// ─── Shared style tokens ─────────────────────────────────────────────────
+const surfaceClass = "bg-cream-50 border border-cream-200 rounded-2xl shadow-sm"
 const inputCls = `
-  w-full rounded-xl px-4 py-2.5 text-sm text-white outline-none transition-all
-  placeholder:text-gunmetal-400 bg-gunmetal-900 border border-gunmetal-600
-  focus:border-crayola/50 focus:ring-2 focus:ring-crayola/40
+  w-full rounded-xl px-4 py-2.5 text-sm text-ink outline-none transition-all
+  placeholder:text-cream-400 bg-cream-50 border border-cream-200
+  focus:border-cola/50 focus:ring-2 focus:ring-cola/20
 `
 
 // Status → color mapping
 const STATUS_STYLES: Record<string, { bg: string; border: string; text: string; label: string; dot: string }> = {
-  ACTIVE:         { bg: 'bg-crayola-100', border: 'border-crayola/20', text: 'text-crayola',  label: 'Active',    dot: 'bg-crayola' },
-  EXPIRED:        { bg: 'bg-gunmetal-600', border: 'border-gunmetal-600', text: 'text-gunmetal-400',  label: 'Expired',   dot: 'bg-gunmetal-400' },
-  SUSPENDED:      { bg: 'bg-gunmetal-600', border: 'border-gunmetal-600', text: 'text-gunmetal-400',  label: 'Suspended', dot: 'bg-gunmetal-400' },
-  PLAN_NOT_ADDED: { bg: 'bg-gunmetal-600', border: 'border-gunmetal-600', text: 'text-gunmetal-400',  label: 'No plan',   dot: 'bg-gunmetal-400' },
+  ACTIVE:         { bg: 'bg-cola-100', border: 'border-cola-100', text: 'text-cola',  label: 'Active',    dot: 'bg-cola' },
+  EXPIRED:        { bg: 'bg-cream-200', border: 'border-cream-200', text: 'text-ink-600',  label: 'Expired',   dot: 'bg-ink-600' },
+  SUSPENDED:      { bg: 'bg-cream-200', border: 'border-cream-200', text: 'text-ink-600',  label: 'Suspended', dot: 'bg-ink-600' },
+  PLAN_NOT_ADDED: { bg: 'bg-cream-200', border: 'border-cream-200', text: 'text-ink-600',  label: 'No plan',   dot: 'bg-ink-600' },
 }
 
 // ─── Skeleton pulse ───────────────────────────────────────────────────────────
 function SkeletonCell({ width = '100%', height = 14 }: { width?: string | number; height?: number }) {
   return (
     <div
-      className="rounded-md bg-white/5 animate-pulse"
+      className="rounded-md bg-cream-200 animate-pulse"
       style={{ width, height }}
     />
   )
@@ -65,12 +65,12 @@ function MemberTableSkeleton() {
   return (
     <div className={`hidden overflow-hidden md:block ${surfaceClass}`}>
       <div
-        className="grid px-5 py-4 border-b border-gunmetal-600 bg-gunmetal-900 rounded-t-2xl"
+        className="grid px-5 py-4 border-b border-cream-200 bg-cream-50 rounded-t-2xl"
         style={{ gridTemplateColumns: '2fr 1.2fr 1fr 1fr 1fr 80px' }}
       >
         {['Member', 'Phone', 'Plan', 'Status', 'Expires', ''].map((h) => (
           <div key={h} className="flex items-center">
-            <span className="text-xs font-semibold text-gunmetal-400">
+            <span className="text-xs font-semibold text-cream-400 uppercase tracking-widest">
               {h}
             </span>
           </div>
@@ -80,11 +80,11 @@ function MemberTableSkeleton() {
       {Array.from({ length: 8 }).map((_, i) => (
         <div
           key={i}
-          className="grid items-center px-5 py-5 border-b border-gunmetal-600 last:border-0 bg-gunmetal-900"
+          className="grid items-center px-5 py-5 border-b border-cream-200 last:border-0 bg-cream-50"
           style={{ gridTemplateColumns: '2fr 1.2fr 1fr 1fr 1fr 80px', opacity: 1 - i * 0.08 }}
         >
           <div className="flex items-center gap-4">
-            <div className="w-9 h-9 rounded-full bg-white/5 animate-pulse flex-shrink-0" style={{ animationDelay: `${i * 0.07}s` }} />
+            <div className="w-9 h-9 rounded-full bg-cream-200 animate-pulse flex-shrink-0" style={{ animationDelay: `${i * 0.07}s` }} />
             <div className="flex flex-col gap-2">
               <SkeletonCell width={110} height={14} />
               <SkeletonCell width={70} height={12} />
@@ -105,14 +105,14 @@ function MemberTableSkeleton() {
 
 function MemberCardSkeleton() {
   return (
-    <div className={`flex flex-col md:hidden ${surfaceClass} !rounded-none sm:!rounded-2xl border-x-0 sm:border-x bg-gunmetal-800`}>
+    <div className={`flex flex-col md:hidden ${surfaceClass} !rounded-none sm:!rounded-2xl border-x-0 sm:border-x bg-cream-50`}>
       {Array.from({ length: 7 }).map((_, i) => (
         <div
           key={i}
-          className="flex items-center gap-4 px-5 py-4 border-b border-gunmetal-600 last:border-0"
+          className="flex items-center gap-4 px-5 py-4 border-b border-cream-200 last:border-0"
           style={{ opacity: 1 - i * 0.09 }}
         >
-          <div className="w-10 h-10 rounded-full bg-white/5 animate-pulse flex-shrink-0" style={{ animationDelay: `${i * 0.06}s` }} />
+          <div className="w-10 h-10 rounded-full bg-cream-200 animate-pulse flex-shrink-0" style={{ animationDelay: `${i * 0.06}s` }} />
           <div className="flex flex-1 flex-col gap-2">
             <SkeletonCell width="46%" height={14} />
             <SkeletonCell width="30%" height={12} />
@@ -148,32 +148,32 @@ function MemberCard({
 
   return (
     <div
-      className="relative flex items-center gap-4 px-5 py-4 transition-colors hover:bg-gunmetal-700 cursor-pointer border-b border-gunmetal-600 last:border-0 group bg-gunmetal-800"
+      className="relative flex items-center gap-4 px-5 py-4 transition-colors hover:bg-cream-200 cursor-pointer border-b border-cream-200 last:border-0 group bg-cream-50"
       onClick={() => onOpen(member.id)}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onOpen(member.id) }}
     >
-      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-sm font-medium text-white bg-gunmetal-700">
+      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-sm font-semibold text-ink bg-cream-200">
         {initials}
       </div>
 
       <div className="min-w-0 flex-1">
-        <p className="truncate text-[14px] font-medium text-white">{member.name}</p>
-        <p className="mt-0.5 truncate text-[13px] font-medium text-gunmetal-400">
+        <p className="truncate text-[14px] font-medium text-ink">{member.name}</p>
+        <p className="mt-0.5 truncate text-[13px] font-medium text-cream-400">
           {subtitle || 'No plan yet'}
         </p>
       </div>
 
       <div className="flex flex-shrink-0 flex-col items-center gap-1.5 pr-8">
-        <span className="text-xs font-medium text-gunmetal-400 tracking-[0.01em]">
+        <span className="text-xs font-medium text-cream-400 tracking-[0.01em]">
           {member.expiresAt
             ? new Date(member.expiresAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })
             : '—'}
         </span>
         <span className={`flex items-center gap-1.5 rounded-md px-2 py-1 border ${st.bg} ${st.border}`}>
           <span className={`rounded-full w-1.5 h-1.5 ${st.dot}`} />
-          <span className={`text-[11px] font-medium ${st.text}`}>
+          <span className={`text-[11px] font-semibold ${st.text}`}>
             {st.label}
           </span>
         </span>
@@ -186,7 +186,7 @@ function MemberCard({
           onDelete(member.id)
         }}
         aria-label={`Delete ${member.name}`}
-        className="absolute right-4 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg text-gunmetal-400 opacity-0 group-hover:opacity-100 hover:bg-crayola-100 hover:text-crayola transition-colors"
+        className="absolute right-4 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg text-cream-400 opacity-0 group-hover:opacity-100 hover:bg-cola-100 hover:text-cola transition-colors"
       >
         <Trash2 className="h-4 w-4" strokeWidth={2} />
       </button>
@@ -196,7 +196,7 @@ function MemberCard({
 
 function PaginationSkeleton() {
   return (
-    <div className="flex items-center justify-between gap-3 px-1 py-4 border-t border-gunmetal-600">
+    <div className="flex items-center justify-between gap-3 px-1 py-4 border-t border-cream-200">
       <SkeletonCell width={90} height={36} />
       <SkeletonCell width={70} height={14} />
       <SkeletonCell width={90} height={36} />
@@ -204,7 +204,7 @@ function PaginationSkeleton() {
   )
 }
 
-function DarkSelect({
+function LightSelect({
   value, onChange, options, placeholder, width = 160,
 }: {
   value: string
@@ -218,16 +218,16 @@ function DarkSelect({
       <select
         value={value || 'ALL'}
         onChange={(e) => onChange(e.target.value === 'ALL' ? '' : e.target.value)}
-        className="w-full appearance-none rounded-xl px-4 py-2.5 text-sm font-medium outline-none transition-colors cursor-pointer bg-gunmetal-900 border border-gunmetal-600 focus:border-crayola/50 focus:ring-2 focus:ring-crayola/40 shadow-sm"
-        style={{ color: value ? 'white' : 'var(--color-gunmetal-400)' }}
+        className="w-full appearance-none rounded-xl px-4 py-2.5 text-sm font-medium outline-none transition-colors cursor-pointer bg-cream-50 border border-cream-200 focus:border-cola/50 focus:ring-2 focus:ring-cola/20 shadow-sm"
+        style={{ color: value ? 'var(--color-ink)' : 'var(--color-cream-400)' }}
       >
-        <option value="ALL" className="bg-gunmetal-900 text-gunmetal-400">{placeholder}</option>
+        <option value="ALL" className="bg-cream-50 text-cream-400">{placeholder}</option>
         {options.map((o) => (
-          <option key={o.value} value={o.value} className="bg-gunmetal-900 text-white">{o.label}</option>
+          <option key={o.value} value={o.value} className="bg-cream-50 text-ink">{o.label}</option>
         ))}
       </select>
       <ChevronDown
-        className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gunmetal-400"
+        className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-cream-400"
       />
     </div>
   )
@@ -274,7 +274,7 @@ export default function MembersPage() {
         <button
           type="button"
           onClick={() => setIsModalOpen(true)}
-          className="flex w-full items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-colors sm:w-auto bg-crayola hover:bg-crayola-600 focus-visible:ring-2 focus-visible:ring-crayola/40"
+          className="flex w-full items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-colors sm:w-auto bg-cola hover:bg-cola-700 focus-visible:ring-2 focus-visible:ring-cola/40 shadow-sm"
         >
           <Plus className="h-4 w-4" />
           Add Member
@@ -285,7 +285,7 @@ export default function MembersPage() {
         {/* Filters */}
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center mb-6">
           <div className="relative min-w-0 flex-1">
-            <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gunmetal-400" />
+            <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-cream-400" />
             <input
               className={`${inputCls} pl-11`}
               placeholder="Search by name or phone..."
@@ -294,7 +294,7 @@ export default function MembersPage() {
             />
           </div>
           <div className="flex gap-3">
-            <DarkSelect
+            <LightSelect
               value={status}
               onChange={(v) => { setStatus(v); setPage(1) }}
               placeholder="All Status"
@@ -306,7 +306,7 @@ export default function MembersPage() {
                 { label: 'Plan Not Added', value: 'PLAN_NOT_ADDED' },
               ]}
             />
-            <DarkSelect
+            <LightSelect
               value={plan}
               onChange={(v) => { setPlan(v); setPage(1) }}
               placeholder="All Plans"
@@ -324,16 +324,16 @@ export default function MembersPage() {
             {displayTotal > 20 && <PaginationSkeleton />}
           </div>
         ) : members.length === 0 ? (
-          <div className={`flex flex-col items-start justify-center py-16 px-8 rounded-2xl ${surfaceClass} bg-gunmetal-800`}>
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gunmetal-900 border border-gunmetal-600 mb-5">
-              <Users className="h-6 w-6 text-gunmetal-400" />
+          <div className={`flex flex-col items-start justify-center py-16 px-8 rounded-2xl ${surfaceClass} bg-cream-50`}>
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cream-50 border border-cream-200 mb-5">
+              <Users className="h-6 w-6 text-cream-400" />
             </div>
-            <p className="text-[18px] font-semibold text-white mb-2">No members found</p>
-            <p className="text-[14px] text-gunmetal-400 max-w-md mb-6 leading-relaxed">It looks like you don't have any members yet. Add your first member to start managing your gym.</p>
+            <p className="text-[18px] font-semibold text-ink mb-2">No members found</p>
+            <p className="text-[14px] text-cream-400 max-w-md mb-6 leading-relaxed">It looks like you don't have any members yet. Add your first member to start managing your gym.</p>
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="flex items-center gap-2 rounded-xl px-5 py-2.5 text-[14px] font-semibold text-white transition-colors bg-crayola hover:bg-crayola-600"
+              className="flex items-center gap-2 rounded-xl px-5 py-2.5 text-[14px] font-semibold text-white transition-colors bg-cola hover:bg-cola-700 shadow-sm"
             >
               <Plus className="h-4 w-4" />
               Add Member
@@ -342,14 +342,14 @@ export default function MembersPage() {
         ) : (
           <div>
             {/* Desktop table */}
-            <div className="hidden overflow-hidden rounded-2xl md:block">
-              <div className={`overflow-hidden ${surfaceClass}`}>
+            <div className="hidden overflow-hidden rounded-2xl md:block shadow-sm border border-cream-200 bg-cream-50">
+              <div className="overflow-hidden bg-cream-50">
                 <MemberTable members={members} onDelete={(id: string) => setDeleteId(id)} />
               </div>
             </div>
 
             {/* Mobile list */}
-            <div className={`flex flex-col overflow-hidden md:hidden ${surfaceClass} !rounded-none sm:!rounded-2xl border-x-0 sm:border-x bg-gunmetal-800`}>
+            <div className={`flex flex-col overflow-hidden md:hidden ${surfaceClass} !rounded-none sm:!rounded-2xl border-x-0 sm:border-x bg-cream-50`}>
               {members.map((m: Member) => (
                 <MemberCard
                   key={m.id}
@@ -362,7 +362,7 @@ export default function MembersPage() {
 
             {/* Pagination */}
             {displayTotal > 20 && (
-              <div className="mt-6 flex items-center justify-between border-t border-gunmetal-600 pt-6">
+              <div className="mt-6 flex items-center justify-between border-t border-cream-200 pt-6">
                 {/* Mobile */}
                 <div className="flex w-full items-center justify-between gap-4 sm:hidden">
                   <button
@@ -370,14 +370,14 @@ export default function MembersPage() {
                     disabled={page === 1}
                     onClick={() => setPage(page - 1)}
                     aria-label="Previous page"
-                    className="flex flex-1 items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold transition-colors disabled:opacity-30 bg-gunmetal-700 border border-gunmetal-600 text-gunmetal-100 hover:bg-gunmetal-600"
+                    className="flex flex-1 items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold transition-colors disabled:opacity-30 bg-cream-50 border border-cream-200 text-ink-600 hover:bg-cream-200"
                   >
                     <ChevronLeft className="h-4 w-4" />
                     Prev
                   </button>
                   <div className="flex flex-col items-center gap-1 px-2">
-                    <span className="text-[13px] font-semibold text-white">
-                      {page} <span className="text-gunmetal-400 font-medium">/ {totalPages}</span>
+                    <span className="text-[13px] font-semibold text-ink">
+                      {page} <span className="text-cream-400 font-medium">/ {totalPages}</span>
                     </span>
                   </div>
                   <button
@@ -385,7 +385,7 @@ export default function MembersPage() {
                     disabled={page * 20 >= displayTotal}
                     onClick={() => setPage(page + 1)}
                     aria-label="Next page"
-                    className="flex flex-1 items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold transition-colors disabled:opacity-30 bg-gunmetal-700 border border-gunmetal-600 text-gunmetal-100 hover:bg-gunmetal-600"
+                    className="flex flex-1 items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold transition-colors disabled:opacity-30 bg-cream-50 border border-cream-200 text-ink-600 hover:bg-cream-200"
                   >
                     Next
                     <ChevronRight className="h-4 w-4" />
@@ -394,19 +394,19 @@ export default function MembersPage() {
 
                 {/* Desktop */}
                 <div className="hidden w-full items-center justify-between gap-4 sm:flex">
-                  <p className="text-[13px] font-medium text-gunmetal-400">
-                    Showing <span className="font-semibold tabular-nums text-white">{(page - 1) * 20 + 1}</span>
+                  <p className="text-[13px] font-medium text-cream-400">
+                    Showing <span className="font-semibold tabular-nums text-ink">{(page - 1) * 20 + 1}</span>
                     <span className="mx-1.5">–</span>
-                    <span className="font-semibold tabular-nums text-white">{Math.min(page * 20, displayTotal)}</span>
+                    <span className="font-semibold tabular-nums text-ink">{Math.min(page * 20, displayTotal)}</span>
                     <span className="mx-1.5">of</span>
-                    <span className="font-semibold tabular-nums text-white">{displayTotal}</span>
+                    <span className="font-semibold tabular-nums text-ink">{displayTotal}</span>
                   </p>
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
                       disabled={page === 1}
                       onClick={() => setPage(page - 1)}
-                      className="flex h-9 w-9 items-center justify-center rounded-lg transition-colors disabled:opacity-30 text-gunmetal-400 hover:text-white hover:bg-gunmetal-700 border border-transparent hover:border-gunmetal-600"
+                      className="flex h-9 w-9 items-center justify-center rounded-lg transition-colors disabled:opacity-30 text-cream-400 hover:text-ink hover:bg-cream-200 border border-transparent hover:border-cream-200"
                     >
                       <ChevronLeft className="h-4 w-4" />
                     </button>
@@ -421,10 +421,10 @@ export default function MembersPage() {
                             key={p}
                             type="button"
                             onClick={() => setPage(p)}
-                            className={`flex h-9 w-9 items-center justify-center rounded-lg text-[13px] font-medium transition-colors ${
+                            className={`flex h-9 w-9 items-center justify-center rounded-lg text-[13px] font-semibold transition-colors ${
                               page === p
-                                ? 'bg-gunmetal-700 text-white border border-gunmetal-600'
-                                : 'text-gunmetal-400 hover:text-white hover:bg-gunmetal-700 border border-transparent hover:border-gunmetal-600'
+                                ? 'bg-cream-200 text-ink border border-cream-200'
+                                : 'text-cream-400 hover:text-ink hover:bg-cream-200 border border-transparent hover:border-cream-200'
                             }`}
                           >
                             {p}
@@ -436,7 +436,7 @@ export default function MembersPage() {
                       type="button"
                       disabled={page * 20 >= displayTotal}
                       onClick={() => setPage(page + 1)}
-                      className="flex h-9 w-9 items-center justify-center rounded-lg transition-colors disabled:opacity-30 text-gunmetal-400 hover:text-white hover:bg-gunmetal-700 border border-transparent hover:border-gunmetal-600"
+                      className="flex h-9 w-9 items-center justify-center rounded-lg transition-colors disabled:opacity-30 text-cream-400 hover:text-ink hover:bg-cream-200 border border-transparent hover:border-cream-200"
                     >
                       <ChevronRight className="h-4 w-4" />
                     </button>
@@ -450,24 +450,24 @@ export default function MembersPage() {
 
       {/* Delete Dialog */}
       <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>
-        <AlertDialogOverlay className="bg-black/80" />
-        <AlertDialogContent className="w-[calc(100%-2rem)] sm:w-full max-w-[420px] p-0 overflow-hidden bg-gunmetal-800 border border-gunmetal-600 rounded-2xl shadow-xl">
+        <AlertDialogOverlay className="bg-ink/80 backdrop-blur-sm" />
+        <AlertDialogContent className="w-[calc(100%-2rem)] sm:w-full max-w-[420px] p-0 overflow-hidden bg-cream border border-cream-200 rounded-2xl shadow-xl">
           <div className="p-6">
             <AlertDialogHeader className="mb-6">
-              <AlertDialogTitle className="text-[18px] font-semibold text-white tracking-tight text-left">
+              <AlertDialogTitle className="text-[18px] font-semibold text-ink tracking-tight text-left">
                 Delete {deletingMember?.name ?? 'member'}?
               </AlertDialogTitle>
-              <AlertDialogDescription className="mt-2 text-[14px] leading-relaxed text-gunmetal-400 text-left">
+              <AlertDialogDescription className="mt-2 text-[14px] leading-relaxed text-cream-400 text-left">
                 This will hide the member from your list. Their payment history and attendance records will be permanently archived but preserved.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter className="flex-col sm:flex-row gap-3">
-              <AlertDialogCancel className="w-full sm:w-auto h-10 rounded-xl border border-gunmetal-600 bg-gunmetal-900 hover:bg-gunmetal-700 hover:text-white text-[14px] font-medium text-gunmetal-100 transition-colors mt-0 sm:mt-0">
+              <AlertDialogCancel className="w-full sm:w-auto h-10 rounded-xl border border-cream-200 bg-cream-50 hover:bg-cream-200 hover:text-ink text-[14px] font-medium text-ink-600 transition-colors mt-0 sm:mt-0">
                 Cancel
               </AlertDialogCancel>
               <AlertDialogAction
                 onClick={handleDelete}
-                className="w-full sm:w-auto h-10 rounded-xl border-0 bg-crayola hover:bg-crayola-600 text-[14px] font-medium text-white transition-colors"
+                className="w-full sm:w-auto h-10 rounded-xl border-0 bg-cola hover:bg-cola-700 text-[14px] font-semibold text-white transition-colors"
               >
                 Delete Member
               </AlertDialogAction>

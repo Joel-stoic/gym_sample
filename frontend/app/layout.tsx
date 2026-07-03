@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import { Open_Sans, Orbitron, Geist_Mono } from 'next/font/google'
+import { DM_Sans, Fraunces, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import Providers from './providers'
 
-const openSans = Open_Sans({ variable: '--font-sans', subsets: ['latin'] })
-const orbitron = Orbitron({ variable: '--font-heading', subsets: ['latin'] })
+const dmSans = DM_Sans({ variable: '--font-sans', subsets: ['latin'] })
+const fraunces = Fraunces({ variable: '--font-heading', subsets: ['latin'] })
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${openSans.variable} ${orbitron.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-sans">
+    <html lang="en" className={`${dmSans.variable} ${fraunces.variable} ${geistMono.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col font-sans bg-cream text-ink">
         <Providers>
           {children}
         </Providers>

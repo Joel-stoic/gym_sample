@@ -11,24 +11,21 @@
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-heading), sans-serif;
   
-  /* Gunmetal Base Scale */
-  --color-gunmetal-950: #000d10;
-  --color-gunmetal-900: #001b20;
-  --color-gunmetal-800: #002A32;
-  --color-gunmetal-700: #0b3540;
-  --color-gunmetal-600: #164450;
-  --color-gunmetal-400: #5c7a80;
-  --color-gunmetal-100: #c7d6d8;
+  /* Cream Vanilla Base Scale */
+  --color-cream: #EFE6DE;
+  --color-cream-50: #FBF8F5;
+  --color-cream-200: #E2D5C8;
+  --color-cream-400: #B8A695;
 
-  /* Crayola Red Accent Scale */
-  --color-crayola-100: rgba(237,37,78,0.12);
-  --color-crayola-400: #f0506f;
-  --color-crayola-500: #ED254E;
-  --color-crayola-600: #d11f43;
-  --color-crayola: #ED254E;
+  /* Cherry Cola Accent Scale */
+  --color-cola: #9A0002;
+  --color-cola-700: #7A0002;
+  --color-cola-100: rgba(154,0,2,0.08);
   
-  /* Core Text */
-  --color-text-primary: #F2F4F4;
+  /* Ink Text */
+  --color-ink: #241512;
+  --color-ink-600: #4A3C38;
+  --color-text-primary: var(--color-ink);
 
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -149,15 +146,6 @@
   }
 }
 
-input[type="date"] {
-  color-scheme: dark;
-}
-
 input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1) opacity(0.5);
   cursor: pointer;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator:hover {
-  filter: invert(1) opacity(0.9);
 }

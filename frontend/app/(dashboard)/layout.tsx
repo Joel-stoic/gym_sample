@@ -19,12 +19,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   if (!hydrated) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gunmetal-950">
+      <div className="flex min-h-screen items-center justify-center bg-cream">
         <div className="flex flex-col items-center gap-4">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-crayola-100">
-            <div className="h-5 w-5 animate-spin rounded-full border-2 border-crayola border-t-transparent" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-cola-100">
+            <div className="h-5 w-5 animate-spin rounded-full border-2 border-cola border-t-transparent" />
           </div>
-          <p className="text-[12px] font-medium uppercase tracking-widest text-gunmetal-400">Loading</p>
+          <p className="text-[12px] font-medium uppercase tracking-widest text-cream-400">Loading</p>
         </div>
       </div>
     )
@@ -33,7 +33,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   if (!isAuthenticated) return null
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gunmetal-950">
+    <div className="flex h-screen overflow-hidden bg-cream">
       {/* Sidebar handles its own mobile/desktop rendering */}
       <Sidebar />
 
@@ -41,10 +41,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="flex flex-1 flex-col overflow-hidden min-w-0">
         <Header />
         <main
-          className="flex-1 overflow-y-auto bg-gunmetal-950"
+          className="flex-1 overflow-y-auto bg-cream"
           style={{
             scrollbarWidth: 'thin',
-            scrollbarColor: '#ffffff10 transparent',
+            scrollbarColor: 'var(--color-cream-200) transparent',
           }}
         >
           <div className="p-4 md:p-6">{children}</div>

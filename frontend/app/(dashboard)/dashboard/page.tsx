@@ -11,17 +11,16 @@ import {
 } from 'recharts'
 import { useDashboard, type RevenueMonths } from '@/src/hooks/useDashboard'
 import { toRupees } from '@/src/lib/utils'
-// import * as Sentry from '@sentry/nextjs'
 
 // ─── Skeleton ─────────────────────────────────────────────────────────
 function Skeleton({ className = '' }: { className?: string }) {
   return (
-    <div className={`animate-pulse rounded-lg bg-crayola/[0.05] ${className}`} />
+    <div className={`animate-pulse rounded-lg bg-cream-200 ${className}`} />
   )
 }
 function MetricCardSkeleton() {
   return (
-    <div className="rounded-2xl border border-white/[0.06] bg-[#111118] p-5">
+    <div className="rounded-2xl border border-cream-200 bg-cream-50 p-5">
       <Skeleton className="mb-4 h-9 w-9 rounded-xl" />
       <Skeleton className="mb-2 h-7 w-24" />
       <Skeleton className="mb-3 h-3 w-32" />
@@ -31,7 +30,7 @@ function MetricCardSkeleton() {
 }
 function DashboardSkeleton() {
   return (
-    <div className="min-h-screen space-y-5 p-4 sm:p-6" style={{ background: '#0a0a0f' }}>
+    <div className="min-h-screen space-y-5 p-4 sm:p-6 bg-cream">
       <div className="flex items-start justify-between">
         <div>
           <Skeleton className="mb-2 h-6 w-32" />
@@ -46,12 +45,12 @@ function DashboardSkeleton() {
         {[...Array(4)].map((_, i) => <MetricCardSkeleton key={i} />)}
       </div>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
-        <div className="h-72 rounded-2xl border border-white/[0.06] bg-[#111118] p-5 lg:col-span-2">
+        <div className="h-72 rounded-2xl border border-cream-200 bg-cream-50 p-5 lg:col-span-2">
           <Skeleton className="mb-4 h-4 w-32" />
           <Skeleton className="h-full w-full" />
         </div>
         {[...Array(2)].map((_, i) => (
-          <div key={i} className="h-72 rounded-2xl border border-white/[0.06] bg-[#111118] p-5">
+          <div key={i} className="h-72 rounded-2xl border border-cream-200 bg-cream-50 p-5">
             <Skeleton className="mb-4 h-4 w-32" />
             <Skeleton className="h-full w-full" />
           </div>
@@ -63,29 +62,22 @@ function DashboardSkeleton() {
 
 // ─── Metric Card ──────────────────────────────────────────────────────
 function MetricCard({
-  title, value, sub, icon: Icon, redAccent, iconClass,
+  title, value, sub, icon: Icon, iconClass,
 }: {
   title: string
   value: string | number
   sub?: string
   icon: React.ElementType
-  redAccent?: boolean
   iconClass?: string
 }) {
   return (
-    <div className={`relative overflow-hidden rounded-2xl border p-4 sm:p-5 transition-all duration-200 ${redAccent
-      ? 'border-red-500/20 bg-gradient-to-br from-[#16161f] to-[#1a0f0f]'
-      : 'border-white/[0.06] bg-[#111118] hover:border-white/[0.10]'
-      }`}>
-      {redAccent && (
-        <div className="pointer-events-none absolute -right-4 -top-4 h-20 w-20 rounded-full bg-red-600 opacity-10 blur-2xl" />
-      )}
-      <div className={`mb-3 sm:mb-4 flex h-9 w-9 items-center justify-center rounded-xl ${iconClass ?? 'bg-white/[0.06] text-white'}`}>
+    <div className="relative overflow-hidden rounded-2xl border border-cream-200 bg-cream-50 p-4 sm:p-5 transition-all duration-200">
+      <div className={`mb-3 sm:mb-4 flex h-9 w-9 items-center justify-center rounded-xl ${iconClass ?? 'bg-cream-200 text-ink'}`}>
         <Icon size={16} />
       </div>
-      <p className="font-['Syne'] text-xl sm:text-2xl font-bold tracking-tight text-white">{value}</p>
-      {sub && <p className="mt-1 text-[11px] text-[#6b6b80]">{sub}</p>}
-      <p className="mt-2 sm:mt-3 text-[10px] sm:text-[11px] font-medium uppercase tracking-widest text-[#6b6b80]">{title}</p>
+      <p className="font-sans text-[24px] sm:text-[28px] font-semibold tabular-nums text-ink">{value}</p>
+      {sub && <p className="mt-1 text-[12px] text-cream-400">{sub}</p>}
+      <p className="mt-2 sm:mt-3 text-[11px] md:text-[12px] font-semibold uppercase tracking-widest text-cream-400">{title}</p>
     </div>
   )
 }
@@ -103,14 +95,14 @@ function RevenueRangeToggle({
   onChange: (r: RevenueMonths) => void
 }) {
   return (
-    <div className="flex gap-1 rounded-lg border border-white/[0.06] bg-white/[0.03] p-1">
+    <div className="flex gap-1 rounded-lg border border-cream-200 bg-cream-50 p-1">
       {RANGE_OPTIONS.map(({ label, months }) => (
         <button
           key={months}
           onClick={() => onChange(months)}
-          className={`rounded-md px-2.5 sm:px-3 py-1 text-[11px] font-medium transition-all duration-150 ${value === months
-            ? 'bg-crayola text-white shadow'
-            : 'text-[#6b6b80] hover:text-[#9898b0]'
+          className={`rounded-md px-2.5 sm:px-3 py-1 text-[11px] font-semibold transition-all duration-150 ${value === months
+            ? 'bg-cola text-white shadow-sm'
+            : 'text-cream-400 hover:text-ink'
             }`}
         >
           {label}
@@ -124,9 +116,9 @@ function RevenueRangeToggle({
 function CustomTooltip({ active, payload, label }: any) {
   if (active && payload?.length) {
     return (
-      <div className="rounded-xl border border-white/10 bg-[#16161f] px-3 py-2 text-[12px] shadow-xl">
-        <p className="text-[#9898b0]">{label}</p>
-        <p className="mt-1 font-semibold text-violet-300">{toRupees(payload[0].value)}</p>
+      <div className="rounded-xl border border-cream-200 bg-cream-50 px-3 py-2 text-[12px] shadow-sm">
+        <p className="text-cream-400 font-semibold">{label}</p>
+        <p className="mt-1 font-semibold text-cola">{toRupees(payload[0].value)}</p>
       </div>
     )
   }
@@ -152,10 +144,10 @@ function RevenueStats({ data }: { data: { month: string; revenue: number }[] }) 
       {stats.map(({ label, value }) => (
         <div
           key={label}
-          className="flex flex-1 flex-col gap-1.5 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.07] px-3 sm:px-4 py-3 sm:py-3.5"
+          className="flex flex-1 flex-col gap-1.5 rounded-xl border border-cream-200 bg-cream-50 px-3 sm:px-4 py-3 sm:py-3.5"
         >
-          <span className="text-[12px] sm:text-[14px] font-semibold text-emerald-300">{value}</span>
-          <span className="text-[10px] sm:text-[11px] tracking-wide text-emerald-600">{label}</span>
+          <span className="text-[12px] sm:text-[14px] font-semibold text-ink">{value}</span>
+          <span className="text-[10px] sm:text-[11px] uppercase tracking-widest font-semibold text-cream-400">{label}</span>
         </div>
       ))}
     </div>
@@ -168,19 +160,19 @@ function ExpiringMemberRow({ name, daysLeft }: { name: string; daysLeft: number 
   const isCritical = daysLeft <= 2
   return (
     <div className="flex items-center gap-3 py-2">
-      <div className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl text-[11px] font-semibold ${isCritical ? 'bg-red-500/20 text-red-400' : 'bg-amber-500/20 text-amber-400'
+      <div className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl text-[11px] font-bold ${isCritical ? 'bg-cream-200 text-ink-600' : 'bg-cola-100 text-cola'
         }`}>
         {initials}
       </div>
       <div className="min-w-0 flex-1">
-        <p className="truncate text-[13px] font-medium text-white">{name}</p>
-        <p className="text-[11px] text-[#6b6b80]">
+        <p className="truncate text-[13px] font-medium text-ink">{name}</p>
+        <p className="text-[11px] text-cream-400">
           {daysLeft === 0 ? 'Expires today' : `Expires in ${daysLeft} day${daysLeft > 1 ? 's' : ''}`}
         </p>
       </div>
-      <span className={`flex-shrink-0 rounded-full border px-2 py-1 text-[10px] font-medium ${isCritical
-        ? 'border-red-500/20 bg-red-500/10 text-red-400'
-        : 'border-amber-500/20 bg-amber-500/10 text-amber-400'
+      <span className={`flex-shrink-0 rounded-full border px-2 py-1 text-[10px] font-semibold ${isCritical
+        ? 'border-cream-200 bg-cream-200 text-ink-600'
+        : 'border-cola-100 bg-cola-100 text-cola'
         }`}>
         {isCritical ? 'Critical' : 'Soon'}
       </span>
@@ -190,20 +182,19 @@ function ExpiringMemberRow({ name, daysLeft }: { name: string; daysLeft: number 
 
 // ─── Activity Item ────────────────────────────────────────────────────
 function ActivityItem({
-  name, action, amount, time, type,
+  name, action, amount, time,
 }: {
   name: string; action: string; amount?: string; time: string; type: 'payment' | 'checkin'
 }) {
   return (
-    <div className="flex items-center gap-3 border-b border-white/[0.05] py-3 last:border-0">
-      <div className={`h-2 w-2 flex-shrink-0 rounded-full ${type === 'payment' ? 'bg-emerald-400' : 'bg-crayola'
-        }`} />
-      <p className="flex-1 text-[12px] text-[#9898b0]">
-        <span className="font-medium text-white">{name}</span>{' '}
+    <div className="flex items-center gap-3 border-b border-cream-200 py-3 last:border-0">
+      <div className="h-2 w-2 flex-shrink-0 rounded-full bg-cola" />
+      <p className="flex-1 text-[12px] text-ink-600">
+        <span className="font-medium text-ink">{name}</span>{' '}
         {action}
-        {amount && <span className="ml-1 font-medium text-emerald-400">{amount}</span>}
+        {amount && <span className="ml-1 font-medium text-cola">{amount}</span>}
       </p>
-      <span className="flex-shrink-0 text-[11px] text-[#6b6b80]">{time}</span>
+      <span className="flex-shrink-0 text-[11px] text-cream-400">{time}</span>
     </div>
   )
 }
@@ -228,17 +219,16 @@ export default function DashboardPage() {
 
   if (error) {
     return (
-      <div className="flex h-64 items-center justify-center gap-2 text-red-400">
+      <div className="flex h-64 items-center justify-center gap-2 text-ink">
         <AlertCircle size={18} />
-        <span className="text-sm">{error}</span>
+        <span className="text-sm font-medium">{error}</span>
       </div>
     )
   }
 
   return (
     <div
-      className="min-h-screen space-y-4 sm:space-y-5 p-4 sm:p-6"
-      style={{ background: '#0a0a0f', fontFamily: "'DM Sans', sans-serif" }}
+      className="min-h-screen space-y-4 sm:space-y-5 p-4 sm:p-6 bg-cream font-sans"
     >
     
       {/* ── Top metric cards ── */}
@@ -248,7 +238,7 @@ export default function DashboardPage() {
           value={metrics?.members?.total ?? 0}
           sub={`+${metrics?.members?.newThisMonth ?? 0} new this month`}
           icon={Users}
-          iconClass="bg-crayola-100 text-crayola"
+          iconClass="bg-cream-200 text-ink"
         />
         <MetricCard
           title="Active Members"
@@ -257,30 +247,28 @@ export default function DashboardPage() {
             ? Math.round(((metrics.members.active ?? 0) / metrics.members.total) * 100)
             : 0}% retention`}
           icon={UserCheck}
-          iconClass="bg-emerald-500/20 text-emerald-400"
+          iconClass="bg-cola-100 text-cola"
         />
         <MetricCard
           title="Today's Attendance"
           value={metrics?.attendance?.today ?? 0}
           sub="check-ins today"
           icon={CalendarCheck}
-          iconClass="bg-blue-500/20 text-blue-400"
+          iconClass="bg-cream-200 text-ink"
         />
         <MetricCard
-          redAccent
           title="Expired Members"
           value={metrics?.members?.expired ?? 0}
           sub="inactive memberships"
           icon={UserX}
-          iconClass="bg-red-500/20 text-red-400"
+          iconClass="bg-cream-200 text-ink-600"
         />
         <MetricCard
-          redAccent
           title="Need Renewal"
           value={metrics?.members?.expiringThisWeek ?? 0}
           sub="expiring this week"
           icon={TrendingUp}
-          iconClass="bg-red-500/20 text-red-400"
+          iconClass="bg-cream-200 text-ink-600"
         />
       </div>
 
@@ -292,29 +280,28 @@ export default function DashboardPage() {
             value={toRupees(metrics.revenue.thisMonth ?? 0)}
             sub="this month"
             icon={IndianRupee}
-            iconClass="bg-emerald-500/20 text-emerald-400"
+            iconClass="bg-cream-200 text-ink"
           />
           <MetricCard
             title="PT Revenue"
             value={toRupees(metrics.revenue.ptThisMonth ?? 0)}
             sub="personal training"
             icon={IndianRupee}
-            iconClass="bg-blue-500/20 text-blue-400"
+            iconClass="bg-cream-200 text-ink"
           />
           <MetricCard
             title="Total Revenue"
             value={toRupees(metrics.revenue.totalThisMonth ?? 0)}
             sub="membership + PT"
             icon={IndianRupee}
-            iconClass="bg-crayola-100 text-crayola"
+            iconClass="bg-cola-100 text-cola"
           />
           <MetricCard
-            redAccent
             title="Pending Dues"
             value={toRupees(metrics.revenue.pendingDues ?? 0)}
             sub="unpaid"
             icon={AlertCircle}
-            iconClass="bg-red-500/20 text-red-400"
+            iconClass="bg-cream-200 text-ink-600"
           />
         </div>
       )}
@@ -323,13 +310,13 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
 
         {/* ── Revenue chart ── */}
-        <div className="rounded-2xl border border-white/[0.06] bg-[#111118] p-4 sm:p-6 lg:col-span-2">
+        <div className="rounded-2xl border border-cream-200 bg-cream-50 p-4 sm:p-6 lg:col-span-2">
 
           {/* Header */}
           <div className="mb-5 sm:mb-6 flex items-center justify-between gap-3">
             <div>
-              <p className="text-[14px] sm:text-[15px] font-semibold text-white">Monthly Revenue</p>
-              <p className="mt-0.5 text-[11px] sm:text-[12px] text-[#6b6b80]">Membership + PT earnings over time</p>
+              <p className="font-serif text-[18px] md:text-[20px] font-medium text-ink">Monthly Revenue</p>
+              <p className="mt-0.5 text-[11px] sm:text-[12px] text-cream-400">Membership + PT earnings over time</p>
             </div>
             <RevenueRangeToggle value={revenueRange} onChange={setRevenueRange} />
           </div>
@@ -337,7 +324,7 @@ export default function DashboardPage() {
           {/* Chart */}
           {chartLoading ? (
             <div className="flex h-48 sm:h-56 items-center justify-center">
-              <div className="h-6 w-6 animate-spin rounded-full border-2 border-crayola border-t-transparent" />
+              <div className="h-6 w-6 animate-spin rounded-full border-2 border-cola border-t-transparent" />
             </div>
           ) : monthlyRevenue.length > 0 ? (
             <>
@@ -349,7 +336,7 @@ export default function DashboardPage() {
                 >
                   <XAxis
                     dataKey="month"
-                    tick={{ fontSize: 10, fill: '#6b6b80' }}
+                    tick={{ fontSize: 10, fill: '#B8A695', fontWeight: 600 }}
                     axisLine={false}
                     tickLine={false}
                     interval={tickInterval}
@@ -357,7 +344,7 @@ export default function DashboardPage() {
                   />
                   <YAxis
                     width={48}
-                    tick={{ fontSize: 10, fill: '#6b6b80' }}
+                    tick={{ fontSize: 10, fill: '#B8A695', fontWeight: 600 }}
                     axisLine={false}
                     tickLine={false}
                     tickFormatter={(v: number) => {
@@ -368,17 +355,17 @@ export default function DashboardPage() {
                       return `₹${r}`
                     }}
                   />
-                  <Tooltip content={<CustomTooltip />} cursor={{ fill: '#ffffff05' }} />
+                  <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(226, 213, 200, 0.2)' }} />
                   <Bar dataKey="revenue" radius={[6, 6, 0, 0]} maxBarSize={44}>
                     {monthlyRevenue.map((entry, index) => (
                       <Cell
                         key={`cell-${index}`}
                         fill={
                           index === monthlyRevenue.length - 1
-                            ? '#a855f7'
+                            ? '#9A0002'
                             : Number(entry.revenue) === 0
-                              ? 'rgba(124,58,237,0.12)'
-                              : '#7c3aed55'
+                              ? '#E2D5C8'
+                              : '#7A0002'
                         }
                       />
                     ))}
@@ -387,43 +374,43 @@ export default function DashboardPage() {
               </ResponsiveContainer>
 
               {/* Divider */}
-              <div className="my-4 sm:my-5 h-px bg-white/[0.04]" />
+              <div className="my-4 sm:my-5 h-px bg-cream-200" />
 
               {/* Stats row */}
               <RevenueStats data={monthlyRevenue} />
             </>
           ) : (
-            <div className="flex h-48 sm:h-56 items-center justify-center text-[13px] text-[#6b6b80]">
+            <div className="flex h-48 sm:h-56 items-center justify-center text-[13px] text-cream-400 font-medium">
               No revenue data yet
             </div>
           )}
         </div>
 
         {/* ── Expiring members ── */}
-        <div className="rounded-2xl border border-white/[0.06] bg-[#111118] p-4 sm:p-5 lg:col-span-1">
-          <p className="mb-1 text-[13px] font-semibold text-white">Expiring members</p>
-          <p className="mb-4 text-[11px] text-[#6b6b80]">Members expiring within 7 days</p>
+        <div className="rounded-2xl border border-cream-200 bg-cream-50 p-4 sm:p-5 lg:col-span-1">
+          <p className="mb-1 font-serif text-[18px] md:text-[20px] font-medium text-ink">Expiring members</p>
+          <p className="mb-4 text-[11px] text-cream-400">Members expiring within 7 days</p>
           {expiringMembers?.length > 0 ? (
-            <div className="divide-y divide-white/[0.04]">
+            <div className="divide-y divide-cream-200">
               {expiringMembers.slice(0, 5).map((m: any) => (
                 <ExpiringMemberRow key={m.id} name={m.name} daysLeft={m.daysLeft ?? 0} />
               ))}
             </div>
           ) : (
-            <div className="flex h-36 items-center justify-center text-[13px] text-[#6b6b80]">
+            <div className="flex h-36 items-center justify-center text-[13px] text-cream-400 font-medium">
               No expiring members
             </div>
           )}
         </div>
 
         {/* ── Recent activity ── */}
-        <div className="rounded-2xl border border-white/[0.06] bg-[#111118] p-4 sm:p-5 lg:col-span-1">
-          <p className="mb-1 text-[13px] font-semibold text-white">Recent activity</p>
-          <p className="mb-3 text-[11px] text-[#6b6b80]">Latest payments & check-ins</p>
+        <div className="rounded-2xl border border-cream-200 bg-cream-50 p-4 sm:p-5 lg:col-span-1">
+          <p className="mb-1 font-serif text-[18px] md:text-[20px] font-medium text-ink">Recent activity</p>
+          <p className="mb-3 text-[11px] text-cream-400">Latest payments & check-ins</p>
 
           {recentActivity?.recentPayments?.length > 0 && (
             <div className="mt-3">
-              <p className="mb-2 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-widest text-[#6b6b80]">
+              <p className="mb-2 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-cream-400">
                 <IndianRupee size={10} /> Payments
               </p>
               {recentActivity.recentPayments.slice(0, 3).map((p: any) => (
@@ -443,7 +430,7 @@ export default function DashboardPage() {
 
           {recentActivity?.recentAttendance?.length > 0 && (
             <div className="mt-4">
-              <p className="mb-2 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-widest text-[#6b6b80]">
+              <p className="mb-2 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-cream-400">
                 <Activity size={10} /> Attendance
               </p>
               {recentActivity.recentAttendance.slice(0, 3).map((a: any) => (
@@ -462,7 +449,7 @@ export default function DashboardPage() {
 
           {!recentActivity?.recentPayments?.length &&
             !recentActivity?.recentAttendance?.length && (
-              <div className="flex h-36 items-center justify-center text-[13px] text-[#6b6b80]">
+              <div className="flex h-36 items-center justify-center text-[13px] text-cream-400 font-medium">
                 No recent activity
               </div>
             )}
