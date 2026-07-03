@@ -125,9 +125,9 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
               <button
                 key={member.id}
                 onClick={() => handleSelect(member)}
-                className="flex w-full items-center gap-3 px-4 py-2.5 text-left transition-colors hover:/10 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+                className="flex w-full items-center gap-3 px-4 py-2.5 text-left transition-colors hover:bg-muted"
               >
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center /20 text-[11px] font-semibold text-violet-300 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-[11px] font-semibold text-violet-500">
                   {member.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
                 </div>
                 <div className="min-w-0 flex-1">
@@ -268,8 +268,8 @@ export default function AttendancePage() {
                   <MemberSearch onSelect={setSelectedMember} />
 
                   {selectedMember && (
-                    <div className="flex items-center gap-3 border border-violet-500/20 /10 px-4 py-3 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
-                      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center /20 text-[11px] font-semibold text-violet-300 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                    <div className="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-3">
+                      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-[11px] font-semibold text-violet-500">
                         {selectedMember.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
                       </div>
                       <div className="min-w-0 flex-1">
@@ -330,17 +330,12 @@ export default function AttendancePage() {
             <div className="h-[320px] animate-pulse rounded-3xl border border-border bg-card lg:col-span-2" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_2fr]">
             <div className="rounded-3xl border border-border bg-card p-5">
-              <h2 className="text-lg font-semibold text-foreground">Gym QR</h2>
               <GymQRCode qrCode={gymQR ?? null} loading={qrLoading} />
             </div>
 
-            <div className="rounded-3xl border border-border bg-card p-5 lg:col-span-2">
-              <div className="mb-5">
-                <h2 className="text-lg font-semibold text-foreground">Today's Attendance</h2>
-                <p className="mt-1 text-sm text-muted-foreground">Real-time check-ins</p>
-              </div>
+            <div className="rounded-3xl border border-border bg-card p-5">
               <AttendanceTable attendance={todayAttendance} count={todayCount} />
             </div>
           </div>

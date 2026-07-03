@@ -32,8 +32,8 @@ export default function GymQRCode({
   }
 
   return (
-    <Card className="border-border bg-background shadow-none">
-      <CardContent className="p-6">
+    <div className="border-0 bg-transparent shadow-none">
+      <CardContent className="p-0">
         {loading ? (
           <LoadingSpinner className="h-56" />
         ) : qrCode ? (
@@ -41,7 +41,7 @@ export default function GymQRCode({
             {/* HEADER */}
 
             <div className="text-center">
-              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl /15 text-violet-400 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-500">
                 <QrCode className="h-6 w-6" />
               </div>
 
@@ -67,7 +67,7 @@ export default function GymQRCode({
             {/* DESCRIPTION */}
 
             <div className="rounded-2xl border border-border bg-white/[0.02] p-4 text-center">
-              <p className="text-sm leading-6 text-[#f9f9fd] font-extrabold">
+              <p className="text-sm leading-6 text-foreground font-semibold">
                 Print this QR and place it at the gym entrance.
                 Members can scan it to mark attendance
                 automatically.
@@ -101,6 +101,6 @@ export default function GymQRCode({
           </div>
         )}
       </CardContent>
-    </Card>
+    </div>
   )
 }
