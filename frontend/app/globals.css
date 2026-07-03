@@ -93,56 +93,47 @@
 
 /* ─── :root — single source of truth, no parallel token system ─────────────── */
 :root {
-  /* Core surfaces */
-  --background:           #1C1E2A;
-  --foreground:           #E4E4E2;
-  --card:                 #23252F;
-  --card-foreground:      #E4E4E2;
-  --popover:              #23252F;
-  --popover-foreground:   #E4E4E2;
+  --background:           #CDCDCB;
+  --foreground:           #1C1E2A;
+  --card:                 #D8D8D6;
+  --card-foreground:      #1C1E2A;
+  --popover:              #D8D8D6;
+  --popover-foreground:   #1C1E2A;
 
-  /* Brand accent */
   --primary:              #FB5102;
-  --primary-foreground:   #1C1E2A;  /* dark text on orange — WCAG AA at this size ✓ */
+  --primary-foreground:   #FFFFFF;
 
-  /* Secondary / muted surfaces */
-  --secondary:            #2C2E3A;
-  --secondary-foreground: #E4E4E2;
-  --muted:                #2C2E3A;
-  --muted-foreground:     #8C8D95;
+  --secondary:            #C4C4C2;
+  --secondary-foreground: #1C1E2A;
+  --muted:                #C4C4C2;
+  --muted-foreground:     #5A5A58;
 
-  /* Accent wash */
   --accent:               rgba(251,81,2,0.12);
   --accent-foreground:    #FB5102;
 
-  /* Destructive reuses the single accent */
   --destructive:          #FB5102;
 
-  /* Borders & inputs */
-  --border:               #33353F;
-  --input:                #33353F;
+  --border:               #B8B8B6;
+  --input:                #B8B8B6;
   --ring:                 #FB5102;
 
-  /* Chart palette — orange-anchored, no third hue */
   --chart-1:              #FB5102;
-  --chart-2:              #CDCDCB;
+  --chart-2:              #1C1E2A;
   --chart-3:              #8C8D95;
   --chart-4:              #D9782E;
   --chart-5:              #4A4C58;
 
   --radius: 0.625rem;
 
-  /* Sidebar */
-  --sidebar:                    #17181F;
-  --sidebar-foreground:         #E4E4E2;
+  --sidebar:                    #C0C0BE;
+  --sidebar-foreground:         #1C1E2A;
   --sidebar-primary:            #FB5102;
-  --sidebar-primary-foreground: #1C1E2A;
+  --sidebar-primary-foreground: #FFFFFF;
   --sidebar-accent:             rgba(251,81,2,0.12);
   --sidebar-accent-foreground:  #FB5102;
-  --sidebar-border:             #2C2E3A;
+  --sidebar-border:             #B0B0AE;
   --sidebar-ring:               #FB5102;
 }
-
 
 /* ─── Base layer ─────────────────────────────────────────────────────────────  */
 @layer base {
