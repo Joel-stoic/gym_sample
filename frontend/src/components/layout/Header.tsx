@@ -59,10 +59,10 @@ export default function Header() {
         </button>
 
         <div>
-          {/* Page title uses Orbitron (heading font) */}
+          {/* Page title — Orbitron, matches JOVIFITX sidebar treatment */}
           <h1
-            className="text-[24px] md:text-[28px] font-medium tracking-wide text-foreground"
-            style={{ fontFamily: 'Orbitron, sans-serif', letterSpacing: '0.04em' }}
+            className="text-[24px] md:text-[28px] text-foreground"
+            style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, letterSpacing: '0.06em' }}
           >
             {title}
           </h1>

@@ -79,46 +79,46 @@
 
 /* ─── :root — single source of truth, no parallel token system ─────────────── */
 :root {
-  --background:           #0C0E0B;
-  --foreground:           #D6E8F4;
-  --card:                 #141614;
-  --card-foreground:      #D6E8F4;
-  --popover:              #141614;
-  --popover-foreground:   #D6E8F4;
+  --background:           #1A1A1A;
+  --foreground:           #F0EEEC;
+  --card:                 #222222;
+  --card-foreground:      #F0EEEC;
+  --popover:              #222222;
+  --popover-foreground:   #F0EEEC;
 
-  --primary:              #D7303B;
-  --primary-foreground:   #D6E8F4;
+  --primary:              #6B1615;
+  --primary-foreground:   #F0EEEC;
 
-  --secondary:            #1C1E1B;
-  --secondary-foreground: #D6E8F4;
-  --muted:                #1C1E1B;
-  --muted-foreground:     #7A9BB0;
+  --secondary:            #2A2A2A;
+  --secondary-foreground: #F0EEEC;
+  --muted:                #2A2A2A;
+  --muted-foreground:     #888888;
 
-  --accent:               rgba(215,48,59,0.12);
-  --accent-foreground:    #D7303B;
+  --accent:               rgba(107,22,21,0.15);
+  --accent-foreground:    #6B1615;
 
-  --destructive:          #D7303B;
+  --destructive:          #9B2020;
 
-  --border:               #2A2D29;
-  --input:                #2A2D29;
-  --ring:                 #D7303B;
+  --border:               #333333;
+  --input:                #333333;
+  --ring:                 #6B1615;
 
-  --chart-1:              #D7303B;
-  --chart-2:              #A82530;
-  --chart-3:              #7A9BB0;
-  --chart-4:              #D6E8F4;
-  --chart-5:              #2A2D29;
+  --chart-1:              #6B1615;
+  --chart-2:              #9B2020;
+  --chart-3:              #888888;
+  --chart-4:              #2A2A2A;
+  --chart-5:              #333333;
 
   --radius: 0.625rem;
 
-  --sidebar:                    #080A07;
-  --sidebar-foreground:         #D6E8F4;
-  --sidebar-primary:            #D7303B;
-  --sidebar-primary-foreground: #D6E8F4;
-  --sidebar-accent:             rgba(214,232,244,0.06);
-  --sidebar-accent-foreground:  #D6E8F4;
-  --sidebar-border:             #1C1E1B;
-  --sidebar-ring:               #D7303B;
+  --sidebar:                    #111111;
+  --sidebar-foreground:         #F0EEEC;
+  --sidebar-primary:            #6B1615;
+  --sidebar-primary-foreground: #F0EEEC;
+  --sidebar-accent:             rgba(107,22,21,0.12);
+  --sidebar-accent-foreground:  #F0EEEC;
+  --sidebar-border:             #2A2A2A;
+  --sidebar-ring:               #6B1615;
 }
 
 /* ─── Base layer ─────────────────────────────────────────────────────────────  */
