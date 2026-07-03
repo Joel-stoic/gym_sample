@@ -1,0 +1,687 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import api from '@/src/lib/api'
+
+import PageHeader from '@/src/components/shared/PageHeader'
+import LoadingSpinner from '@/src/components/shared/LoadingSpinner'
+import EmptyState from '@/src/components/shared/EmptyState'
+
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from '@/components/ui/dialog'
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select'
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
+
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from '@/components/ui/form'
+
+import { useForm } from 'react-hook-form'
+
+import { zodResolver } from '@hookform/resolvers/zod'
+
+import { z } from 'zod'
+
+import {
+  UserPlus,
+  Plus,
+  MoreHorizontal,
+  Phone,
+  Calendar,
+  Loader2,
+  Users,
+  Flame,
+  CheckCircle2,
+  XCircle
+} from 'lucide-react'
+
+import { formatDate } from '@/src/lib/utils'
+
+import { toast } from 'sonner'
+
+import { Lead } from '@/src/types'
+
+/* ───────────────── STATUS CONFIG ───────────────── */
+
+const STATUS_CONFIG: Record<
+  string,
+  {
+    label: string
+    className: string
+  }
+> = {
+  NEW: {
+    label: 'New',
+    className:
+      'bg-blue-500/10 text-blue-400 border border-blue-500/20'
+  },
+
+  CONTACTED: {
+    label: 'Contacted',
+    className:
+      'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'
+  },
+
+  DEMO_DONE: {
+    label: 'Demo Done',
+    className:
+      'bg-violet-500/10 text-violet-400 border border-violet-500/20'
+  },
+
+  CONVERTED: {
+    label: 'Converted',
+    className:
+      'bg-green-500/10 text-green-400 border border-green-500/20'
+  },
+
+  LOST: {
+    label: 'Lost',
+    className:
+      'bg-red-500/10 text-red-400 border border-red-500/20'
+  }
+}
+
+/* ───────────────── SCHEMA ───────────────── */
+
+const leadSchema = z.object({
+  name: z.string().min(2, 'Name required'),
+
+  phone: z.string().min(10, 'Valid phone required'),
+
+  source: z.string().optional(),
+
+  notes: z.string().optional()
+})
+
+type LeadForm = z.infer<typeof leadSchema>
+
+/* ───────────────── PAGE ───────────────── */
+
+export default function LeadsPage() {
+  const [leads, setLeads] = useState<Lead[]>([])
+
+  const [loading, setLoading] = useState(true)
+
+  const [statusFilter, setStatusFilter] = useState('')
+
+  const [dialogOpen, setDialogOpen] = useState(false)
+
+  const [submitting, setSubmitting] = useState(false)
+
+  const form = useForm<LeadForm>({
+    resolver: zodResolver(leadSchema),
+
+    defaultValues: {
+      name: '',
+      phone: '',
+      source: '',
+      notes: ''
+    }
+  })
+
+  /* ───────────────── FETCH ───────────────── */
+
+  const fetchLeads = async () => {
+    try {
+      setLoading(true)
+
+      const params = statusFilter
+        ? `?status=${statusFilter}`
+        : ''
+
+      const res = await api.get(`/api/leads${params}`)
+
+      setLeads(res.data.data)
+    } catch {
+      toast.error('Failed to load leads')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchLeads()
+  }, [statusFilter])
+
+  /* ───────────────── CREATE ───────────────── */
+
+  const onSubmit = async (data: LeadForm) => {
+    setSubmitting(true)
+
+    try {
+      const cleanData = Object.fromEntries(
+        Object.entries(data).filter(([_, v]) => v !== '')
+      )
+
+      await api.post('/api/leads', cleanData)
+
+      toast.success(
+        'Lead added successfully'
+      )
+
+      form.reset()
+
+      setDialogOpen(false)
+
+      fetchLeads()
+    } catch (error: any) {
+      toast.error(
+        error.response?.data?.message ||
+        'Failed to add lead'
+      )
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  /* ───────────────── UPDATE STATUS ───────────────── */
+
+  const updateStatus = async (
+    id: string,
+    status: string
+  ) => {
+    try {
+      await api.patch(`/api/leads/${id}/status`, {
+        status
+      })
+
+      toast.success('Lead updated')
+
+      fetchLeads()
+    } catch {
+      toast.error('Failed to update status')
+    }
+  }
+
+  /* ───────────────── LOADING ───────────────── */
+
+
+  /* ───────────────── STATS ───────────────── */
+
+  const converted = leads.filter(
+    (l) => l.status === 'CONVERTED'
+  ).length
+
+  const lost = leads.filter(
+    (l) => l.status === 'LOST'
+  ).length
+
+  const newLeads = leads.filter(
+    (l) => l.status === 'NEW'
+  ).length
+
+  /* ───────────────── UI ───────────────── */
+
+  return (
+    <div className="space-y-6">
+      <PageHeader
+        title="Leads"
+        description="Track walk-in enquiries and conversions"
+        action={
+          <Dialog
+            open={dialogOpen}
+            onOpenChange={setDialogOpen}
+          >
+            <DialogTrigger asChild>
+              <Button className="bg-violet-600 hover:bg-violet-500">
+                <Plus className="mr-2 h-4 w-4" />
+                Add Lead
+              </Button>
+            </DialogTrigger>
+
+            {/* ───────────────── MODAL ───────────────── */}
+
+            <DialogContent className="border-white/[0.08] bg-[#0f0f18] text-white">
+              <DialogHeader>
+                <DialogTitle className="text-xl">
+                  Add New Lead
+                </DialogTitle>
+              </DialogHeader>
+
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-4 pt-3"
+                >
+                  {/* NAME */}
+
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Name</FormLabel>
+
+                        <FormControl>
+                          <Input
+                            placeholder="Ravi Kumar"
+                            {...field}
+                            className="border-white/[0.08] bg-white/[0.03]"
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* PHONE */}
+
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Phone</FormLabel>
+
+                        <FormControl>
+                          <Input
+                            placeholder="9876543210"
+                            {...field}
+                            className="border-white/[0.08] bg-white/[0.03]"
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* SOURCE */}
+
+                  <FormField
+                    control={form.control}
+                    name="source"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Source</FormLabel>
+
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger className="border-white/[0.08] bg-white/[0.03]">
+                              <SelectValue placeholder="Lead source" />
+                            </SelectTrigger>
+                          </FormControl>
+
+                          <SelectContent>
+                            <SelectItem value="Walk-in">
+                              Walk-in
+                            </SelectItem>
+
+                            <SelectItem value="Instagram">
+                              Instagram
+                            </SelectItem>
+
+                            <SelectItem value="Referral">
+                              Referral
+                            </SelectItem>
+
+                            <SelectItem value="Google">
+                              Google
+                            </SelectItem>
+
+                            <SelectItem value="Other">
+                              Other
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* NOTES */}
+
+                  <FormField
+                    control={form.control}
+                    name="notes"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Notes</FormLabel>
+
+                        <FormControl>
+                          <Input
+                            placeholder="Interested in fat loss..."
+                            {...field}
+                            className="border-white/[0.08] bg-white/[0.03]"
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* BUTTON */}
+
+                  <Button
+                    type="submit"
+                    disabled={submitting}
+                    className="h-11 w-full bg-violet-600 hover:bg-violet-500"
+                  >
+                    {submitting && (
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    )}
+
+                    {submitting
+                      ? 'Adding Lead...'
+                      : 'Add Lead'}
+                  </Button>
+                </form>
+              </Form>
+            </DialogContent>
+          </Dialog>
+        }
+      />
+
+      {/* ───────────────── STATS ───────────────── */}
+
+      {!loading && (
+        <div className="grid gap-4 md:grid-cols-3">
+          <StatsCard
+            title="New Leads"
+            value={newLeads}
+            icon={Users}
+            iconClassName="bg-violet-600/15 text-violet-400"
+          />
+
+          <StatsCard
+            title="Converted"
+            value={converted}
+            icon={CheckCircle2}
+            iconClassName="bg-green-500/15 text-green-400"
+          />
+
+          <StatsCard
+            title="Lost"
+            value={lost}
+            icon={XCircle}
+            iconClassName="bg-red-500/15 text-red-400"
+          />
+        </div>
+      )}
+
+      {/* ───────────────── FILTERS ───────────────── */}
+
+      <div className="flex flex-wrap gap-2">
+        {[
+          '',
+          'NEW',
+          'CONTACTED',
+          'DEMO_DONE',
+          'CONVERTED',
+          'LOST'
+        ].map((status) => (
+          <Button
+            key={status}
+            size="sm"
+            variant={
+              statusFilter === status
+                ? 'default'
+                : 'outline'
+            }
+            onClick={() => setStatusFilter(status)}
+            className={
+              statusFilter === status
+                ? 'bg-violet-600 hover:bg-violet-500'
+                : 'border-white/[0.08] bg-transparent text-white hover:bg-white/[0.05]'
+            }
+          >
+            {status === ''
+              ? 'All'
+              : STATUS_CONFIG[status]?.label}
+          </Button>
+        ))}
+      </div>
+
+      {/* ───────────────── EMPTY ───────────────── */}
+
+      {loading ? (
+        <>
+          {/* skeleton stats */}
+          <div className="grid gap-4 md:grid-cols-3">
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="h-28 animate-pulse rounded-3xl border border-white/[0.06] bg-[#0f0f18]"
+              />
+            ))}
+          </div>
+
+          {/* skeleton cards */}
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <SkeletonCard key={i} />
+            ))}
+          </div>
+        </>
+      ) : leads.length === 0 ? (
+        <EmptyState
+          icon={UserPlus}
+          title="No leads yet"
+          description="Add walk-in enquiries to track follow-ups"
+          actionLabel="Add Lead"
+          onAction={() => setDialogOpen(true)}
+        />
+      ) : (
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {leads.map((lead) => (
+            <LeadCard
+              key={lead.id}
+              lead={lead}
+              onUpdateStatus={updateStatus}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+/* ───────────────── STATS CARD ───────────────── */
+
+function StatsCard({
+  title,
+  value,
+  icon: Icon,
+  iconClassName
+}: any) {
+  return (
+    <div className="rounded-3xl border border-white/[0.06] bg-[#0f0f18] p-5">
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm text-[#6b6b80]">
+            {title}
+          </p>
+
+          <h3 className="mt-2 text-3xl font-bold text-white">
+            {value}
+          </h3>
+        </div>
+
+        <div
+          className={`rounded-2xl p-3 ${iconClassName}`}
+        >
+          <Icon className="h-5 w-5" />
+        </div>
+      </div>
+    </div>
+  )
+}
+/* ───────────────── SkeletonCard ───────────────── */
+function SkeletonCard() {
+  return (
+    <div className="animate-pulse rounded-3xl border border-white/[0.06] bg-[#0f0f18] p-5">
+      <div className="mb-4 flex items-start justify-between">
+        <div className="space-y-2">
+          <div className="h-5 w-32 rounded bg-white/[0.06]" />
+          <div className="h-3 w-20 rounded bg-white/[0.04]" />
+        </div>
+
+        <div className="h-8 w-8 rounded-xl bg-white/[0.05]" />
+      </div>
+
+      <div className="space-y-3">
+        <div className="h-4 w-40 rounded bg-white/[0.05]" />
+        <div className="h-4 w-32 rounded bg-white/[0.05]" />
+      </div>
+
+      <div className="mt-5 flex items-center justify-between">
+        <div className="h-6 w-20 rounded-full bg-white/[0.05]" />
+      </div>
+    </div>
+  )
+}
+
+/* ───────────────── LEAD CARD ───────────────── */
+
+function LeadCard({
+  lead,
+  onUpdateStatus
+}: {
+  lead: Lead
+  onUpdateStatus: (
+    id: string,
+    status: string
+  ) => void
+}) {
+  const config = STATUS_CONFIG[lead.status]
+
+  return (
+    <div className="rounded-3xl border border-white/[0.06] bg-[#0f0f18] p-5 transition hover:border-violet-500/30">
+      {/* TOP */}
+
+      <div className="mb-4 flex items-start justify-between">
+        <div>
+          <h3 className="text-lg font-semibold text-white">
+            {lead.name}
+          </h3>
+
+          {lead.source && (
+            <p className="mt-1 text-xs text-[#6b6b80]">
+              via {lead.source}
+            </p>
+          )}
+        </div>
+
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              size="icon"
+              variant="ghost"
+              className="text-white hover:bg-white/[0.05]"
+            >
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent
+            align="end"
+            className="border-white/[0.08] bg-[#11111a] text-white"
+          >
+            {Object.entries(STATUS_CONFIG).map(
+              ([status, cfg]) => (
+                <DropdownMenuItem
+                  key={status}
+                  disabled={lead.status === status}
+                  onClick={() =>
+                    onUpdateStatus(lead.id, status)
+                  }
+                >
+                  Mark as {cfg.label}
+                </DropdownMenuItem>
+              )
+            )}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
+      {/* INFO */}
+
+      <div className="space-y-3">
+        <div className="flex items-center gap-2 text-sm text-[#b4b4c7]">
+          <Phone className="h-4 w-4 text-violet-400" />
+          {lead.phone}
+        </div>
+
+        <div className="flex items-center gap-2 text-sm text-[#b4b4c7]">
+          <Calendar className="h-4 w-4 text-violet-400" />
+          {formatDate(lead.createdAt)}
+        </div>
+      </div>
+
+      {lead.status === 'CONTACTED' && lead.contactedBy && (
+        <p className="mt-2 text-xs text-[#6b6b80]">
+          Contacted by{' '}
+          <span className="font-medium text-violet-400">
+            {lead.contactedBy.name}
+          </span>
+
+          {lead.contactedAt && (
+            <span>
+              {' '}·{' '}
+              {new Date(lead.contactedAt).toLocaleDateString('en-IN')}
+            </span>
+          )}
+        </p>
+      )}
+
+      {/* NOTES */}
+
+      {lead.notes && (
+        <div className="mt-4 rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3">
+          <p className="text-sm text-[#b4b4c7]">
+            {lead.notes}
+          </p>
+        </div>
+      )}
+
+      {/* STATUS */}
+
+      <div className="mt-5 flex items-center justify-between">
+        <span
+          className={`inline-flex rounded-full px-3 py-1 text-xs font-medium ${config?.className}`}
+        >
+          {config?.label}
+        </span>
+
+        {lead.status === 'CONVERTED' && (
+          <div className="flex items-center gap-1 text-xs text-green-400">
+            <Flame className="h-3 w-3" />
+            Joined
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
