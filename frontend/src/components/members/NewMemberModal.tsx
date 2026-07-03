@@ -520,15 +520,30 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                 Next: Assign Plan <ChevronRight size={16} />
               </button>
             ) : (
-              <button
-                type="submit"
-                form="new-member-form"
-                disabled={loading}
-                className="flex h-11 items-center justify-center gap-2 px-6 text-[13px] font-medium text-foreground transition-all duration-150 disabled:opacity-60 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
-              >
-                {loading && <Loader2 size={16} className="animate-spin" />}
-                {loading ? 'Saving...' : planId ? 'Save Member & Plan' : 'Save Member Only'}
-              </button>
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setValue('planId', '');
+                    setValue('paidAmount', '');
+                    setValue('paymentMethod', '');
+                    handleSubmit(onSubmit)();
+                  }}
+                  disabled={loading}
+                  className="flex h-11 items-center justify-center px-6 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground rounded-xl border border-border bg-background"
+                >
+                  Skip
+                </button>
+                <button
+                  type="submit"
+                  form="new-member-form"
+                  disabled={loading}
+                  className="flex h-11 items-center justify-center gap-2 px-6 text-[13px] font-medium text-foreground transition-all duration-150 disabled:opacity-60 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+                >
+                  {loading && <Loader2 size={16} className="animate-spin" />}
+                  {loading ? 'Saving...' : 'Add Plan & Payment'}
+                </button>
+              </div>
             )}
           </div>
         </div>
