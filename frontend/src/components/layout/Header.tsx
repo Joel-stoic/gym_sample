@@ -48,7 +48,7 @@ export default function Header() {
 
   return (
     <header
-      className="flex flex-shrink-0 items-center justify-between px-4 py-7 md:px-6 bg-transparent border-b border-border-strong font-sans"
+      className="flex flex-shrink-0 items-center justify-between px-4 py-7 md:px-6 bg-surface-base border-b border-border-strong font-sans"
     >
       {/* Left: hamburger (mobile) + page title */}
       <div className="flex items-center gap-4">

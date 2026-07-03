@@ -68,7 +68,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
     <div
       className={cn(
         'flex h-full w-[82vw] max-w-[280px] flex-shrink-0 flex-col overflow-hidden',
-        'bg-transparent border-r border-border-strong',
+        'bg-surface-base border-r border-border-strong',
         'md:w-64 md:max-w-none',
         'font-sans'
       )}
