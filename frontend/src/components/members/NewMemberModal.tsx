@@ -259,6 +259,15 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
     }
   }
 
+  const onFormSubmit = (e: React.FormEvent) => {
+    if (step === 1) {
+      e.preventDefault()
+      handleNextStep()
+    } else {
+      handleSubmit(onSubmit)(e)
+    }
+  }
+
   if (!isOpen) return null
 
   return (
@@ -266,11 +275,11 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
       
       {createdMember ? (
         <div className="w-full max-w-[400px] overflow-hidden rounded-3xl bg-card border border-border shadow-xl animate-in fade-in-0 zoom-in-95 duration-150">
-          <div className="h-1 w-full bg-gradient-to-r from-[#10b981] to-[#34d399]" />
+          <div className="h-1 w-full bg-emerald-500/20" />
           <div className="p-5 sm:p-6 space-y-5">
             <div className="flex flex-col items-center text-center">
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#10b98115] border border-border">
-                <CheckCircle size={22} className="text-[#10b981]" strokeWidth={2} />
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-500/10 border border-emerald-500/20 shadow-[0_0_20px_rgba(16,185,129,0.15)]">
+                <CheckCircle size={28} className="text-emerald-500" strokeWidth={2} />
               </div>
               <p className="text-[17px] font-semibold text-foreground" style={{ fontFamily: "'Syne', sans-serif", letterSpacing: '-0.01em' }}>
                 Member Added!
@@ -282,15 +291,15 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
 
             <div className="h-px bg-muted" />
 
-            <div className="rounded-xl border border-border bg-background p-4 space-y-3">
+            <div className="rounded-2xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 backdrop-blur-md p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-[12.5px] text-muted-foreground">📱 Phone</span>
-                <span className="text-[13px] font-mono font-medium text-foreground">{createdMember.phone}</span>
+                <span className="text-[14px] font-mono font-medium text-foreground">{createdMember.phone}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-[12.5px] text-muted-foreground">🔑 Temp Password</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-[13px] font-mono font-semibold text-violet-300">
+                  <span className="text-[14px] font-mono font-bold text-emerald-500">
                     {createdMember.tempPassword}
                   </span>
                   <button
@@ -298,22 +307,25 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                       navigator.clipboard.writeText(createdMember.tempPassword)
                       toast.success('Password copied!')
                     }}
-                    className="rounded-lg p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                    className="rounded-lg p-1.5 text-muted-foreground hover:text-foreground hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
                   >
-                    <Copy size={13} />
+                    <Copy size={14} />
                   </button>
                 </div>
               </div>
-              <div className="pt-1 border-t border-border">
+              <div className="pt-2 border-t border-black/10 dark:border-white/10">
                 <p className="text-[11px] text-muted-foreground">
                   Member must change this password on first login.
                 </p>
               </div>
             </div>
 
-            <div className="rounded-xl border border-border bg-[#7c3aed10] px-4 py-3">
-              <p className="text-[12.5px] text-violet-300">
-                ✅ Login link sent to {createdMember.phone} via WhatsApp
+            <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 flex items-center gap-3">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-500">
+                <Smartphone size={14} />
+              </div>
+              <p className="text-[12.5px] text-emerald-600 dark:text-emerald-400 font-medium leading-snug">
+                Login link has been sent to {createdMember.phone} via WhatsApp
               </p>
             </div>
 
@@ -326,13 +338,13 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   setPlanAmount(0)
                   setValue('planStartDate', toDateInputValue(new Date()))
                 }}
-                className="h-10 flex-1 rounded-xl border border-border bg-muted hover:bg-muted text-[13px] font-medium text-muted-foreground hover:text-foreground transition-all sm:flex-none px-4"
+                className="h-11 flex-1 rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-[13px] font-medium text-foreground transition-all sm:flex-none px-4"
               >
                 Add Another
               </button>
               <button
                 onClick={onClose}
-                className="h-10 flex-1 border-0 text-[13px] font-medium text-foreground transition-all sm:flex-none px-6 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+                className="h-11 flex-1 border-0 text-[13px] font-medium transition-all sm:flex-none px-6 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
               >
                 Done
               </button>
@@ -359,7 +371,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
             </button>
           </div>
 
-          <form id="new-member-form" onSubmit={handleSubmit(onSubmit)} className="flex-1 overflow-y-auto px-5 sm:px-6 py-5 space-y-5">
+          <form id="new-member-form" onSubmit={onFormSubmit} className="flex-1 overflow-y-auto px-5 sm:px-6 py-5 space-y-5">
             
             {step === 1 ? (
               <>
