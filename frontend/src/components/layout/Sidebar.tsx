@@ -73,8 +73,8 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
     <div
       className={cn(
         'flex h-full w-[82vw] max-w-[280px] flex-shrink-0 flex-col overflow-hidden',
-        'bg-[#050505] border-r border-[#1A1A1A]',
-        'md:w-64 md:max-w-none',
+        'bg-[#0a0a0f] border-r border-[#1A1A1A]',
+        'md:w-64 md:max-w-none md:min-h-screen',
         inter.className
       )}
     >
@@ -181,7 +181,7 @@ export default function Sidebar() {
   return (
     <>
       {/* Desktop: always-visible rail */}
-      <div className="hidden md:flex md:fixed md:inset-y-0 md:left-0 md:w-64 md:z-30">
+      <div className="hidden md:block md:fixed md:inset-y-0 md:left-0 md:w-64 md:h-screen md:z-30">
         <SidebarContent />
       </div>
 
