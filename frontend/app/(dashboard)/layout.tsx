@@ -37,10 +37,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Sidebar handles its own mobile/desktop rendering */}
       <Sidebar />
 
-      {/* Main area (Scrollable) */}
-      <div className="flex flex-1 flex-col min-w-0 md:ml-64 h-full overflow-y-auto relative">
-        <Header />
-        <main className="flex-1 p-4 md:p-6">
+      {/* Main area */}
+      <div className="flex flex-1 flex-col min-w-0 md:ml-64 h-screen relative">
+        <div className="absolute top-0 left-0 right-0 z-40">
+          <Header />
+        </div>
+        <main className="flex-1 overflow-y-auto p-4 md:p-6 pt-[96px] md:pt-[96px]">
           {children}
         </main>
       </div>
