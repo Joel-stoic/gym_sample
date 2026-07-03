@@ -135,8 +135,50 @@
   }
 }
 
-/* ─── Date picker icon ───────────────────────────────────────────────────────  */
 input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(1) opacity(0.4);
   cursor: pointer;
+}
+
+/* ─── Premium UI Utilities ───────────────────────────────────────────────────  */
+@layer utilities {
+  .bg-dot-grid {
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .glass-panel {
+    @apply bg-card/70 backdrop-blur-md border border-border shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5)];
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 20px -4px var(--primary);
+  }
+
+  .glow-primary-hover:hover {
+    box-shadow: 0 0 24px -2px var(--primary);
+  }
+
+  .gradient-border-card {
+    position: relative;
+    background: var(--card);
+    background-clip: padding-box;
+    border: 1px solid transparent;
+  }
+  
+  .gradient-border-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    z-index: -1;
+    margin: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--primary) 0%, transparent 50%, var(--secondary) 100%);
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+  }
+  
+  .gradient-border-card:hover::before {
+    opacity: 0.7;
+  }
 }

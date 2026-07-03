@@ -6,9 +6,11 @@ import {
   CalendarCheck, TrendingUp, AlertCircle, Activity,
 } from 'lucide-react'
 import {
-  BarChart, Bar, XAxis, YAxis,
-  Tooltip, ResponsiveContainer, Cell,
+  BarChart, Bar, AreaChart, Area, XAxis, YAxis,
+  Tooltip, ResponsiveContainer, Cell, CartesianGrid
 } from 'recharts'
+import { motion, useAnimation, useInView, animate, AnimatePresence } from 'framer-motion'
+import { useEffect, useRef } from 'react'
 import { useDashboard, type RevenueMonths } from '@/src/hooks/useDashboard'
 import { toRupees } from '@/src/lib/utils'
 
@@ -39,24 +41,52 @@ function DashboardSkeleton() {
   )
 }
 
+// ─── Animated Counter ──────────────────────────────────────────────────
+function AnimatedCounter({ value }: { value: number }) {
+  const nodeRef = useRef<HTMLSpanElement>(null)
+
+  useEffect(() => {
+    const node = nodeRef.current
+    if (node) {
+      const controls = animate(0, value, {
+        duration: 1.5,
+        ease: "easeOut",
+        onUpdate(v) {
+          if (node) {
+            node.textContent = Math.round(v).toLocaleString()
+          }
+        },
+      })
+      return () => controls.stop()
+    }
+  }, [value])
+
+  return <span ref={nodeRef}>{value.toLocaleString()}</span>
+}
+
 // ─── Metric Card ──────────────────────────────────────────────────────
 function MetricCard({
-  title, value, sub, icon: Icon, accent = false,
+  title, value, sub, icon: Icon, accent = false, className = '', isCurrency = false
 }: {
   title: string
-  value: string | number
+  value: number
   sub?: string
   icon: React.ElementType
   accent?: boolean
+  className?: string
+  isCurrency?: boolean
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-4 sm:p-5 transition-all duration-200 hover:border-primary/30">
-      <div className={`mb-3 sm:mb-4 flex h-9 w-9 items-center justify-center rounded-xl ${accent ? 'bg-accent text-primary' : 'bg-secondary text-foreground'}`}>
-        <Icon size={16} />
+    <div className={`relative overflow-hidden rounded-2xl p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 ${accent ? 'gradient-border-card' : 'glass-panel'} ${className}`}>
+      <div className={`mb-4 flex h-10 w-10 items-center justify-center rounded-xl ${accent ? 'bg-accent text-primary glow-primary shadow-lg' : 'bg-secondary text-foreground'}`}>
+        <Icon size={18} />
       </div>
-      <p className="text-[24px] sm:text-[28px] font-semibold tabular-nums text-foreground">{value}</p>
+      <p className="text-[28px] sm:text-[34px] font-light tabular-nums text-foreground tracking-tight">
+        {isCurrency ? '₹' : ''}
+        <AnimatedCounter value={value} />
+      </p>
       {sub && <p className="mt-1 text-[12px] text-muted-foreground">{sub}</p>}
-      <p className="mt-2 sm:mt-3 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">{title}</p>
+      <p className="mt-3 sm:mt-4 text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground">{title}</p>
     </div>
   )
 }
@@ -194,27 +224,36 @@ export default function DashboardPage() {
 
   const tickInterval = Math.max(0, Math.ceil(monthlyRevenue.length / 7) - 1)
 
-  if (loading) return <DashboardSkeleton />
-
-  if (error) {
-    return (
-      <div className="flex h-64 items-center justify-center gap-2 text-foreground">
-        <AlertCircle size={18} />
-        <span className="text-sm font-medium">{error}</span>
-      </div>
-    )
-  }
-
   return (
-    <div className="min-h-screen space-y-4 sm:space-y-5 bg-background">
+    <AnimatePresence mode="wait">
+      {loading ? (
+        <motion.div key="skeleton" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, position: 'absolute', width: '100%' }}>
+          <DashboardSkeleton />
+        </motion.div>
+      ) : error ? (
+        <motion.div key="error" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <div className="flex h-64 items-center justify-center gap-2 text-foreground">
+            <AlertCircle size={18} />
+            <span className="text-sm font-medium">{error}</span>
+          </div>
+        </motion.div>
+      ) : (
+        <motion.div 
+          key="content" 
+          initial={{ opacity: 0, y: 10 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.3 }}
+          className="min-h-screen space-y-4 sm:space-y-5"
+        >
 
-      {/* ── Top metric cards ── */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-5">
+      {/* ── Top Bento Grid ── */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MetricCard
           title="Total Members"
           value={metrics?.members?.total ?? 0}
           sub={`+${metrics?.members?.newThisMonth ?? 0} new this month`}
           icon={Users}
+          className="lg:col-span-1"
         />
         <MetricCard
           title="Active Members"
@@ -224,25 +263,29 @@ export default function DashboardPage() {
             : 0}% retention`}
           icon={UserCheck}
           accent
+          className="lg:col-span-1"
         />
         <MetricCard
           title="Today's Attendance"
           value={metrics?.attendance?.today ?? 0}
           sub="check-ins today"
           icon={CalendarCheck}
+          className="lg:col-span-1"
         />
-        <MetricCard
-          title="Expired Members"
-          value={metrics?.members?.expired ?? 0}
-          sub="inactive memberships"
-          icon={UserX}
-        />
-        <MetricCard
-          title="Need Renewal"
-          value={metrics?.members?.expiringThisWeek ?? 0}
-          sub="expiring this week"
-          icon={TrendingUp}
-        />
+        <div className="grid grid-rows-2 gap-4 lg:col-span-1">
+          <MetricCard
+            title="Expired"
+            value={metrics?.members?.expired ?? 0}
+            icon={UserX}
+            className="p-4"
+          />
+          <MetricCard
+            title="Renewing"
+            value={metrics?.members?.expiringThisWeek ?? 0}
+            icon={TrendingUp}
+            className="p-4"
+          />
+        </div>
       </div>
 
       {/* ── Revenue metric cards ── */}
@@ -250,28 +293,26 @@ export default function DashboardPage() {
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           <MetricCard
             title="Membership Revenue"
-            value={toRupees(metrics.revenue.thisMonth ?? 0)}
+            value={metrics.revenue.thisMonth ?? 0}
             sub="this month"
             icon={IndianRupee}
+            isCurrency
           />
           <MetricCard
             title="PT Revenue"
-            value={toRupees(metrics.revenue.ptThisMonth ?? 0)}
+            value={metrics.revenue.ptThisMonth ?? 0}
             sub="personal training"
             icon={IndianRupee}
+            isCurrency
           />
           <MetricCard
             title="Total Revenue"
-            value={toRupees(metrics.revenue.totalThisMonth ?? 0)}
+            value={metrics.revenue.totalThisMonth ?? 0}
             sub="membership + PT"
             icon={IndianRupee}
             accent
-          />
-          <MetricCard
-            title="Pending Dues"
-            value={toRupees(metrics.revenue.pendingDues ?? 0)}
-            sub="unpaid"
-            icon={AlertCircle}
+            isCurrency
+            className="lg:col-span-2"
           />
         </div>
       )}
@@ -280,7 +321,9 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
 
         {/* ── Revenue chart ── */}
-        <div className="rounded-2xl border border-border bg-card p-4 sm:p-6 lg:col-span-2">
+        <div className="glass-panel p-4 sm:p-6 lg:col-span-2 rounded-2xl relative overflow-hidden">
+          {/* Subtle glow behind chart */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-transparent to-transparent pointer-events-none" />
           <div className="mb-5 sm:mb-6 flex items-center justify-between gap-3">
             <div>
               <p className="text-[18px] md:text-[20px] font-medium text-foreground">Monthly Revenue</p>
@@ -295,12 +338,18 @@ export default function DashboardPage() {
             </div>
           ) : monthlyRevenue.length > 0 ? (
             <>
-              <ResponsiveContainer width="100%" height={200}>
-                <BarChart
+              <ResponsiveContainer width="100%" height={240}>
+                <AreaChart
                   data={monthlyRevenue}
-                  barCategoryGap="30%"
                   margin={{ top: 8, right: 8, left: 0, bottom: 0 }}
                 >
+                  <defs>
+                    <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="var(--primary)" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" opacity={0.4} />
                   <XAxis
                     dataKey="month"
                     tick={{ fontSize: 10, fill: '#8C8D95', fontWeight: 600 }}
@@ -322,22 +371,17 @@ export default function DashboardPage() {
                       return `₹${r}`
                     }}
                   />
-                  <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(251,81,2,0.06)' }} />
-                  <Bar dataKey="revenue" radius={[6, 6, 0, 0]} maxBarSize={44}>
-                    {monthlyRevenue.map((entry, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={
-                          Number(entry.revenue) === 0
-                            ? 'var(--border)'
-                            : index === monthlyRevenue.length - 1
-                              ? 'var(--chart-2)'
-                              : 'var(--chart-1)'
-                        }
-                      />
-                    ))}
-                  </Bar>
-                </BarChart>
+                  <Tooltip content={<CustomTooltip />} cursor={{ stroke: 'var(--primary)', strokeWidth: 1, strokeDasharray: '4 4' }} />
+                  <Area 
+                    type="monotone" 
+                    dataKey="revenue" 
+                    stroke="var(--primary)" 
+                    strokeWidth={3}
+                    fillOpacity={1} 
+                    fill="url(#colorRevenue)" 
+                    activeDot={{ r: 6, strokeWidth: 0, fill: 'var(--primary)' }}
+                  />
+                </AreaChart>
               </ResponsiveContainer>
 
               <div className="my-4 sm:my-5 h-px bg-border" />
@@ -351,7 +395,7 @@ export default function DashboardPage() {
         </div>
 
         {/* ── Expiring members ── */}
-        <div className="rounded-2xl border border-border bg-card p-4 sm:p-5 lg:col-span-1">
+        <div className="glass-panel p-4 sm:p-5 lg:col-span-1 rounded-2xl">
           <p className="mb-1 text-[18px] md:text-[20px] font-medium text-foreground">Expiring members</p>
           <p className="mb-4 text-[11px] text-muted-foreground">Members expiring within 7 days</p>
           {expiringMembers?.length > 0 ? (
@@ -368,7 +412,7 @@ export default function DashboardPage() {
         </div>
 
         {/* ── Recent activity ── */}
-        <div className="rounded-2xl border border-border bg-card p-4 sm:p-5 lg:col-span-1">
+        <div className="glass-panel p-4 sm:p-5 lg:col-span-1 rounded-2xl">
           <p className="mb-1 text-[18px] md:text-[20px] font-medium text-foreground">Recent activity</p>
           <p className="mb-3 text-[11px] text-muted-foreground">Latest payments & check-ins</p>
 
@@ -420,6 +464,8 @@ export default function DashboardPage() {
         </div>
 
       </div>
-    </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }

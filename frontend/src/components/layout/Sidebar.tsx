@@ -67,9 +67,9 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
   return (
     <div
       className={cn(
-        'flex h-full w-[82vw] max-w-[280px] flex-shrink-0 flex-col overflow-hidden',
-        'bg-sidebar border-r border-sidebar-border',
-        'md:w-64 md:max-w-none',
+        'group/sidebar flex h-full flex-shrink-0 flex-col overflow-hidden transition-all duration-300 ease-in-out',
+        'bg-sidebar/80 backdrop-blur-md border-r border-sidebar-border',
+        'w-[82vw] max-w-[280px] md:w-[72px] md:hover:w-64'
       )}
     >
       {/* Logo */}
@@ -77,14 +77,14 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
         <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-primary sm:h-9 sm:w-9">
           <Dumbbell className="h-4 w-4 text-primary-foreground" />
         </div>
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0 flex-1 transition-all duration-300 md:w-0 md:opacity-0 md:group-hover/sidebar:w-auto md:group-hover/sidebar:opacity-100 overflow-hidden">
           <p
-            className="text-base leading-none text-foreground sm:text-lg"
+            className="text-base leading-none text-foreground sm:text-lg whitespace-nowrap"
             style={{ fontFamily: 'Orbitron, sans-serif', letterSpacing: '0.06em', fontWeight: 600 }}
           >
             JOVIFITX
           </p>
-          <p className="mt-1 truncate text-[10px] font-semibold tracking-widest text-muted-foreground uppercase">
+          <p className="mt-1 truncate text-[10px] font-semibold tracking-widest text-muted-foreground uppercase whitespace-nowrap">
             {tenant?.name || 'Loading…'}
           </p>
         </div>
@@ -100,8 +100,8 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
       </div>
 
       {/* Menu label */}
-      <div className="px-4 pb-2 pt-4 sm:px-5">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+      <div className="px-4 pb-2 pt-4 sm:px-5 md:opacity-0 md:group-hover/sidebar:opacity-100 transition-opacity duration-300">
+        <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground whitespace-nowrap">
           System Menu
         </p>
       </div>
@@ -120,9 +120,9 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
                 onClose?.()
               }}
               className={cn(
-                'group relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-[11px] font-semibold uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                'group relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-[11px] font-semibold uppercase tracking-widest transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                 isActive
-                  ? 'bg-accent text-accent-foreground'
+                  ? 'bg-accent text-accent-foreground shadow-[inset_0_0_12px_rgba(208,91,55,0.2)]'
                   : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
               )}
             >
@@ -137,7 +137,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
                   <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full border-2 border-sidebar bg-primary" />
                 )}
               </span>
-              <span className="truncate">{item.label}</span>
+              <span className="truncate whitespace-nowrap transition-all duration-300 md:w-0 md:opacity-0 md:group-hover/sidebar:w-auto md:group-hover/sidebar:opacity-100">{item.label}</span>
             </Link>
           )
         })}
@@ -145,25 +145,25 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
 
       {/* User + logout */}
       <div className="flex-shrink-0 border-t border-sidebar-border p-3 sm:p-4">
-        <div className="mb-2 flex items-center gap-2.5 rounded-lg px-2 py-2 sm:mb-3">
+        <div className="mb-2 flex items-center gap-2.5 rounded-lg md:px-0 md:group-hover/sidebar:px-2 py-2 sm:mb-3 transition-all duration-300">
           <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-secondary text-foreground text-[12px] font-bold sm:h-9 sm:w-9">
             {initials}
           </div>
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-[12px] font-semibold text-foreground sm:text-[13px]">
+          <div className="min-w-0 flex-1 transition-all duration-300 md:w-0 md:opacity-0 md:group-hover/sidebar:w-auto md:group-hover/sidebar:opacity-100 overflow-hidden">
+            <p className="truncate text-[12px] font-semibold text-foreground sm:text-[13px] whitespace-nowrap">
               {staff?.name ?? 'User'}
             </p>
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground whitespace-nowrap">
               {staff?.role ?? ''}
             </p>
           </div>
         </div>
         <button
           onClick={handleLogout}
-          className="flex w-full items-center justify-center gap-2 rounded-lg border border-sidebar-border bg-transparent px-3 py-2 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground transition-colors hover:border-primary/50 hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:py-2.5 sm:text-[11px]"
+          className="flex w-full items-center md:justify-center md:group-hover/sidebar:justify-start gap-2 rounded-lg border border-sidebar-border bg-transparent md:px-0 md:group-hover/sidebar:px-3 py-2 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground transition-all duration-300 hover:border-primary/50 hover:bg-accent hover:text-accent-foreground hover:glow-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:py-2.5 sm:text-[11px] overflow-hidden"
         >
-          <LogOut className="h-3.5 w-3.5 flex-shrink-0" />
-          Disconnect
+          <LogOut className="h-4 w-4 flex-shrink-0 md:mx-auto md:group-hover/sidebar:mx-0 transition-all duration-300" />
+          <span className="whitespace-nowrap transition-all duration-300 md:w-0 md:opacity-0 md:group-hover/sidebar:w-auto md:group-hover/sidebar:opacity-100">Disconnect</span>
         </button>
       </div>
     </div>

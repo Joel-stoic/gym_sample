@@ -47,7 +47,7 @@ export default function Header() {
   const roleLabel = staff?.role || 'STAFF'
 
   return (
-    <header className="flex flex-shrink-0 items-center justify-between px-4 py-5 md:px-6 bg-card border-b border-border">
+    <header className="flex flex-shrink-0 items-center justify-between px-4 py-4 md:px-6 sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-border shadow-sm">
       {/* Left: hamburger (mobile) + page title */}
       <div className="flex items-center gap-4">
         {/* Hamburger — mobile only */}
@@ -77,8 +77,12 @@ export default function Header() {
         <span className="hidden sm:inline-flex items-center justify-center rounded-md bg-secondary px-3 py-1.5 text-[10px] font-bold tracking-widest uppercase text-muted-foreground border border-border">
           {roleLabel}
         </span>
-        <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-primary text-[13px] font-bold text-primary-foreground">
-          {initials}
+        <div className="relative">
+          <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary text-[14px] font-bold text-primary-foreground glow-primary transition-transform hover:scale-105 cursor-pointer ring-2 ring-border">
+            {initials}
+          </div>
+          {/* Online indicator dot */}
+          <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-background bg-green-500 shadow-sm"></span>
         </div>
       </div>
     </header>
