@@ -41,13 +41,13 @@ type SignupForm = z.infer<typeof signupSchema>
 // ─── Shared styles (matches LoginPage) ─────────────────────────────────────────
 const inputCls =
   'h-12 bg-[#121212] border border-[#2A2A2A] text-white placeholder:text-[#555555] ' +
-  'focus-visible:ring-1 focus-visible:ring-violet-600 focus-visible:border-violet-600 rounded-md transition-colors shadow-none text-[14px] ' +
+  'focus-visible:ring-1 focus-visible:ring-crayola focus-visible:border-crayola rounded-md transition-colors shadow-none text-[14px] ' +
   '[&:-webkit-autofill]:[-webkit-text-fill-color:white] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0px_1000px_#121212_inset] ' +
   '[&:-webkit-autofill]:[transition:background-color_9999s_ease-in-out_0s]'
 
 const primaryBtnCls =
-  'h-12 rounded-md text-[14px] font-semibold tracking-wide text-white bg-violet-600 ' +
-  'hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors ' +
+  'h-12 rounded-md text-[14px] font-semibold tracking-wide text-white bg-crayola ' +
+  'hover:bg-crayola disabled:opacity-50 disabled:cursor-not-allowed transition-colors ' +
   'flex items-center justify-center gap-2'
 
 const labelCls = 'text-[12px] font-semibold text-[#888888] uppercase tracking-wider'
@@ -64,7 +64,7 @@ function PlateStack({ vertical = true, className = '' }: { vertical?: boolean; c
         <div
           key={i}
           style={vertical ? { width: s, height: 2 } : { height: s, width: 2 }}
-          className={`rounded-full ${i === 3 ? 'bg-violet-600' : 'bg-[#333333]'}`}
+          className={`rounded-full ${i === 3 ? 'bg-crayola' : 'bg-[#333333]'}`}
         />
       ))}
     </div>
@@ -102,7 +102,7 @@ function BrandPanel() {
           {capabilities.map(({ icon: Icon, label }) => (
             <li key={label} className="flex items-center gap-4">
               <div className="h-8 w-8 shrink-0 border border-[#333333] rounded-md flex items-center justify-center">
-                <Icon size={14} className="text-violet-500" />
+                <Icon size={14} className="text-crayola" />
               </div>
               <span className={`text-[15px] tracking-widest text-[#888888] ${bebas.className}`}>{label}</span>
             </li>
@@ -174,15 +174,15 @@ export default function SignupPage() {
           <div className="w-full max-w-[400px] text-center">
 
             <div className="lg:hidden flex flex-col items-center mb-8">
-              <div className="h-14 w-14 bg-violet-600 rounded-lg flex items-center justify-center mb-4">
+              <div className="h-14 w-14 bg-crayola rounded-lg flex items-center justify-center mb-4">
                 <Dumbbell className="h-6 w-6 text-white" />
               </div>
               <h1 className={`text-4xl tracking-widest text-white ${bebas.className}`}>JOVIFITX</h1>
             </div>
 
             <div className="flex justify-center mb-6">
-              <div className="h-16 w-16 rounded-full bg-violet-600/10 border border-violet-500/20 flex items-center justify-center">
-                <Check size={28} className="text-violet-500" strokeWidth={2.5} />
+              <div className="h-16 w-16 rounded-full bg-crayola/10 border border-crayola/20 flex items-center justify-center">
+                <Check size={28} className="text-crayola" strokeWidth={2.5} />
               </div>
             </div>
 
@@ -196,8 +196,8 @@ export default function SignupPage() {
             <div className="mt-8 text-left">
               <p className={labelCls}>Your dashboard URL</p>
               <div className="mt-2 flex items-center gap-2 bg-[#121212] border border-[#2A2A2A] rounded-md px-4 py-3">
-                <p className="flex-1 font-mono text-[13px] text-violet-400 truncate">{success.url}</p>
-                <button onClick={copyUrl} className="text-[#888888] hover:text-violet-400 transition-colors shrink-0" aria-label="Copy URL">
+                <p className="flex-1 font-mono text-[13px] text-crayola truncate">{success.url}</p>
+                <button onClick={copyUrl} className="text-[#888888] hover:text-crayola transition-colors shrink-0" aria-label="Copy URL">
                   <Copy size={15} />
                 </button>
               </div>
@@ -229,7 +229,7 @@ export default function SignupPage() {
         <div className="w-full max-w-[400px]">
 
           <div className="lg:hidden flex flex-col items-center text-center mb-10">
-            <div className="h-14 w-14 bg-violet-600 rounded-lg flex items-center justify-center mb-4">
+            <div className="h-14 w-14 bg-crayola rounded-lg flex items-center justify-center mb-4">
               <Dumbbell className="h-6 w-6 text-white" />
             </div>
             <h1 className={`text-4xl tracking-widest text-white ${bebas.className}`}>JOVIFITX</h1>
@@ -293,7 +293,7 @@ export default function SignupPage() {
                       <button
                         type="button"
                         onClick={() => setShowPassword(v => !v)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888888] hover:text-violet-400 transition-colors"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888888] hover:text-crayola transition-colors"
                         tabIndex={-1}
                         aria-label={showPassword ? 'Hide password' : 'Show password'}
                       >
@@ -319,7 +319,7 @@ export default function SignupPage() {
                       <button
                         type="button"
                         onClick={() => setShowConfirmPassword(v => !v)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888888] hover:text-violet-400 transition-colors"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888888] hover:text-crayola transition-colors"
                         tabIndex={-1}
                         aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
                       >
@@ -342,7 +342,7 @@ export default function SignupPage() {
 
           <div className="mt-8 text-center text-[13px] text-[#666666]">
             Already have a gym account?{' '}
-            <a href="/login" className="text-white font-medium hover:text-violet-400 transition-colors border-b border-white hover:border-violet-400 pb-[1px]">
+            <a href="/login" className="text-white font-medium hover:text-crayola transition-colors border-b border-white hover:border-crayola pb-[1px]">
               Log in
             </a>
           </div>

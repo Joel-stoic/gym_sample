@@ -247,7 +247,7 @@ export default function NewPaymentPage() {
                     <FormControl>
                       <div className="relative">
                         <input
-                          className="h-12 w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 text-[13px] text-white outline-none placeholder:text-[#3d3d52] transition-all focus:border-violet-500/50"
+                          className="h-12 w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 text-[13px] text-white outline-none placeholder:text-[#3d3d52] transition-all focus:border-crayola/50"
                           placeholder="Search member by name or phone..."
                           value={selectedMember ? `${selectedMember.name} — ${selectedMember.phone}` : memberSearch}
                           onChange={e => {
@@ -445,7 +445,7 @@ export default function NewPaymentPage() {
                   <FormItem>
                     <FormLabel className="flex items-center justify-between text-[#d4d4dc]">
                       <span className="flex items-center gap-2">
-                        <CalendarDays size={14} className="text-violet-400" />
+                        <CalendarDays size={14} className="text-crayola" />
                         Plan Start Date
                       </span>
                       {expiryPreview && (
@@ -458,7 +458,7 @@ export default function NewPaymentPage() {
                       <input
                         type="date"
                         {...field}
-                        className="h-12 w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 text-[13px] text-white outline-none transition-all focus:border-violet-500/50"
+                        className="h-12 w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 text-[13px] text-white outline-none transition-all focus:border-crayola/50"
                         style={{ colorScheme: 'dark' }}
                       />
                     </FormControl>
@@ -519,7 +519,7 @@ export default function NewPaymentPage() {
               <Button
                 type="submit"
                 disabled={loading}
-                className="h-12 w-full rounded-xl bg-violet-600 text-white hover:bg-violet-500"
+                className="h-12 w-full rounded-xl bg-crayola text-white hover:bg-crayola"
               >
                 {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 {loading ? 'Recording...' : 'Record Payment'}
@@ -533,7 +533,7 @@ export default function NewPaymentPage() {
 
           <div className="rounded-3xl border border-white/[0.06] bg-[#0f0f18] p-5">
             <div className="mb-5 flex items-center gap-3">
-              <div className="rounded-2xl bg-violet-600/15 p-3 text-violet-400">
+              <div className="rounded-2xl bg-crayola/15 p-3 text-crayola">
                 <IndianRupee className="h-5 w-5" />
               </div>
               <div>
@@ -616,7 +616,7 @@ export default function NewPaymentPage() {
                 { icon: CreditCard,  label: 'Card / Online' },
               ].map(({ icon: Icon, label }) => (
                 <div key={label} className="flex items-center gap-3 rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3">
-                  <Icon className="h-4 w-4 text-violet-400" />
+                  <Icon className="h-4 w-4 text-crayola" />
                   <span className="text-sm text-[#d4d4dc]">{label}</span>
                 </div>
               ))}

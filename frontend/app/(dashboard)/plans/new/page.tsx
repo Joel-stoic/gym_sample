@@ -167,7 +167,7 @@ export default function NewPlanPage() {
                   <FormControl>
                     <Input
                       placeholder="Monthly / Quarterly / Annual"
-                      className="h-11 rounded-xl border-white/10 bg-[#0e0e16] text-white placeholder:text-[#5c5c72] focus-visible:ring-violet-500"
+                      className="h-11 rounded-xl border-white/10 bg-[#0e0e16] text-white placeholder:text-[#5c5c72] focus-visible:ring-crayola"
                       {...field}
                     />
                   </FormControl>

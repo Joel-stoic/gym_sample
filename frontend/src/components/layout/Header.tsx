@@ -48,14 +48,14 @@ export default function Header() {
 
   return (
     <header
-      className="flex flex-shrink-0 items-center justify-between px-4 py-7 md:px-6 bg-surface-base border-b border-border-strong font-sans"
+      className="flex flex-shrink-0 items-center justify-between px-4 py-7 md:px-6 bg-gunmetal-900 border-b border-gunmetal-600 font-sans"
     >
       {/* Left: hamburger (mobile) + page title */}
       <div className="flex items-center gap-4">
         {/* Hamburger — mobile only */}
         <button
           onClick={toggle}
-          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm border border-[#2A2A2A] text-[#888888] hover:text-white hover:bg-[#1A1A1A] transition-colors md:hidden"
+          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm border border-gunmetal-600 text-gunmetal-400 hover:text-white hover:bg-gunmetal-700 transition-colors md:hidden"
         >
           <Menu className="h-4 w-4" />
         </button>
@@ -64,7 +64,7 @@ export default function Header() {
           <h1 className="text-2xl tracking-widest text-white uppercase font-heading">
             {title}
           </h1>
-          <p className="text-[11px] font-medium tracking-wide text-[#555555] uppercase hidden sm:block min-h-[14px]">
+          <p className="text-[11px] font-medium tracking-wide text-gunmetal-400 uppercase hidden sm:block min-h-[14px]">
             {subtitle}
           </p>
         </div>
@@ -73,12 +73,12 @@ export default function Header() {
       {/* Right: role badge + avatar */}
       <div className="flex items-center gap-3">
         <span
-          className="hidden sm:inline-flex items-center justify-center rounded-sm border border-[#2A2A2A] bg-[#121212] px-3 py-1.5 text-[10px] font-bold tracking-widest uppercase text-[#888888]"
+          className="hidden sm:inline-flex items-center justify-center rounded-sm bg-gunmetal-700 px-3 py-1.5 text-[10px] font-bold tracking-widest uppercase text-gunmetal-100"
         >
           {roleLabel}
         </span>
         <div
-          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm border border-violet-500/20 bg-violet-500/10 text-[13px] font-bold text-violet-500"
+          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-gunmetal-700 text-[13px] font-bold text-white"
         >
           {initials}
         </div>

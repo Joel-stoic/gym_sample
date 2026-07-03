@@ -81,7 +81,7 @@ export default function MemberPortalLayout({
               <p className="text-[15px] font-bold text-white leading-tight">
                 {memberName}
               </p>
-              <p className="text-[12px] text-zinc-500 font-medium tracking-wide uppercase">
+              <p className="text-[12px] text-gunmetal-400 font-medium tracking-wide uppercase">
                 Member Portal
               </p>
             </div>
@@ -89,7 +89,7 @@ export default function MemberPortalLayout({
 
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2 rounded-xl px-4 py-2 text-[13px] font-medium text-zinc-400 bg-white/5 border border-white/5 transition-all hover:text-rose-400 hover:bg-rose-500/10 hover:border-rose-500/20 active:scale-95"
+            className="flex items-center gap-2 rounded-xl px-4 py-2 text-[13px] font-medium text-gunmetal-400 bg-white/5 border border-white/5 transition-all hover:text-rose-400 hover:bg-rose-500/10 hover:border-rose-500/20 active:scale-95"
           >
             <LogOut size={14} />
             <span className="hidden sm:inline">Logout</span>
@@ -111,7 +111,7 @@ export default function MemberPortalLayout({
                       'flex items-center gap-3 rounded-xl px-4 py-3 text-[14px] font-medium transition-all duration-200',
                       isActive
                         ? 'text-white bg-indigo-500/10 border border-indigo-500/20 shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.05)]'
-                        : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5 border border-transparent'
+                        : 'text-gunmetal-400 hover:text-gunmetal-100 hover:bg-white/5 border border-transparent'
                     )}
                   >
                     <Icon size={18} className={isActive ? 'text-indigo-400' : ''} />
@@ -141,7 +141,7 @@ export default function MemberPortalLayout({
                 href={item.href}
                 className={cn(
                   'flex flex-1 flex-col items-center gap-1.5 py-4 text-[11px] font-medium transition-colors',
-                  isActive ? 'text-indigo-400' : 'text-zinc-500'
+                  isActive ? 'text-indigo-400' : 'text-gunmetal-400'
                 )}
               >
                 <div className={cn('p-1.5 rounded-lg transition-colors', isActive && 'bg-indigo-500/10')}>

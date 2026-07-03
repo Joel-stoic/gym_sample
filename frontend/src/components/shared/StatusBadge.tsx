@@ -33,7 +33,7 @@ const statusConfig: Record<
   INACTIVE: {
     label: 'Inactive',
     dot: 'bg-zinc-500',
-    className: 'bg-zinc-500/10 text-zinc-400 ring-zinc-500/20',
+    className: 'bg-zinc-500/10 text-gunmetal-400 ring-zinc-500/20',
   },
   PAID: {
     label: 'Paid',
@@ -56,7 +56,7 @@ export default function StatusBadge({ status, size = 'md' }: StatusBadgeProps) {
   const config = statusConfig[status] ?? {
     label: status,
     dot: 'bg-zinc-500',
-    className: 'bg-zinc-500/10 text-zinc-400 ring-zinc-500/20',
+    className: 'bg-zinc-500/10 text-gunmetal-400 ring-zinc-500/20',
   }
 
   return (

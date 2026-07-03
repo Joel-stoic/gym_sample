@@ -46,7 +46,7 @@ export default function MemberPortalPage() {
 
   if (!profile) {
     return (
-      <div className="flex h-64 items-center justify-center text-zinc-500 font-medium">
+      <div className="flex h-64 items-center justify-center text-gunmetal-400 font-medium">
         Failed to load profile
       </div>
     )
@@ -100,7 +100,7 @@ export default function MemberPortalPage() {
         <div className="relative z-10 flex items-center justify-between mb-8">
           <div className="flex items-center gap-2">
             <CreditCard className="w-5 h-5 text-indigo-400" />
-            <p className="text-sm font-bold uppercase tracking-widest text-zinc-400">
+            <p className="text-sm font-bold uppercase tracking-widest text-gunmetal-400">
               Membership
             </p>
           </div>
@@ -112,24 +112,24 @@ export default function MemberPortalPage() {
         <div className="space-y-5 relative z-10">
           {profile.plan && (
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-zinc-500">Plan Name</span>
+              <span className="text-sm font-medium text-gunmetal-400">Plan Name</span>
               <span className="text-sm font-semibold text-white bg-white/5 px-3 py-1 rounded-lg border border-white/5">{profile.plan.name}</span>
             </div>
           )}
           {profile.membershipStart && (
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-zinc-500">Started</span>
-              <span className="text-sm text-zinc-300 flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-zinc-500" />
+              <span className="text-sm font-medium text-gunmetal-400">Started</span>
+              <span className="text-sm text-gunmetal-100 flex items-center gap-1.5">
+                <Clock className="w-4 h-4 text-gunmetal-400" />
                 {formatDate(profile.membershipStart)}
               </span>
             </div>
           )}
           {profile.membershipExpiry && (
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-zinc-500">Expires</span>
-              <span className={`text-sm font-medium flex items-center gap-1.5 ${isExpiringSoon ? 'text-amber-400' : 'text-zinc-300'}`}>
-                <CalendarDays className={`w-4 h-4 ${isExpiringSoon ? 'text-amber-400' : 'text-zinc-500'}`} />
+              <span className="text-sm font-medium text-gunmetal-400">Expires</span>
+              <span className={`text-sm font-medium flex items-center gap-1.5 ${isExpiringSoon ? 'text-amber-400' : 'text-gunmetal-100'}`}>
+                <CalendarDays className={`w-4 h-4 ${isExpiringSoon ? 'text-amber-400' : 'text-gunmetal-400'}`} />
                 {formatDate(profile.membershipExpiry)}
               </span>
             </div>
@@ -149,7 +149,7 @@ export default function MemberPortalPage() {
                 return (
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-medium text-zinc-400">
+                      <span className="text-xs font-medium text-gunmetal-400">
                         <strong className="text-white text-sm">{daysLeft}</strong> days remaining
                       </span>
                       <span className="text-xs font-medium text-indigo-400">
@@ -181,7 +181,7 @@ export default function MemberPortalPage() {
         <div className="rounded-3xl p-6 sm:p-8 bg-zinc-900/40 backdrop-blur-xl border border-white/5">
           <div className="flex items-center gap-2 mb-6">
             <Activity className="w-5 h-5 text-indigo-400" />
-            <p className="text-sm font-bold uppercase tracking-widest text-zinc-400">
+            <p className="text-sm font-bold uppercase tracking-widest text-gunmetal-400">
               Personal Training
             </p>
           </div>
@@ -202,7 +202,7 @@ export default function MemberPortalPage() {
                 </div>
 
                 <div className="flex justify-between mb-3 text-sm">
-                  <span className="font-medium text-zinc-500">Session Progress</span>
+                  <span className="font-medium text-gunmetal-400">Session Progress</span>
                   <span className="font-semibold text-white">{pt.usedSessions} / {pt.totalSessions}</span>
                 </div>
 
@@ -233,7 +233,7 @@ export default function MemberPortalPage() {
 
                 {pt.sessions?.length > 0 && (
                   <div className="mt-8 pt-6 border-t border-white/5">
-                    <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-4">
+                    <p className="text-xs font-bold uppercase tracking-widest text-gunmetal-400 mb-4">
                       Upcoming Sessions
                     </p>
                     <div className="space-y-3">
@@ -252,8 +252,8 @@ export default function MemberPortalPage() {
                                   hour: '2-digit', minute: '2-digit'
                                 })}
                               </p>
-                              <p className="text-xs text-zinc-500 font-medium">
-                                Trainer: <span className="text-zinc-300">{session.trainer?.name || 'Not Assigned'}</span>
+                              <p className="text-xs text-gunmetal-400 font-medium">
+                                Trainer: <span className="text-gunmetal-100">{session.trainer?.name || 'Not Assigned'}</span>
                               </p>
                             </div>
                             <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
@@ -275,7 +275,7 @@ export default function MemberPortalPage() {
         
         {/* This month */}
         <div className="rounded-3xl p-6 bg-zinc-900/40 backdrop-blur-xl border border-white/5 group hover:border-white/10 transition-colors">
-          <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-4">
+          <p className="text-xs font-bold uppercase tracking-widest text-gunmetal-400 mb-4">
             This Month
           </p>
           <div className="flex items-center gap-4">
@@ -286,7 +286,7 @@ export default function MemberPortalPage() {
               <p className="text-3xl font-bold text-white mb-1">
                 {profile.visitsThisMonth}
               </p>
-              <p className="text-xs font-medium text-zinc-500 uppercase tracking-wide">gym visits</p>
+              <p className="text-xs font-medium text-gunmetal-400 uppercase tracking-wide">gym visits</p>
             </div>
           </div>
         </div>
@@ -308,7 +308,7 @@ export default function MemberPortalPage() {
             <p className="text-lg font-semibold text-white mb-1 group-hover:text-indigo-300 transition-colors">
               Diet & Weight
             </p>
-            <p className="text-xs font-medium text-zinc-500">
+            <p className="text-xs font-medium text-gunmetal-400">
               View your diet plan and track your weight journey
             </p>
           </div>
@@ -318,7 +318,7 @@ export default function MemberPortalPage() {
       {/* Recent attendance */}
       {profile.attendance?.length > 0 && (
         <div className="rounded-3xl p-6 bg-zinc-900/40 backdrop-blur-xl border border-white/5">
-          <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-6">
+          <p className="text-xs font-bold uppercase tracking-widest text-gunmetal-400 mb-6">
             Recent Visits
           </p>
           <div className="space-y-1">
@@ -335,7 +335,7 @@ export default function MemberPortalPage() {
                     {formatDate(record.checkInAt)}
                   </span>
                 </div>
-                <span className="text-xs font-medium text-zinc-500 bg-white/5 px-3 py-1.5 rounded-lg border border-white/5">
+                <span className="text-xs font-medium text-gunmetal-400 bg-white/5 px-3 py-1.5 rounded-lg border border-white/5">
                   {new Date(record.checkInAt).toLocaleTimeString('en-IN', {
                     hour: '2-digit', minute: '2-digit', hour12: true
                   })}

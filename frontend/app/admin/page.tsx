@@ -74,7 +74,7 @@ export default function AdminDashboardPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-5 h-5 border-2 border-crayola border-t-transparent rounded-full animate-spin" />
       </div>
     )
   }
@@ -84,9 +84,9 @@ export default function AdminDashboardPage() {
       label: 'Total Gyms',
       value: stats?.totalGyms ?? 0,
       icon: Building2,
-      color: 'text-violet-400',
-      bg: 'bg-violet-500/10',
-      border: 'border-violet-500/20',
+      color: 'text-crayola',
+      bg: 'bg-crayola-100',
+      border: 'border-crayola/20',
       sub: `${stats?.newSignupsThisMonth ?? 0} new this month`,
     },
     {
@@ -177,7 +177,7 @@ export default function AdminDashboardPage() {
           <h2 className="text-sm font-semibold text-white">Recent Gyms</h2>
           <button
             onClick={() => router.push('/admin/gyms')}
-            className="text-xs text-violet-400 hover:text-violet-300 transition-colors flex items-center gap-1"
+            className="text-xs text-crayola hover:text-violet-300 transition-colors flex items-center gap-1"
           >
             View all <ArrowUpRight size={11} />
           </button>
@@ -193,7 +193,7 @@ export default function AdminDashboardPage() {
                 className="px-6 py-4 flex items-center justify-between hover:bg-white/[0.02] transition-colors cursor-pointer group"
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-8 h-8 rounded-xl bg-violet-600/20 flex items-center justify-center text-violet-400 text-xs font-bold flex-shrink-0">
+                  <div className="w-8 h-8 rounded-xl bg-crayola-100 flex items-center justify-center text-crayola text-xs font-bold flex-shrink-0">
                     {gym.name.charAt(0).toUpperCase()}
                   </div>
                   <div className="min-w-0">
@@ -237,7 +237,7 @@ export default function AdminDashboardPage() {
         </div>
         <div className="bg-[#111118] border border-white/5 rounded-2xl p-5">
           <div className="flex items-center gap-2 mb-4">
-            <IndianRupee size={14} className="text-violet-400" />
+            <IndianRupee size={14} className="text-crayola" />
             <p className="text-xs font-semibold text-white/60 uppercase tracking-widest">All Time</p>
           </div>
           <p className="text-3xl font-bold text-white">{toRupees(stats?.totalRevenue ?? 0)}</p>

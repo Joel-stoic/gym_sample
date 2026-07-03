@@ -35,7 +35,7 @@ export default function HomePage() {
         {/* ── Hero ── */}
         <main className="flex-1 flex flex-col items-center justify-center max-w-7xl mx-auto px-6 sm:px-12 pt-12 sm:pt-20 pb-24 w-full">
           
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-zinc-300 mb-8 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gunmetal-100 mb-8 backdrop-blur-sm">
             <span className="flex h-2 w-2 rounded-full bg-indigo-500 animate-pulse" />
             Gym Management 2.0
           </div>
@@ -45,7 +45,7 @@ export default function HomePage() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">like clockwork.</span>
           </h1>
           
-          <p className="text-center text-zinc-400 text-lg sm:text-xl max-w-2xl leading-relaxed mb-12">
+          <p className="text-center text-gunmetal-400 text-lg sm:text-xl max-w-2xl leading-relaxed mb-12">
             Members, attendance, and payments — tracked intelligently in one unified platform. Free yourself from spreadsheets and focus on the floor.
           </p>
 
@@ -81,7 +81,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-xs font-medium text-zinc-400">Live Workspace</span>
+                  <span className="text-xs font-medium text-gunmetal-400">Live Workspace</span>
                 </div>
               </div>
 
@@ -92,7 +92,7 @@ export default function HomePage() {
                   { label: 'Monthly Revenue', value: '$24.5k', trend: '+4.2%', icon: CreditCard },
                 ].map((stat) => (
                   <div key={stat.label} className="p-8 group hover:bg-white/[0.02] transition-colors">
-                    <div className="flex items-center justify-between mb-4 text-zinc-400">
+                    <div className="flex items-center justify-between mb-4 text-gunmetal-400">
                       <span className="text-sm font-medium">{stat.label}</span>
                       <stat.icon className="w-5 h-5 opacity-50 group-hover:opacity-100 transition-opacity text-indigo-400" />
                     </div>
@@ -115,7 +115,7 @@ export default function HomePage() {
         <section id="how-it-works" className="relative max-w-7xl mx-auto px-6 sm:px-12 py-24 w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">Everything you need. Nothing you don&apos;t.</h2>
-            <p className="text-zinc-400 max-w-2xl mx-auto">Built precisely for the daily realities of running a modern fitness facility.</p>
+            <p className="text-gunmetal-400 max-w-2xl mx-auto">Built precisely for the daily realities of running a modern fitness facility.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -139,13 +139,13 @@ export default function HomePage() {
               <div key={f.title} className="group relative p-8 rounded-3xl bg-zinc-900/50 border border-white/5 hover:bg-zinc-900/80 hover:border-white/10 transition-all duration-300">
                 <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl" />
                 <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-6 text-zinc-300 group-hover:text-indigo-400 group-hover:scale-110 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-6 text-gunmetal-100 group-hover:text-indigo-400 group-hover:scale-110 transition-all duration-300">
                     <f.icon className="w-6 h-6" />
                   </div>
                   <h3 className="text-xl font-semibold text-white mb-3 tracking-tight">
                     {f.title}
                   </h3>
-                  <p className="text-sm text-zinc-400 leading-relaxed mb-6">
+                  <p className="text-sm text-gunmetal-400 leading-relaxed mb-6">
                     {f.body}
                   </p>
                   <div className="flex items-center text-sm font-medium text-indigo-400 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 cursor-pointer">
@@ -159,16 +159,16 @@ export default function HomePage() {
 
         {/* ── Footer ── */}
         <footer className="mt-auto border-t border-white/5 bg-black/50 backdrop-blur-lg">
-          <div className="max-w-7xl mx-auto px-6 sm:px-12 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-zinc-500">
+          <div className="max-w-7xl mx-auto px-6 sm:px-12 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gunmetal-400">
             <div className="flex items-center gap-2">
               <Activity className="w-4 h-4 text-indigo-500" />
-              <span className="font-semibold text-zinc-300">Jovifitx</span>
+              <span className="font-semibold text-gunmetal-100">Jovifitx</span>
             </div>
             <p>Designed for gym owners, not spreadsheets.</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-zinc-300 transition-colors">Twitter</a>
-              <a href="#" className="hover:text-zinc-300 transition-colors">Support</a>
-              <a href="#" className="hover:text-zinc-300 transition-colors">Privacy</a>
+              <a href="#" className="hover:text-gunmetal-100 transition-colors">Twitter</a>
+              <a href="#" className="hover:text-gunmetal-100 transition-colors">Support</a>
+              <a href="#" className="hover:text-gunmetal-100 transition-colors">Privacy</a>
             </div>
           </div>
         </footer>

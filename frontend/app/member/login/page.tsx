@@ -166,7 +166,7 @@ export default function MemberLoginPage() {
             >
               {gymName}
             </h1>
-            <p className="text-xs text-zinc-500 mt-0.5">Member Portal</p>
+            <p className="text-xs text-gunmetal-400 mt-0.5">Member Portal</p>
           </div>
         </div>
 
@@ -211,7 +211,7 @@ export default function MemberLoginPage() {
             >
               Login
             </h2>
-            <p className="text-sm text-zinc-500 mt-1">
+            <p className="text-sm text-gunmetal-400 mt-1">
               Enter your registered phone and password
             </p>
           </div>

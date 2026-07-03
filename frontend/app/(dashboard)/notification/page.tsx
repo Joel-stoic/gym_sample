@@ -85,7 +85,7 @@ const NotificationPage = () => {
       <div className="flex items-start justify-between flex-wrap gap-3">
         <div>
           <h1 className="text-2xl font-bold text-white">Notifications</h1>
-          <p className="text-sm text-zinc-500 mt-1">WhatsApp renewal alerts & delivery logs</p>
+          <p className="text-sm text-gunmetal-400 mt-1">WhatsApp renewal alerts & delivery logs</p>
         </div>
 
         {/* FILTER TOGGLE */}
@@ -96,8 +96,8 @@ const NotificationPage = () => {
               onClick={() => setFilter(opt.value)}
               className={`rounded-lg px-3 py-1.5 text-[11px] font-medium transition-all duration-150
                 ${filter === opt.value
-                  ? 'bg-violet-600 text-white shadow'
-                  : 'text-zinc-500 hover:text-zinc-300'
+                  ? 'bg-crayola text-white shadow'
+                  : 'text-gunmetal-400 hover:text-gunmetal-100'
                 }`}
             >
               {opt.label}
@@ -109,7 +109,7 @@ const NotificationPage = () => {
       {/* COUNT */}
       {!loading && (
         <p className="text-xs text-zinc-600">
-          Showing <span className="text-zinc-400 font-medium">{filtered.length}</span> notification{filtered.length !== 1 ? 's' : ''}
+          Showing <span className="text-gunmetal-400 font-medium">{filtered.length}</span> notification{filtered.length !== 1 ? 's' : ''}
         </p>
       )}
 
@@ -126,7 +126,7 @@ const NotificationPage = () => {
           <div className="rounded-3xl border border-white/[0.06] bg-white/[0.03] py-20 flex flex-col items-center justify-center">
             <BellDot className="h-12 w-12 text-zinc-600 mb-4" />
             <h3 className="text-lg font-semibold text-white">No notifications</h3>
-            <p className="text-sm text-zinc-500 mt-2">
+            <p className="text-sm text-gunmetal-400 mt-2">
               No alerts found for this period
             </p>
           </div>
@@ -154,7 +154,7 @@ const NotificationPage = () => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-4">
                     <div>
-                      <p className="text-[11px] font-medium uppercase tracking-widest text-violet-400 mb-1">
+                      <p className="text-[11px] font-medium uppercase tracking-widest text-crayola mb-1">
                         {notif.type.replaceAll('_', ' ')}
                       </p>
                       <h3 className="text-white font-bold text-base">
@@ -191,7 +191,7 @@ const NotificationPage = () => {
                     )}
                     {notif.member?.plan?.name && (
                       <div className="flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.03] px-2.5 py-1.5">
-                        <CreditCard className="h-3.5 w-3.5 text-violet-400 flex-shrink-0" />
+                        <CreditCard className="h-3.5 w-3.5 text-crayola flex-shrink-0" />
                         <span className="text-xs text-white font-medium">{notif.member.plan.name}</span>
                       </div>
                     )}
@@ -204,8 +204,8 @@ const NotificationPage = () => {
                       </div>
                     )}
                     <div className="flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.03] px-2.5 py-1.5">
-                      <User className="h-3.5 w-3.5 text-zinc-500 flex-shrink-0" />
-                      <span className="text-xs text-zinc-400">
+                      <User className="h-3.5 w-3.5 text-gunmetal-400 flex-shrink-0" />
+                      <span className="text-xs text-gunmetal-400">
                         {formatDistanceToNow(new Date(notif.createdAt), { addSuffix: true })}
                       </span>
                     </div>

@@ -84,7 +84,7 @@ function RoleBadge({ role }: { role: string }) {
         'inline-flex items-center gap-1.5 rounded-md px-2 py-0.5 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-inset',
         isTrainer
           ? 'bg-amber-500/10 text-amber-400 ring-amber-500/20'
-          : 'bg-violet-500/10 text-violet-400 ring-violet-500/20'
+          : 'bg-crayola-100 text-crayola ring-crayola/20'
       )}
     >
       {isTrainer ? (
@@ -103,7 +103,7 @@ function ActiveIndicator({ isActive }: { isActive: boolean }) {
     <span
       className={cn(
         'inline-flex items-center gap-1.5 text-xs font-medium transition-colors',
-        isActive ? 'text-emerald-400' : 'text-zinc-500'
+        isActive ? 'text-emerald-400' : 'text-gunmetal-400'
       )}
     >
       {isActive ? (
@@ -137,7 +137,7 @@ function FormField({
 }) {
   return (
     <div className="space-y-1.5">
-      <label className="text-xs font-medium text-zinc-300 ml-0.5">
+      <label className="text-xs font-medium text-gunmetal-100 ml-0.5">
         {label} {required && <span className="text-red-400">*</span>}
       </label>
       <Input
@@ -145,7 +145,7 @@ function FormField({
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="border-white/[0.08] bg-black/20 text-white placeholder:text-zinc-600 h-10 rounded-xl focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-violet-500 transition-all"
+        className="border-white/[0.08] bg-black/20 text-white placeholder:text-zinc-600 h-10 rounded-xl focus-visible:ring-1 focus-visible:ring-crayola focus-visible:border-crayola transition-all"
       />
     </div>
   )
@@ -247,7 +247,7 @@ export default function StaffPage() {
     }
   }
 
-  const selectClass = 'border-white/[0.08] bg-black/20 text-white rounded-xl h-10 focus:ring-1 focus:ring-violet-500'
+  const selectClass = 'border-white/[0.08] bg-black/20 text-white rounded-xl h-10 focus:ring-1 focus:ring-crayola'
   const selectContentClass = 'border-white/[0.08] bg-[#11111a] text-white'
 
   return (
@@ -261,7 +261,7 @@ export default function StaffPage() {
             if (!val) setForm(EMPTY_FORM) // Reset on close
           }}>
             <DialogTrigger asChild>
-              <Button className="bg-violet-600 hover:bg-violet-500 text-white rounded-xl h-10 px-4 text-sm font-medium gap-2 shadow-lg shadow-violet-900/20 transition-all active:scale-95">
+              <Button className="bg-crayola hover:bg-crayola text-white rounded-xl h-10 px-4 text-sm font-medium gap-2 shadow-lg shadow-violet-900/20 transition-all active:scale-95">
                 <Plus className="h-4 w-4" />
                 Add Staff Member
               </Button>
@@ -270,7 +270,7 @@ export default function StaffPage() {
             <DialogContent className="border-white/[0.08] bg-[#0f0f18] text-white rounded-2xl shadow-2xl sm:max-w-md">
               <DialogHeader>
                 <DialogTitle className="text-lg font-semibold">New Staff Member</DialogTitle>
-                <DialogDescription className="text-zinc-400">
+                <DialogDescription className="text-gunmetal-400">
                   Enter their details below. They will receive a link to log in.
                 </DialogDescription>
               </DialogHeader>
@@ -280,7 +280,7 @@ export default function StaffPage() {
                 <FormField label="Email Address" placeholder="jane@gym.com" value={form.email} onChange={(v) => setForm({ ...form, email: v })} type="email" />
                 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-zinc-300 ml-0.5">Role <span className="text-red-400">*</span></label>
+                  <label className="text-xs font-medium text-gunmetal-100 ml-0.5">Role <span className="text-red-400">*</span></label>
                   <Select value={form.role} onValueChange={(v: 'MANAGER' | 'TRAINER') => setForm({ ...form, role: v })}>
                     <SelectTrigger className={selectClass}><SelectValue /></SelectTrigger>
                     <SelectContent className={selectContentClass}>
@@ -293,7 +293,7 @@ export default function StaffPage() {
                 <div className="pt-2">
                   <Button
                     disabled={saving || !form.name || !form.phone}
-                    className="w-full bg-violet-600 hover:bg-violet-500 rounded-xl h-11 text-base font-medium transition-all"
+                    className="w-full bg-crayola hover:bg-crayola rounded-xl h-11 text-base font-medium transition-all"
                     onClick={addStaff}
                   >
                     {saving ? (
@@ -323,7 +323,7 @@ export default function StaffPage() {
               
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-zinc-300 ml-0.5">Role</label>
+                  <label className="text-xs font-medium text-gunmetal-100 ml-0.5">Role</label>
                   <Select value={editingStaff.role} onValueChange={(v: 'MANAGER' | 'TRAINER') => setEditingStaff({ ...editingStaff, role: v })}>
                     <SelectTrigger className={selectClass}><SelectValue /></SelectTrigger>
                     <SelectContent className={selectContentClass}>
@@ -333,7 +333,7 @@ export default function StaffPage() {
                   </Select>
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-zinc-300 ml-0.5">Status</label>
+                  <label className="text-xs font-medium text-gunmetal-100 ml-0.5">Status</label>
                   <Select
                     value={editingStaff.isActive ? 'ACTIVE' : 'INACTIVE'}
                     onValueChange={(v) => setEditingStaff({ ...editingStaff, isActive: v === 'ACTIVE' })}
@@ -348,7 +348,7 @@ export default function StaffPage() {
               </div>
 
               <div className="pt-2">
-                <Button disabled={saving} className="w-full bg-violet-600 hover:bg-violet-500 rounded-xl h-11" onClick={updateStaff}>
+                <Button disabled={saving} className="w-full bg-crayola hover:bg-crayola rounded-xl h-11" onClick={updateStaff}>
                   {saving ? <RefreshCcw className="h-4 w-4 mr-2 animate-spin" /> : 'Save Changes'}
                 </Button>
               </div>
@@ -365,12 +365,12 @@ export default function StaffPage() {
               <AlertTriangle className="h-6 w-6 text-red-500" />
             </div>
             <DialogTitle className="text-center text-lg font-semibold">Remove Staff Member?</DialogTitle>
-            <DialogDescription className="text-center text-zinc-400">
+            <DialogDescription className="text-center text-gunmetal-400">
               This action cannot be undone. This will permanently remove their access to the system.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="flex-col sm:flex-row gap-2 mt-4 sm:space-x-0">
-            <Button variant="ghost" onClick={() => setDeleteId(null)} className="w-full sm:w-1/2 rounded-xl text-zinc-300 hover:text-white hover:bg-white/[0.05]">
+            <Button variant="ghost" onClick={() => setDeleteId(null)} className="w-full sm:w-1/2 rounded-xl text-gunmetal-100 hover:text-white hover:bg-white/[0.05]">
               Cancel
             </Button>
             <Button disabled={saving} onClick={removeStaff} className="w-full sm:w-1/2 rounded-xl bg-red-500/90 hover:bg-red-500 text-white shadow-lg shadow-red-900/20">
@@ -415,7 +415,7 @@ export default function StaffPage() {
                     <Button
                       size="icon"
                       variant="ghost"
-                      className="h-8 w-8 rounded-lg text-zinc-400 hover:text-white hover:bg-white/[0.08] focus-visible:ring-1 focus-visible:ring-violet-500"
+                      className="h-8 w-8 rounded-lg text-gunmetal-400 hover:text-white hover:bg-white/[0.08] focus-visible:ring-1 focus-visible:ring-crayola"
                     >
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
@@ -425,7 +425,7 @@ export default function StaffPage() {
                       className="gap-2.5 rounded-lg cursor-pointer hover:bg-white/[0.06] focus:bg-white/[0.06]"
                       onClick={() => { setEditingStaff(member); setEditOpen(true) }}
                     >
-                      <Pencil className="h-4 w-4 text-zinc-400" />
+                      <Pencil className="h-4 w-4 text-gunmetal-400" />
                       Edit Profile
                     </DropdownMenuItem>
                     
@@ -434,7 +434,7 @@ export default function StaffPage() {
                       disabled={sendingLink === member.id}
                       onClick={() => resendLink(member.id, member.name)}
                     >
-                      <RefreshCcw className={cn("h-4 w-4 text-zinc-400", sendingLink === member.id && "animate-spin")} />
+                      <RefreshCcw className={cn("h-4 w-4 text-gunmetal-400", sendingLink === member.id && "animate-spin")} />
                       {sendingLink === member.id ? 'Sending...' : 'Resend Login Link'}
                     </DropdownMenuItem>
 
@@ -456,16 +456,16 @@ export default function StaffPage() {
               {/* Contact Info & Status */}
               <div className="flex flex-col justify-between h-auto gap-4">
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-sm text-zinc-300 group-hover:text-zinc-200 transition-colors">
-                    <div className="flex h-7 w-7 items-center justify-center rounded-md bg-violet-500/10 text-violet-400">
+                  <div className="flex items-center gap-3 text-sm text-gunmetal-100 group-hover:text-zinc-200 transition-colors">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-md bg-crayola-100 text-crayola">
                       <Phone className="h-3.5 w-3.5" />
                     </div>
                     <span>{member.phone}</span>
                   </div>
                   
                   {member.email && (
-                    <div className="flex items-center gap-3 text-sm text-zinc-300 group-hover:text-zinc-200 transition-colors">
-                      <div className="flex h-7 w-7 items-center justify-center rounded-md bg-violet-500/10 text-violet-400">
+                    <div className="flex items-center gap-3 text-sm text-gunmetal-100 group-hover:text-zinc-200 transition-colors">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-md bg-crayola-100 text-crayola">
                         <Mail className="h-3.5 w-3.5" />
                       </div>
                       <span className="truncate">{member.email}</span>

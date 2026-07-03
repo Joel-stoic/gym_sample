@@ -59,12 +59,12 @@ const STATUS_CONFIG = {
 }
 
 const inputCls = `
-  w-full rounded-xl border border-[#ffffff0a] bg-[#0f0f0f]
+  w-full rounded-xl border border-[#ffffff0a] bg-[var(--color-gunmetal-900)]
   px-3 py-2.5 text-[13px] text-white placeholder:text-[#3d3d52]
   focus:border-[#7c3aed44] focus:shadow-[0_0_0_3px_#7c3aed12] focus:outline-none transition-all
 `
 const selectCls = `
-  w-full rounded-xl border border-[#ffffff0a] bg-[#0f0f0f]
+  w-full rounded-xl border border-[#ffffff0a] bg-[var(--color-gunmetal-900)]
   px-3 py-2.5 text-[13px] text-white
   focus:border-[#7c3aed44] focus:shadow-[0_0_0_3px_#7c3aed12] focus:outline-none transition-all
   appearance-none cursor-pointer
@@ -280,7 +280,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
 
             <div className="h-px bg-[#ffffff0a]" />
 
-            <div className="rounded-xl border border-[#ffffff0a] bg-[#0f0f0f] p-4 space-y-3">
+            <div className="rounded-xl border border-[#ffffff0a] bg-[var(--color-gunmetal-900)] p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-[12.5px] text-[#6b6b80]">📱 Phone</span>
                 <span className="text-[13px] font-mono font-medium text-white">{createdMember.phone}</span>
@@ -352,7 +352,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
             </div>
             <button
               onClick={onClose}
-              className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#ffffff0a] bg-[#0f0f0f] text-[#9898b0] transition-colors hover:bg-[#ffffff05] hover:text-white"
+              className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#ffffff0a] bg-[var(--color-gunmetal-900)] text-[#9898b0] transition-colors hover:bg-[#ffffff05] hover:text-white"
             >
               <X size={16} />
             </button>
@@ -375,10 +375,10 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                 </Field>
                 <Field label="Gender">
                   <select className={selectCls} {...register('gender')}>
-                    <option value="" style={{ background: '#0f0f0f' }}>Select gender</option>
-                    <option value="MALE"   style={{ background: '#0f0f0f' }}>Male</option>
-                    <option value="FEMALE" style={{ background: '#0f0f0f' }}>Female</option>
-                    <option value="OTHER"  style={{ background: '#0f0f0f' }}>Other</option>
+                    <option value="" style={{ background: 'var(--color-gunmetal-900)' }}>Select gender</option>
+                    <option value="MALE"   style={{ background: 'var(--color-gunmetal-900)' }}>Male</option>
+                    <option value="FEMALE" style={{ background: 'var(--color-gunmetal-900)' }}>Female</option>
+                    <option value="OTHER"  style={{ background: 'var(--color-gunmetal-900)' }}>Other</option>
                   </select>
                 </Field>
                 <Field label="Date of Birth">
@@ -455,9 +455,9 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                       {...register('planId')}
                       onChange={e => { register('planId').onChange(e); handlePlanChange(e.target.value) }}
                     >
-                      <option value="" style={{ background: '#0f0f0f' }}>— Select a membership plan —</option>
+                      <option value="" style={{ background: 'var(--color-gunmetal-900)' }}>— Select a membership plan —</option>
                       {plans.map(plan => (
-                        <option key={plan.id} value={plan.id} style={{ background: '#0f0f0f' }}>
+                        <option key={plan.id} value={plan.id} style={{ background: 'var(--color-gunmetal-900)' }}>
                           {plan.name}  •  ₹{(plan.price / 100).toLocaleString('en-IN')}  •  {plan.durationDays} days
                         </option>
                       ))}
@@ -606,10 +606,10 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                             className={`flex items-center justify-center gap-2.5 h-12 rounded-xl border text-[13px] font-medium transition-all ${
                               selected
                                 ? 'border-[#7c3aed50] bg-[#7c3aed20] text-violet-300 shadow-[0_0_0_3px_#7c3aed12]'
-                                : 'border-[#ffffff0a] bg-[#0f0f0f] text-[#9898b0] hover:bg-[#ffffff05]'
+                                : 'border-[#ffffff0a] bg-[var(--color-gunmetal-900)] text-[#9898b0] hover:bg-[#ffffff05]'
                             }`}
                           >
-                            <span className={selected ? 'text-violet-400' : 'text-[#6b6b80]'}>
+                            <span className={selected ? 'text-crayola' : 'text-[#6b6b80]'}>
                               {icons[m.value] ?? <Wallet size={14} />}
                             </span>
                             {m.label}
@@ -638,7 +638,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
             <button
               type="button"
               onClick={onClose}
-              className="w-full sm:w-auto h-11 rounded-xl border border-[#ffffff0a] bg-[#0f0f0f] px-6 text-[13px] font-medium text-[#9898b0] transition-colors hover:bg-[#ffffff08] hover:text-white"
+              className="w-full sm:w-auto h-11 rounded-xl border border-[#ffffff0a] bg-[var(--color-gunmetal-900)] px-6 text-[13px] font-medium text-[#9898b0] transition-colors hover:bg-[#ffffff08] hover:text-white"
             >
               Cancel
             </button>

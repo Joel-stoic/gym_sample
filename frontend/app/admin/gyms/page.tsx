@@ -156,7 +156,7 @@ function AdminGymsContent() {
     { key: 'pending', label: 'Pending', count: tenants.filter(t => !t.isActive).length },
   ]
 
-  const inputCls = 'w-full bg-[#111118] border border-white/5 focus:border-violet-500/50 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-white/20 outline-none transition-all'
+  const inputCls = 'w-full bg-[#111118] border border-white/5 focus:border-crayola/50 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-white/20 outline-none transition-all'
 
   return (
     <div className="space-y-6 max-w-5xl">
@@ -168,7 +168,7 @@ function AdminGymsContent() {
         </div>
         <button
           onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium rounded-xl transition-all"
+          className="flex items-center gap-2 px-4 py-2 bg-crayola hover:bg-crayola text-white text-sm font-medium rounded-xl transition-all"
         >
           <Plus size={15} />Add Gym
         </button>
@@ -182,7 +182,7 @@ function AdminGymsContent() {
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search by name or slug..."
-            className="w-full bg-[#111118] border border-white/5 rounded-xl pl-9 pr-4 py-2.5 text-sm text-white placeholder-white/20 outline-none focus:border-violet-500/40 transition-all"
+            className="w-full bg-[#111118] border border-white/5 rounded-xl pl-9 pr-4 py-2.5 text-sm text-white placeholder-white/20 outline-none focus:border-crayola/40 transition-all"
           />
         </div>
         <div className="flex gap-1 bg-[#111118] border border-white/5 rounded-xl p-1">
@@ -191,7 +191,7 @@ function AdminGymsContent() {
               key={tab.key}
               onClick={() => setFilter(tab.key as any)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                filter === tab.key ? 'bg-violet-600 text-white' : 'text-white/40 hover:text-white'
+                filter === tab.key ? 'bg-crayola text-white' : 'text-white/40 hover:text-white'
               }`}
             >
               {tab.label}
@@ -205,7 +205,7 @@ function AdminGymsContent() {
       <div className="bg-[#111118] border border-white/5 rounded-3xl overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <div className="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-full animate-spin" />
+            <div className="w-5 h-5 border-2 border-crayola border-t-transparent rounded-full animate-spin" />
           </div>
         ) : filtered.length === 0 ? (
           <div className="py-16 text-center">
@@ -223,7 +223,7 @@ function AdminGymsContent() {
                   className="px-6 py-4 flex items-center justify-between hover:bg-white/[0.02] transition-colors cursor-pointer group"
                 >
                   <div className="flex items-center gap-4 min-w-0">
-                    <div className="w-9 h-9 rounded-xl bg-violet-600/15 flex items-center justify-center text-violet-400 text-sm font-bold flex-shrink-0">
+                    <div className="w-9 h-9 rounded-xl bg-crayola/15 flex items-center justify-center text-crayola text-sm font-bold flex-shrink-0">
                       {gym.name.charAt(0).toUpperCase()}
                     </div>
                     <div className="min-w-0">
@@ -303,7 +303,7 @@ function AdminGymsContent() {
                 </div>
                 <div className="space-y-1">
                   <label className="text-xs text-white/40 font-medium">Slug *</label>
-                  <div className="flex items-center bg-[#111118] border border-white/5 focus-within:border-violet-500/50 rounded-xl overflow-hidden transition-all">
+                  <div className="flex items-center bg-[#111118] border border-white/5 focus-within:border-crayola/50 rounded-xl overflow-hidden transition-all">
                     <span className="px-3 text-xs text-white/20 border-r border-white/5 py-2.5 whitespace-nowrap flex-shrink-0">
                       jovifitx.online/
                     </span>
@@ -357,7 +357,7 @@ function AdminGymsContent() {
                   Cancel
                 </button>
                 <button type="submit" disabled={submitting}
-                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-crayola hover:bg-crayola disabled:opacity-50 text-white text-sm font-medium transition-all">
                   {submitting ? 'Creating...' : 'Create Gym'}
                 </button>
               </div>
@@ -374,7 +374,7 @@ function AdminGymsContent() {
 function LoadingSpinner() {
   return (
     <div className="flex items-center justify-center h-64">
-      <div className="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-full animate-spin" />
+      <div className="w-5 h-5 border-2 border-crayola border-t-transparent rounded-full animate-spin" />
     </div>
   )
 }

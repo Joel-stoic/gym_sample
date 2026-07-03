@@ -59,7 +59,7 @@ function daysFromNow(d: string) {
 
 
 
-const inputCls = 'w-full bg-[#111118] border border-white/5 focus:border-violet-500/50 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-white/20 outline-none transition-all'
+const inputCls = 'w-full bg-[#111118] border border-white/5 focus:border-crayola/50 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-white/20 outline-none transition-all'
 
 // ─── Confirm Dialog ───────────────────────────────────────────────────────────
 
@@ -79,7 +79,7 @@ function ConfirmDialog({ open, title, message, danger, onConfirm, onCancel, load
             Cancel
           </button>
           <button onClick={onConfirm} disabled={loading}
-            className={`flex-1 py-2.5 rounded-xl text-white text-sm font-medium transition-all disabled:opacity-50 ${danger ? 'bg-red-600 hover:bg-red-500' : 'bg-violet-600 hover:bg-violet-500'
+            className={`flex-1 py-2.5 rounded-xl text-white text-sm font-medium transition-all disabled:opacity-50 ${danger ? 'bg-red-600 hover:bg-red-500' : 'bg-crayola hover:bg-crayola'
               }`}>
             {loading ? 'Please wait...' : 'Confirm'}
           </button>
@@ -365,7 +365,7 @@ export default function AdminGymDetailPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-5 h-5 border-2 border-crayola border-t-transparent rounded-full animate-spin" />
       </div>
     )
   }
@@ -376,7 +376,7 @@ export default function AdminGymDetailPage() {
         <AlertCircle size={28} className="text-white/20" />
         <p className="text-white/30 text-sm">Gym not found</p>
         <button onClick={() => router.push('/admin/gyms')}
-          className="text-xs text-violet-400 hover:text-violet-300">← Back to gyms</button>
+          className="text-xs text-crayola hover:text-violet-300">← Back to gyms</button>
       </div>
     )
   }
@@ -443,7 +443,7 @@ export default function AdminGymDetailPage() {
 
           <div className="flex items-start justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-violet-600/20 flex items-center justify-center text-violet-400 text-lg font-bold flex-shrink-0">
+              <div className="w-12 h-12 rounded-2xl bg-crayola-100 flex items-center justify-center text-crayola text-lg font-bold flex-shrink-0">
                 {tenant.name.charAt(0).toUpperCase()}
               </div>
               <div>
@@ -463,7 +463,7 @@ export default function AdminGymDetailPage() {
                   <p className="text-xs text-white/30">{tenant.slug}.jovifitx.online</p>
                   <a href={`https://${tenant.slug}.jovifitx.online`} target="_blank" rel="noopener noreferrer"
                     onClick={e => e.stopPropagation()}
-                    className="text-white/20 hover:text-violet-400 transition-colors">
+                    className="text-white/20 hover:text-crayola transition-colors">
                     <ExternalLink size={11} />
                   </a>
                 </div>
@@ -490,7 +490,7 @@ export default function AdminGymDetailPage() {
                 </button>
               )}
               <button onClick={() => setShowMemberModal(true)}
-                className="flex items-center gap-1.5 px-3 py-2 bg-violet-600/20 hover:bg-violet-600/30 text-violet-400 text-xs font-medium rounded-xl transition-all">
+                className="flex items-center gap-1.5 px-3 py-2 bg-crayola-100 hover:bg-crayola/30 text-crayola text-xs font-medium rounded-xl transition-all">
                 <Plus size={13} />Add Member
               </button>
               <button onClick={handleDelete} disabled={actionLoading}
@@ -521,7 +521,7 @@ export default function AdminGymDetailPage() {
         {/* ── Stats strip ── */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { label: 'Total Members', value: usage?.memberCount ?? 0, icon: Users, color: 'text-violet-400', bg: 'bg-violet-500/10' },
+            { label: 'Total Members', value: usage?.memberCount ?? 0, icon: Users, color: 'text-crayola', bg: 'bg-crayola-100' },
             { label: 'Active Members', value: usage?.activeMembers ?? 0, icon: Activity, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
             { label: 'Staff Count', value: usage?.staffCount ?? 0, icon: Shield, color: 'text-sky-400', bg: 'bg-sky-500/10' },
             { label: 'Total Revenue', value: toRupees(usage?.totalRevenue ?? 0), icon: TrendingUp, color: 'text-amber-400', bg: 'bg-amber-500/10' },
@@ -540,7 +540,7 @@ export default function AdminGymDetailPage() {
         <div className="flex gap-1 bg-[#111118] border border-white/5 rounded-xl p-1 w-fit">
           {tabs.map(t => (
             <button key={t.key} onClick={() => setTab(t.key)}
-              className={`px-4 py-1.5 rounded-lg text-xs font-medium transition-all ${tab === t.key ? 'bg-violet-600 text-white' : 'text-white/40 hover:text-white'
+              className={`px-4 py-1.5 rounded-lg text-xs font-medium transition-all ${tab === t.key ? 'bg-crayola text-white' : 'text-white/40 hover:text-white'
                 }`}>
               {t.label}
               {t.count !== undefined && <span className="ml-1.5 opacity-60">{t.count}</span>}
@@ -578,7 +578,7 @@ export default function AdminGymDetailPage() {
                   <button onClick={() => {
                     setTrialDate(tenant.trialEndsAt ? tenant.trialEndsAt.substring(0, 10) : '')
                     setShowTrialModal(true)
-                  }} className="text-[11px] text-violet-400 hover:text-violet-300">Edit</button>
+                  }} className="text-[11px] text-crayola hover:text-violet-300">Edit</button>
                 </div>
                 {tenant.trialEndsAt ? (
                   <div className="rounded-xl bg-white/[0.02] border border-white/5 px-3 py-2.5">
@@ -599,7 +599,7 @@ export default function AdminGymDetailPage() {
                   <button onClick={() => {
                     setGraceDate(tenant.gracePeriodEndsAt ? tenant.gracePeriodEndsAt.substring(0, 10) : '')
                     setShowGraceModal(true)
-                  }} className="text-[11px] text-violet-400 hover:text-violet-300">
+                  }} className="text-[11px] text-crayola hover:text-violet-300">
                     {tenant.gracePeriodEndsAt ? 'Edit' : 'Set'}
                   </button>
                 </div>
@@ -656,26 +656,26 @@ export default function AdminGymDetailPage() {
                 {/* Impersonate */}
                 <div className="rounded-xl bg-white/[0.02] border border-white/5 p-4">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-violet-500/10 flex items-center justify-center flex-shrink-0">
-                      <LogIn size={15} className="text-violet-400" />
+                    <div className="w-8 h-8 rounded-lg bg-crayola-100 flex items-center justify-center flex-shrink-0">
+                      <LogIn size={15} className="text-crayola" />
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-medium text-white">Login as Owner</p>
                       <p className="text-xs text-white/30 mt-0.5">Get a 1-hour access token to support this gym</p>
                       <button onClick={handleImpersonate} disabled={actionLoading}
-                        className="mt-3 px-3 py-1.5 bg-violet-500/10 hover:bg-violet-500/20 text-violet-400 text-xs font-medium rounded-lg transition-all disabled:opacity-50">
+                        className="mt-3 px-3 py-1.5 bg-crayola-100 hover:bg-crayola/20 text-crayola text-xs font-medium rounded-lg transition-all disabled:opacity-50">
                         Generate Token
                       </button>
                       {impersonateResult && (
-                        <div className="mt-2 p-2 rounded-lg bg-violet-500/5 border border-violet-500/10 space-y-1">
-                          <p className="text-[11px] text-violet-400/80">
+                        <div className="mt-2 p-2 rounded-lg bg-crayola/5 border border-crayola-100 space-y-1">
+                          <p className="text-[11px] text-crayola/80">
                             Token for {impersonateResult.ownerName} (expires in {impersonateResult.expiresIn}):
                           </p>
                           <p className="text-[10px] font-mono text-violet-300 break-all">
                             {impersonateResult.accessToken.substring(0, 60)}...
                           </p>
                           <a href={impersonateResult.loginUrl} target="_blank" rel="noopener noreferrer"
-                            className="text-[11px] text-violet-400 hover:underline flex items-center gap-1">
+                            className="text-[11px] text-crayola hover:underline flex items-center gap-1">
                             Open gym dashboard <ExternalLink size={10} />
                           </a>
                         </div>
@@ -783,7 +783,7 @@ export default function AdminGymDetailPage() {
             <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between">
               <p className="text-sm font-semibold text-white">{members.length} Members</p>
               <button onClick={() => setShowMemberModal(true)}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-violet-600/20 hover:bg-violet-600/30 text-violet-400 text-xs font-medium rounded-lg transition-all">
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-crayola-100 hover:bg-crayola/30 text-crayola text-xs font-medium rounded-lg transition-all">
                 <Plus size={12} />Add Member
               </button>
             </div>
@@ -869,11 +869,11 @@ export default function AdminGymDetailPage() {
               <div className="divide-y divide-white/5">
                 {activity.map(a => (
                   <div key={a.id} className="px-6 py-3.5 flex items-center gap-4">
-                    <div className={`w-7 h-7 rounded-xl flex items-center justify-center flex-shrink-0 ${a.type === 'PAYMENT' ? 'bg-emerald-500/10' : 'bg-violet-500/10'
+                    <div className={`w-7 h-7 rounded-xl flex items-center justify-center flex-shrink-0 ${a.type === 'PAYMENT' ? 'bg-emerald-500/10' : 'bg-crayola-100'
                       }`}>
                       {a.type === 'PAYMENT'
                         ? <CreditCard size={13} className="text-emerald-400" />
-                        : <CheckCircle size={13} className="text-violet-400" />}
+                        : <CheckCircle size={13} className="text-crayola" />}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm text-white truncate">{a.memberName}</p>
@@ -984,7 +984,7 @@ export default function AdminGymDetailPage() {
                   Cancel
                 </button>
                 <button type="submit" disabled={memberSubmitting}
-                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-crayola hover:bg-crayola disabled:opacity-50 text-white text-sm font-medium transition-all">
                   {memberSubmitting ? 'Adding...' : 'Add Member'}
                 </button>
               </div>
@@ -1009,7 +1009,7 @@ export default function AdminGymDetailPage() {
                   Cancel
                 </button>
                 <button type="submit" disabled={actionLoading}
-                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-crayola hover:bg-crayola disabled:opacity-50 text-white text-sm font-medium transition-all">
                   {actionLoading ? 'Saving...' : 'Save'}
                 </button>
               </div>
@@ -1036,7 +1036,7 @@ export default function AdminGymDetailPage() {
                   Cancel
                 </button>
                 <button type="submit" disabled={actionLoading}
-                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-crayola hover:bg-crayola disabled:opacity-50 text-white text-sm font-medium transition-all">
                   {actionLoading ? 'Saving...' : 'Save'}
                 </button>
               </div>
@@ -1099,7 +1099,7 @@ export default function AdminGymDetailPage() {
                   Cancel
                 </button>
                 <button type="submit" disabled={ownerSubmitting}
-                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-crayola hover:bg-crayola disabled:opacity-50 text-white text-sm font-medium transition-all">
                   {ownerSubmitting ? 'Saving...' : editingOwner ? 'Save Changes' : 'Add Owner'}
                 </button>
               </div>

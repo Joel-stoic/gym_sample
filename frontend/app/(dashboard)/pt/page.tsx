@@ -62,7 +62,7 @@ const inp = `
   w-full rounded-xl px-3 py-2.5 text-[13px] text-white outline-none transition-all
   placeholder:text-[#3d3d52]
 `
-const inpStyle = { background: '#0f0f0f', border: '1px solid #ffffff0a', color: 'white' }
+const inpStyle = { background: 'var(--color-gunmetal-900)', border: '1px solid #ffffff0a', color: 'white' }
 
 const card = 'rounded-2xl p-5'
 
@@ -612,7 +612,7 @@ export default function PtPage() {
     return (
       <div className="flex items-center justify-center h-[60vh]">
         <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-crayola border-t-transparent" />
           <p className="text-[12px] text-[#6b6b80]">Loading PT data...</p>
         </div>
       </div>
@@ -728,11 +728,11 @@ export default function PtPage() {
             <div className="py-16 flex flex-col items-center gap-3">
               <div className="h-12 w-12 rounded-2xl flex items-center justify-center"
                 style={{ background: '#7c3aed15' }}>
-                <Dumbbell className="h-5 w-5 text-violet-400/60" />
+                <Dumbbell className="h-5 w-5 text-crayola/60" />
               </div>
               <p className="text-[13px] text-[#6b6b80]">No sessions found</p>
               <button onClick={() => setShowSchedule(true)}
-                className="text-xs text-violet-400 hover:text-violet-300 flex items-center gap-1 transition-colors">
+                className="text-xs text-crayola hover:text-violet-300 flex items-center gap-1 transition-colors">
                 <Plus className="h-3 w-3" /> Schedule first session
               </button>
             </div>
@@ -761,7 +761,7 @@ export default function PtPage() {
               <p className="text-[13px] text-[#6b6b80]">No enrollments yet</p>
               {isOwnerOrManager && (
                 <button onClick={() => setShowEnroll(true)}
-                  className="text-xs text-violet-400 hover:text-violet-300 flex items-center gap-1">
+                  className="text-xs text-crayola hover:text-violet-300 flex items-center gap-1">
                   <Plus className="h-3 w-3" /> Enroll a member
                 </button>
               )}
@@ -830,7 +830,7 @@ export default function PtPage() {
             <p className="text-[13px] font-semibold text-white">PT Packages</p>
             {isOwnerOrManager && (
               <button onClick={() => setShowPackage(true)}
-                className="flex items-center gap-1.5 text-xs text-violet-400 hover:text-violet-300 transition-colors">
+                className="flex items-center gap-1.5 text-xs text-crayola hover:text-violet-300 transition-colors">
                 <Plus className="h-3.5 w-3.5" /> Add Package
               </button>
             )}
@@ -842,7 +842,7 @@ export default function PtPage() {
               <p className="text-[13px] text-[#6b6b80]">No packages yet</p>
               {isOwnerOrManager && (
                 <button onClick={() => setShowPackage(true)}
-                  className="text-xs text-violet-400 hover:text-violet-300 flex items-center gap-1">
+                  className="text-xs text-crayola hover:text-violet-300 flex items-center gap-1">
                   <Plus className="h-3 w-3" /> Create first package
                 </button>
               )}
@@ -851,7 +851,7 @@ export default function PtPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {packages.map(pkg => (
                 <div key={pkg.id} className="rounded-xl p-4"
-                  style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}>
+                  style={{ background: 'var(--color-gunmetal-900)', border: '1px solid #ffffff0a' }}>
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex-1 min-w-0">
                       <p className="text-[13px] font-semibold text-white">{pkg.name}</p>
@@ -864,7 +864,7 @@ export default function PtPage() {
                     </span>
                   </div>
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-[11px] text-violet-400 px-2 py-0.5 rounded-lg"
+                    <span className="text-[11px] text-crayola px-2 py-0.5 rounded-lg"
                       style={{ background: '#7c3aed15', border: '1px solid #7c3aed30' }}>
                       {pkg.sessions} sessions
                     </span>

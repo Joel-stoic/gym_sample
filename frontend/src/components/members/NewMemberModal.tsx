@@ -57,21 +57,21 @@ const STATUS_CONFIG = {
 }
 
 const inputCls = `
-  w-full rounded-xl border border-border-subtle bg-surface-base
-  px-4 py-2.5 text-sm text-white placeholder:text-zinc-500
-  focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/50 focus:outline-none transition-all
+  w-full rounded-xl border border-gunmetal-600 bg-gunmetal-900
+  px-4 py-2.5 text-sm text-white placeholder:text-gunmetal-400
+  focus:border-crayola/50 focus:ring-2 focus:ring-crayola/50 focus:outline-none transition-all
 `
 const selectCls = `
-  w-full rounded-xl border border-border-subtle bg-surface-base
+  w-full rounded-xl border border-gunmetal-600 bg-gunmetal-900
   px-4 py-2.5 text-sm text-white
-  focus:border-violet-500/50 focus:ring-2 focus:ring-violet-500/50 focus:outline-none transition-all
+  focus:border-crayola/50 focus:ring-2 focus:ring-crayola/50 focus:outline-none transition-all
   appearance-none cursor-pointer
 `
 
 function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
   return (
     <div className="space-y-1.5">
-      <label className="text-xs font-medium text-zinc-400">{label}</label>
+      <label className="text-xs font-medium text-gunmetal-400">{label}</label>
       {children}
       {error && <p className="text-[11px] text-rose-400">{error}</p>}
     </div>
@@ -80,9 +80,9 @@ function Field({ label, error, children }: { label: string; error?: string; chil
 
 function Section({ icon: Icon, title, children }: { icon: React.ElementType; title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-border-subtle bg-surface-raised p-5">
+    <div className="rounded-2xl border border-gunmetal-600 bg-gunmetal-800 p-5">
       <div className="mb-4 flex items-center gap-2.5">
-        <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-surface-base border border-border-strong text-zinc-300">
+        <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gunmetal-900 border border-gunmetal-600 text-gunmetal-100">
           <Icon size={16} />
         </div>
         <p className="text-[14px] font-semibold text-white">{title}</p>
@@ -258,7 +258,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 font-sans">
       
       {createdMember ? (
-        <div className="w-full max-w-[400px] overflow-hidden rounded-2xl bg-surface-popover border border-border-strong shadow-xl animate-in fade-in-0 zoom-in-95 duration-150">
+        <div className="w-full max-w-[400px] overflow-hidden rounded-2xl bg-gunmetal-800 border border-gunmetal-600 shadow-xl animate-in fade-in-0 zoom-in-95 duration-150">
           <div className="p-5 sm:p-6 space-y-5">
             <div className="flex flex-col items-center text-center">
               <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
@@ -267,20 +267,20 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               <p className="text-[18px] font-semibold text-white tracking-tight">
                 Member Added!
               </p>
-              <p className="mt-1.5 text-sm leading-relaxed text-zinc-400">
+              <p className="mt-1.5 text-sm leading-relaxed text-gunmetal-400">
                 Share these login details with <span className="text-white font-medium">{createdMember.name}</span>
               </p>
             </div>
 
             <div className="h-px bg-border-subtle" />
 
-            <div className="rounded-xl border border-border-subtle bg-surface-base p-4 space-y-3">
+            <div className="rounded-xl border border-gunmetal-600 bg-gunmetal-900 p-4 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-medium text-zinc-400">📱 Phone</span>
+                <span className="text-xs font-medium text-gunmetal-400">📱 Phone</span>
                 <span className="text-sm font-mono font-medium text-white">{createdMember.phone}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-xs font-medium text-zinc-400">🔑 Temp Password</span>
+                <span className="text-xs font-medium text-gunmetal-400">🔑 Temp Password</span>
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-mono font-semibold text-white">
                     {createdMember.tempPassword}
@@ -290,14 +290,14 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                       navigator.clipboard.writeText(createdMember.tempPassword)
                       toast.success('Password copied!')
                     }}
-                    className="rounded-lg p-1.5 text-zinc-400 hover:text-white hover:bg-white/5 transition-colors"
+                    className="rounded-lg p-1.5 text-gunmetal-400 hover:text-white hover:bg-white/5 transition-colors"
                   >
                     <Copy size={14} />
                   </button>
                 </div>
               </div>
-              <div className="pt-2 border-t border-border-subtle">
-                <p className="text-xs text-zinc-500">
+              <div className="pt-2 border-t border-gunmetal-600">
+                <p className="text-xs text-gunmetal-400">
                   Member must change this password on first login.
                 </p>
               </div>
@@ -312,13 +312,13 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   setPlanAmount(0)
                   setValue('planStartDate', toDateInputValue(new Date()))
                 }}
-                className="h-10 flex-1 rounded-xl border border-border-strong bg-surface-raised hover:bg-white/5 text-sm font-medium text-zinc-300 hover:text-white transition-all sm:flex-none px-4"
+                className="h-10 flex-1 rounded-xl border border-gunmetal-600 bg-gunmetal-800 hover:bg-white/5 text-sm font-medium text-gunmetal-100 hover:text-white transition-all sm:flex-none px-4"
               >
                 Add Another
               </button>
               <button
                 onClick={onClose}
-                className="h-10 flex-1 rounded-xl border-0 bg-violet-600 hover:bg-violet-700 text-sm font-medium text-white transition-all sm:flex-none px-6"
+                className="h-10 flex-1 rounded-xl border-0 bg-crayola hover:bg-crayola-600 text-sm font-medium text-white transition-all sm:flex-none px-6"
               >
                 Done
               </button>
@@ -326,24 +326,24 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
           </div>
         </div>
       ) : (
-        <div className="relative w-full max-w-2xl max-h-full flex flex-col overflow-hidden rounded-2xl bg-surface-popover border border-border-strong shadow-xl animate-in fade-in-0 zoom-in-95 duration-150">
+        <div className="relative w-full max-w-2xl max-h-full flex flex-col overflow-hidden rounded-2xl bg-gunmetal-800 border border-gunmetal-600 shadow-xl animate-in fade-in-0 zoom-in-95 duration-150">
           
-          <div className="flex items-center justify-between border-b border-border-subtle px-5 sm:px-6 py-4 bg-surface-popover shrink-0">
+          <div className="flex items-center justify-between border-b border-gunmetal-600 px-5 sm:px-6 py-4 bg-gunmetal-800 shrink-0">
             <div>
               <h2 className="text-[18px] font-semibold tracking-tight text-white">
                 Add Member
               </h2>
-              <p className="text-xs text-zinc-400 mt-0.5">Register a new gym member</p>
+              <p className="text-xs text-gunmetal-400 mt-0.5">Register a new gym member</p>
             </div>
             <button
               onClick={onClose}
-              className="flex h-9 w-9 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-white/5 hover:text-white"
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-gunmetal-400 transition-colors hover:bg-white/5 hover:text-white"
             >
               <X size={16} />
             </button>
           </div>
 
-          <form id="new-member-form" onSubmit={handleSubmit(onSubmit)} className="flex-1 overflow-y-auto px-5 sm:px-6 py-5 space-y-5 bg-surface-base">
+          <form id="new-member-form" onSubmit={handleSubmit(onSubmit)} className="flex-1 overflow-y-auto px-5 sm:px-6 py-5 space-y-5 bg-gunmetal-900">
             
             <Section icon={User} title="Personal Information">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -358,10 +358,10 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                 </Field>
                 <Field label="Gender">
                   <select className={selectCls} {...register('gender')}>
-                    <option value="" className="bg-surface-base">Select gender</option>
-                    <option value="MALE"   className="bg-surface-base">Male</option>
-                    <option value="FEMALE" className="bg-surface-base">Female</option>
-                    <option value="OTHER"  className="bg-surface-base">Other</option>
+                    <option value="" className="bg-gunmetal-900">Select gender</option>
+                    <option value="MALE"   className="bg-gunmetal-900">Male</option>
+                    <option value="FEMALE" className="bg-gunmetal-900">Female</option>
+                    <option value="OTHER"  className="bg-gunmetal-900">Other</option>
                   </select>
                 </Field>
                 <Field label="Date of Birth">
@@ -385,7 +385,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               </Field>
             </Section>
 
-            <div className="rounded-2xl border border-border-subtle bg-surface-raised overflow-hidden">
+            <div className="rounded-2xl border border-gunmetal-600 bg-gunmetal-800 overflow-hidden">
               <button
                 type="button"
                 onClick={() => {
@@ -403,20 +403,20 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                 className="w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-surface-base border border-border-strong text-zinc-300">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gunmetal-900 border border-gunmetal-600 text-gunmetal-100">
                     <Dumbbell size={16} />
                   </div>
                   <div>
                     <p className="text-[14px] font-semibold text-white">Membership Plan & Payment</p>
-                    <p className="text-xs text-zinc-400 mt-0.5">
+                    <p className="text-xs text-gunmetal-400 mt-0.5">
                       {addPayment ? 'Will be saved when you click Add Member' : 'Tap to assign a plan now'}
                     </p>
                   </div>
                 </div>
                 <div className={`flex-shrink-0 flex items-center gap-1.5 rounded-lg px-3 h-8 text-xs font-medium transition-colors ${
                   addPayment
-                    ? 'bg-violet-500/10 text-violet-400 border border-violet-500/20'
-                    : 'bg-surface-base text-zinc-400 border border-border-strong'
+                    ? 'bg-crayola-100 text-crayola border border-crayola/20'
+                    : 'bg-gunmetal-900 text-gunmetal-400 border border-gunmetal-600'
                 }`}>
                   {addPayment ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                   {addPayment ? 'Hide' : 'Add Plan'}
@@ -424,35 +424,35 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               </button>
 
               {addPayment && (
-                <div className="border-t border-border-subtle p-5 space-y-6">
+                <div className="border-t border-gunmetal-600 p-5 space-y-6">
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-surface-base border border-border-strong text-[10px] font-bold text-zinc-300">1</span>
-                      <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wide">Choose Plan</span>
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gunmetal-900 border border-gunmetal-600 text-[10px] font-bold text-gunmetal-100">1</span>
+                      <span className="text-xs font-semibold text-gunmetal-400 uppercase tracking-wide">Choose Plan</span>
                     </div>
                     <select
                       className={selectCls}
                       {...register('planId')}
                       onChange={e => { register('planId').onChange(e); handlePlanChange(e.target.value) }}
                     >
-                      <option value="" className="bg-surface-base">— Select a membership plan —</option>
+                      <option value="" className="bg-gunmetal-900">— Select a membership plan —</option>
                       {plans.map(plan => (
-                        <option key={plan.id} value={plan.id} className="bg-surface-base">
+                        <option key={plan.id} value={plan.id} className="bg-gunmetal-900">
                           {plan.name}  •  ₹{(plan.price / 100).toLocaleString('en-IN')}  •  {plan.durationDays} days
                         </option>
                       ))}
                     </select>
                     {errors.planId && <p className="text-[11px] text-rose-400">{errors.planId.message}</p>}
                     {plans.length === 0 && (
-                      <p className="text-xs text-zinc-500">
+                      <p className="text-xs text-gunmetal-400">
                         No plans found. Please create a plan first.
                       </p>
                     )}
                     {planAmount > 0 && (
-                      <div className="flex items-center justify-between rounded-xl border border-border-strong bg-surface-base px-4 py-3">
+                      <div className="flex items-center justify-between rounded-xl border border-gunmetal-600 bg-gunmetal-900 px-4 py-3">
                         <div>
                           <p className="text-sm font-semibold text-white">{plans.find(p => p.id === planId)?.name}</p>
-                          <p className="text-xs text-zinc-400 mt-0.5">{plans.find(p => p.id === planId)?.durationDays} days membership</p>
+                          <p className="text-xs text-gunmetal-400 mt-0.5">{plans.find(p => p.id === planId)?.durationDays} days membership</p>
                         </div>
                         <p className="text-[18px] font-bold text-white">₹{planAmount}</p>
                       </div>
@@ -461,13 +461,13 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
 
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-surface-base border border-border-strong text-[10px] font-bold text-zinc-300">2</span>
-                      <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wide">Adjust Amount</span>
-                      <span className="text-[11px] text-zinc-500">(optional)</span>
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gunmetal-900 border border-gunmetal-600 text-[10px] font-bold text-gunmetal-100">2</span>
+                      <span className="text-xs font-semibold text-gunmetal-400 uppercase tracking-wide">Adjust Amount</span>
+                      <span className="text-[11px] text-gunmetal-400">(optional)</span>
                     </div>
                     <div className="grid grid-cols-2 gap-3">
                       <div className="space-y-1.5">
-                        <label className="text-xs font-medium text-zinc-400">Discount (₹)</label>
+                        <label className="text-xs font-medium text-gunmetal-400">Discount (₹)</label>
                         <input
                           className={inputCls} type="number" inputMode="numeric" placeholder="0" min={0}
                           {...register('discount')}
@@ -475,7 +475,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                         />
                       </div>
                       <div className="space-y-1.5">
-                        <label className="text-xs font-medium text-zinc-400">Extra Charge (₹)</label>
+                        <label className="text-xs font-medium text-gunmetal-400">Extra Charge (₹)</label>
                         <input
                           className={inputCls} type="number" inputMode="numeric" placeholder="0" min={0}
                           {...register('additionalFee')}
@@ -484,24 +484,24 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                       </div>
                     </div>
                     {planAmount > 0 && (
-                      <div className="rounded-xl border border-border-subtle bg-surface-base p-3 space-y-2 mt-2">
+                      <div className="rounded-xl border border-gunmetal-600 bg-gunmetal-900 p-3 space-y-2 mt-2">
                         <div className="flex items-center justify-between text-sm">
-                          <span className="text-zinc-400">Plan price</span>
+                          <span className="text-gunmetal-400">Plan price</span>
                           <span className="text-white font-medium">₹{planAmount}</span>
                         </div>
                         {discount > 0 && (
                           <div className="flex items-center justify-between text-sm">
-                            <span className="text-zinc-400">Discount</span>
+                            <span className="text-gunmetal-400">Discount</span>
                             <span className="text-emerald-400 font-medium">− ₹{discount}</span>
                           </div>
                         )}
                         {additionalFee > 0 && (
                           <div className="flex items-center justify-between text-sm">
-                            <span className="text-zinc-400">Extra charge</span>
+                            <span className="text-gunmetal-400">Extra charge</span>
                             <span className="text-amber-400 font-medium">+ ₹{additionalFee}</span>
                           </div>
                         )}
-                        <div className="flex items-center justify-between border-t border-border-subtle pt-2 mt-2">
+                        <div className="flex items-center justify-between border-t border-gunmetal-600 pt-2 mt-2">
                           <span className="text-sm font-semibold text-white">Total to collect</span>
                           <span className="text-base font-bold text-white">₹{netDue}</span>
                         </div>
@@ -511,12 +511,12 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
 
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-surface-base border border-border-strong text-[10px] font-bold text-zinc-300">3</span>
-                      <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wide">Amount Collected Today</span>
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gunmetal-900 border border-gunmetal-600 text-[10px] font-bold text-gunmetal-100">3</span>
+                      <span className="text-xs font-semibold text-gunmetal-400 uppercase tracking-wide">Amount Collected Today</span>
                     </div>
                     <div className="space-y-1.5">
                       <div className="relative">
-                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[14px] font-semibold text-zinc-500">₹</span>
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[14px] font-semibold text-gunmetal-400">₹</span>
                         <input
                           className={`${inputCls} pl-7 text-[16px] font-semibold`}
                           type="number" inputMode="numeric"
@@ -537,7 +537,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                             {paymentStatus === 'PENDING' && 'Nothing paid — member will be Inactive'}
                           </p>
                           {paymentStatus === 'PARTIAL' && paidAmount > 0 && (
-                            <p className="text-[11px] text-zinc-400 mt-0.5">You can collect the rest later from Payments</p>
+                            <p className="text-[11px] text-gunmetal-400 mt-0.5">You can collect the rest later from Payments</p>
                           )}
                         </div>
                       </div>
@@ -546,13 +546,13 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
 
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-surface-base border border-border-strong text-[10px] font-bold text-zinc-300">4</span>
-                      <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wide">Membership Start Date</span>
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gunmetal-900 border border-gunmetal-600 text-[10px] font-bold text-gunmetal-100">4</span>
+                      <span className="text-xs font-semibold text-gunmetal-400 uppercase tracking-wide">Membership Start Date</span>
                     </div>
                     <input className={inputCls} type="date" style={{ colorScheme: 'dark' }} {...register('planStartDate')} />
                     {expiryPreview && (
                       <div className="flex items-center justify-between rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-2.5">
-                        <div className="flex items-center gap-2 text-xs text-zinc-400">
+                        <div className="flex items-center gap-2 text-xs text-gunmetal-400">
                           <CalendarDays size={14} className="text-emerald-400" />
                           Membership expires on
                         </div>
@@ -563,8 +563,8 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
 
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-surface-base border border-border-strong text-[10px] font-bold text-zinc-300">5</span>
-                      <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wide">How Did They Pay?</span>
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gunmetal-900 border border-gunmetal-600 text-[10px] font-bold text-gunmetal-100">5</span>
+                      <span className="text-xs font-semibold text-gunmetal-400 uppercase tracking-wide">How Did They Pay?</span>
                     </div>
                     <div className="grid grid-cols-2 gap-2.5">
                       {PAYMENT_METHODS.map(m => {
@@ -581,11 +581,11 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                             onClick={() => setValue('paymentMethod', m.value)}
                             className={`flex items-center justify-center gap-2.5 h-12 rounded-xl border text-sm font-medium transition-all ${
                               selected
-                                ? 'border-violet-500 bg-violet-500/10 text-violet-400'
-                                : 'border-border-subtle bg-surface-base text-zinc-400 hover:bg-white/5 hover:text-zinc-300'
+                                ? 'border-crayola bg-crayola-100 text-crayola'
+                                : 'border-gunmetal-600 bg-gunmetal-900 text-gunmetal-400 hover:bg-white/5 hover:text-gunmetal-100'
                             }`}
                           >
-                            <span className={selected ? 'text-violet-400' : 'text-zinc-500'}>
+                            <span className={selected ? 'text-crayola' : 'text-gunmetal-400'}>
                               {icons[m.value] ?? <Wallet size={16} />}
                             </span>
                             {m.label}
@@ -597,8 +597,8 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   </div>
 
                   <div className="space-y-1.5 pt-1">
-                    <label className="text-xs font-medium text-zinc-400">
-                      Notes <span className="text-zinc-500">(optional)</span>
+                    <label className="text-xs font-medium text-gunmetal-400">
+                      Notes <span className="text-gunmetal-400">(optional)</span>
                     </label>
                     <input className={inputCls} placeholder="e.g. Paid via GPay, receipt #123" {...register('paymentNotes')} />
                   </div>
@@ -608,11 +608,11 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
             </div>
           </form>
 
-          <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 px-5 sm:px-6 py-4 border-t border-border-subtle bg-surface-popover shrink-0">
+          <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 px-5 sm:px-6 py-4 border-t border-gunmetal-600 bg-gunmetal-800 shrink-0">
             <button
               type="button"
               onClick={onClose}
-              className="w-full sm:w-auto h-10 rounded-xl border border-border-strong bg-surface-base px-6 text-sm font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-white"
+              className="w-full sm:w-auto h-10 rounded-xl border border-gunmetal-600 bg-gunmetal-900 px-6 text-sm font-medium text-gunmetal-100 transition-colors hover:bg-white/5 hover:text-white"
             >
               Cancel
             </button>
@@ -620,7 +620,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               type="submit"
               form="new-member-form"
               disabled={loading}
-              className="flex w-full sm:w-auto h-10 items-center justify-center gap-2 rounded-xl px-6 text-sm font-medium text-white transition-colors disabled:opacity-60 bg-violet-600 hover:bg-violet-700"
+              className="flex w-full sm:w-auto h-10 items-center justify-center gap-2 rounded-xl px-6 text-sm font-medium text-white transition-colors disabled:opacity-60 bg-crayola hover:bg-crayola-600"
             >
               {loading && <Loader2 size={16} className="animate-spin" />}
               {loading ? 'Saving...' : addPayment && planId ? 'Add Member & Record Payment' : 'Add Member'}

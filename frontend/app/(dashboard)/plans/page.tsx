@@ -225,7 +225,7 @@ export default function PlansPage() {
     return (
       <div className="flex h-64 items-center justify-center">
         <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-crayola border-t-transparent" />
           <p className="text-[12px] text-[#6b6b80]">Loading plans...</p>
         </div>
       </div>
@@ -285,7 +285,7 @@ export default function PlansPage() {
             className="flex h-12 w-12 items-center justify-center rounded-2xl"
             style={{ background: '#7c3aed20' }}
           >
-            <CreditCard className="h-5 w-5 text-violet-400" />
+            <CreditCard className="h-5 w-5 text-crayola" />
           </div>
           <div className="text-center">
             <p className="text-[14px] font-medium text-white">No plans yet</p>

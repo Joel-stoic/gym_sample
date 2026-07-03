@@ -82,7 +82,7 @@ function StyledInput({
       onChange={e => onChange(e.target.value)}
       placeholder={placeholder}
       className="w-full rounded-xl px-3 py-2.5 text-[14px] text-white outline-none transition-all"
-      style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}
+      style={{ background: 'var(--color-gunmetal-900)', border: '1px solid #ffffff0a' }}
       onFocus={e => (e.currentTarget.style.border = '1px solid #7c3aed44')}
       onBlur={e  => (e.currentTarget.style.border = '1px solid #ffffff0a')}
     />
@@ -105,7 +105,7 @@ function MethodPicker({ value, onChange }: { value: string; onChange: (v: string
           style={
             value === v
               ? { background: '#7c3aed22', border: '1px solid #7c3aed40', color: '#a855f7' }
-              : { background: '#0f0f0f',   border: '1px solid #ffffff0a', color: '#6b6b80' }
+              : { background: 'var(--color-gunmetal-900)',   border: '1px solid #ffffff0a', color: '#6b6b80' }
           }
         >
           <Icon size={14} />
@@ -196,7 +196,7 @@ function DeleteConfirmModal({
           <button
             onClick={onClose}
             className="flex-1 rounded-xl py-2.5 text-[13px] font-medium text-[#6b6b80] hover:text-white transition-colors"
-            style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}
+            style={{ background: 'var(--color-gunmetal-900)', border: '1px solid #ffffff0a' }}
           >
             Cancel
           </button>
@@ -364,7 +364,7 @@ function EditPaymentModal({
                 value={planId}
                 onChange={e => handlePlanChange(e.target.value)}
                 className="w-full rounded-xl px-3 py-2.5 text-[14px] text-white outline-none transition-all"
-                style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}
+                style={{ background: 'var(--color-gunmetal-900)', border: '1px solid #ffffff0a' }}
                 onFocus={e => (e.currentTarget.style.border = '1px solid #7c3aed44')}
                 onBlur={e  => (e.currentTarget.style.border = '1px solid #ffffff0a')}
               >
@@ -444,7 +444,7 @@ function EditPaymentModal({
             />
             {previewExpiry && (
               <p className="mt-1 text-[11px] text-[#6b6b80]">
-                Expiry: <span className="text-violet-400">{format(previewExpiry, 'd MMM yyyy')}</span>
+                Expiry: <span className="text-crayola">{format(previewExpiry, 'd MMM yyyy')}</span>
               </p>
             )}
           </div>
@@ -462,7 +462,7 @@ function EditPaymentModal({
               rows={2}
               placeholder="Optional"
               className="w-full rounded-xl px-3 py-2.5 text-[14px] text-white placeholder:text-[#6b6b80] outline-none resize-none transition-all"
-              style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}
+              style={{ background: 'var(--color-gunmetal-900)', border: '1px solid #ffffff0a' }}
               onFocus={e => (e.currentTarget.style.border = '1px solid #7c3aed44')}
               onBlur={e  => (e.currentTarget.style.border = '1px solid #ffffff0a')}
             />
@@ -482,7 +482,7 @@ function EditPaymentModal({
             <button
               onClick={onClose}
               className="flex-1 rounded-xl py-2.5 text-[13px] font-medium text-[#6b6b80] hover:text-white transition-colors"
-              style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}
+              style={{ background: 'var(--color-gunmetal-900)', border: '1px solid #ffffff0a' }}
             >
               Cancel
             </button>
@@ -599,7 +599,7 @@ function CollectDueModal({
           <button
             onClick={onClose}
             className="flex-1 rounded-xl py-2.5 text-[13px] font-medium text-[#6b6b80] transition-all hover:text-white"
-            style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}
+            style={{ background: 'var(--color-gunmetal-900)', border: '1px solid #ffffff0a' }}
           >
             Cancel
           </button>
@@ -651,7 +651,7 @@ function Pagination({
         onClick={() => onPageChange(page - 1)}
         disabled={page === 1}
         className={`${btnBase} text-[#6b6b80] hover:text-white disabled:opacity-30`}
-        style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}
+        style={{ background: 'var(--color-gunmetal-900)', border: '1px solid #ffffff0a' }}
       >
         <ChevronLeft size={14} />
       </button>
@@ -667,7 +667,7 @@ function Pagination({
             style={
               p === page
                 ? { background: 'linear-gradient(135deg,#7c3aed,#a855f7)', color: '#fff', border: '1px solid transparent' }
-                : { background: '#0f0f0f', color: '#9898b0', border: '1px solid #ffffff0a' }
+                : { background: 'var(--color-gunmetal-900)', color: '#9898b0', border: '1px solid #ffffff0a' }
             }
           >
             {p}
@@ -679,7 +679,7 @@ function Pagination({
         onClick={() => onPageChange(page + 1)}
         disabled={page === totalPages}
         className={`${btnBase} text-[#6b6b80] hover:text-white disabled:opacity-30`}
-        style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}
+        style={{ background: 'var(--color-gunmetal-900)', border: '1px solid #ffffff0a' }}
       >
         <ChevronRight size={14} />
       </button>
@@ -761,7 +761,7 @@ export default function PaymentsPage() {
         action={
           <Button
             onClick={() => router.push('/payments/new')}
-            className="h-10 w-full sm:w-auto rounded-xl bg-violet-600 px-4 text-white hover:bg-violet-500"
+            className="h-10 w-full sm:w-auto rounded-xl bg-crayola px-4 text-white hover:bg-crayola"
           >
             <Plus className="mr-2 h-4 w-4" />
             Record Payment
@@ -780,7 +780,7 @@ export default function PaymentsPage() {
               style={
                 period === p
                   ? { background: 'linear-gradient(135deg,#7c3aed,#a855f7)', color: '#fff' }
-                  : { background: '#0f0f0f', color: '#6b6b80', border: '1px solid #ffffff0a' }
+                  : { background: 'var(--color-gunmetal-900)', color: '#6b6b80', border: '1px solid #ffffff0a' }
               }
             >
               {PERIOD_LABELS[p]}
@@ -794,7 +794,7 @@ export default function PaymentsPage() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div className="rounded-2xl p-5" style={{ background: '#0a0a0a', border: '1px solid #7c3aed22' }}>
             <div className="mb-2 flex items-center gap-2">
-              <TrendingUp size={14} className="text-violet-400" />
+              <TrendingUp size={14} className="text-crayola" />
               <p className="text-sm text-[#6b6b80]">Revenue · {PERIOD_LABELS[period]}</p>
             </div>
             {summaryLoading ? (
@@ -883,7 +883,7 @@ export default function PaymentsPage() {
                     {/* method */}
                     <div>
                       <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.03] px-3 py-1.5">
-                        <Icon className="h-3.5 w-3.5 text-violet-400" />
+                        <Icon className="h-3.5 w-3.5 text-crayola" />
                         <span className="text-xs text-[#d4d4dc]">
                           {METHOD_LABELS[payment.paymentMethod] || payment.paymentMethod}
                         </span>
@@ -946,7 +946,7 @@ export default function PaymentsPage() {
                     <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => setEditPayment(toEditState(payment))}
-                        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] font-medium text-[#6b6b80] hover:text-violet-400 transition-colors"
+                        className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] font-medium text-[#6b6b80] hover:text-crayola transition-colors"
                         style={{ background: '#ffffff06', border: '1px solid #ffffff0a' }}
                       >
                         <Pencil size={11} />
@@ -994,7 +994,7 @@ export default function PaymentsPage() {
                     <div className="flex items-center justify-between gap-3">
                       <p className="text-sm text-[#d4d4dc]">{payment.plan?.name}</p>
                       <div className="inline-flex flex-shrink-0 items-center gap-1.5 rounded-full border border-white/[0.06] bg-white/[0.03] px-2.5 py-1">
-                        <Icon className="h-3 w-3 text-violet-400" />
+                        <Icon className="h-3 w-3 text-crayola" />
                         <span className="text-[11px] text-[#d4d4dc]">
                           {METHOD_LABELS[payment.paymentMethod] || payment.paymentMethod}
                         </span>
@@ -1044,7 +1044,7 @@ export default function PaymentsPage() {
                       )}
                       <button
                         onClick={() => setEditPayment(toEditState(payment))}
-                        className="flex flex-1 items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-[12px] font-medium text-[#6b6b80] hover:text-violet-400 transition-colors"
+                        className="flex flex-1 items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-[12px] font-medium text-[#6b6b80] hover:text-crayola transition-colors"
                         style={{ background: '#ffffff06', border: '1px solid #ffffff0a' }}
                       >
                         <Pencil size={12} />

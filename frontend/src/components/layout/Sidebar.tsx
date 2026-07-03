@@ -68,21 +68,21 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
     <div
       className={cn(
         'flex h-full w-[82vw] max-w-[280px] flex-shrink-0 flex-col overflow-hidden',
-        'bg-surface-base border-r border-border-strong',
+        'bg-gunmetal-900 border-r border-gunmetal-600',
         'md:w-64 md:max-w-none',
         'font-sans'
       )}
     >
       {/* Logo — compact on mobile so the whole rail fits without scrolling */}
-      <div className="flex items-center gap-2.5 px-4 py-3 border-b border-[#1A1A1A] sm:gap-3 sm:px-6 sm:py-6">
-        <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-sm border border-violet-500/30 bg-violet-500/10 sm:h-9 sm:w-9">
-          <Dumbbell className="h-3.5 w-3.5 text-violet-500 sm:h-4 sm:w-4" />
+      <div className="flex items-center gap-2.5 px-4 py-3 border-b border-gunmetal-600 sm:gap-3 sm:px-6 sm:py-6">
+        <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-sm bg-crayola sm:h-9 sm:w-9">
+          <Dumbbell className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4" />
         </div>
         <div className="min-w-0 flex-1">
           <p className="text-lg leading-none tracking-widest text-white sm:text-2xl font-heading">
             JOVIFITX
           </p>
-          <p className="mt-0.5 truncate text-[9.5px] font-medium tracking-wide text-[#555555] uppercase sm:mt-1 sm:text-[11px]">
+          <p className="mt-0.5 truncate text-[9.5px] font-medium tracking-wide text-gunmetal-400 uppercase sm:mt-1 sm:text-[11px]">
             {tenant?.name || 'Loading…'}
           </p>
         </div>
@@ -90,7 +90,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
           <button
             onClick={onClose}
             aria-label="Close menu"
-            className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-sm border border-[#2A2A2A] text-[#888888] transition-colors hover:bg-[#1A1A1A] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:hidden"
+            className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-sm border border-gunmetal-600 text-gunmetal-400 transition-colors hover:bg-gunmetal-700 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crayola md:hidden"
           >
             <X className="h-3.5 w-3.5" />
           </button>
@@ -99,7 +99,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
 
       {/* Menu label */}
       <div className="px-4 pb-1.5 pt-2.5 sm:px-6 sm:pb-3 sm:pt-6">
-        <p className="text-[9.5px] font-bold uppercase tracking-widest text-[#555555] sm:text-[11px]">
+        <p className="text-[9.5px] font-bold uppercase tracking-widest text-gunmetal-400 sm:text-[11px]">
           System Menu
         </p>
       </div>
@@ -119,22 +119,21 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
               }}
               className={cn(
                 'group relative flex items-center gap-3 rounded-sm border px-3 py-3 text-[11.5px] font-bold uppercase tracking-wide transition-colors sm:gap-3 sm:px-3 sm:py-3 sm:text-[12px]',
-                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crayola',
                 isActive
-                  ? 'border-[#2A2A2A] bg-[#121212] text-white'
-                  : 'border-transparent text-[#888888] hover:bg-[#0A0A0A] hover:text-white active:bg-[#141414]'
+                  ? 'border-transparent bg-crayola-100 text-white'
+                  : 'border-transparent text-gunmetal-400 hover:bg-gunmetal-800 hover:text-gunmetal-100 active:bg-gunmetal-700'
               )}
             >
               {isActive && (
-                <span className="absolute inset-y-0 left-0 w-[3px] rounded-l-sm bg-violet-600" />
+                <span className="absolute inset-y-0 left-0 w-[3px] rounded-l-sm bg-crayola" />
               )}
               <span className="relative flex-shrink-0">
                 <Icon
-                  className="h-[17px] w-[17px] transition-colors sm:h-[18px] sm:w-[18px]"
-                  style={{ color: isActive ? '#7C3AED' : undefined }}
+                  className={cn("h-[17px] w-[17px] transition-colors sm:h-[18px] sm:w-[18px]", isActive ? "text-crayola" : "")}
                 />
                 {item.href === '/notification' && hasNew && (
-                  <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full border-2 border-[#121212] bg-red-600 sm:h-2.5 sm:w-2.5" />
+                  <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full border-2 border-gunmetal-900 bg-crayola sm:h-2.5 sm:w-2.5" />
                 )}
               </span>
               <span className="truncate">{item.label}</span>
@@ -144,23 +143,23 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
       </nav>
 
       {/* User + logout — compact footer that always stays in view */}
-      <div className="flex-shrink-0 border-t border-[#1A1A1A] p-2.5 sm:p-4">
+      <div className="flex-shrink-0 border-t border-gunmetal-600 p-2.5 sm:p-4">
         <div className="mb-2 flex items-center gap-2.5 rounded-sm px-1.5 py-1 sm:mb-3 sm:gap-3 sm:px-2 sm:py-2">
-          <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-sm border border-violet-500/20 bg-violet-500/10 text-[12px] font-bold text-violet-500 sm:h-10 sm:w-10 sm:text-[14px]">
+          <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-sm bg-gunmetal-700 text-[12px] font-bold text-white sm:h-10 sm:w-10 sm:text-[14px]">
             {initials}
           </div>
           <div className="min-w-0 flex-1">
             <p className="truncate text-[12px] font-bold tracking-wide text-white sm:text-[13px]">
               {staff?.name ?? 'User'}
             </p>
-            <p className="text-[9.5px] font-medium uppercase tracking-wide text-[#555555] sm:text-[11px]">
+            <p className="text-[9.5px] font-medium uppercase tracking-wide text-gunmetal-400 sm:text-[11px]">
               {staff?.role ?? ''}
             </p>
           </div>
         </div>
         <button
           onClick={handleLogout}
-          className="flex w-full items-center justify-center gap-2 rounded-sm border border-[#2A2A2A] bg-transparent px-3 py-2 text-[10.5px] font-bold uppercase tracking-wider text-[#888888] transition-colors hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 sm:py-3 sm:text-[12px]"
+          className="flex w-full items-center justify-center gap-2 rounded-sm border border-gunmetal-600 bg-transparent px-3 py-2 text-[10.5px] font-bold uppercase tracking-wider text-gunmetal-400 transition-colors hover:border-crayola/50 hover:bg-crayola-100 hover:text-crayola focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crayola sm:py-3 sm:text-[12px]"
         >
           <LogOut className="h-3.5 w-3.5 flex-shrink-0 sm:h-4 sm:w-4" />
           Disconnect

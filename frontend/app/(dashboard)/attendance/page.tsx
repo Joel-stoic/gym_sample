@@ -107,7 +107,7 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
           value={query}
           onChange={handleChange}
           placeholder="Search by name or phone..."
-          className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-9 text-sm text-white placeholder:text-[#6b6b80] focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30"
+          className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-9 text-sm text-white placeholder:text-[#6b6b80] focus:border-crayola/50 focus:outline-none focus:ring-1 focus:ring-crayola/30"
         />
         {query && (
           <button onClick={handleClear} className="absolute right-3 text-[#6b6b80] hover:text-white">
@@ -117,7 +117,7 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
       </div>
 
       {open && (
-        <div className="absolute z-50 mt-1 w-full overflow-hidden rounded-xl border border-white/[0.08] bg-[#0f0f0f] shadow-2xl">
+        <div className="absolute z-50 mt-1 w-full overflow-hidden rounded-xl border border-white/[0.08] bg-[var(--color-gunmetal-900)] shadow-2xl">
           {results.length === 0 ? (
             <div className="px-4 py-3 text-sm text-[#6b6b80]">No members found</div>
           ) : (
@@ -125,9 +125,9 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
               <button
                 key={member.id}
                 onClick={() => handleSelect(member)}
-                className="flex w-full items-center gap-3 px-4 py-2.5 text-left transition-colors hover:bg-violet-600/10"
+                className="flex w-full items-center gap-3 px-4 py-2.5 text-left transition-colors hover:bg-crayola/10"
               >
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-violet-600/20 text-[11px] font-semibold text-violet-300">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-crayola-100 text-[11px] font-semibold text-violet-300">
                   {member.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
                 </div>
                 <div className="min-w-0 flex-1">
@@ -171,7 +171,7 @@ function TabButton({ active, onClick, children }: { active: boolean; onClick: ()
     <button
       onClick={onClick}
       className={`rounded-xl px-4 py-2 text-sm font-medium transition-colors ${
-        active ? 'bg-violet-600 text-white' : 'text-[#6b6b80] hover:bg-white/[0.04] hover:text-white'
+        active ? 'bg-crayola text-white' : 'text-[#6b6b80] hover:bg-white/[0.04] hover:text-white'
       }`}
     >
       {children}
@@ -253,7 +253,7 @@ export default function AttendancePage() {
 
             <Dialog open={dialogOpen} onOpenChange={handleDialogChange}>
               <DialogTrigger asChild>
-                <Button className="bg-violet-600 hover:bg-violet-500">
+                <Button className="bg-crayola hover:bg-crayola">
                   <UserCheck className="mr-2 h-4 w-4" />
                   Mark Attendance
                 </Button>
@@ -268,8 +268,8 @@ export default function AttendancePage() {
                   <MemberSearch onSelect={setSelectedMember} />
 
                   {selectedMember && (
-                    <div className="flex items-center gap-3 rounded-xl border border-violet-500/20 bg-violet-600/10 px-4 py-3">
-                      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-violet-600/20 text-[11px] font-semibold text-violet-300">
+                    <div className="flex items-center gap-3 rounded-xl border border-crayola/20 bg-crayola/10 px-4 py-3">
+                      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-crayola-100 text-[11px] font-semibold text-violet-300">
                         {selectedMember.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
                       </div>
                       <div className="min-w-0 flex-1">
@@ -283,7 +283,7 @@ export default function AttendancePage() {
                   )}
 
                   <Button
-                    className="h-11 w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-50"
+                    className="h-11 w-full bg-crayola hover:bg-crayola disabled:opacity-50"
                     onClick={handleMarkAttendance}
                     disabled={markMutation.isPending || !selectedMember}
                   >
@@ -310,7 +310,7 @@ export default function AttendancePage() {
         ) : (
           <div className="grid gap-4 md:grid-cols-3">
             <StatsCard title="Present Today" value={todayCount}             icon={CalendarCheck} iconClassName="bg-green-500/15 text-green-400"  />
-            <StatsCard title="QR Check-ins"  value={todayAttendance.length} icon={QrCode}        iconClassName="bg-violet-500/15 text-violet-400" />
+            <StatsCard title="QR Check-ins"  value={todayAttendance.length} icon={QrCode}        iconClassName="bg-crayola/15 text-crayola" />
             <StatsCard title="Activity"      value="Live"                   icon={Activity}      iconClassName="bg-blue-500/15 text-blue-400"     />
           </div>
         )

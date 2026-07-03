@@ -28,26 +28,26 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
   const router = useRouter()
 
   return (
-    <Table className="bg-surface-base">
-      <TableHeader className="bg-surface-raised">
-        <TableRow className="border-b border-border-subtle hover:bg-transparent">
-          <TableHead className="text-zinc-500 text-xs font-semibold uppercase tracking-wider py-4">
+    <Table className="bg-gunmetal-800">
+      <TableHeader className="bg-gunmetal-900">
+        <TableRow className="border-b border-gunmetal-600 hover:bg-transparent">
+          <TableHead className="text-gunmetal-400 text-xs font-semibold uppercase tracking-wider py-4">
             Name
           </TableHead>
 
-          <TableHead className="text-zinc-500 text-xs font-semibold uppercase tracking-wider">
+          <TableHead className="text-gunmetal-400 text-xs font-semibold uppercase tracking-wider">
             Phone
           </TableHead>
 
-          <TableHead className="text-zinc-500 text-xs font-semibold uppercase tracking-wider">
+          <TableHead className="text-gunmetal-400 text-xs font-semibold uppercase tracking-wider">
             Plan
           </TableHead>
 
-          <TableHead className="text-zinc-500 text-xs font-semibold uppercase tracking-wider">
+          <TableHead className="text-gunmetal-400 text-xs font-semibold uppercase tracking-wider">
             Expiry
           </TableHead>
 
-          <TableHead className="text-zinc-500 text-xs font-semibold uppercase tracking-wider">
+          <TableHead className="text-gunmetal-400 text-xs font-semibold uppercase tracking-wider">
             Status
           </TableHead>
 
@@ -60,13 +60,13 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
           return (
             <TableRow
               key={member.id}
-              className="cursor-pointer border-b border-border-subtle last:border-0 hover:bg-white/5 transition-colors group"
+              className="cursor-pointer border-b border-gunmetal-600 last:border-0 hover:bg-gunmetal-700 transition-colors group"
               onClick={() => router.push(`/members/${member.id}`)}
             >
               {/* Name + avatar */}
               <TableCell className="py-4">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-surface-raised border border-border-strong text-[13px] font-medium text-zinc-300">
+                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-gunmetal-700 text-[13px] font-medium text-white">
                     {member.name.charAt(0).toUpperCase()}
                   </div>
                   <div>
@@ -74,7 +74,7 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
                       {member.name}
                     </p>
                     {member.email && (
-                      <p className="text-[13px] text-zinc-500">
+                      <p className="text-[13px] text-gunmetal-400">
                         {member.email}
                       </p>
                     )}
@@ -84,7 +84,7 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
 
               {/* Phone */}
               <TableCell>
-                <span className="text-[14px] font-medium text-zinc-400">
+                <span className="text-[14px] font-medium text-gunmetal-400">
                   {member.phone}
                 </span>
               </TableCell>
@@ -92,22 +92,22 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
               {/* Plan */}
               <TableCell>
                 {member.plan?.name ? (
-                  <span className="rounded-md bg-white/5 border border-white/10 px-2 py-1 text-[13px] font-medium text-zinc-300">
+                  <span className="rounded-md bg-gunmetal-700 px-2 py-1 text-[13px] font-medium text-gunmetal-100">
                     {member.plan.name}
                   </span>
                 ) : (
-                  <span className="text-[13px] text-zinc-500">No plan</span>
+                  <span className="text-[13px] text-gunmetal-400">No plan</span>
                 )}
               </TableCell>
 
               {/* Expiry */}
               <TableCell>
                 {member.membershipExpiry ? (
-                  <span className="text-[14px] text-zinc-400">
+                  <span className="text-[14px] text-gunmetal-400">
                     {formatDate(member.membershipExpiry)}
                   </span>
                 ) : (
-                  <span className="text-[13px] text-zinc-500">—</span>
+                  <span className="text-[13px] text-gunmetal-400">—</span>
                 )}
               </TableCell>
 
@@ -116,7 +116,7 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
                 {(() => {
                   if (!member.membershipExpiry) {
                     return (
-                      <span className="rounded-md bg-zinc-500/10 border border-zinc-500/20 px-2 py-1 text-[12px] font-medium text-zinc-400">
+                      <span className="rounded-md bg-gunmetal-600 px-2 py-1 text-[12px] font-medium text-gunmetal-400">
                         INACTIVE
                       </span>
                     )
@@ -134,7 +134,7 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
 
                   if (daysLeft < 0) {
                     return (
-                      <span className="rounded-md bg-rose-500/10 border border-rose-500/20 px-2 py-1 text-[12px] font-medium text-rose-400">
+                      <span className="rounded-md bg-gunmetal-600 px-2 py-1 text-[12px] font-medium text-gunmetal-400">
                         INACTIVE
                       </span>
                     )
@@ -142,7 +142,7 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
 
                   if (daysLeft === 0) {
                     return (
-                      <span className="rounded-md bg-rose-500/10 border border-rose-500/20 px-2 py-1 text-[12px] font-medium text-rose-400">
+                      <span className="rounded-md bg-gunmetal-600 px-2 py-1 text-[12px] font-medium text-gunmetal-400">
                         EXPIRES TODAY
                       </span>
                     )
@@ -150,7 +150,7 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
 
                   if (daysLeft <= 3) {
                     return (
-                      <span className="rounded-md bg-amber-500/10 border border-amber-500/20 px-2 py-1 text-[12px] font-medium text-amber-400">
+                      <span className="rounded-md bg-gunmetal-600 px-2 py-1 text-[12px] font-medium text-gunmetal-400">
                         {daysLeft} DAYS LEFT
                       </span>
                     )
@@ -158,14 +158,14 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
 
                   if (daysLeft <= 7) {
                     return (
-                      <span className="rounded-md bg-amber-500/10 border border-amber-500/20 px-2 py-1 text-[12px] font-medium text-amber-400">
+                      <span className="rounded-md bg-gunmetal-600 px-2 py-1 text-[12px] font-medium text-gunmetal-400">
                         {daysLeft} DAYS LEFT
                       </span>
                     )
                   }
 
                   return (
-                    <span className="rounded-md bg-emerald-500/10 border border-emerald-500/20 px-2 py-1 text-[12px] font-medium text-emerald-400">
+                    <span className="rounded-md bg-crayola-100 border border-crayola px-2 py-1 text-[12px] font-medium text-crayola">
                       ACTIVE
                     </span>
                   )
@@ -177,7 +177,7 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <button
-                      className="flex h-8 w-8 items-center justify-center rounded-lg transition-colors bg-transparent border border-transparent text-zinc-500 hover:bg-white/10 hover:border-border-strong hover:text-white"
+                      className="flex h-8 w-8 items-center justify-center rounded-lg transition-colors bg-transparent text-gunmetal-400 hover:bg-gunmetal-700 hover:text-white"
                     >
                       <MoreHorizontal className="h-4 w-4" />
                     </button>
@@ -185,10 +185,10 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
 
                   <DropdownMenuContent
                     align="end"
-                    className="bg-surface-popover border-border-strong rounded-xl p-1 shadow-lg"
+                    className="bg-gunmetal-900 border-gunmetal-600 rounded-xl p-1 shadow-lg"
                   >
                     <DropdownMenuItem
-                      className="rounded-lg text-[14px] text-zinc-400 focus:bg-white/5 focus:text-white cursor-pointer py-2"
+                      className="rounded-lg text-[14px] text-gunmetal-400 focus:bg-gunmetal-700 focus:text-white cursor-pointer py-2"
                       onClick={() => router.push(`/members/${member.id}`)}
                     >
                       <Eye className="mr-2 h-4 w-4" />
@@ -196,7 +196,7 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
                     </DropdownMenuItem>
 
                     <DropdownMenuItem
-                      className="rounded-lg text-[14px] text-rose-500 focus:bg-rose-500/10 focus:text-rose-400 cursor-pointer py-2"
+                      className="rounded-lg text-[14px] text-crayola focus:bg-crayola-100 focus:text-crayola cursor-pointer py-2"
                       onClick={() => onDelete(member.id)}
                     >
                       <Trash2 className="mr-2 h-4 w-4" />

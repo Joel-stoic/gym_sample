@@ -16,7 +16,7 @@ import { toRupees } from '@/src/lib/utils'
 // ─── Skeleton ─────────────────────────────────────────────────────────
 function Skeleton({ className = '' }: { className?: string }) {
   return (
-    <div className={`animate-pulse rounded-lg bg-violet-600/[0.05] ${className}`} />
+    <div className={`animate-pulse rounded-lg bg-crayola/[0.05] ${className}`} />
   )
 }
 function MetricCardSkeleton() {
@@ -109,7 +109,7 @@ function RevenueRangeToggle({
           key={months}
           onClick={() => onChange(months)}
           className={`rounded-md px-2.5 sm:px-3 py-1 text-[11px] font-medium transition-all duration-150 ${value === months
-            ? 'bg-violet-600 text-white shadow'
+            ? 'bg-crayola text-white shadow'
             : 'text-[#6b6b80] hover:text-[#9898b0]'
             }`}
         >
@@ -196,7 +196,7 @@ function ActivityItem({
 }) {
   return (
     <div className="flex items-center gap-3 border-b border-white/[0.05] py-3 last:border-0">
-      <div className={`h-2 w-2 flex-shrink-0 rounded-full ${type === 'payment' ? 'bg-emerald-400' : 'bg-violet-400'
+      <div className={`h-2 w-2 flex-shrink-0 rounded-full ${type === 'payment' ? 'bg-emerald-400' : 'bg-crayola'
         }`} />
       <p className="flex-1 text-[12px] text-[#9898b0]">
         <span className="font-medium text-white">{name}</span>{' '}
@@ -248,7 +248,7 @@ export default function DashboardPage() {
           value={metrics?.members?.total ?? 0}
           sub={`+${metrics?.members?.newThisMonth ?? 0} new this month`}
           icon={Users}
-          iconClass="bg-violet-600/20 text-violet-400"
+          iconClass="bg-crayola-100 text-crayola"
         />
         <MetricCard
           title="Active Members"
@@ -306,7 +306,7 @@ export default function DashboardPage() {
             value={toRupees(metrics.revenue.totalThisMonth ?? 0)}
             sub="membership + PT"
             icon={IndianRupee}
-            iconClass="bg-violet-600/20 text-violet-400"
+            iconClass="bg-crayola-100 text-crayola"
           />
           <MetricCard
             redAccent
@@ -337,7 +337,7 @@ export default function DashboardPage() {
           {/* Chart */}
           {chartLoading ? (
             <div className="flex h-48 sm:h-56 items-center justify-center">
-              <div className="h-6 w-6 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
+              <div className="h-6 w-6 animate-spin rounded-full border-2 border-crayola border-t-transparent" />
             </div>
           ) : monthlyRevenue.length > 0 ? (
             <>

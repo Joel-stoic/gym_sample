@@ -164,7 +164,7 @@ export default function AllAttendanceView() {
           {isFiltered && (
             <button
               onClick={clearFilters}
-              className="flex items-center gap-1.5 text-xs text-violet-400 hover:text-violet-300"
+              className="flex items-center gap-1.5 text-xs text-crayola hover:text-violet-300"
             >
               <X className="h-3.5 w-3.5" />
               Clear filters
@@ -184,7 +184,7 @@ export default function AllAttendanceView() {
               value={search}
               onChange={(e) => handleSearchChange(e.target.value)}
               placeholder="Name or phone..."
-              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-9 text-sm text-white placeholder:text-[#6b6b80] focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30"
+              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-9 text-sm text-white placeholder:text-[#6b6b80] focus:border-crayola/50 focus:outline-none focus:ring-1 focus:ring-crayola/30"
             />
             {search && (
               <button onClick={() => handleSearchChange('')} className="absolute right-3 text-[#6b6b80] hover:text-white">
@@ -203,7 +203,7 @@ export default function AllAttendanceView() {
               type="date"
               value={startDate}
               onChange={(e) => handleDateChange('start', e.target.value)}
-              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-3 text-sm text-white focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30 [color-scheme:dark]"
+              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-3 text-sm text-white focus:border-crayola/50 focus:outline-none focus:ring-1 focus:ring-crayola/30 [color-scheme:dark]"
             />
           </div>
         </div>
@@ -217,7 +217,7 @@ export default function AllAttendanceView() {
               type="date"
               value={endDate}
               onChange={(e) => handleDateChange('end', e.target.value)}
-              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-3 text-sm text-white focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30 [color-scheme:dark]"
+              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-3 text-sm text-white focus:border-crayola/50 focus:outline-none focus:ring-1 focus:ring-crayola/30 [color-scheme:dark]"
             />
           </div>
         </div>
@@ -245,7 +245,7 @@ export default function AllAttendanceView() {
                 className="group grid grid-cols-[1fr_auto_auto] items-center gap-4 rounded-2xl border border-transparent px-4 py-3 transition-colors hover:border-white/[0.06] hover:bg-white/[0.02] sm:grid-cols-[2fr_1fr_1fr_auto]"
               >
                 <div className="flex min-w-0 items-center gap-3">
-                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-violet-600/20 text-[11px] font-semibold text-violet-300">
+                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-crayola-100 text-[11px] font-semibold text-violet-300">
                     {initials(rec.member.name)}
                   </div>
                   <div className="min-w-0">
@@ -264,7 +264,7 @@ export default function AllAttendanceView() {
 
                 <span className={`flex-shrink-0 rounded-full px-2.5 py-0.5 text-[10px] font-medium ${
                   rec.markedBy === 'QR_SCAN'
-                    ? 'bg-violet-500/10 text-violet-400'
+                    ? 'bg-crayola-100 text-crayola'
                     : 'bg-blue-500/10 text-blue-400'
                 }`}>
                   {rec.markedBy === 'QR_SCAN' ? 'QR' : 'Staff'}
