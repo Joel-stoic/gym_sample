@@ -33,22 +33,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   if (!isAuthenticated) return null
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: '#0a0a0f' }}>
+    <div className="flex min-h-screen" style={{ background: '#0a0a0f' }}>
       {/* Sidebar handles its own mobile/desktop rendering */}
       <Sidebar />
 
       {/* Main area */}
-      <div className="flex flex-1 flex-col overflow-hidden min-w-0">
+      <div className="flex flex-1 flex-col min-w-0 md:ml-64">
         <Header />
-        <main
-          className="flex-1 overflow-y-auto"
-          style={{
-            background: '#0a0a0f',
-            scrollbarWidth: 'thin',
-            scrollbarColor: '#ffffff10 transparent',
-          }}
-        >
-          <div className="p-4 md:p-6">{children}</div>
+        <main className="flex-1 p-4 md:p-6">
+          {children}
         </main>
       </div>
     </div>

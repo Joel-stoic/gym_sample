@@ -181,7 +181,7 @@ export default function Sidebar() {
   return (
     <>
       {/* Desktop: always-visible rail */}
-      <div className="hidden h-full md:flex">
+      <div className="hidden md:flex md:fixed md:inset-y-0 md:left-0 md:w-64 md:z-30">
         <SidebarContent />
       </div>
 
