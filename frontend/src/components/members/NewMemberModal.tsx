@@ -352,28 +352,33 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
           </div>
         </div>
       ) : (
-        <div className="relative w-full max-w-2xl max-h-full flex flex-col overflow-hidden rounded-3xl bg-card border border-border shadow-xl animate-in fade-in-0 zoom-in-95 duration-150">
+        /* ── Main Form View ────────────────────────────────────────────── */
+        <div className="relative w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden rounded-3xl bg-card border border-border shadow-xl animate-in fade-in-0 zoom-in-95 duration-150">
           
-          <div className="flex items-center justify-between border-b border-border px-5 sm:px-6 py-4 bg-card shrink-0">
-            <div>
-              <h2 className="text-[18px] font-bold tracking-tight text-foreground sm:text-[20px]" style={{ fontFamily: "'Syne', sans-serif" }}>
+          <form id="new-member-form" onSubmit={onFormSubmit} className="flex-1 overflow-y-auto">
+            {/* Header (Sticky & Glassy) */}
+            <div className="sticky top-0 z-20 flex items-center justify-between border-b border-black/10 dark:border-white/10 px-5 sm:px-6 py-4 bg-background/80 backdrop-blur-xl shadow-sm">
+              <div>
+                <h2 className="text-[18px] font-bold tracking-tight text-foreground sm:text-[20px]" style={{ fontFamily: "'Syne', sans-serif" }}>
                 Add Member
               </h2>
               <p className="text-[12.5px] text-muted-foreground mt-0.5">
                 {step === 1 ? 'Step 1 of 2: Personal Details' : 'Step 2 of 2: Assign Plan (Optional)'}
               </p>
             </div>
-            <button
-              onClick={onClose}
-              className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-background text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-            >
-              <X size={16} />
-            </button>
-          </div>
+              <button
+                onClick={onClose}
+                type="button"
+                className="flex h-9 w-9 items-center justify-center rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-muted-foreground transition-colors hover:bg-black/10 dark:hover:bg-white/10 hover:text-foreground"
+              >
+                <X size={16} />
+              </button>
+            </div>
 
-          <form id="new-member-form" onSubmit={onFormSubmit} className="flex-1 overflow-y-auto px-5 sm:px-6 py-5 space-y-5">
-            
-            {step === 1 ? (
+            {/* Scrollable Form Content */}
+            <div className="px-5 sm:px-6 py-5 space-y-5">
+              
+              {step === 1 ? (
               <>
                 <Section icon={User} title="Personal Information">
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -502,6 +507,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                             ))}
                           </select>
                         </Field>
+                      </div>
                       </>
                     )}
                     
@@ -536,9 +542,10 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                 </Section>
               </div>
             )}
-          </form>
+            </div>
 
-          <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-t border-border bg-card shrink-0">
+            {/* Footer Actions (Sticky & Glassy) */}
+            <div className="sticky bottom-0 z-20 flex flex-col-reverse sm:flex-row items-center justify-end gap-3 px-5 sm:px-6 py-4 border-t border-black/10 dark:border-white/10 bg-background/80 backdrop-blur-xl shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
             {step === 1 ? (
               <button
                 type="button"
@@ -591,7 +598,8 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                 </button>
               </div>
             )}
-          </div>
+            </div>
+          </form>
         </div>
       )}
     </div>
