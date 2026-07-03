@@ -34,7 +34,7 @@ export default function AttendanceTable({
         <CardTitle className="text-base font-semibold flex items-center justify-between text-white">
           Today&apos;s Check-ins
 
-          <Badge className="bg-crayola text-white px-3 py-1 text-xs">
+          <Badge className="bg-violet-600 text-white px-3 py-1 text-xs">
             {count} present
           </Badge>
         </CardTitle>
@@ -67,7 +67,7 @@ export default function AttendanceTable({
                   {/* Member */}
                   <TableCell>
                     <div className="flex items-center gap-3">
-                      <div className="h-9 w-9 rounded-full bg-crayola-100 flex items-center justify-center text-sm font-semibold text-crayola">
+                      <div className="h-9 w-9 rounded-full bg-violet-600/20 flex items-center justify-center text-sm font-semibold text-violet-400">
                         {record.member?.name?.charAt(0).toUpperCase()}
                       </div>
 

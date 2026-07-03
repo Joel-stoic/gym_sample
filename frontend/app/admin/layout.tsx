@@ -64,7 +64,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Logo */}
         <div className="p-6 border-b border-white/5">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-crayola flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center">
               <Shield size={16} className="text-white" />
             </div>
             <div>
@@ -85,7 +85,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 className={`
                   w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-150
                   ${active
-                    ? 'bg-crayola-100 text-crayola font-medium'
+                    ? 'bg-violet-600/20 text-violet-400 font-medium'
                     : 'text-white/50 hover:text-white hover:bg-white/5'
                   }
                 `}
@@ -100,7 +100,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* User + Logout */}
         <div className="p-4 border-t border-white/5">
           <div className="flex items-center gap-3 px-3 py-2 mb-2">
-            <div className="w-7 h-7 rounded-full bg-crayola/30 flex items-center justify-center text-crayola text-xs font-bold">
+            <div className="w-7 h-7 rounded-full bg-violet-600/30 flex items-center justify-center text-violet-400 text-xs font-bold">
               {adminName.charAt(0).toUpperCase()}
             </div>
             <div className="flex-1 min-w-0">
@@ -123,7 +123,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Top bar (mobile) */}
         <header className="lg:hidden flex items-center justify-between px-4 py-3 bg-[#111118] border-b border-white/5">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-md bg-crayola flex items-center justify-center">
+            <div className="w-6 h-6 rounded-md bg-violet-600 flex items-center justify-center">
               <Shield size={12} />
             </div>
             <span className="text-sm font-semibold font-[Syne]">GymFlow Admin</span>

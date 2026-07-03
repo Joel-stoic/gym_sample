@@ -41,7 +41,7 @@ export default function GymQRCode({
             {/* HEADER */}
 
             <div className="text-center">
-              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-crayola/15 text-crayola">
+              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-400">
                 <QrCode className="h-6 w-6" />
               </div>
 

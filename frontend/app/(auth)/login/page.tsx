@@ -66,18 +66,18 @@ type NewPasswordForm = z.infer<typeof newPasswordSchema>
 
 const inputCls =
   'h-12 bg-[#121212] border border-[#2A2A2A] text-white placeholder:text-[#555555] ' +
-  'focus-visible:ring-1 focus-visible:ring-crayola focus-visible:border-crayola rounded-md transition-colors shadow-none text-[14px] ' +
+  'focus-visible:ring-1 focus-visible:ring-violet-600 focus-visible:border-violet-600 rounded-md transition-colors shadow-none text-[14px] ' +
   '[&:-webkit-autofill]:[-webkit-text-fill-color:white] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0px_1000px_#121212_inset] ' +
   '[&:-webkit-autofill]:[transition:background-color_9999s_ease-in-out_0s]'
 
 const primaryBtnCls =
-  'h-12 rounded-md text-[14px] font-semibold tracking-wide text-white bg-crayola ' +
-  'hover:bg-crayola disabled:opacity-50 disabled:cursor-not-allowed transition-colors ' +
+  'h-12 rounded-md text-[14px] font-semibold tracking-wide text-white bg-violet-600 ' +
+  'hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors ' +
   'flex items-center justify-center gap-2'
 
 const ghostBtnCls =
   'h-12 rounded-md text-[14px] font-medium text-[#888888] bg-transparent border border-[#2A2A2A] ' +
-  'hover:border-crayola hover:text-white transition-colors'
+  'hover:border-violet-600 hover:text-white transition-colors'
 
 // ─── Signature element: plate stack ───────────────────────────────────────────
 function PlateStack({ vertical = true, className = '' }: { vertical?: boolean; className?: string }) {
@@ -91,7 +91,7 @@ function PlateStack({ vertical = true, className = '' }: { vertical?: boolean; c
         <div
           key={i}
           style={vertical ? { width: s, height: 2 } : { height: s, width: 2 }}
-          className={`rounded-full ${i === 3 ? 'bg-crayola' : 'bg-[#333333]'}`}
+          className={`rounded-full ${i === 3 ? 'bg-violet-600' : 'bg-[#333333]'}`}
         />
       ))}
     </div>
@@ -214,10 +214,10 @@ function ForgotPasswordModal({
   }
 
   const stepMeta = {
-    phone:       { title: 'Forgot password',  icon: <KeyRound size={18} className="text-crayola" /> },
-    otp:         { title: 'Enter OTP',        icon: <MessageSquare size={18} className="text-crayola" /> },
-    newPassword: { title: 'New password',     icon: <KeyRound size={18} className="text-crayola" /> },
-    done:        { title: 'Password reset',   icon: <ShieldCheck size={18} className="text-crayola" /> },
+    phone:       { title: 'Forgot password',  icon: <KeyRound size={18} className="text-violet-500" /> },
+    otp:         { title: 'Enter OTP',        icon: <MessageSquare size={18} className="text-violet-500" /> },
+    newPassword: { title: 'New password',     icon: <KeyRound size={18} className="text-violet-500" /> },
+    done:        { title: 'Password reset',   icon: <ShieldCheck size={18} className="text-violet-500" /> },
   }[step]
 
   const stepIndex = { phone: 0, otp: 1, newPassword: 2, done: 3 }[step]
@@ -236,7 +236,7 @@ function ForgotPasswordModal({
                   <div
                     key={i}
                     className={`h-1 rounded-full transition-all duration-300 ${
-                      i <= stepIndex ? 'w-6 bg-crayola' : 'w-2 bg-[#2A2A2A]'
+                      i <= stepIndex ? 'w-6 bg-violet-600' : 'w-2 bg-[#2A2A2A]'
                     }`}
                   />
                 ))}
@@ -285,7 +285,7 @@ function ForgotPasswordModal({
                         placeholder="000000"
                         maxLength={6}
                         inputMode="numeric"
-                        className={`${inputCls} tracking-[0.75em] text-center text-xl font-medium tabular-nums h-14 text-crayola`}
+                        className={`${inputCls} tracking-[0.75em] text-center text-xl font-medium tabular-nums h-14 text-violet-400`}
                         {...field}
                       />
                     </FormControl>
@@ -296,7 +296,7 @@ function ForgotPasswordModal({
                   <button type="button" onClick={() => setStep('phone')} className="flex items-center gap-1.5 text-[13px] text-[#888888] hover:text-white transition-colors">
                     <ArrowLeft size={14} /> Change number
                   </button>
-                  <button type="button" onClick={handleResend} disabled={resendWait > 0 || loading} className="text-[13px] font-medium text-crayola hover:text-crayola disabled:text-[#444444] transition-colors">
+                  <button type="button" onClick={handleResend} disabled={resendWait > 0 || loading} className="text-[13px] font-medium text-violet-500 hover:text-violet-400 disabled:text-[#444444] transition-colors">
                     {resendWait > 0 ? `Resend in ${resendWait}s` : 'Resend OTP'}
                   </button>
                 </div>
@@ -321,7 +321,7 @@ function ForgotPasswordModal({
                     <FormControl>
                       <div className="relative">
                         <Input type={showPw ? 'text' : 'password'} className={`${inputCls} pr-11`} {...field} />
-                        <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888888] hover:text-crayola transition-colors">
+                        <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888888] hover:text-violet-400 transition-colors">
                           {showPw ? <EyeOff size={16} /> : <Eye size={16} />}
                         </button>
                       </div>
@@ -335,7 +335,7 @@ function ForgotPasswordModal({
                     <FormControl>
                       <div className="relative">
                         <Input type={showCfm ? 'text' : 'password'} className={`${inputCls} pr-11`} {...field} />
-                        <button type="button" onClick={() => setShowCfm(!showCfm)} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888888] hover:text-crayola transition-colors">
+                        <button type="button" onClick={() => setShowCfm(!showCfm)} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888888] hover:text-violet-400 transition-colors">
                           {showCfm ? <EyeOff size={16} /> : <Eye size={16} />}
                         </button>
                       </div>
@@ -354,8 +354,8 @@ function ForgotPasswordModal({
           {step === 'done' && (
             <div className="text-center space-y-6 py-4">
               <div className="flex justify-center">
-                <div className="h-16 w-16 rounded-full bg-crayola/10 border border-crayola/20 flex items-center justify-center">
-                  <Check size={28} className="text-crayola" strokeWidth={2.5} />
+                <div className="h-16 w-16 rounded-full bg-violet-600/10 border border-violet-500/20 flex items-center justify-center">
+                  <Check size={28} className="text-violet-500" strokeWidth={2.5} />
                 </div>
               </div>
               <div>
@@ -450,7 +450,7 @@ export default function LoginPage() {
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} />
 
         <div className="relative z-10 flex items-center gap-3">
-          <div className="h-10 w-10 bg-crayola rounded-md flex items-center justify-center">
+          <div className="h-10 w-10 bg-violet-600 rounded-md flex items-center justify-center">
             <Dumbbell className="h-5 w-5 text-white" />
           </div>
           <span className={`text-2xl tracking-widest text-white mt-1 ${bebas.className}`}>
@@ -467,7 +467,7 @@ export default function LoginPage() {
             {capabilities.map(({ icon: Icon, label }) => (
               <li key={label} className="flex items-center gap-4">
                 <div className="h-8 w-8 shrink-0 border border-[#333333] rounded-md flex items-center justify-center">
-                  <Icon size={14} className="text-crayola" />
+                  <Icon size={14} className="text-violet-500" />
                 </div>
                 <span className={`text-[15px] tracking-widest text-[#888888] ${bebas.className}`}>{label}</span>
               </li>
@@ -489,7 +489,7 @@ export default function LoginPage() {
         <div className="relative z-10 w-full max-w-[400px]">
           {/* Mobile wordmark */}
           <div className="lg:hidden flex flex-col items-center text-center mb-10">
-            <div className="h-14 w-14 bg-crayola rounded-lg flex items-center justify-center mb-4">
+            <div className="h-14 w-14 bg-violet-600 rounded-lg flex items-center justify-center mb-4">
               <Dumbbell className="h-6 w-6 text-white" />
             </div>
             <h1 className={`text-4xl tracking-widest text-white ${bebas.className}`}>JOVIFITX</h1>
@@ -533,7 +533,7 @@ export default function LoginPage() {
                     <button
                       type="button"
                       onClick={handleForgotClick}
-                      className="text-[12px] font-medium text-crayola hover:text-violet-300 transition-colors"
+                      className="text-[12px] font-medium text-violet-400 hover:text-violet-300 transition-colors"
                     >
                       Forgot password?
                     </button>
@@ -547,7 +547,7 @@ export default function LoginPage() {
                         {...field}
                       />
                       <button type="button" onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888888] hover:text-crayola transition-colors">
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888888] hover:text-violet-400 transition-colors">
                         {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                       </button>
                     </div>
@@ -571,7 +571,7 @@ export default function LoginPage() {
 
           <div className="mt-10 text-center text-[13px] text-[#666666]">
             Don&apos;t have a gym account?{' '}
-            <a href="/signup" className="text-white font-medium hover:text-crayola transition-colors border-b border-white hover:border-crayola pb-[1px]">
+            <a href="/signup" className="text-white font-medium hover:text-violet-400 transition-colors border-b border-white hover:border-violet-400 pb-[1px]">
               Create one
             </a>
           </div>

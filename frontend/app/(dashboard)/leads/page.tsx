@@ -91,7 +91,7 @@ const STATUS_CONFIG: Record<
   DEMO_DONE: {
     label: 'Demo Done',
     className:
-      'bg-crayola-100 text-crayola border border-crayola/20'
+      'bg-violet-500/10 text-violet-400 border border-violet-500/20'
   },
 
   CONVERTED: {
@@ -249,7 +249,7 @@ export default function LeadsPage() {
             onOpenChange={setDialogOpen}
           >
             <DialogTrigger asChild>
-              <Button className="bg-crayola hover:bg-crayola">
+              <Button className="bg-violet-600 hover:bg-violet-500">
                 <Plus className="mr-2 h-4 w-4" />
                 Add Lead
               </Button>
@@ -387,7 +387,7 @@ export default function LeadsPage() {
                   <Button
                     type="submit"
                     disabled={submitting}
-                    className="h-11 w-full bg-crayola hover:bg-crayola"
+                    className="h-11 w-full bg-violet-600 hover:bg-violet-500"
                   >
                     {submitting && (
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -412,7 +412,7 @@ export default function LeadsPage() {
             title="New Leads"
             value={newLeads}
             icon={Users}
-            iconClassName="bg-crayola/15 text-crayola"
+            iconClassName="bg-violet-600/15 text-violet-400"
           />
 
           <StatsCard
@@ -453,7 +453,7 @@ export default function LeadsPage() {
             onClick={() => setStatusFilter(status)}
             className={
               statusFilter === status
-                ? 'bg-crayola hover:bg-crayola'
+                ? 'bg-violet-600 hover:bg-violet-500'
                 : 'border-white/[0.08] bg-transparent text-white hover:bg-white/[0.05]'
             }
           >
@@ -578,7 +578,7 @@ function LeadCard({
   const config = STATUS_CONFIG[lead.status]
 
   return (
-    <div className="rounded-3xl border border-white/[0.06] bg-[#0f0f18] p-5 transition hover:border-crayola/30">
+    <div className="rounded-3xl border border-white/[0.06] bg-[#0f0f18] p-5 transition hover:border-violet-500/30">
       {/* TOP */}
 
       <div className="mb-4 flex items-start justify-between">
@@ -630,12 +630,12 @@ function LeadCard({
 
       <div className="space-y-3">
         <div className="flex items-center gap-2 text-sm text-[#b4b4c7]">
-          <Phone className="h-4 w-4 text-crayola" />
+          <Phone className="h-4 w-4 text-violet-400" />
           {lead.phone}
         </div>
 
         <div className="flex items-center gap-2 text-sm text-[#b4b4c7]">
-          <Calendar className="h-4 w-4 text-crayola" />
+          <Calendar className="h-4 w-4 text-violet-400" />
           {formatDate(lead.createdAt)}
         </div>
       </div>
@@ -643,7 +643,7 @@ function LeadCard({
       {lead.status === 'CONTACTED' && lead.contactedBy && (
         <p className="mt-2 text-xs text-[#6b6b80]">
           Contacted by{' '}
-          <span className="font-medium text-crayola">
+          <span className="font-medium text-violet-400">
             {lead.contactedBy.name}
           </span>
 

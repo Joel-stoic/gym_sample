@@ -56,7 +56,7 @@ function Section({
     <div className="rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-6 sm:p-8">
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-crayola-100 text-crayola">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600/20 text-violet-400">
             <Icon size={18} />
           </div>
           <h2 className="text-[15px] font-semibold text-white">{title}</h2>
@@ -92,7 +92,7 @@ function InfoRow({
 
 // ─── Styled input ─────────────────────────────────────
 const inputClass =
-  'h-11 rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 text-[14px] text-white placeholder:text-[#6b6b80] focus:border-crayola/50 focus:outline-none focus:ring-0 w-full transition-colors'
+  'h-11 rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 text-[14px] text-white placeholder:text-[#6b6b80] focus:border-violet-500/50 focus:outline-none focus:ring-0 w-full transition-colors'
 
 // ─── Edit button ──────────────────────────────────────
 function EditButton({ onClick }: { onClick: () => void }) {
@@ -177,7 +177,7 @@ function DefaultPasswordsModal({
         className="
     !bg-[#0a0a0a]
     !text-white
-    border border-crayola/20
+    border border-violet-500/20
     p-0 overflow-hidden gap-0
     sm:max-w-[425px]
     [&>button]:text-violet-300
@@ -193,7 +193,7 @@ function DefaultPasswordsModal({
               className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl"
               style={{ background: '#7c3aed15', border: '1px solid #7c3aed25' }}
             >
-              <KeyRound size={20} className="text-crayola" />
+              <KeyRound size={20} className="text-violet-400" />
             </div>
             <DialogTitle
               className="text-[18px] font-semibold text-white"
@@ -253,7 +253,7 @@ function DefaultPasswordsModal({
               </div>
             </div>
 
-            <div className="rounded-xl border border-crayola/20 bg-crayola/5 px-4 py-3.5">
+            <div className="rounded-xl border border-violet-500/20 bg-violet-500/5 px-4 py-3.5">
               <p className="text-[13px] text-violet-300">
                 Applies only to newly created members and staff. Existing accounts are not affected.
               </p>
@@ -464,7 +464,7 @@ export default function SettingsPage() {
                         <button
                           type="submit"
                           disabled={gymLoading}
-                          className="flex h-11 items-center gap-2 rounded-xl bg-crayola px-6 text-[14px] font-medium text-white transition-colors hover:bg-crayola-600 disabled:opacity-60"
+                          className="flex h-11 items-center gap-2 rounded-xl bg-violet-600 px-6 text-[14px] font-medium text-white transition-colors hover:bg-violet-700 disabled:opacity-60"
                         >
                           {gymLoading && <Loader2 size={16} className="animate-spin" />}
                           {gymLoading ? 'Saving...' : 'Save Changes'}
@@ -699,7 +699,7 @@ export default function SettingsPage() {
                         <button
                           type="submit"
                           disabled={passLoading}
-                          className="flex h-11 items-center gap-2 rounded-xl bg-crayola px-6 text-[14px] font-medium text-white transition-colors hover:bg-crayola-600 disabled:opacity-60"
+                          className="flex h-11 items-center gap-2 rounded-xl bg-violet-600 px-6 text-[14px] font-medium text-white transition-colors hover:bg-violet-700 disabled:opacity-60"
                         >
                           {passLoading && <Loader2 size={16} className="animate-spin" />}
                           {passLoading ? 'Changing...' : 'Change Password'}

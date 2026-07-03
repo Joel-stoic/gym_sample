@@ -41,7 +41,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-crayola flex items-center justify-center mb-4">
+          <div className="w-12 h-12 rounded-2xl bg-violet-600 flex items-center justify-center mb-4">
             <Shield size={24} className="text-white" />
           </div>
           <h1 className="text-xl font-bold text-white font-[Syne]">GymFlow Admin</h1>
@@ -64,7 +64,7 @@ export default function AdminLoginPage() {
               onChange={e => setEmail(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleLogin()}
               placeholder="admin@jovifitx.com"
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-crayola/50 focus:bg-white/[0.07] transition-all"
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-violet-500/50 focus:bg-white/[0.07] transition-all"
             />
           </div>
 
@@ -77,7 +77,7 @@ export default function AdminLoginPage() {
                 onChange={e => setPassword(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleLogin()}
                 placeholder="••••••••"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 pr-10 text-sm text-white placeholder-white/20 outline-none focus:border-crayola/50 focus:bg-white/[0.07] transition-all"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 pr-10 text-sm text-white placeholder-white/20 outline-none focus:border-violet-500/50 focus:bg-white/[0.07] transition-all"
               />
               <button
                 type="button"
@@ -92,7 +92,7 @@ export default function AdminLoginPage() {
           <button
             onClick={handleLogin}
             disabled={loading}
-            className="w-full bg-crayola hover:bg-crayola disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium py-3 rounded-xl text-sm transition-all duration-150 mt-2"
+            className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium py-3 rounded-xl text-sm transition-all duration-150 mt-2"
           >
             {loading ? 'Signing in...' : 'Sign in'}
           </button>

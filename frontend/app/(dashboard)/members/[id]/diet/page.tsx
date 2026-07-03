@@ -80,11 +80,11 @@ const mealColors: Record<string, string> = {
     Breakfast: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
     Lunch: 'bg-green-500/10 text-green-400 border-green-500/20',
     Dinner: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-    'Pre-workout': 'bg-crayola-100 text-crayola border-crayola/20',
+    'Pre-workout': 'bg-violet-500/10 text-violet-400 border-violet-500/20',
     'Post-workout': 'bg-pink-500/10 text-pink-400 border-pink-500/20',
     Snacks: 'bg-orange-500/10 text-orange-400 border-orange-500/20',
 }
-const defaultMealColor = 'bg-zinc-500/10 text-gunmetal-400 border-zinc-500/20'
+const defaultMealColor = 'bg-zinc-500/10 text-zinc-400 border-zinc-500/20'
 
 // ─── Diet Plan Card ───────────────────────────────────────
 function DietPlanCard({
@@ -123,8 +123,8 @@ function DietPlanCard({
 
                     <div className="flex items-center gap-3 mb-3">
 
-                        <div className="h-11 w-11 rounded-2xl bg-crayola-100 border border-crayola/20 flex items-center justify-center flex-shrink-0">
-                            <Utensils className="h-5 w-5 text-crayola" />
+                        <div className="h-11 w-11 rounded-2xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center flex-shrink-0">
+                            <Utensils className="h-5 w-5 text-violet-400" />
                         </div>
 
                         <div>
@@ -133,9 +133,9 @@ function DietPlanCard({
                                 {plan.title}
                             </h3>
 
-                            <p className="text-sm text-gunmetal-400 mt-1">
+                            <p className="text-sm text-zinc-500 mt-1">
                                 Created by{' '}
-                                <span className="text-gunmetal-100 font-medium">
+                                <span className="text-zinc-300 font-medium">
                                     {plan.createdBy.name}
                                 </span>
                             </p>
@@ -148,7 +148,7 @@ function DietPlanCard({
 
                     <div className="flex flex-wrap items-center gap-3">
 
-                        <div className="flex items-center gap-1.5 text-sm text-gunmetal-400 bg-white/[0.05] border border-white/[0.05] rounded-xl px-3 py-1.5">
+                        <div className="flex items-center gap-1.5 text-sm text-zinc-500 bg-white/[0.05] border border-white/[0.05] rounded-xl px-3 py-1.5">
 
                             <Calendar className="h-4 w-4" />
 
@@ -179,7 +179,7 @@ function DietPlanCard({
                             </div>
                         )}
 
-                        <div className="flex items-center gap-1.5 text-sm text-violet-300 bg-crayola-100 border border-crayola/20 rounded-xl px-3 py-1.5">
+                        <div className="flex items-center gap-1.5 text-sm text-violet-300 bg-violet-500/10 border border-violet-500/20 rounded-xl px-3 py-1.5">
 
                             {plan.meals.length} meals
 
@@ -196,9 +196,9 @@ function DietPlanCard({
                     <div className="h-10 w-10 rounded-xl bg-white/[0.03] border border-white/[0.05] flex items-center justify-center">
 
                         {expanded ? (
-                            <ChevronUp className="h-5 w-5 text-gunmetal-400" />
+                            <ChevronUp className="h-5 w-5 text-zinc-400" />
                         ) : (
-                            <ChevronDown className="h-5 w-5 text-gunmetal-400" />
+                            <ChevronDown className="h-5 w-5 text-zinc-400" />
                         )}
 
                     </div>
@@ -219,7 +219,7 @@ function DietPlanCard({
 
                         <div className="mt-5 rounded-2xl border border-white/[0.05] bg-black/20 p-5">
 
-                            <p className="text-[15px] leading-7 text-gunmetal-100">
+                            <p className="text-[15px] leading-7 text-zinc-300">
                                 {plan.description}
                             </p>
 
@@ -286,10 +286,10 @@ function DietPlanCard({
 
                                                     <li
                                                         key={i}
-                                                        className="flex items-start gap-3 text-[15px] leading-7 text-gunmetal-100"
+                                                        className="flex items-start gap-3 text-[15px] leading-7 text-zinc-300"
                                                     >
 
-                                                        <span className="h-2 w-2 rounded-full bg-crayola mt-2 flex-shrink-0" />
+                                                        <span className="h-2 w-2 rounded-full bg-violet-400 mt-2 flex-shrink-0" />
 
                                                         {item}
 
@@ -312,13 +312,13 @@ function DietPlanCard({
 
                     {plan.notes && (
 
-                        <div className="mt-5 rounded-2xl border border-crayola-100 bg-crayola/[0.03] p-5">
+                        <div className="mt-5 rounded-2xl border border-violet-500/10 bg-violet-500/[0.03] p-5">
 
                             <p className="text-sm font-semibold text-violet-300 mb-2">
                                 Trainer Notes
                             </p>
 
-                            <p className="text-[15px] leading-7 text-gunmetal-400">
+                            <p className="text-[15px] leading-7 text-zinc-400">
                                 {plan.notes}
                             </p>
 
@@ -412,14 +412,14 @@ function AddDietModal({
         }
     }
 
-    const inputCls = 'w-full bg-black/30 border border-white/[0.08] rounded-xl px-3 py-2 text-sm text-white placeholder:text-zinc-600 outline-none focus:border-crayola/50 focus:ring-1 focus:ring-crayola/20 transition-all'
+    const inputCls = 'w-full bg-black/30 border border-white/[0.08] rounded-xl px-3 py-2 text-sm text-white placeholder:text-zinc-600 outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-all'
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
             <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl" style={{ background: '#111118', border: '1px solid #ffffff12' }}>
                 <div className="sticky top-0 px-6 py-4 flex items-center justify-between" style={{ background: '#111118', borderBottom: '1px solid #ffffff08' }}>
                     <h2 className="text-base font-semibold text-white">Create Diet Plan</h2>
-                    <button onClick={onClose} className="text-gunmetal-400 hover:text-white transition-colors text-sm">✕</button>
+                    <button onClick={onClose} className="text-zinc-500 hover:text-white transition-colors text-sm">✕</button>
                 </div>
 
                 <div className="p-6 space-y-5">
@@ -429,7 +429,7 @@ function AddDietModal({
                         <input className={inputCls} placeholder="Description (optional)" value={description} onChange={e => setDescription(e.target.value)} />
                         <div className="grid grid-cols-2 gap-3">
                             <div>
-                                <label className="text-xs text-gunmetal-400 mb-1 block">Valid From</label>
+                                <label className="text-xs text-zinc-500 mb-1 block">Valid From</label>
                                 <input
                                     type="date"
                                     className={`${inputCls} cursor-pointer`}
@@ -438,7 +438,7 @@ function AddDietModal({
                                 />
                             </div>
                             <div>
-                                <label className="text-xs text-gunmetal-400 mb-1 block">Valid To (optional)</label>
+                                <label className="text-xs text-zinc-500 mb-1 block">Valid To (optional)</label>
                                 <input type="date" className={`${inputCls} cursor-pointer`} value={validTo} onChange={e => setValidTo(e.target.value)} />
                             </div>
                         </div>
@@ -447,8 +447,8 @@ function AddDietModal({
                     {/* Meals */}
                     <div>
                         <div className="flex items-center justify-between mb-3">
-                            <p className="text-xs uppercase tracking-widest text-gunmetal-400 font-medium">Meals</p>
-                            <button onClick={addMeal} className="text-xs text-crayola hover:text-violet-300 flex items-center gap-1 transition-colors">
+                            <p className="text-xs uppercase tracking-widest text-zinc-500 font-medium">Meals</p>
+                            <button onClick={addMeal} className="text-xs text-violet-400 hover:text-violet-300 flex items-center gap-1 transition-colors">
                                 <Plus className="h-3 w-3" /> Add meal
                             </button>
                         </div>
@@ -483,7 +483,7 @@ function AddDietModal({
                                             <div key={itemIdx} className="flex items-center gap-2">
                                                 <span className="h-1 w-1 rounded-full bg-zinc-600 flex-shrink-0" />
                                                 <input
-                                                    className="flex-1 bg-transparent border-b border-white/[0.06] pb-1 text-xs text-white placeholder:text-zinc-600 outline-none focus:border-crayola/40 transition-colors"
+                                                    className="flex-1 bg-transparent border-b border-white/[0.06] pb-1 text-xs text-white placeholder:text-zinc-600 outline-none focus:border-violet-500/40 transition-colors"
                                                     placeholder={`Food item ${itemIdx + 1} (e.g. 2 eggs)`}
                                                     value={item}
                                                     onChange={e => updateMealItem(mealIdx, itemIdx, e.target.value)}
@@ -495,7 +495,7 @@ function AddDietModal({
                                                 )}
                                             </div>
                                         ))}
-                                        <button onClick={() => addItem(mealIdx)} className="text-xs text-gunmetal-400 hover:text-crayola flex items-center gap-1 mt-2 transition-colors">
+                                        <button onClick={() => addItem(mealIdx)} className="text-xs text-zinc-500 hover:text-violet-400 flex items-center gap-1 mt-2 transition-colors">
                                             <Plus className="h-3 w-3" /> Add item
                                         </button>
                                     </div>
@@ -565,10 +565,10 @@ export default function MemberDietWeightPage() {
     const change = summary?.change ?? null
 
     const changeColor =
-        change === null ? 'text-gunmetal-400'
+        change === null ? 'text-zinc-500'
             : change < 0 ? 'text-green-400'
                 : change > 0 ? 'text-red-400'
-                    : 'text-gunmetal-400'
+                    : 'text-zinc-400'
 
     const ChangeIcon =
         change === null ? Minus
@@ -579,7 +579,7 @@ export default function MemberDietWeightPage() {
     if (loading) {
         return (
             <div className="flex items-center justify-center h-64">
-                <Loader2 className="h-6 w-6 animate-spin text-crayola" />
+                <Loader2 className="h-6 w-6 animate-spin text-violet-400" />
             </div>
         )
     }
@@ -599,13 +599,13 @@ export default function MemberDietWeightPage() {
                 <div className="flex items-center gap-3">
                     <button
                         onClick={() => router.back()}
-                        className="h-9 w-9 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-center text-gunmetal-400 hover:text-white transition-colors"
+                        className="h-9 w-9 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-center text-zinc-400 hover:text-white transition-colors"
                     >
                         <ArrowLeft className="h-4 w-4" />
                     </button>
                     <div>
                         <h1 className="text-xl font-bold text-white leading-tight">{memberName}</h1>
-                        <p className="text-xs text-gunmetal-400 mt-0.5">Diet & Weight tracking</p>
+                        <p className="text-xs text-zinc-500 mt-0.5">Diet & Weight tracking</p>
                     </div>
                 </div>
 
@@ -630,23 +630,23 @@ export default function MemberDietWeightPage() {
                         <div className="grid grid-cols-3 gap-3 mb-4">
                             <div className="rounded-xl bg-black/20 border border-white/[0.06] p-3 text-center">
                                 <p className="text-lg font-bold text-white">{summary?.latest ?? '—'}</p>
-                                <p className="text-[10px] text-gunmetal-400 mt-0.5">Current (kg)</p>
+                                <p className="text-[10px] text-zinc-500 mt-0.5">Current (kg)</p>
                             </div>
                             <div className="rounded-xl bg-black/20 border border-white/[0.06] p-3 text-center">
                                 <p className="text-lg font-bold text-white">{summary?.oldest ?? '—'}</p>
-                                <p className="text-[10px] text-gunmetal-400 mt-0.5">Starting (kg)</p>
+                                <p className="text-[10px] text-zinc-500 mt-0.5">Starting (kg)</p>
                             </div>
                             <div className="rounded-xl bg-black/20 border border-white/[0.06] p-3 text-center">
                                 <p className={cn('text-lg font-bold flex items-center justify-center gap-1', changeColor)}>
                                     <ChangeIcon className="h-4 w-4" />
                                     {change !== null ? Math.abs(change) : '—'}
                                 </p>
-                                <p className="text-[10px] text-gunmetal-400 mt-0.5">
+                                <p className="text-[10px] text-zinc-500 mt-0.5">
                                     {change === null ? 'Change' : change < 0 ? 'Lost (kg)' : change > 0 ? 'Gained (kg)' : 'No change'}
                                 </p>
                             </div>
                         </div>
-                        <div className="flex items-center justify-between text-xs text-gunmetal-400">
+                        <div className="flex items-center justify-between text-xs text-zinc-500">
                             <span className="flex items-center gap-1.5">
                                 <Scale className="h-3.5 w-3.5" />
                                 {summary?.totalEntries || 0} entries logged
@@ -669,15 +669,15 @@ export default function MemberDietWeightPage() {
                                     const diff = prev !== undefined ? +(entry.weight - prev).toFixed(1) : null
                                     return (
                                         <div key={entry.id} className="rounded-xl border border-white/[0.06] bg-black/20 px-3 py-2.5 flex items-center gap-3">
-                                            <div className="h-8 w-8 rounded-lg bg-crayola-100 flex items-center justify-center flex-shrink-0">
-                                                <Scale className="h-3.5 w-3.5 text-crayola" />
+                                            <div className="h-8 w-8 rounded-lg bg-violet-500/10 flex items-center justify-center flex-shrink-0">
+                                                <Scale className="h-3.5 w-3.5 text-violet-400" />
                                             </div>
                                             <div className="flex-1 min-w-0">
                                                 <p className="text-sm font-semibold text-white">{entry.weight} kg</p>
                                                 <p className="text-xs text-orange-400">{format(parseISO(entry.loggedAt), 'd MMM yyyy')}</p>
                                             </div>
                                             {diff !== null && (
-                                                <span className={cn('text-xl font-extrabold', diff < 0 ? 'text-green-400' : diff > 0 ? 'text-red-400' : 'text-gunmetal-400')}>
+                                                <span className={cn('text-xl font-extrabold', diff < 0 ? 'text-green-400' : diff > 0 ? 'text-red-400' : 'text-zinc-500')}>
                                                     {diff > 0 ? '+' : ''}{diff} kg
                                                 </span>
                                             )}
@@ -703,7 +703,7 @@ export default function MemberDietWeightPage() {
                                 <p className="text-sm">No diet plans yet</p>
                                 <button
                                     onClick={() => setShowDietModal(true)}
-                                    className="text-xs text-crayola hover:text-violet-300 flex items-center gap-1 transition-colors"
+                                    className="text-xs text-violet-400 hover:text-violet-300 flex items-center gap-1 transition-colors"
                                 >
                                     <Plus className="h-3 w-3" /> Create first plan
                                 </button>

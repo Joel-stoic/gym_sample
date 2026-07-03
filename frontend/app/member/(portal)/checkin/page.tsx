@@ -181,12 +181,12 @@ export default function CheckInPage() {
         {/* IDLE */}
         {state === 'idle' && (
           <div className="flex flex-col items-center gap-6 text-center">
-            <div className="relative flex h-28 w-28 items-center justify-center rounded-3xl bg-crayola/10">
-              <span className="absolute left-3 top-3 h-4 w-4 rounded-tl-lg border-l-2 border-t-2 border-crayola/50" />
-              <span className="absolute right-3 top-3 h-4 w-4 rounded-tr-lg border-r-2 border-t-2 border-crayola/50" />
-              <span className="absolute bottom-3 left-3 h-4 w-4 rounded-bl-lg border-b-2 border-l-2 border-crayola/50" />
-              <span className="absolute bottom-3 right-3 h-4 w-4 rounded-br-lg border-b-2 border-r-2 border-crayola/50" />
-              <QrCode size={44} className="text-crayola" />
+            <div className="relative flex h-28 w-28 items-center justify-center rounded-3xl bg-violet-600/10">
+              <span className="absolute left-3 top-3 h-4 w-4 rounded-tl-lg border-l-2 border-t-2 border-violet-500/50" />
+              <span className="absolute right-3 top-3 h-4 w-4 rounded-tr-lg border-r-2 border-t-2 border-violet-500/50" />
+              <span className="absolute bottom-3 left-3 h-4 w-4 rounded-bl-lg border-b-2 border-l-2 border-violet-500/50" />
+              <span className="absolute bottom-3 right-3 h-4 w-4 rounded-br-lg border-b-2 border-r-2 border-violet-500/50" />
+              <QrCode size={44} className="text-violet-400" />
             </div>
             <div>
               <p className="text-xl font-bold text-white" style={{ fontFamily: "'Syne', sans-serif" }}>
@@ -198,7 +198,7 @@ export default function CheckInPage() {
             </div>
             <button
               onClick={startScanner}
-              className="flex items-center gap-2.5 rounded-2xl bg-crayola px-8 py-3.5 text-[14px] font-semibold text-white transition-all hover:bg-crayola active:scale-95"
+              className="flex items-center gap-2.5 rounded-2xl bg-violet-600 px-8 py-3.5 text-[14px] font-semibold text-white transition-all hover:bg-violet-500 active:scale-95"
             >
               <Camera size={16} />
               Open Camera
@@ -210,14 +210,14 @@ export default function CheckInPage() {
         {state === 'scanning' && (
           <div className="flex w-full flex-col items-center gap-4">
             <p className="text-[13px] text-[#9898b0]">Point at the QR code</p>
-            <div className="relative w-full max-w-sm overflow-hidden rounded-2xl border border-crayola/20">
+            <div className="relative w-full max-w-sm overflow-hidden rounded-2xl border border-violet-500/20">
               <div id="qr-reader" className="w-full" />
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
                 <div className="relative h-52 w-52">
-                  <span className="absolute left-0 top-0 h-6 w-6 rounded-tl-lg border-l-2 border-t-2 border-crayola" />
-                  <span className="absolute right-0 top-0 h-6 w-6 rounded-tr-lg border-r-2 border-t-2 border-crayola" />
-                  <span className="absolute bottom-0 left-0 h-6 w-6 rounded-bl-lg border-b-2 border-l-2 border-crayola" />
-                  <span className="absolute bottom-0 right-0 h-6 w-6 rounded-br-lg border-b-2 border-r-2 border-crayola" />
+                  <span className="absolute left-0 top-0 h-6 w-6 rounded-tl-lg border-l-2 border-t-2 border-violet-400" />
+                  <span className="absolute right-0 top-0 h-6 w-6 rounded-tr-lg border-r-2 border-t-2 border-violet-400" />
+                  <span className="absolute bottom-0 left-0 h-6 w-6 rounded-bl-lg border-b-2 border-l-2 border-violet-400" />
+                  <span className="absolute bottom-0 right-0 h-6 w-6 rounded-br-lg border-b-2 border-r-2 border-violet-400" />
                 </div>
               </div>
             </div>
@@ -233,7 +233,7 @@ export default function CheckInPage() {
         {/* LOADING */}
         {state === 'loading' && (
           <div className="flex flex-col items-center gap-5">
-            <div className="h-12 w-12 animate-spin rounded-full border-2 border-crayola border-t-transparent" />
+            <div className="h-12 w-12 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
             <p className="text-[13px] text-[#9898b0]">Marking your attendance…</p>
           </div>
         )}
@@ -282,7 +282,7 @@ export default function CheckInPage() {
             </div>
             <button
               onClick={reset}
-              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-crayola py-3 text-[13px] font-semibold text-white transition-all hover:bg-crayola active:scale-95"
+              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-violet-600 py-3 text-[13px] font-semibold text-white transition-all hover:bg-violet-500 active:scale-95"
             >
               <Camera size={14} />
               Try Again

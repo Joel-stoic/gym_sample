@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
+import { Bebas_Neue, Inter } from 'next/font/google'
 import {
   LayoutDashboard,
   Users,
@@ -21,6 +22,10 @@ import { toast } from 'sonner'
 import api from '@/src/lib/api'
 import { useSidebar } from '../../store/sidebarStore'
 import { useNotificationBadge } from '@/src/hooks/useNotificationBadge'
+
+// ─── Fonts ────────────────────────────────────────────────────────────────────
+const bebas = Bebas_Neue({ weight: '400', subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] })
 
 // ✅ every item has roles — filter never crashes on undefined
 const navItems: {
@@ -67,24 +72,22 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
   return (
     <div
       className={cn(
-        'group/sidebar flex h-full flex-shrink-0 flex-col overflow-hidden transition-all duration-300 ease-in-out',
-        'bg-sidebar/80 backdrop-blur-md border-r border-sidebar-border',
-        'w-[82vw] max-w-[280px] md:w-[72px] md:hover:w-64'
+        'flex h-full w-[82vw] max-w-[280px] flex-shrink-0 flex-col overflow-hidden',
+        'bg-[#050505] border-r border-[#1A1A1A]',
+        'md:w-64 md:max-w-none',
+        inter.className
       )}
     >
-      {/* Logo */}
-      <div className="flex items-center gap-2.5 px-4 py-4 border-b border-sidebar-border sm:gap-3 sm:px-6 sm:py-5">
-        <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-primary sm:h-9 sm:w-9">
-          <Dumbbell className="h-4 w-4 text-primary-foreground" />
+      {/* Logo — compact on mobile so the whole rail fits without scrolling */}
+      <div className="flex items-center gap-2.5 px-4 py-3 border-b border-[#1A1A1A] sm:gap-3 sm:px-6 sm:py-6">
+        <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-sm border border-violet-500/30 bg-violet-500/10 sm:h-9 sm:w-9">
+          <Dumbbell className="h-3.5 w-3.5 text-violet-500 sm:h-4 sm:w-4" />
         </div>
-        <div className="min-w-0 flex-1 transition-all duration-300 md:w-0 md:opacity-0 md:group-hover/sidebar:w-auto md:group-hover/sidebar:opacity-100 overflow-hidden">
-          <p
-            className="text-base leading-none text-foreground sm:text-lg whitespace-nowrap"
-            style={{ fontFamily: 'Orbitron, sans-serif', letterSpacing: '0.06em', fontWeight: 600 }}
-          >
+        <div className="min-w-0 flex-1">
+          <p className={`text-lg leading-none tracking-widest text-white sm:text-2xl ${bebas.className}`}>
             JOVIFITX
           </p>
-          <p className="mt-1 truncate text-[10px] font-semibold tracking-widest text-muted-foreground uppercase whitespace-nowrap">
+          <p className="mt-0.5 truncate text-[9.5px] font-medium tracking-wide text-[#555555] uppercase sm:mt-1 sm:text-[11px]">
             {tenant?.name || 'Loading…'}
           </p>
         </div>
@@ -92,7 +95,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
           <button
             onClick={onClose}
             aria-label="Close menu"
-            className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg border border-sidebar-border text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:hidden"
+            className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-sm border border-[#2A2A2A] text-[#888888] transition-colors hover:bg-[#1A1A1A] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:hidden"
           >
             <X className="h-3.5 w-3.5" />
           </button>
@@ -100,14 +103,14 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
       </div>
 
       {/* Menu label */}
-      <div className="px-4 pb-2 pt-4 sm:px-5 md:opacity-0 md:group-hover/sidebar:opacity-100 transition-opacity duration-300">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground whitespace-nowrap">
+      <div className="px-4 pb-1.5 pt-2.5 sm:px-6 sm:pb-3 sm:pt-6">
+        <p className="text-[9.5px] font-bold uppercase tracking-widest text-[#555555] sm:text-[11px]">
           System Menu
         </p>
       </div>
 
-      {/* Nav */}
-      <nav className="flex flex-1 flex-col justify-around gap-0.5 overflow-y-auto px-3 pb-3 sm:gap-0.5 sm:px-4 sm:pb-4 md:justify-start">
+      {/* Nav — fills the space down to the footer on mobile, packed at the top on desktop */}
+      <nav className="flex flex-1 flex-col justify-around gap-1 overflow-y-auto px-3 pb-3 sm:gap-1 sm:px-4 sm:pb-4 md:justify-start">
         {filteredNavItems.map((item) => {
           const Icon = item.icon
           const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
@@ -120,50 +123,52 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
                 onClose?.()
               }}
               className={cn(
-                'group relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-[11px] font-semibold uppercase tracking-widest transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                'group relative flex items-center gap-3 rounded-sm border px-3 py-3 text-[11.5px] font-bold uppercase tracking-wide transition-colors sm:gap-3 sm:px-3 sm:py-3 sm:text-[12px]',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500',
                 isActive
-                  ? 'bg-accent text-accent-foreground shadow-[inset_0_0_12px_rgba(208,91,55,0.2)]'
-                  : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
+                  ? 'border-[#2A2A2A] bg-[#121212] text-white'
+                  : 'border-transparent text-[#888888] hover:bg-[#0A0A0A] hover:text-white active:bg-[#141414]'
               )}
             >
               {isActive && (
-                <span className="absolute inset-y-0 left-0 w-[3px] rounded-l-lg bg-primary" />
+                <span className="absolute inset-y-0 left-0 w-[3px] rounded-l-sm bg-violet-600" />
               )}
               <span className="relative flex-shrink-0">
                 <Icon
-                  className={cn("h-[17px] w-[17px] transition-colors", isActive ? "text-primary" : "")}
+                  className="h-[17px] w-[17px] transition-colors sm:h-[18px] sm:w-[18px]"
+                  style={{ color: isActive ? '#7C3AED' : undefined }}
                 />
                 {item.href === '/notification' && hasNew && (
-                  <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full border-2 border-sidebar bg-primary" />
+                  <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full border-2 border-[#121212] bg-red-600 sm:h-2.5 sm:w-2.5" />
                 )}
               </span>
-              <span className="truncate whitespace-nowrap transition-all duration-300 md:w-0 md:opacity-0 md:group-hover/sidebar:w-auto md:group-hover/sidebar:opacity-100">{item.label}</span>
+              <span className="truncate">{item.label}</span>
             </Link>
           )
         })}
       </nav>
 
-      {/* User + logout */}
-      <div className="flex-shrink-0 border-t border-sidebar-border p-3 sm:p-4">
-        <div className="mb-2 flex items-center gap-2.5 rounded-lg md:px-0 md:group-hover/sidebar:px-2 py-2 sm:mb-3 transition-all duration-300">
-          <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-secondary text-foreground text-[12px] font-bold sm:h-9 sm:w-9">
+      {/* User + logout — compact footer that always stays in view */}
+      <div className="flex-shrink-0 border-t border-[#1A1A1A] p-2.5 sm:p-4">
+        <div className="mb-2 flex items-center gap-2.5 rounded-sm px-1.5 py-1 sm:mb-3 sm:gap-3 sm:px-2 sm:py-2">
+          <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-sm border border-violet-500/20 bg-violet-500/10 text-[12px] font-bold text-violet-500 sm:h-10 sm:w-10 sm:text-[14px]">
             {initials}
           </div>
-          <div className="min-w-0 flex-1 transition-all duration-300 md:w-0 md:opacity-0 md:group-hover/sidebar:w-auto md:group-hover/sidebar:opacity-100 overflow-hidden">
-            <p className="truncate text-[12px] font-semibold text-foreground sm:text-[13px] whitespace-nowrap">
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-[12px] font-bold tracking-wide text-white sm:text-[13px]">
               {staff?.name ?? 'User'}
             </p>
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground whitespace-nowrap">
+            <p className="text-[9.5px] font-medium uppercase tracking-wide text-[#555555] sm:text-[11px]">
               {staff?.role ?? ''}
             </p>
           </div>
         </div>
         <button
           onClick={handleLogout}
-          className="flex w-full items-center md:justify-center md:group-hover/sidebar:justify-start gap-2 rounded-lg border border-sidebar-border bg-transparent md:px-0 md:group-hover/sidebar:px-3 py-2 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground transition-all duration-300 hover:border-primary/50 hover:bg-accent hover:text-accent-foreground hover:glow-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:py-2.5 sm:text-[11px] overflow-hidden"
+          className="flex w-full items-center justify-center gap-2 rounded-sm border border-[#2A2A2A] bg-transparent px-3 py-2 text-[10.5px] font-bold uppercase tracking-wider text-[#888888] transition-colors hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 sm:py-3 sm:text-[12px]"
         >
-          <LogOut className="h-4 w-4 flex-shrink-0 md:mx-auto md:group-hover/sidebar:mx-0 transition-all duration-300" />
-          <span className="whitespace-nowrap transition-all duration-300 md:w-0 md:opacity-0 md:group-hover/sidebar:w-auto md:group-hover/sidebar:opacity-100">Disconnect</span>
+          <LogOut className="h-3.5 w-3.5 flex-shrink-0 sm:h-4 sm:w-4" />
+          Disconnect
         </button>
       </div>
     </div>
@@ -183,7 +188,7 @@ export default function Sidebar() {
       {/* Mobile: overlay + slide-in drawer */}
       <div
         className={cn(
-          'fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:hidden',
+          'fixed inset-0 z-40 bg-black/80 transition-opacity duration-300 md:hidden',
           isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
         )}
         onClick={close}
