@@ -99,7 +99,7 @@ export default function Header() {
           {roleLabel}
         </span>
         <div
-          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm border border-violet-500/20 bg-violet-500/10 text-[13px] font-bold text-violet-500"
+          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl border border-border bg-muted text-[13px] font-bold text-foreground"
         >
           {initials}
         </div>

@@ -80,8 +80,8 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
     >
       {/* Logo — compact on mobile so the whole rail fits without scrolling */}
       <div className="flex items-center gap-2.5 px-4 py-3 border-b border-border sm:gap-3 sm:px-6 sm:py-6">
-        <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-sm border border-violet-500/30 bg-violet-500/10 sm:h-9 sm:w-9">
-          <Dumbbell className="h-3.5 w-3.5 text-violet-500 sm:h-4 sm:w-4" />
+        <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-xl border border-border bg-muted sm:h-9 sm:w-9">
+          <Dumbbell className="h-3.5 w-3.5 text-foreground sm:h-4 sm:w-4" />
         </div>
         <div className="min-w-0 flex-1">
           <p className={`text-lg leading-none tracking-widest text-foreground sm:text-2xl ${bebas.className}`}>
@@ -123,20 +123,17 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
                 onClose?.()
               }}
               className={cn(
-                'group relative flex items-center gap-3 rounded-sm border px-3 py-3 text-[11.5px] font-bold uppercase tracking-wide transition-colors sm:gap-3 sm:px-3 sm:py-3 sm:text-[12px]',
-                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500',
+                'group relative flex items-center gap-3 border px-3 py-2.5 text-[12.5px] font-medium transition-colors sm:gap-3 sm:px-3 sm:py-2.5 sm:text-[13px]',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground',
                 isActive
-                  ? 'border-border bg-card text-foreground'
-                  : 'border-transparent text-muted-foreground hover:bg-muted hover:text-foreground active:bg-accent'
+                  ? 'border-transparent bg-accent text-foreground rounded-xl'
+                  : 'border-transparent text-muted-foreground hover:bg-muted hover:text-foreground active:bg-accent rounded-xl'
               )}
             >
-              {isActive && (
-                <span className="absolute inset-y-0 left-0 w-[3px] rounded-l-sm bg-violet-600" />
-              )}
               <span className="relative flex-shrink-0">
                 <Icon
                   className="h-[17px] w-[17px] transition-colors sm:h-[18px] sm:w-[18px]"
-                  style={{ color: isActive ? '#7C3AED' : undefined }}
+                  style={{ color: isActive ? '#FFFFFF' : undefined }}
                 />
                 {item.href === '/notification' && hasNew && (
                   <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full border-2 border-background bg-red-600 sm:h-2.5 sm:w-2.5" />
@@ -151,7 +148,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
       {/* User + logout — compact footer that always stays in view */}
       <div className="flex-shrink-0 border-t border-border p-2.5 sm:p-4">
         <div className="mb-2 flex items-center gap-2.5 rounded-sm px-1.5 py-1 sm:mb-3 sm:gap-3 sm:px-2 sm:py-2">
-          <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-sm border border-violet-500/20 bg-violet-500/10 text-[12px] font-bold text-violet-500 sm:h-10 sm:w-10 sm:text-[14px]">
+          <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl border border-border bg-muted text-[12px] font-bold text-foreground sm:h-10 sm:w-10 sm:text-[14px]">
             {initials}
           </div>
           <div className="min-w-0 flex-1">
