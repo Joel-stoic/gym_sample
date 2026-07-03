@@ -59,7 +59,7 @@ interface StaffMember {
 const surface = { background: '#0a0a0a', border: '1px solid #ffffff0a' }
 
 const inp = `
-  w-full rounded-xl px-3 py-2.5 text-[13px] text-white outline-none transition-all
+  w-full rounded-xl px-3 py-2.5 text-[13px] text-foreground outline-none transition-all
   placeholder:text-[#3d3d52]
 `
 const inpStyle = { background: '#0f0f0f', border: '1px solid #ffffff0a', color: 'white' }
@@ -116,39 +116,39 @@ function AddPackageModal({ onClose, onSuccess }: {
       style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
       <div className="w-full max-w-md rounded-2xl" style={{ background: '#0a0a0a', border: '1px solid #ffffff12' }}>
         <div className="px-6 py-4 flex items-center justify-between" style={{ borderBottom: '1px solid #ffffff08' }}>
-          <h2 className="text-[15px] font-semibold text-white">New PT Package</h2>
-          <button onClick={onClose} className="text-[#6b6b80] hover:text-white transition-colors text-lg leading-none">✕</button>
+          <h2 className="text-[15px] font-semibold text-foreground">New PT Package</h2>
+          <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors text-lg leading-none">✕</button>
         </div>
         <div className="p-6 space-y-3">
           <div>
-            <label className="text-xs text-[#6b6b80] mb-1.5 block">Package Name</label>
+            <label className="text-xs text-muted-foreground mb-1.5 block">Package Name</label>
             <input className={inp} style={inpStyle} placeholder="e.g. Premium 20 Sessions"
               value={name} onChange={e => setName(e.target.value)} />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs text-[#6b6b80] mb-1.5 block">Sessions</label>
+              <label className="text-xs text-muted-foreground mb-1.5 block">Sessions</label>
               <input type="number" className={inp} style={inpStyle} placeholder="20"
                 value={sessions} onChange={e => setSessions(e.target.value)} />
             </div>
             <div>
-              <label className="text-xs text-[#6b6b80] mb-1.5 block">Price (₹)</label>
+              <label className="text-xs text-muted-foreground mb-1.5 block">Price (₹)</label>
               <input type="number" className={inp} style={inpStyle} placeholder="5000"
                 value={price} onChange={e => setPrice(e.target.value)} />
             </div>
           </div>
           <div>
-            <label className="text-xs text-[#6b6b80] mb-1.5 block">Validity (days, optional)</label>
+            <label className="text-xs text-muted-foreground mb-1.5 block">Validity (days, optional)</label>
             <input type="number" className={inp} style={inpStyle} placeholder="90"
               value={durationDays} onChange={e => setDuration(e.target.value)} />
           </div>
           <div>
-            <label className="text-xs text-[#6b6b80] mb-1.5 block">Description (optional)</label>
+            <label className="text-xs text-muted-foreground mb-1.5 block">Description (optional)</label>
             <input className={inp} style={inpStyle} placeholder="Brief description..."
               value={description} onChange={e => setDescription(e.target.value)} />
           </div>
           <button onClick={handleSave} disabled={saving}
-            className="w-full h-11 rounded-xl text-[13px] font-medium text-white flex items-center justify-center gap-2 disabled:opacity-60 transition-all mt-2"
+            className="w-full h-11 rounded-xl text-[13px] font-medium text-foreground flex items-center justify-center gap-2 disabled:opacity-60 transition-all mt-2"
             style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)', boxShadow: '0 4px 20px #7c3aed35' }}>
             {saving && <Loader2 className="h-4 w-4 animate-spin" />}
             {saving ? 'Creating...' : 'Create Package'}
@@ -219,14 +219,14 @@ function ScheduleSessionModal({ enrollments, trainers, onClose, onSuccess }: {
       style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
       <div className="w-full max-w-md rounded-2xl" style={{ background: '#0a0a0a', border: '1px solid #ffffff12' }}>
         <div className="px-6 py-4 flex items-center justify-between" style={{ borderBottom: '1px solid #ffffff08' }}>
-          <h2 className="text-[15px] font-semibold text-white">Schedule PT Session</h2>
-          <button onClick={onClose} className="text-[#6b6b80] hover:text-white transition-colors text-lg leading-none">✕</button>
+          <h2 className="text-[15px] font-semibold text-foreground">Schedule PT Session</h2>
+          <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors text-lg leading-none">✕</button>
         </div>
         <div className="p-6 space-y-3">
 
           {/* Member search */}
           <div>
-            <label className="text-xs text-[#6b6b80] mb-1.5 block">Member & Package</label>
+            <label className="text-xs text-muted-foreground mb-1.5 block">Member & Package</label>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#3d3d52]" />
               <input
@@ -251,8 +251,8 @@ function ScheduleSessionModal({ enrollments, trainers, onClose, onSuccess }: {
                     style={{ background: 'transparent' }}
                     onMouseEnter={ev => (ev.currentTarget.style.background = '#ffffff05')}
                     onMouseLeave={ev => (ev.currentTarget.style.background = 'transparent')}>
-                    <p className="text-[13px] text-white">{e.member.name}</p>
-                    <p className="text-xs text-[#6b6b80]">
+                    <p className="text-[13px] text-foreground">{e.member.name}</p>
+                    <p className="text-xs text-muted-foreground">
                       {e.package.name} · {e.remainingSessions} sessions left · {e.member.phone}
                     </p>
                   </button>
@@ -268,7 +268,7 @@ function ScheduleSessionModal({ enrollments, trainers, onClose, onSuccess }: {
 
           {/* Trainer */}
           <div>
-            <label className="text-xs text-[#6b6b80] mb-1.5 block">Trainer</label>
+            <label className="text-xs text-muted-foreground mb-1.5 block">Trainer</label>
             <select value={trainerId} onChange={e => setTrainerId(e.target.value)}
               className={cn(inp, 'cursor-pointer')} style={inpStyle}>
               <option value="">Select trainer...</option>
@@ -279,13 +279,13 @@ function ScheduleSessionModal({ enrollments, trainers, onClose, onSuccess }: {
           {/* Date & Time */}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs text-[#6b6b80] mb-1.5 block">Date</label>
+              <label className="text-xs text-muted-foreground mb-1.5 block">Date</label>
               <input type="date" value={date} onChange={e => setDate(e.target.value)}
                 min={new Date().toISOString().split('T')[0]}
                 className={cn(inp, 'cursor-pointer')} style={inpStyle} />
             </div>
             <div>
-              <label className="text-xs text-[#6b6b80] mb-1.5 block">Time</label>
+              <label className="text-xs text-muted-foreground mb-1.5 block">Time</label>
               <input type="time" value={time} onChange={e => setTime(e.target.value)}
                 className={inp} style={inpStyle} />
             </div>
@@ -293,13 +293,13 @@ function ScheduleSessionModal({ enrollments, trainers, onClose, onSuccess }: {
 
           {/* Notes */}
           <div>
-            <label className="text-xs text-[#6b6b80] mb-1.5 block">Notes (optional)</label>
+            <label className="text-xs text-muted-foreground mb-1.5 block">Notes (optional)</label>
             <input className={inp} style={inpStyle} placeholder="Any notes..."
               value={notes} onChange={e => setNotes(e.target.value)} />
           </div>
 
           <button onClick={handleSave} disabled={saving}
-            className="w-full h-11 rounded-xl text-[13px] font-medium text-white flex items-center justify-center gap-2 disabled:opacity-60 transition-all mt-2"
+            className="w-full h-11 rounded-xl text-[13px] font-medium text-foreground flex items-center justify-center gap-2 disabled:opacity-60 transition-all mt-2"
             style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)', boxShadow: '0 4px 20px #7c3aed35' }}>
             {saving && <Loader2 className="h-4 w-4 animate-spin" />}
             {saving ? 'Scheduling...' : 'Schedule Session'}
@@ -372,14 +372,14 @@ function EnrollMemberModal({ packages, onClose, onSuccess }: {
         style={{ background: '#0a0a0a', border: '1px solid #ffffff12' }}>
         <div className="sticky top-0 px-6 py-4 flex items-center justify-between"
           style={{ background: '#0a0a0a', borderBottom: '1px solid #ffffff08' }}>
-          <h2 className="text-[15px] font-semibold text-white">Enroll Member in PT</h2>
-          <button onClick={onClose} className="text-[#6b6b80] hover:text-white transition-colors text-lg leading-none">✕</button>
+          <h2 className="text-[15px] font-semibold text-foreground">Enroll Member in PT</h2>
+          <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors text-lg leading-none">✕</button>
         </div>
         <div className="p-6 space-y-3">
 
           {/* Member search */}
           <div>
-            <label className="text-xs text-[#6b6b80] mb-1.5 block">Search Member</label>
+            <label className="text-xs text-muted-foreground mb-1.5 block">Search Member</label>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#3d3d52]" />
               <input
@@ -393,7 +393,7 @@ function EnrollMemberModal({ packages, onClose, onSuccess }: {
                 }}
               />
               {searching && (
-                <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#6b6b80] animate-spin" />
+                <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground animate-spin" />
               )}
             </div>
             {members.length > 0 && !memberId && (
@@ -405,8 +405,8 @@ function EnrollMemberModal({ packages, onClose, onSuccess }: {
                     style={{ background: 'transparent' }}
                     onMouseEnter={e => (e.currentTarget.style.background = '#ffffff05')}
                     onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
-                    <p className="text-[13px] text-white">{m.name}</p>
-                    <p className="text-xs text-[#6b6b80]">{m.phone}</p>
+                    <p className="text-[13px] text-foreground">{m.name}</p>
+                    <p className="text-xs text-muted-foreground">{m.phone}</p>
                   </button>
                 ))}
               </div>
@@ -415,7 +415,7 @@ function EnrollMemberModal({ packages, onClose, onSuccess }: {
 
           {/* Package select */}
           <div>
-            <label className="text-xs text-[#6b6b80] mb-1.5 block">PT Package</label>
+            <label className="text-xs text-muted-foreground mb-1.5 block">PT Package</label>
             <select value={packageId}
               onChange={e => {
                 setPackageId(e.target.value)
@@ -435,7 +435,7 @@ function EnrollMemberModal({ packages, onClose, onSuccess }: {
 
           {/* Amount */}
           <div>
-            <label className="text-xs text-[#6b6b80] mb-1.5 block">Amount Paid (₹)</label>
+            <label className="text-xs text-muted-foreground mb-1.5 block">Amount Paid (₹)</label>
             <input type="number" className={inp} style={inpStyle} placeholder="0"
               value={amountPaid} onChange={e => setAmountPaid(e.target.value)} />
             {selectedPkg && amountPaid && Number(amountPaid) < selectedPkg.price && (
@@ -448,20 +448,20 @@ function EnrollMemberModal({ packages, onClose, onSuccess }: {
 
           {/* Start date */}
           <div>
-            <label className="text-xs text-[#6b6b80] mb-1.5 block">Start Date (optional)</label>
+            <label className="text-xs text-muted-foreground mb-1.5 block">Start Date (optional)</label>
             <input type="date" className={cn(inp, 'cursor-pointer')} style={inpStyle}
               value={startDate} onChange={e => setStartDate(e.target.value)} />
           </div>
 
           {/* Notes */}
           <div>
-            <label className="text-xs text-[#6b6b80] mb-1.5 block">Notes (optional)</label>
+            <label className="text-xs text-muted-foreground mb-1.5 block">Notes (optional)</label>
             <input className={inp} style={inpStyle} placeholder="Any notes..."
               value={notes} onChange={e => setNotes(e.target.value)} />
           </div>
 
           <button onClick={handleSave} disabled={saving || !memberId || !packageId}
-            className="w-full h-11 rounded-xl text-[13px] font-medium text-white flex items-center justify-center gap-2 disabled:opacity-60 transition-all mt-2"
+            className="w-full h-11 rounded-xl text-[13px] font-medium text-foreground flex items-center justify-center gap-2 disabled:opacity-60 transition-all mt-2"
             style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)', boxShadow: '0 4px 20px #7c3aed35' }}>
             {saving && <Loader2 className="h-4 w-4 animate-spin" />}
             {saving ? 'Enrolling...' : 'Enroll Member'}
@@ -492,16 +492,16 @@ function SessionRow({ session, onComplete, onCancel, isTrainer }: {
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <p className="text-[13px] font-medium text-white">{session.member.name}</p>
+          <p className="text-[13px] font-medium text-foreground">{session.member.name}</p>
           <span className="text-[#3d3d52]">·</span>
-          <p className="text-xs text-[#6b6b80]">{session.enrollment.package.name}</p>
+          <p className="text-xs text-muted-foreground">{session.enrollment.package.name}</p>
         </div>
         <div className="flex items-center gap-3 mt-0.5 flex-wrap">
-          <span className="text-[11px] text-[#6b6b80] flex items-center gap-1">
+          <span className="text-[11px] text-muted-foreground flex items-center gap-1">
             <Calendar className="h-3 w-3" />
             {format(parseISO(session.scheduledAt), 'EEE d MMM · h:mm a')}
           </span>
-          <span className="text-[11px] text-[#6b6b80] flex items-center gap-1">
+          <span className="text-[11px] text-muted-foreground flex items-center gap-1">
             <UserCheck className="h-3 w-3" />
             {session.trainer.name}
           </span>
@@ -613,7 +613,7 @@ export default function PtPage() {
       <div className="flex items-center justify-center h-[60vh]">
         <div className="flex flex-col items-center gap-3">
           <div className="h-8 w-8 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
-          <p className="text-[12px] text-[#6b6b80]">Loading PT data...</p>
+          <p className="text-[12px] text-muted-foreground">Loading PT data...</p>
         </div>
       </div>
     )
@@ -652,20 +652,20 @@ export default function PtPage() {
           
             
               <button onClick={() => setShowEnroll(true)}
-                className="flex items-center gap-2 h-9 px-4 rounded-xl text-[13px] font-medium text-[#9898b0] transition-all hover:text-white"
+                className="flex items-center gap-2 h-9 px-4 rounded-xl text-[13px] font-medium text-[#9898b0] transition-all hover:text-foreground"
                 style={{ background: '#ffffff0a', border: '1px solid #ffffff12' }}>
                 <Users className="h-3.5 w-3.5" /> Enroll Members
               </button>
               {isOwnerOrManager && (
               <button onClick={() => setShowPackage(true)}
-                className="flex items-center gap-2 h-9 px-4 rounded-xl text-[13px] font-medium text-[#9898b0] transition-all hover:text-white"
+                className="flex items-center gap-2 h-9 px-4 rounded-xl text-[13px] font-medium text-[#9898b0] transition-all hover:text-foreground"
                 style={{ background: '#ffffff0a', border: '1px solid #ffffff12' }}>
                 <Package className="h-3.5 w-3.5" /> Create New Package
               </button>
            
           )}
           <button onClick={() => setShowSchedule(true)}
-            className="flex items-center gap-2 h-9 px-4 rounded-xl text-[13px] font-medium text-white transition-all"
+            className="flex items-center gap-2 h-9 px-4 rounded-xl text-[13px] font-medium text-foreground transition-all"
             style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)', boxShadow: '0 4px 16px #7c3aed30' }}>
             <Plus className="h-3.5 w-3.5" /> Schedule Session to Members
           </button>
@@ -687,7 +687,7 @@ export default function PtPage() {
             <span className="text-[18px] font-bold" style={{ color: stat.color }}>
               {stat.value}
             </span>
-            <span className="text-[12px] text-[#6b6b80]">{stat.label}</span>
+            <span className="text-[12px] text-muted-foreground">{stat.label}</span>
           </div>
         ))}
       </div>
@@ -710,7 +710,7 @@ export default function PtPage() {
       {activeTab === 'sessions' && (
         <div className="rounded-2xl p-5" style={surface}>
           <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-            <p className="text-[13px] font-semibold text-white">All Sessions</p>
+            <p className="text-[13px] font-semibold text-foreground">All Sessions</p>
             <div className="flex items-center gap-1.5 flex-wrap">
               {['ALL', 'SCHEDULED', 'COMPLETED', 'CANCELLED', 'NO_SHOW'].map(s => (
                 <button key={s} onClick={() => setStatusFilter(s)}
@@ -730,7 +730,7 @@ export default function PtPage() {
                 style={{ background: '#7c3aed15' }}>
                 <Dumbbell className="h-5 w-5 text-violet-400/60" />
               </div>
-              <p className="text-[13px] text-[#6b6b80]">No sessions found</p>
+              <p className="text-[13px] text-muted-foreground">No sessions found</p>
               <button onClick={() => setShowSchedule(true)}
                 className="text-xs text-violet-400 hover:text-violet-300 flex items-center gap-1 transition-colors">
                 <Plus className="h-3 w-3" /> Schedule first session
@@ -758,7 +758,7 @@ export default function PtPage() {
           {enrollments.length === 0 ? (
             <div className="rounded-2xl p-12 flex flex-col items-center gap-3" style={surface}>
               <Users className="h-8 w-8 text-[#3d3d52]" />
-              <p className="text-[13px] text-[#6b6b80]">No enrollments yet</p>
+              <p className="text-[13px] text-muted-foreground">No enrollments yet</p>
               {isOwnerOrManager && (
                 <button onClick={() => setShowEnroll(true)}
                   className="text-xs text-violet-400 hover:text-violet-300 flex items-center gap-1">
@@ -777,8 +777,8 @@ export default function PtPage() {
                     {/* Member info */}
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <p className="text-[14px] font-semibold text-white">{e.member.name}</p>
-                        <p className="text-xs text-[#6b6b80] mt-0.5">{e.member.phone}</p>
+                        <p className="text-[14px] font-semibold text-foreground">{e.member.name}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{e.member.phone}</p>
                       </div>
                       <span className={`text-[11px] font-medium px-2.5 py-1 rounded-lg ${
                         e.status === 'ACTIVE' ? 'text-emerald-400' : 'text-red-400'
@@ -790,12 +790,12 @@ export default function PtPage() {
                     </div>
 
                     {/* Package name */}
-                    <p className="text-xs text-[#6b6b80] mb-1">{e.package.name}</p>
+                    <p className="text-xs text-muted-foreground mb-1">{e.package.name}</p>
 
                     {/* Progress bar */}
                     <div className="flex items-center justify-between text-xs mb-1.5">
-                      <span className="text-[#6b6b80]">Sessions used</span>
-                      <span className="text-white font-medium">{e.usedSessions}/{e.totalSessions}</span>
+                      <span className="text-muted-foreground">Sessions used</span>
+                      <span className="text-foreground font-medium">{e.usedSessions}/{e.totalSessions}</span>
                     </div>
                     <div className="h-1.5 rounded-full overflow-hidden mb-4" style={{ background: '#ffffff08' }}>
                       <div className="h-full rounded-full transition-all"
@@ -805,11 +805,11 @@ export default function PtPage() {
                     {/* Stats */}
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-[11px] text-[#6b6b80]">Remaining</p>
-                        <p className="text-[18px] font-bold text-white">{e.remainingSessions}</p>
+                        <p className="text-[11px] text-muted-foreground">Remaining</p>
+                        <p className="text-[18px] font-bold text-foreground">{e.remainingSessions}</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-[11px] text-[#6b6b80]">Paid</p>
+                        <p className="text-[11px] text-muted-foreground">Paid</p>
                         <p className="text-[18px] font-bold text-emerald-400">
                           ₹{Number(e.amountPaid).toLocaleString('en-IN')}
                         </p>
@@ -827,7 +827,7 @@ export default function PtPage() {
       {activeTab === 'packages' && (
         <div className="rounded-2xl p-5" style={surface}>
           <div className="flex items-center justify-between mb-4">
-            <p className="text-[13px] font-semibold text-white">PT Packages</p>
+            <p className="text-[13px] font-semibold text-foreground">PT Packages</p>
             {isOwnerOrManager && (
               <button onClick={() => setShowPackage(true)}
                 className="flex items-center gap-1.5 text-xs text-violet-400 hover:text-violet-300 transition-colors">
@@ -839,7 +839,7 @@ export default function PtPage() {
           {packages.length === 0 ? (
             <div className="py-12 flex flex-col items-center gap-3">
               <Dumbbell className="h-8 w-8 text-[#3d3d52]" />
-              <p className="text-[13px] text-[#6b6b80]">No packages yet</p>
+              <p className="text-[13px] text-muted-foreground">No packages yet</p>
               {isOwnerOrManager && (
                 <button onClick={() => setShowPackage(true)}
                   className="text-xs text-violet-400 hover:text-violet-300 flex items-center gap-1">
@@ -854,9 +854,9 @@ export default function PtPage() {
                   style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}>
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex-1 min-w-0">
-                      <p className="text-[13px] font-semibold text-white">{pkg.name}</p>
+                      <p className="text-[13px] font-semibold text-foreground">{pkg.name}</p>
                       {pkg.description && (
-                        <p className="text-xs text-[#6b6b80] mt-0.5 line-clamp-2">{pkg.description}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{pkg.description}</p>
                       )}
                     </div>
                     <span className="text-[14px] font-bold text-emerald-400 ml-3 flex-shrink-0">
@@ -869,7 +869,7 @@ export default function PtPage() {
                       {pkg.sessions} sessions
                     </span>
                     {pkg.durationDays && (
-                      <span className="text-[11px] text-[#6b6b80] flex items-center gap-1">
+                      <span className="text-[11px] text-muted-foreground flex items-center gap-1">
                         <Calendar className="h-3 w-3" /> {pkg.durationDays}d validity
                       </span>
                     )}

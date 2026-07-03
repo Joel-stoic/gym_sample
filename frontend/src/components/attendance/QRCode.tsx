@@ -32,7 +32,7 @@ export default function GymQRCode({
   }
 
   return (
-    <Card className="border-white/[0.06] bg-[#0f0f18] shadow-none">
+    <Card className="border-border bg-[#0f0f18] shadow-none">
       <CardContent className="p-6">
         {loading ? (
           <LoadingSpinner className="h-56" />
@@ -45,11 +45,11 @@ export default function GymQRCode({
                 <QrCode className="h-6 w-6" />
               </div>
 
-              <h3 className="text-lg font-semibold text-white">
+              <h3 className="text-lg font-semibold text-foreground">
                 Gym Check-in QR
               </h3>
 
-              <p className="mt-1 text-sm text-[#6b6b80]">
+              <p className="mt-1 text-sm text-muted-foreground">
                 Members scan to check in instantly
               </p>
             </div>
@@ -66,7 +66,7 @@ export default function GymQRCode({
 
             {/* DESCRIPTION */}
 
-            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4 text-center">
+            <div className="rounded-2xl border border-border bg-white/[0.02] p-4 text-center">
               <p className="text-sm leading-6 text-[#f9f9fd] font-extrabold">
                 Print this QR and place it at the gym entrance.
                 Members can scan it to mark attendance
@@ -88,14 +88,14 @@ export default function GymQRCode({
         ) : (
           <div className="flex flex-col items-center justify-center py-10 text-center">
             <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/[0.04]">
-              <QrCode className="h-7 w-7 text-[#6b6b80]" />
+              <QrCode className="h-7 w-7 text-muted-foreground" />
             </div>
 
-            <h3 className="text-base font-medium text-white">
+            <h3 className="text-base font-medium text-foreground">
               QR Not Available
             </h3>
 
-            <p className="mt-1 text-sm text-[#6b6b80]">
+            <p className="mt-1 text-sm text-muted-foreground">
               Unable to generate QR code right now
             </p>
           </div>

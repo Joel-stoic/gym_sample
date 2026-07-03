@@ -60,7 +60,7 @@ interface WeightSummary {
 // ─── Panel wrapper ────────────────────────────────────────
 function Panel({ children, className }: { children: React.ReactNode; className?: string }) {
     return (
-        <div className={cn('rounded-2xl border border-white/10 bg-white/[0.03] p-5', className)}>
+        <div className={cn('rounded-2xl border border-border bg-white/[0.03] p-5', className)}>
             {children}
         </div>
     )
@@ -69,7 +69,7 @@ function Panel({ children, className }: { children: React.ReactNode; className?:
 // ─── Section label ────────────────────────────────────────
 function SectionLabel({ children }: { children: React.ReactNode }) {
     return (
-        <p className=" uppercase text-md text-white font-extrabold mb-4">
+        <p className=" uppercase text-md text-foreground font-extrabold mb-4">
             {children}
         </p>
     )
@@ -129,11 +129,11 @@ function DietPlanCard({
 
                         <div>
 
-                            <h3 className="text-xl font-bold tracking-tight text-white leading-tight">
+                            <h3 className="text-xl font-bold tracking-tight text-foreground leading-tight">
                                 {plan.title}
                             </h3>
 
-                            <p className="text-sm text-zinc-500 mt-1">
+                            <p className="text-sm text-muted-foreground mt-1">
                                 Created by{' '}
                                 <span className="text-zinc-300 font-medium">
                                     {plan.createdBy.name}
@@ -148,7 +148,7 @@ function DietPlanCard({
 
                     <div className="flex flex-wrap items-center gap-3">
 
-                        <div className="flex items-center gap-1.5 text-sm text-zinc-500 bg-white/[0.05] border border-white/[0.05] rounded-xl px-3 py-1.5">
+                        <div className="flex items-center gap-1.5 text-sm text-muted-foreground bg-white/[0.05] border border-white/[0.05] rounded-xl px-3 py-1.5">
 
                             <Calendar className="h-4 w-4" />
 
@@ -244,7 +244,7 @@ function DietPlanCard({
 
                                     <div
                                         key={meal.id}
-                                        className="rounded-2xl border border-white/[0.06] bg-black/20 p-5 hover:border-white/[0.1] transition-all"
+                                        className="rounded-2xl border border-border bg-black/20 p-5 hover:border-white/[0.1] transition-all"
                                     >
 
                                         {/* MEAL HEADER */}
@@ -412,14 +412,14 @@ function AddDietModal({
         }
     }
 
-    const inputCls = 'w-full bg-black/30 border border-white/[0.08] rounded-xl px-3 py-2 text-sm text-white placeholder:text-zinc-600 outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-all'
+    const inputCls = 'w-full bg-black/30 border border-white/[0.08] rounded-xl px-3 py-2 text-sm text-foreground placeholder:text-zinc-600 outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-all'
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
             <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl" style={{ background: '#111118', border: '1px solid #ffffff12' }}>
-                <div className="sticky top-0 px-6 py-4 flex items-center justify-between" style={{ background: '#111118', borderBottom: '1px solid #ffffff08' }}>
-                    <h2 className="text-base font-semibold text-white">Create Diet Plan</h2>
-                    <button onClick={onClose} className="text-zinc-500 hover:text-white transition-colors text-sm">✕</button>
+                <div className="sticky top-0 px-6 py-4 flex items-center justify-between" >
+                    <h2 className="text-base font-semibold text-foreground">Create Diet Plan</h2>
+                    <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors text-sm">✕</button>
                 </div>
 
                 <div className="p-6 space-y-5">
@@ -429,7 +429,7 @@ function AddDietModal({
                         <input className={inputCls} placeholder="Description (optional)" value={description} onChange={e => setDescription(e.target.value)} />
                         <div className="grid grid-cols-2 gap-3">
                             <div>
-                                <label className="text-xs text-zinc-500 mb-1 block">Valid From</label>
+                                <label className="text-xs text-muted-foreground mb-1 block">Valid From</label>
                                 <input
                                     type="date"
                                     className={`${inputCls} cursor-pointer`}
@@ -438,7 +438,7 @@ function AddDietModal({
                                 />
                             </div>
                             <div>
-                                <label className="text-xs text-zinc-500 mb-1 block">Valid To (optional)</label>
+                                <label className="text-xs text-muted-foreground mb-1 block">Valid To (optional)</label>
                                 <input type="date" className={`${inputCls} cursor-pointer`} value={validTo} onChange={e => setValidTo(e.target.value)} />
                             </div>
                         </div>
@@ -447,7 +447,7 @@ function AddDietModal({
                     {/* Meals */}
                     <div>
                         <div className="flex items-center justify-between mb-3">
-                            <p className="text-xs uppercase tracking-widest text-zinc-500 font-medium">Meals</p>
+                            <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium">Meals</p>
                             <button onClick={addMeal} className="text-xs text-violet-400 hover:text-violet-300 flex items-center gap-1 transition-colors">
                                 <Plus className="h-3 w-3" /> Add meal
                             </button>
@@ -455,12 +455,12 @@ function AddDietModal({
 
                         <div className="space-y-4">
                             {meals.map((meal, mealIdx) => (
-                                <div key={mealIdx} className="rounded-xl border border-white/[0.06] bg-black/20 p-4">
+                                <div key={mealIdx} className="rounded-xl border border-border bg-black/20 p-4">
                                     <div className="flex items-center gap-3 mb-3">
                                         <select
                                             value={meal.time}
                                             onChange={e => { const u = [...meals]; u[mealIdx].time = e.target.value; setMeals(u) }}
-                                            className="bg-black/40 border border-white/[0.08] rounded-lg px-2 py-1.5 text-xs text-white outline-none flex-1"
+                                            className="bg-black/40 border border-white/[0.08] rounded-lg px-2 py-1.5 text-xs text-foreground outline-none flex-1"
                                         >
                                             {mealTimes.map(t => <option key={t} value={t}>{t}</option>)}
                                         </select>
@@ -469,7 +469,7 @@ function AddDietModal({
                                             placeholder="kcal"
                                             value={meal.calories}
                                             onChange={e => { const u = [...meals]; u[mealIdx].calories = e.target.value; setMeals(u) }}
-                                            className="bg-black/40 border border-white/[0.08] rounded-lg px-2 py-1.5 text-xs text-white outline-none w-20 placeholder:text-zinc-600"
+                                            className="bg-black/40 border border-white/[0.08] rounded-lg px-2 py-1.5 text-xs text-foreground outline-none w-20 placeholder:text-zinc-600"
                                         />
                                         {meals.length > 1 && (
                                             <button onClick={() => removeMeal(mealIdx)} className="text-red-400/60 hover:text-red-400 transition-colors">
@@ -483,7 +483,7 @@ function AddDietModal({
                                             <div key={itemIdx} className="flex items-center gap-2">
                                                 <span className="h-1 w-1 rounded-full bg-zinc-600 flex-shrink-0" />
                                                 <input
-                                                    className="flex-1 bg-transparent border-b border-white/[0.06] pb-1 text-xs text-white placeholder:text-zinc-600 outline-none focus:border-violet-500/40 transition-colors"
+                                                    className="flex-1 bg-transparent border-b border-border pb-1 text-xs text-foreground placeholder:text-zinc-600 outline-none focus:border-violet-500/40 transition-colors"
                                                     placeholder={`Food item ${itemIdx + 1} (e.g. 2 eggs)`}
                                                     value={item}
                                                     onChange={e => updateMealItem(mealIdx, itemIdx, e.target.value)}
@@ -495,7 +495,7 @@ function AddDietModal({
                                                 )}
                                             </div>
                                         ))}
-                                        <button onClick={() => addItem(mealIdx)} className="text-xs text-zinc-500 hover:text-violet-400 flex items-center gap-1 mt-2 transition-colors">
+                                        <button onClick={() => addItem(mealIdx)} className="text-xs text-muted-foreground hover:text-violet-400 flex items-center gap-1 mt-2 transition-colors">
                                             <Plus className="h-3 w-3" /> Add item
                                         </button>
                                     </div>
@@ -515,7 +515,7 @@ function AddDietModal({
                     <button
                         onClick={handleSave}
                         disabled={saving}
-                        className="w-full h-11 rounded-xl text-sm font-medium text-white flex items-center justify-center gap-2 transition-all disabled:opacity-60"
+                        className="w-full h-11 rounded-xl text-sm font-medium text-foreground flex items-center justify-center gap-2 transition-all disabled:opacity-60"
                         style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)', boxShadow: '0 4px 20px #7c3aed35' }}
                     >
                         {saving && <Loader2 className="h-4 w-4 animate-spin" />}
@@ -565,7 +565,7 @@ export default function MemberDietWeightPage() {
     const change = summary?.change ?? null
 
     const changeColor =
-        change === null ? 'text-zinc-500'
+        change === null ? 'text-muted-foreground'
             : change < 0 ? 'text-green-400'
                 : change > 0 ? 'text-red-400'
                     : 'text-zinc-400'
@@ -599,19 +599,19 @@ export default function MemberDietWeightPage() {
                 <div className="flex items-center gap-3">
                     <button
                         onClick={() => router.back()}
-                        className="h-9 w-9 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-center text-zinc-400 hover:text-white transition-colors"
+                        className="h-9 w-9 rounded-xl border border-border bg-white/[0.03] flex items-center justify-center text-zinc-400 hover:text-foreground transition-colors"
                     >
                         <ArrowLeft className="h-4 w-4" />
                     </button>
                     <div>
-                        <h1 className="text-xl font-bold text-white leading-tight">{memberName}</h1>
-                        <p className="text-xs text-zinc-500 mt-0.5">Diet & Weight tracking</p>
+                        <h1 className="text-xl font-bold text-foreground leading-tight">{memberName}</h1>
+                        <p className="text-xs text-muted-foreground mt-0.5">Diet & Weight tracking</p>
                     </div>
                 </div>
 
                 <button
                     onClick={() => setShowDietModal(true)}
-                    className="flex items-center gap-2 h-9 px-4 rounded-xl text-sm font-medium text-white transition-all"
+                    className="flex items-center gap-2 h-9 px-4 rounded-xl text-sm font-medium text-foreground transition-all"
                     style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)', boxShadow: '0 4px 16px #7c3aed30' }}
                 >
                     <Plus className="h-3.5 w-3.5" />
@@ -628,25 +628,25 @@ export default function MemberDietWeightPage() {
                     <Panel>
                         <SectionLabel>Weight summary</SectionLabel>
                         <div className="grid grid-cols-3 gap-3 mb-4">
-                            <div className="rounded-xl bg-black/20 border border-white/[0.06] p-3 text-center">
-                                <p className="text-lg font-bold text-white">{summary?.latest ?? '—'}</p>
-                                <p className="text-[10px] text-zinc-500 mt-0.5">Current (kg)</p>
+                            <div className="rounded-xl bg-black/20 border border-border p-3 text-center">
+                                <p className="text-lg font-bold text-foreground">{summary?.latest ?? '—'}</p>
+                                <p className="text-[10px] text-muted-foreground mt-0.5">Current (kg)</p>
                             </div>
-                            <div className="rounded-xl bg-black/20 border border-white/[0.06] p-3 text-center">
-                                <p className="text-lg font-bold text-white">{summary?.oldest ?? '—'}</p>
-                                <p className="text-[10px] text-zinc-500 mt-0.5">Starting (kg)</p>
+                            <div className="rounded-xl bg-black/20 border border-border p-3 text-center">
+                                <p className="text-lg font-bold text-foreground">{summary?.oldest ?? '—'}</p>
+                                <p className="text-[10px] text-muted-foreground mt-0.5">Starting (kg)</p>
                             </div>
-                            <div className="rounded-xl bg-black/20 border border-white/[0.06] p-3 text-center">
+                            <div className="rounded-xl bg-black/20 border border-border p-3 text-center">
                                 <p className={cn('text-lg font-bold flex items-center justify-center gap-1', changeColor)}>
                                     <ChangeIcon className="h-4 w-4" />
                                     {change !== null ? Math.abs(change) : '—'}
                                 </p>
-                                <p className="text-[10px] text-zinc-500 mt-0.5">
+                                <p className="text-[10px] text-muted-foreground mt-0.5">
                                     {change === null ? 'Change' : change < 0 ? 'Lost (kg)' : change > 0 ? 'Gained (kg)' : 'No change'}
                                 </p>
                             </div>
                         </div>
-                        <div className="flex items-center justify-between text-xs text-zinc-500">
+                        <div className="flex items-center justify-between text-xs text-muted-foreground">
                             <span className="flex items-center gap-1.5">
                                 <Scale className="h-3.5 w-3.5" />
                                 {summary?.totalEntries || 0} entries logged
@@ -668,16 +668,16 @@ export default function MemberDietWeightPage() {
                                     const prev = entries[idx + 1]?.weight
                                     const diff = prev !== undefined ? +(entry.weight - prev).toFixed(1) : null
                                     return (
-                                        <div key={entry.id} className="rounded-xl border border-white/[0.06] bg-black/20 px-3 py-2.5 flex items-center gap-3">
+                                        <div key={entry.id} className="rounded-xl border border-border bg-black/20 px-3 py-2.5 flex items-center gap-3">
                                             <div className="h-8 w-8 rounded-lg bg-violet-500/10 flex items-center justify-center flex-shrink-0">
                                                 <Scale className="h-3.5 w-3.5 text-violet-400" />
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <p className="text-sm font-semibold text-white">{entry.weight} kg</p>
+                                                <p className="text-sm font-semibold text-foreground">{entry.weight} kg</p>
                                                 <p className="text-xs text-orange-400">{format(parseISO(entry.loggedAt), 'd MMM yyyy')}</p>
                                             </div>
                                             {diff !== null && (
-                                                <span className={cn('text-xl font-extrabold', diff < 0 ? 'text-green-400' : diff > 0 ? 'text-red-400' : 'text-zinc-500')}>
+                                                <span className={cn('text-xl font-extrabold', diff < 0 ? 'text-green-400' : diff > 0 ? 'text-red-400' : 'text-muted-foreground')}>
                                                     {diff > 0 ? '+' : ''}{diff} kg
                                                 </span>
                                             )}

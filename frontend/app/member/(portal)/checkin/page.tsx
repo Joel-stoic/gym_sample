@@ -157,21 +157,21 @@ export default function CheckInPage() {
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{ background: '#0a0a0f', fontFamily: "'DM Sans', sans-serif" }}
+      style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
       {/* ── Header ── */}
-      <div className="flex items-center gap-3 border-b border-white/[0.06] p-5">
+      <div className="flex items-center gap-3 border-b border-border p-5">
         <button
           onClick={() => { reset(); router.back() }}
-          className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.06] text-white transition-all hover:bg-white/[0.10] active:scale-95"
+          className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.06] text-foreground transition-all hover:bg-white/[0.10] active:scale-95"
         >
           <ArrowLeft size={16} />
         </button>
         <div>
-          <h1 className="text-base font-bold text-white" style={{ fontFamily: "'Syne', sans-serif" }}>
+          <h1 className="text-base font-bold text-foreground" style={{ fontFamily: "'Syne', sans-serif" }}>
             Check In
           </h1>
-          <p className="text-[12px] text-[#6b6b80]">Scan the QR code at gym entrance</p>
+          <p className="text-[12px] text-muted-foreground">Scan the QR code at gym entrance</p>
         </div>
       </div>
 
@@ -189,16 +189,16 @@ export default function CheckInPage() {
               <QrCode size={44} className="text-violet-400" />
             </div>
             <div>
-              <p className="text-xl font-bold text-white" style={{ fontFamily: "'Syne', sans-serif" }}>
+              <p className="text-xl font-bold text-foreground" style={{ fontFamily: "'Syne', sans-serif" }}>
                 Ready to check in?
               </p>
-              <p className="mt-2 max-w-xs text-[13px] leading-relaxed text-[#6b6b80]">
+              <p className="mt-2 max-w-xs text-[13px] leading-relaxed text-muted-foreground">
                 Point your camera at the QR code at your gym entrance to mark attendance.
               </p>
             </div>
             <button
               onClick={startScanner}
-              className="flex items-center gap-2.5 rounded-2xl bg-violet-600 px-8 py-3.5 text-[14px] font-semibold text-white transition-all hover:bg-violet-500 active:scale-95"
+              className="flex items-center gap-2.5 rounded-2xl bg-violet-600 px-8 py-3.5 text-[14px] font-semibold text-foreground transition-all hover:bg-violet-500 active:scale-95"
             >
               <Camera size={16} />
               Open Camera
@@ -223,7 +223,7 @@ export default function CheckInPage() {
             </div>
             <button
               onClick={reset}
-              className="text-[12px] text-[#6b6b80] underline underline-offset-2 hover:text-white transition-colors"
+              className="text-[12px] text-muted-foreground underline underline-offset-2 hover:text-foreground transition-colors"
             >
               Cancel
             </button>
@@ -245,13 +245,13 @@ export default function CheckInPage() {
               <CheckCircle size={44} className="text-emerald-400" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-white" style={{ fontFamily: "'Syne', sans-serif" }}>
+              <p className="text-2xl font-bold text-foreground" style={{ fontFamily: "'Syne', sans-serif" }}>
                 {memberName}
               </p>
               <p className="mt-1 text-[13px] text-emerald-400">Attendance marked successfully</p>
             </div>
-            <div className="flex items-center gap-2 rounded-full border border-white/[0.06] bg-[#111118] px-4 py-2">
-              <Clock size={12} className="text-[#6b6b80]" />
+            <div className="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2">
+              <Clock size={12} className="text-muted-foreground" />
               <span className="text-[12px] text-[#9898b0]">Checked in at {checkedInTime}</span>
             </div>
             {checkInData?.expiryWarning && (
@@ -261,7 +261,7 @@ export default function CheckInPage() {
             )}
             <button
               onClick={() => router.push('/member')}
-              className="w-full rounded-2xl border border-white/[0.10] py-3 text-[13px] font-medium text-white transition-all hover:bg-white/[0.05] active:scale-95"
+              className="w-full rounded-2xl border border-white/[0.10] py-3 text-[13px] font-medium text-foreground transition-all hover:bg-white/[0.05] active:scale-95"
             >
               Back to Home
             </button>
@@ -275,14 +275,14 @@ export default function CheckInPage() {
               <XCircle size={44} className="text-red-400" />
             </div>
             <div>
-              <p className="text-xl font-bold text-white" style={{ fontFamily: "'Syne', sans-serif" }}>
+              <p className="text-xl font-bold text-foreground" style={{ fontFamily: "'Syne', sans-serif" }}>
                 Check-in Failed
               </p>
               <p className="mt-2 text-[13px] leading-relaxed text-[#9898b0]">{errorMsg}</p>
             </div>
             <button
               onClick={reset}
-              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-violet-600 py-3 text-[13px] font-semibold text-white transition-all hover:bg-violet-500 active:scale-95"
+              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-violet-600 py-3 text-[13px] font-semibold text-foreground transition-all hover:bg-violet-500 active:scale-95"
             >
               <Camera size={14} />
               Try Again

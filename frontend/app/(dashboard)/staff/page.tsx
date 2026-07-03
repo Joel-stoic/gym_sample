@@ -103,7 +103,7 @@ function ActiveIndicator({ isActive }: { isActive: boolean }) {
     <span
       className={cn(
         'inline-flex items-center gap-1.5 text-xs font-medium transition-colors',
-        isActive ? 'text-emerald-400' : 'text-zinc-500'
+        isActive ? 'text-emerald-400' : 'text-muted-foreground'
       )}
     >
       {isActive ? (
@@ -145,7 +145,7 @@ function FormField({
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="border-white/[0.08] bg-black/20 text-white placeholder:text-zinc-600 h-10 rounded-xl focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-violet-500 transition-all"
+        className="border-white/[0.08] bg-black/20 text-foreground placeholder:text-zinc-600 h-10 rounded-xl focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-violet-500 transition-all"
       />
     </div>
   )
@@ -247,8 +247,8 @@ export default function StaffPage() {
     }
   }
 
-  const selectClass = 'border-white/[0.08] bg-black/20 text-white rounded-xl h-10 focus:ring-1 focus:ring-violet-500'
-  const selectContentClass = 'border-white/[0.08] bg-[#11111a] text-white'
+  const selectClass = 'border-white/[0.08] bg-black/20 text-foreground rounded-xl h-10 focus:ring-1 focus:ring-violet-500'
+  const selectContentClass = 'border-white/[0.08] bg-[#11111a] text-foreground'
 
   return (
     <div className="space-y-6 pb-12 max-w-7xl mx-auto">
@@ -261,13 +261,13 @@ export default function StaffPage() {
             if (!val) setForm(EMPTY_FORM) // Reset on close
           }}>
             <DialogTrigger asChild>
-              <Button className="bg-violet-600 hover:bg-violet-500 text-white rounded-xl h-10 px-4 text-sm font-medium gap-2 shadow-lg shadow-violet-900/20 transition-all active:scale-95">
+              <Button className="bg-violet-600 hover:bg-violet-500 text-foreground rounded-xl h-10 px-4 text-sm font-medium gap-2 shadow-lg shadow-violet-900/20 transition-all active:scale-95">
                 <Plus className="h-4 w-4" />
                 Add Staff Member
               </Button>
             </DialogTrigger>
 
-            <DialogContent className="border-white/[0.08] bg-[#0f0f18] text-white rounded-2xl shadow-2xl sm:max-w-md">
+            <DialogContent className="border-white/[0.08] bg-[#0f0f18] text-foreground rounded-2xl shadow-2xl sm:max-w-md">
               <DialogHeader>
                 <DialogTitle className="text-lg font-semibold">New Staff Member</DialogTitle>
                 <DialogDescription className="text-zinc-400">
@@ -311,7 +311,7 @@ export default function StaffPage() {
 
       {/* Edit Modal */}
       <Dialog open={editOpen} onOpenChange={setEditOpen}>
-        <DialogContent className="border-white/[0.08] bg-[#0f0f18] text-white rounded-2xl shadow-2xl sm:max-w-md">
+        <DialogContent className="border-white/[0.08] bg-[#0f0f18] text-foreground rounded-2xl shadow-2xl sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-lg font-semibold">Edit Staff Profile</DialogTitle>
           </DialogHeader>
@@ -359,7 +359,7 @@ export default function StaffPage() {
 
       {/* Delete Confirmation Prompt */}
       <Dialog open={!!deleteId} onOpenChange={(isOpen) => !isOpen && setDeleteId(null)}>
-        <DialogContent className="border-white/[0.08] bg-[#0f0f18] text-white rounded-2xl shadow-2xl sm:max-w-sm">
+        <DialogContent className="border-white/[0.08] bg-[#0f0f18] text-foreground rounded-2xl shadow-2xl sm:max-w-sm">
           <DialogHeader>
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-500/10 mb-2">
               <AlertTriangle className="h-6 w-6 text-red-500" />
@@ -370,10 +370,10 @@ export default function StaffPage() {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="flex-col sm:flex-row gap-2 mt-4 sm:space-x-0">
-            <Button variant="ghost" onClick={() => setDeleteId(null)} className="w-full sm:w-1/2 rounded-xl text-zinc-300 hover:text-white hover:bg-white/[0.05]">
+            <Button variant="ghost" onClick={() => setDeleteId(null)} className="w-full sm:w-1/2 rounded-xl text-zinc-300 hover:text-foreground hover:bg-white/[0.05]">
               Cancel
             </Button>
-            <Button disabled={saving} onClick={removeStaff} className="w-full sm:w-1/2 rounded-xl bg-red-500/90 hover:bg-red-500 text-white shadow-lg shadow-red-900/20">
+            <Button disabled={saving} onClick={removeStaff} className="w-full sm:w-1/2 rounded-xl bg-red-500/90 hover:bg-red-500 text-foreground shadow-lg shadow-red-900/20">
               {saving ? <RefreshCcw className="h-4 w-4 animate-spin" /> : 'Yes, Remove'}
             </Button>
           </DialogFooter>
@@ -397,14 +397,14 @@ export default function StaffPage() {
               className={cn(
                 'group relative rounded-2xl border p-5 transition-colors duration-200',
                 member.isActive
-                  ? 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-white/[0.12]'
+                  ? 'bg-white/[0.02] border-border hover:bg-white/[0.04] hover:border-white/[0.12]'
                   : 'bg-black/20 border-white/[0.03] opacity-75 hover:opacity-100'
               )}
             >
               {/* Header */}
               <div className="flex items-start justify-between mb-4">
                 <div className="space-y-1.5">
-                  <h3 className="text-base font-medium text-zinc-100 group-hover:text-white transition-colors">
+                  <h3 className="text-base font-medium text-zinc-100 group-hover:text-foreground transition-colors">
                     {member.name}
                   </h3>
                   <RoleBadge role={member.role} />
@@ -415,12 +415,12 @@ export default function StaffPage() {
                     <Button
                       size="icon"
                       variant="ghost"
-                      className="h-8 w-8 rounded-lg text-zinc-400 hover:text-white hover:bg-white/[0.08] focus-visible:ring-1 focus-visible:ring-violet-500"
+                      className="h-8 w-8 rounded-lg text-zinc-400 hover:text-foreground hover:bg-white/[0.08] focus-visible:ring-1 focus-visible:ring-violet-500"
                     >
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-48 border-white/[0.08] bg-[#11111a] text-white p-1 rounded-xl shadow-xl">
+                  <DropdownMenuContent align="end" className="w-48 border-white/[0.08] bg-[#11111a] text-foreground p-1 rounded-xl shadow-xl">
                     <DropdownMenuItem
                       className="gap-2.5 rounded-lg cursor-pointer hover:bg-white/[0.06] focus:bg-white/[0.06]"
                       onClick={() => { setEditingStaff(member); setEditOpen(true) }}

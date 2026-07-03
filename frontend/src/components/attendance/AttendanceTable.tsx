@@ -31,10 +31,10 @@ export default function AttendanceTable({
     <Card className="bg-slate-900 border border-slate-700">
       {/* Header */}
       <CardHeader className="pb-3">
-        <CardTitle className="text-base font-semibold flex items-center justify-between text-white">
+        <CardTitle className="text-base font-semibold flex items-center justify-between text-foreground">
           Today&apos;s Check-ins
 
-          <Badge className="bg-violet-600 text-white px-3 py-1 text-xs">
+          <Badge className="bg-violet-600 text-foreground px-3 py-1 text-xs">
             {count} present
           </Badge>
         </CardTitle>
@@ -50,10 +50,10 @@ export default function AttendanceTable({
             {/* Header */}
             <TableHeader>
               <TableRow className="border-slate-700 bg-slate-800/50">
-                <TableHead className="text-white">Member</TableHead>
-                <TableHead className="text-white">Time</TableHead>
-                <TableHead className="text-white">Method</TableHead>
-                <TableHead className="text-white">Status</TableHead>
+                <TableHead className="text-foreground">Member</TableHead>
+                <TableHead className="text-foreground">Time</TableHead>
+                <TableHead className="text-foreground">Method</TableHead>
+                <TableHead className="text-foreground">Status</TableHead>
               </TableRow>
             </TableHeader>
 
@@ -72,7 +72,7 @@ export default function AttendanceTable({
                       </div>
 
                       <div>
-                        <p className="text-sm font-medium text-white">
+                        <p className="text-sm font-medium text-foreground">
                           {record.member?.name}
                         </p>
                         <p className="text-xs text-slate-400">

@@ -19,12 +19,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   if (!hydrated) {
     return (
-      <div className="flex min-h-screen items-center justify-center" style={{ background: '#0a0a0f' }}>
+      <div className="flex min-h-screen items-center justify-center" >
         <div className="flex flex-col items-center gap-4">
           <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-violet-600/20">
             <div className="h-5 w-5 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
           </div>
-          <p className="text-[12px] font-medium uppercase tracking-widest text-[#6b6b80]">Loading</p>
+          <p className="text-[12px] font-medium uppercase tracking-widest text-muted-foreground">Loading</p>
         </div>
       </div>
     )
@@ -33,7 +33,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   if (!isAuthenticated) return null
 
   return (
-    <div className="flex min-h-screen" style={{ background: '#0a0a0f' }}>
+    <div className="flex min-h-screen" >
       {/* Sidebar handles its own mobile/desktop rendering */}
       <Sidebar />
 

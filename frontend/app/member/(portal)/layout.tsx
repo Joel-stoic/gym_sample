@@ -53,7 +53,7 @@ export default function MemberPortalLayout({
     return (
       <div
         className="min-h-screen flex items-center justify-center"
-        style={{ background: '#0a0a0f' }}
+        
       >
         <div className="h-6 w-6 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
       </div>
@@ -70,7 +70,7 @@ export default function MemberPortalLayout({
   return (
     <div
       className="min-h-screen"
-      style={{ background: '#0a0a0f', fontFamily: "'DM Sans', sans-serif" }}
+      style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
       {/* Top nav */}
       <header
@@ -86,16 +86,16 @@ export default function MemberPortalLayout({
             className="flex h-8 w-8 items-center justify-center rounded-xl"
             style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)' }}
           >
-            <Dumbbell className="h-4 w-4 text-white" />
+            <Dumbbell className="h-4 w-4 text-foreground" />
           </div>
           <div>
             <p
-              className="text-[14px] font-bold text-white leading-none"
+              className="text-[14px] font-bold text-foreground leading-none"
               style={{ fontFamily: "'Syne', sans-serif" }}
             >
               {memberName}
             </p>
-            <p className="text-[11px] text-[#6b6b80] mt-0.5">
+            <p className="text-[11px] text-muted-foreground mt-0.5">
               Member Portal
             </p>
           </div>
@@ -103,7 +103,7 @@ export default function MemberPortalLayout({
 
         <button
           onClick={handleLogout}
-          className="flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-[12px] text-[#6b6b80] transition-colors hover:text-red-400"
+          className="flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-[12px] text-muted-foreground transition-colors hover:text-red-400"
           style={{ border: '1px solid #ffffff08' }}
         >
           <LogOut size={13} />
@@ -114,10 +114,7 @@ export default function MemberPortalLayout({
       {/* Bottom nav for mobile */}
       <nav
         className="fixed bottom-0 left-0 right-0 z-10 flex md:hidden"
-        style={{
-          background: '#111118',
-          borderTop: '1px solid #ffffff0a'
-        }}
+        
       >
         {navItems.map(item => {
           const Icon = item.icon
@@ -128,7 +125,7 @@ export default function MemberPortalLayout({
               href={item.href}
               className={cn(
                 'flex flex-1 flex-col items-center gap-1 py-3 text-[11px] font-medium transition-colors',
-                isActive ? 'text-violet-400' : 'text-[#6b6b80]'
+                isActive ? 'text-violet-400' : 'text-muted-foreground'
               )}
             >
               <Icon size={18} />
@@ -142,10 +139,7 @@ export default function MemberPortalLayout({
       <div className="hidden md:flex">
         <aside
           className="fixed left-0 top-[57px] bottom-0 w-52 flex flex-col gap-1 p-3"
-          style={{
-            background: '#111118',
-            borderRight: '1px solid #ffffff0a'
-          }}
+          
         >
           {navItems.map(item => {
             const Icon = item.icon
@@ -157,8 +151,8 @@ export default function MemberPortalLayout({
                 className={cn(
                   'flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-[13px] font-medium transition-colors',
                   isActive
-                    ? 'text-white'
-                    : 'text-[#6b6b80] hover:text-white'
+                    ? 'text-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
                 )}
                 style={
                   isActive

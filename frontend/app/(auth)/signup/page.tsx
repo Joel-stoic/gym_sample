@@ -40,13 +40,13 @@ type SignupForm = z.infer<typeof signupSchema>
 
 // ─── Shared styles (matches LoginPage) ─────────────────────────────────────────
 const inputCls =
-  'h-12 bg-[#121212] border border-[#2A2A2A] text-white placeholder:text-[#555555] ' +
+  'h-12 bg-card border border-border text-foreground placeholder:text-muted-foreground ' +
   'focus-visible:ring-1 focus-visible:ring-violet-600 focus-visible:border-violet-600 rounded-md transition-colors shadow-none text-[14px] ' +
   '[&:-webkit-autofill]:[-webkit-text-fill-color:white] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0px_1000px_#121212_inset] ' +
   '[&:-webkit-autofill]:[transition:background-color_9999s_ease-in-out_0s]'
 
 const primaryBtnCls =
-  'h-12 rounded-md text-[14px] font-semibold tracking-wide text-white bg-violet-600 ' +
+  'h-12 rounded-md text-[14px] font-semibold tracking-wide text-foreground bg-violet-600 ' +
   'hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors ' +
   'flex items-center justify-center gap-2'
 
@@ -80,7 +80,7 @@ const capabilities = [
 // ─── Brand panel (shared shell for both the form and success screens) ──────────
 function BrandPanel() {
   return (
-    <div className="relative hidden lg:flex lg:w-[45%] flex-col justify-between overflow-hidden bg-black px-16 py-12 border-r border-[#1A1A1A]">
+    <div className="relative hidden lg:flex lg:w-[45%] flex-col justify-between overflow-hidden bg-black px-16 py-12 border-r border-border">
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}
@@ -88,13 +88,13 @@ function BrandPanel() {
 
       <div className="relative z-10 flex items-center gap-3">
         
-        <span className={`text-2xl tracking-widest text-white mt-1 ${bebas.className}`}>
+        <span className={`text-2xl tracking-widest text-foreground mt-1 ${bebas.className}`}>
           JOVIFITX
         </span>
       </div>
 
       <div className="relative z-10 max-w-md">
-        <h1 className={`text-[4rem] leading-[0.9] text-white tracking-wide mb-8 ${bebas.className}`}>
+        <h1 className={`text-[4rem] leading-[0.9] text-foreground tracking-wide mb-8 ${bebas.className}`}>
           RUN THE FLOOR.<br />NOT THE<br />SPREADSHEETS.
         </h1>
 
@@ -110,7 +110,7 @@ function BrandPanel() {
         </ul>
       </div>
 
-      <p className="relative z-10 text-[12px] font-medium tracking-[0.1em] text-[#555555] uppercase">
+      <p className="relative z-10 text-[12px] font-medium tracking-[0.1em] text-muted-foreground uppercase">
         Built for gyms across India.
       </p>
 
@@ -167,7 +167,7 @@ export default function SignupPage() {
   // ── Success screen ────────────────────────────────────────────────────────
   if (success) {
     return (
-      <div className={`min-h-screen bg-[#0a0a0f] flex items-stretch ${inter.className}`}>
+      <div className={`min-h-screen bg-background flex items-stretch ${inter.className}`}>
         <BrandPanel />
 
         <div className="flex-1 flex items-center justify-center px-6 py-12">
@@ -175,9 +175,9 @@ export default function SignupPage() {
 
             <div className="lg:hidden flex flex-col items-center mb-8">
               <div className="h-14 w-14 bg-violet-600 rounded-lg flex items-center justify-center mb-4">
-                <Dumbbell className="h-6 w-6 text-white" />
+                <Dumbbell className="h-6 w-6 text-foreground" />
               </div>
-              <h1 className={`text-4xl tracking-widest text-white ${bebas.className}`}>JOVIFITX</h1>
+              <h1 className={`text-4xl tracking-widest text-foreground ${bebas.className}`}>JOVIFITX</h1>
             </div>
 
             <div className="flex justify-center mb-6">
@@ -186,22 +186,22 @@ export default function SignupPage() {
               </div>
             </div>
 
-            <h2 className={`text-4xl text-white tracking-wide ${bebas.className}`}>
+            <h2 className={`text-4xl text-foreground tracking-wide ${bebas.className}`}>
               GYM REGISTERED
             </h2>
             <p className="text-[14px] text-[#888888] mt-2">
-              <span className="text-white font-medium">{success.gymName}</span> is ready to go.
+              <span className="text-foreground font-medium">{success.gymName}</span> is ready to go.
             </p>
 
             <div className="mt-8 text-left">
               <p className={labelCls}>Your dashboard URL</p>
-              <div className="mt-2 flex items-center gap-2 bg-[#121212] border border-[#2A2A2A] rounded-md px-4 py-3">
+              <div className="mt-2 flex items-center gap-2 bg-card border border-border rounded-md px-4 py-3">
                 <p className="flex-1 font-mono text-[13px] text-violet-400 truncate">{success.url}</p>
                 <button onClick={copyUrl} className="text-[#888888] hover:text-violet-400 transition-colors shrink-0" aria-label="Copy URL">
                   <Copy size={15} />
                 </button>
               </div>
-              <p className="mt-2 text-[12px] text-[#555555]">Bookmark this — it&apos;s your gym&apos;s login page.</p>
+              <p className="mt-2 text-[12px] text-muted-foreground">Bookmark this — it&apos;s your gym&apos;s login page.</p>
             </div>
 
             <button
@@ -222,7 +222,7 @@ export default function SignupPage() {
 
   // ── Signup form ───────────────────────────────────────────────────────────
   return (
-    <div className={`min-h-screen bg-[#0a0a0f] flex items-stretch ${inter.className}`}>
+    <div className={`min-h-screen bg-background flex items-stretch ${inter.className}`}>
       <BrandPanel />
 
       <div className="flex-1 flex items-center justify-center px-6 py-12">
@@ -230,13 +230,13 @@ export default function SignupPage() {
 
           <div className="lg:hidden flex flex-col items-center text-center mb-10">
             <div className="h-14 w-14 bg-violet-600 rounded-lg flex items-center justify-center mb-4">
-              <Dumbbell className="h-6 w-6 text-white" />
+              <Dumbbell className="h-6 w-6 text-foreground" />
             </div>
-            <h1 className={`text-4xl tracking-widest text-white ${bebas.className}`}>JOVIFITX</h1>
+            <h1 className={`text-4xl tracking-widest text-foreground ${bebas.className}`}>JOVIFITX</h1>
           </div>
 
           <div className="mb-8">
-            <h2 className={`text-4xl text-white tracking-wide ${bebas.className}`}>
+            <h2 className={`text-4xl text-foreground tracking-wide ${bebas.className}`}>
               CREATE YOUR GYM
             </h2>
             <p className="text-[14px] text-[#888888] mt-2">Set up your dashboard in a couple of minutes.</p>
@@ -264,7 +264,7 @@ export default function SignupPage() {
               <FormField control={form.control} name="email" render={({ field }) => (
                 <FormItem className="space-y-2">
                   <FormLabel className={labelCls}>
-                    Email <span className="normal-case text-[#555555] font-normal tracking-normal">(optional)</span>
+                    Email <span className="normal-case text-muted-foreground font-normal tracking-normal">(optional)</span>
                   </FormLabel>
                   <FormControl><Input placeholder="owner@yourgym.com" type="email" className={inputCls} {...field} /></FormControl>
                   <FormMessage className="text-[12px] text-red-500" />
@@ -342,7 +342,7 @@ export default function SignupPage() {
 
           <div className="mt-8 text-center text-[13px] text-[#666666]">
             Already have a gym account?{' '}
-            <a href="/login" className="text-white font-medium hover:text-violet-400 transition-colors border-b border-white hover:border-violet-400 pb-[1px]">
+            <a href="/login" className="text-foreground font-medium hover:text-violet-400 transition-colors border-b border-white hover:border-violet-400 pb-[1px]">
               Log in
             </a>
           </div>

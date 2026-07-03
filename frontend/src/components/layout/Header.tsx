@@ -4,7 +4,9 @@ import { usePathname } from 'next/navigation'
 import { Bebas_Neue, Inter } from 'next/font/google'
 import { useAuthStore } from '@/src/store/authStore'
 import { useSidebar } from '@/src/store/sidebarStore'
-import { Menu } from 'lucide-react'
+import { useTheme } from 'next-themes'
+import { Menu, Moon, Sun } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
 const bebas = Bebas_Neue({ weight: '400', subsets: ['latin'] })
@@ -39,6 +41,12 @@ export default function Header() {
   const pathname = usePathname()
   const { staff } = useAuthStore()
   const { toggle } = useSidebar()
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const title = Object.entries(pageTitles).find(
     ([path]) => pathname === path || pathname.startsWith(path + '/')
@@ -53,32 +61,40 @@ export default function Header() {
 
   return (
     <header
-      className={`flex flex-shrink-0 items-center justify-between px-4 py-7 md:px-6 bg-[#0a0a0f] border-b border-[#1A1A1A] ${inter.className}`}
+      className={`flex flex-shrink-0 items-center justify-between px-4 py-7 md:px-6 bg-background border-b border-border ${inter.className}`}
     >
       {/* Left: hamburger (mobile) + page title */}
       <div className="flex items-center gap-4">
         {/* Hamburger — mobile only */}
         <button
           onClick={toggle}
-          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm border border-[#2A2A2A] text-[#888888] hover:text-white hover:bg-[#1A1A1A] transition-colors md:hidden"
+          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm border border-border text-muted-foreground hover:text-foreground hover:bg-card transition-colors md:hidden"
         >
           <Menu className="h-4 w-4" />
         </button>
 
         <div className="mt-1">
-          <h1 className={`text-2xl tracking-widest text-white uppercase ${bebas.className}`}>
+          <h1 className={`text-2xl tracking-widest text-foreground uppercase ${bebas.className}`}>
             {title}
           </h1>
-          <p className="text-[11px] font-medium tracking-wide text-[#555555] uppercase hidden sm:block min-h-[14px]">
+          <p className="text-[11px] font-medium tracking-wide text-muted-foreground uppercase hidden sm:block min-h-[14px]">
             {subtitle}
           </p>
         </div>
       </div>
 
-      {/* Right: role badge + avatar */}
+      {/* Right: toggle + role badge + avatar */}
       <div className="flex items-center gap-3">
+        {mounted && (
+          <button
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="flex h-9 w-9 items-center justify-center rounded-sm border border-border text-muted-foreground hover:text-foreground hover:bg-card transition-colors"
+          >
+            {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
+        )}
         <span
-          className="hidden sm:inline-flex items-center justify-center rounded-sm border border-[#2A2A2A] bg-[#121212] px-3 py-1.5 text-[10px] font-bold tracking-widest uppercase text-[#888888]"
+          className="hidden sm:inline-flex items-center justify-center rounded-sm border border-border bg-card px-3 py-1.5 text-[10px] font-bold tracking-widest uppercase text-muted-foreground"
         >
           {roleLabel}
         </span>

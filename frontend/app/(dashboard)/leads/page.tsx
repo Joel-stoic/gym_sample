@@ -257,7 +257,7 @@ export default function LeadsPage() {
 
             {/* ───────────────── MODAL ───────────────── */}
 
-            <DialogContent className="border-white/[0.08] bg-[#0f0f18] text-white">
+            <DialogContent className="border-white/[0.08] bg-[#0f0f18] text-foreground">
               <DialogHeader>
                 <DialogTitle className="text-xl">
                   Add New Lead
@@ -454,7 +454,7 @@ export default function LeadsPage() {
             className={
               statusFilter === status
                 ? 'bg-violet-600 hover:bg-violet-500'
-                : 'border-white/[0.08] bg-transparent text-white hover:bg-white/[0.05]'
+                : 'border-white/[0.08] bg-transparent text-foreground hover:bg-white/[0.05]'
             }
           >
             {status === ''
@@ -473,7 +473,7 @@ export default function LeadsPage() {
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="h-28 animate-pulse rounded-3xl border border-white/[0.06] bg-[#0f0f18]"
+                className="h-28 animate-pulse rounded-3xl border border-border bg-[#0f0f18]"
               />
             ))}
           </div>
@@ -517,14 +517,14 @@ function StatsCard({
   iconClassName
 }: any) {
   return (
-    <div className="rounded-3xl border border-white/[0.06] bg-[#0f0f18] p-5">
+    <div className="rounded-3xl border border-border bg-[#0f0f18] p-5">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm text-[#6b6b80]">
+          <p className="text-sm text-muted-foreground">
             {title}
           </p>
 
-          <h3 className="mt-2 text-3xl font-bold text-white">
+          <h3 className="mt-2 text-3xl font-bold text-foreground">
             {value}
           </h3>
         </div>
@@ -541,7 +541,7 @@ function StatsCard({
 /* ───────────────── SkeletonCard ───────────────── */
 function SkeletonCard() {
   return (
-    <div className="animate-pulse rounded-3xl border border-white/[0.06] bg-[#0f0f18] p-5">
+    <div className="animate-pulse rounded-3xl border border-border bg-[#0f0f18] p-5">
       <div className="mb-4 flex items-start justify-between">
         <div className="space-y-2">
           <div className="h-5 w-32 rounded bg-white/[0.06]" />
@@ -578,17 +578,17 @@ function LeadCard({
   const config = STATUS_CONFIG[lead.status]
 
   return (
-    <div className="rounded-3xl border border-white/[0.06] bg-[#0f0f18] p-5 transition hover:border-violet-500/30">
+    <div className="rounded-3xl border border-border bg-[#0f0f18] p-5 transition hover:border-violet-500/30">
       {/* TOP */}
 
       <div className="mb-4 flex items-start justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-white">
+          <h3 className="text-lg font-semibold text-foreground">
             {lead.name}
           </h3>
 
           {lead.source && (
-            <p className="mt-1 text-xs text-[#6b6b80]">
+            <p className="mt-1 text-xs text-muted-foreground">
               via {lead.source}
             </p>
           )}
@@ -599,7 +599,7 @@ function LeadCard({
             <Button
               size="icon"
               variant="ghost"
-              className="text-white hover:bg-white/[0.05]"
+              className="text-foreground hover:bg-white/[0.05]"
             >
               <MoreHorizontal className="h-4 w-4" />
             </Button>
@@ -607,7 +607,7 @@ function LeadCard({
 
           <DropdownMenuContent
             align="end"
-            className="border-white/[0.08] bg-[#11111a] text-white"
+            className="border-white/[0.08] bg-[#11111a] text-foreground"
           >
             {Object.entries(STATUS_CONFIG).map(
               ([status, cfg]) => (
@@ -641,7 +641,7 @@ function LeadCard({
       </div>
 
       {lead.status === 'CONTACTED' && lead.contactedBy && (
-        <p className="mt-2 text-xs text-[#6b6b80]">
+        <p className="mt-2 text-xs text-muted-foreground">
           Contacted by{' '}
           <span className="font-medium text-violet-400">
             {lead.contactedBy.name}

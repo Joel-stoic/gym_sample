@@ -123,13 +123,13 @@ export default function AdminDashboardPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-          <p className="text-sm text-white/40 mt-1">Platform overview across all gyms</p>
+          <h1 className="text-2xl font-bold text-foreground">Dashboard</h1>
+          <p className="text-sm text-foreground/40 mt-1">Platform overview across all gyms</p>
         </div>
         <button
           onClick={() => fetchData(true)}
           disabled={refreshing}
-          className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-white/50 hover:text-white text-xs font-medium transition-all disabled:opacity-50"
+          className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/50 hover:text-foreground text-xs font-medium transition-all disabled:opacity-50"
         >
           <RefreshCw size={13} className={refreshing ? 'animate-spin' : ''} />
           Refresh
@@ -139,13 +139,13 @@ export default function AdminDashboardPage() {
       {/* Stat cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {statCards.map(({ label, value, icon: Icon, color, bg, border, sub }) => (
-          <div key={label} className={`bg-[#111118] border ${border} rounded-2xl p-5`}>
+          <div key={label} className={`bg-card border ${border} rounded-2xl p-5`}>
             <div className={`w-9 h-9 rounded-xl ${bg} flex items-center justify-center mb-4`}>
               <Icon size={17} className={color} />
             </div>
-            <p className="text-2xl font-bold text-white">{value}</p>
-            <p className="text-xs text-white/50 mt-0.5">{label}</p>
-            <p className="text-[11px] text-white/25 mt-2">{sub}</p>
+            <p className="text-2xl font-bold text-foreground">{value}</p>
+            <p className="text-xs text-foreground/50 mt-0.5">{label}</p>
+            <p className="text-[11px] text-foreground/25 mt-2">{sub}</p>
           </div>
         ))}
       </div>
@@ -172,9 +172,9 @@ export default function AdminDashboardPage() {
       )}
 
       {/* Recent gyms */}
-      <div className="bg-[#111118] border border-white/5 rounded-3xl overflow-hidden">
-        <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-white">Recent Gyms</h2>
+      <div className="bg-card border border-border rounded-3xl overflow-hidden">
+        <div className="px-6 py-4 border-b border-border flex items-center justify-between">
+          <h2 className="text-sm font-semibold text-foreground">Recent Gyms</h2>
           <button
             onClick={() => router.push('/admin/gyms')}
             className="text-xs text-violet-400 hover:text-violet-300 transition-colors flex items-center gap-1"
@@ -184,7 +184,7 @@ export default function AdminDashboardPage() {
         </div>
         <div className="divide-y divide-white/5">
           {recentGyms.length === 0 ? (
-            <div className="px-6 py-12 text-center text-white/30 text-sm">No gyms yet</div>
+            <div className="px-6 py-12 text-center text-foreground/30 text-sm">No gyms yet</div>
           ) : (
             recentGyms.map(gym => (
               <div
@@ -197,19 +197,19 @@ export default function AdminDashboardPage() {
                     {gym.name.charAt(0).toUpperCase()}
                   </div>
                   <div className="min-w-0">
-                    <p className="text-sm font-medium text-white truncate">{gym.name}</p>
-                    <p className="text-xs text-white/30 truncate">{gym.slug}.jovifitx.online</p>
+                    <p className="text-sm font-medium text-foreground truncate">{gym.name}</p>
+                    <p className="text-xs text-foreground/30 truncate">{gym.slug}.jovifitx.online</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 flex-shrink-0 ml-4">
                   {gym._count && (
-                    <div className="hidden sm:flex items-center gap-3 text-xs text-white/30 mr-2">
+                    <div className="hidden sm:flex items-center gap-3 text-xs text-foreground/30 mr-2">
                       <span>{gym._count.members} members</span>
                       <span>·</span>
                       <span>{gym._count.staff} staff</span>
                     </div>
                   )}
-                  <span className="text-xs text-white/30">{formatDate(gym.createdAt)}</span>
+                  <span className="text-xs text-foreground/30">{formatDate(gym.createdAt)}</span>
                   <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${
                     gym.isActive
                       ? 'bg-emerald-500/10 text-emerald-400'
@@ -217,7 +217,7 @@ export default function AdminDashboardPage() {
                   }`}>
                     {gym.isActive ? 'Active' : 'Pending'}
                   </span>
-                  <ArrowUpRight size={14} className="text-white/20 group-hover:text-white/50 transition-colors" />
+                  <ArrowUpRight size={14} className="text-foreground/20 group-hover:text-foreground/50 transition-colors" />
                 </div>
               </div>
             ))
@@ -227,21 +227,21 @@ export default function AdminDashboardPage() {
 
       {/* Revenue summary */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="bg-[#111118] border border-white/5 rounded-2xl p-5">
+        <div className="bg-card border border-border rounded-2xl p-5">
           <div className="flex items-center gap-2 mb-4">
             <IndianRupee size={14} className="text-emerald-400" />
-            <p className="text-xs font-semibold text-white/60 uppercase tracking-widest">This Month</p>
+            <p className="text-xs font-semibold text-foreground/60 uppercase tracking-widest">This Month</p>
           </div>
-          <p className="text-3xl font-bold text-white">{toRupees(stats?.mrr ?? 0)}</p>
-          <p className="text-xs text-white/30 mt-1">Monthly recurring revenue</p>
+          <p className="text-3xl font-bold text-foreground">{toRupees(stats?.mrr ?? 0)}</p>
+          <p className="text-xs text-foreground/30 mt-1">Monthly recurring revenue</p>
         </div>
-        <div className="bg-[#111118] border border-white/5 rounded-2xl p-5">
+        <div className="bg-card border border-border rounded-2xl p-5">
           <div className="flex items-center gap-2 mb-4">
             <IndianRupee size={14} className="text-violet-400" />
-            <p className="text-xs font-semibold text-white/60 uppercase tracking-widest">All Time</p>
+            <p className="text-xs font-semibold text-foreground/60 uppercase tracking-widest">All Time</p>
           </div>
-          <p className="text-3xl font-bold text-white">{toRupees(stats?.totalRevenue ?? 0)}</p>
-          <p className="text-xs text-white/30 mt-1">Total platform revenue</p>
+          <p className="text-3xl font-bold text-foreground">{toRupees(stats?.totalRevenue ?? 0)}</p>
+          <p className="text-xs text-foreground/30 mt-1">Total platform revenue</p>
         </div>
       </div>
     </div>

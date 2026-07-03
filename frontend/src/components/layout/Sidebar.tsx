@@ -73,21 +73,21 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
     <div
       className={cn(
         'flex h-full w-[82vw] max-w-[280px] flex-shrink-0 flex-col overflow-hidden',
-        'bg-[#0a0a0f] border-r border-[#1A1A1A]',
+        'bg-background border-r border-border',
         'md:w-64 md:max-w-none md:min-h-screen',
         inter.className
       )}
     >
       {/* Logo — compact on mobile so the whole rail fits without scrolling */}
-      <div className="flex items-center gap-2.5 px-4 py-3 border-b border-[#1A1A1A] sm:gap-3 sm:px-6 sm:py-6">
+      <div className="flex items-center gap-2.5 px-4 py-3 border-b border-border sm:gap-3 sm:px-6 sm:py-6">
         <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-sm border border-violet-500/30 bg-violet-500/10 sm:h-9 sm:w-9">
           <Dumbbell className="h-3.5 w-3.5 text-violet-500 sm:h-4 sm:w-4" />
         </div>
         <div className="min-w-0 flex-1">
-          <p className={`text-lg leading-none tracking-widest text-white sm:text-2xl ${bebas.className}`}>
+          <p className={`text-lg leading-none tracking-widest text-foreground sm:text-2xl ${bebas.className}`}>
             JOVIFITX
           </p>
-          <p className="mt-0.5 truncate text-[9.5px] font-medium tracking-wide text-[#555555] uppercase sm:mt-1 sm:text-[11px]">
+          <p className="mt-0.5 truncate text-[9.5px] font-medium tracking-wide text-muted-foreground uppercase sm:mt-1 sm:text-[11px]">
             {tenant?.name || 'Loading…'}
           </p>
         </div>
@@ -95,7 +95,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
           <button
             onClick={onClose}
             aria-label="Close menu"
-            className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-sm border border-[#2A2A2A] text-[#888888] transition-colors hover:bg-[#1A1A1A] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:hidden"
+            className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-sm border border-border text-[#888888] transition-colors hover:bg-[#1A1A1A] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:hidden"
           >
             <X className="h-3.5 w-3.5" />
           </button>
@@ -104,7 +104,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
 
       {/* Menu label */}
       <div className="px-4 pb-1.5 pt-2.5 sm:px-6 sm:pb-3 sm:pt-6">
-        <p className="text-[9.5px] font-bold uppercase tracking-widest text-[#555555] sm:text-[11px]">
+        <p className="text-[9.5px] font-bold uppercase tracking-widest text-muted-foreground sm:text-[11px]">
           System Menu
         </p>
       </div>
@@ -126,8 +126,8 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
                 'group relative flex items-center gap-3 rounded-sm border px-3 py-3 text-[11.5px] font-bold uppercase tracking-wide transition-colors sm:gap-3 sm:px-3 sm:py-3 sm:text-[12px]',
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500',
                 isActive
-                  ? 'border-[#2A2A2A] bg-[#121212] text-white'
-                  : 'border-transparent text-[#888888] hover:bg-[#0A0A0A] hover:text-white active:bg-[#141414]'
+                  ? 'border-border bg-card text-foreground'
+                  : 'border-transparent text-[#888888] hover:bg-[#0A0A0A] hover:text-foreground active:bg-[#141414]'
               )}
             >
               {isActive && (
@@ -149,23 +149,23 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
       </nav>
 
       {/* User + logout — compact footer that always stays in view */}
-      <div className="flex-shrink-0 border-t border-[#1A1A1A] p-2.5 sm:p-4">
+      <div className="flex-shrink-0 border-t border-border p-2.5 sm:p-4">
         <div className="mb-2 flex items-center gap-2.5 rounded-sm px-1.5 py-1 sm:mb-3 sm:gap-3 sm:px-2 sm:py-2">
           <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-sm border border-violet-500/20 bg-violet-500/10 text-[12px] font-bold text-violet-500 sm:h-10 sm:w-10 sm:text-[14px]">
             {initials}
           </div>
           <div className="min-w-0 flex-1">
-            <p className="truncate text-[12px] font-bold tracking-wide text-white sm:text-[13px]">
+            <p className="truncate text-[12px] font-bold tracking-wide text-foreground sm:text-[13px]">
               {staff?.name ?? 'User'}
             </p>
-            <p className="text-[9.5px] font-medium uppercase tracking-wide text-[#555555] sm:text-[11px]">
+            <p className="text-[9.5px] font-medium uppercase tracking-wide text-muted-foreground sm:text-[11px]">
               {staff?.role ?? ''}
             </p>
           </div>
         </div>
         <button
           onClick={handleLogout}
-          className="flex w-full items-center justify-center gap-2 rounded-sm border border-[#2A2A2A] bg-transparent px-3 py-2 text-[10.5px] font-bold uppercase tracking-wider text-[#888888] transition-colors hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 sm:py-3 sm:text-[12px]"
+          className="flex w-full items-center justify-center gap-2 rounded-sm border border-border bg-transparent px-3 py-2 text-[10.5px] font-bold uppercase tracking-wider text-[#888888] transition-colors hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 sm:py-3 sm:text-[12px]"
         >
           <LogOut className="h-3.5 w-3.5 flex-shrink-0 sm:h-4 sm:w-4" />
           Disconnect

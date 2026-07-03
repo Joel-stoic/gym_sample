@@ -62,7 +62,7 @@ export default function MemberPortalPage() {
 
   if (!profile) {
     return (
-      <div className="flex h-64 items-center justify-center text-[#6b6b80]">
+      <div className="flex h-64 items-center justify-center text-muted-foreground">
         Failed to load profile
       </div>
     )
@@ -84,18 +84,18 @@ export default function MemberPortalPage() {
       {/* Welcome */}
       <div className="text-center py-4">
         <div
-          className="h-16 w-16 rounded-2xl flex items-center justify-center text-2xl font-bold text-white mx-auto mb-3"
+          className="h-16 w-16 rounded-2xl flex items-center justify-center text-2xl font-bold text-foreground mx-auto mb-3"
           style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)' }}
         >
           {profile.name?.charAt(0).toUpperCase()}
         </div>
         <h2
-          className="text-xl font-bold text-white"
+          className="text-xl font-bold text-foreground"
           style={{ fontFamily: "'Syne', sans-serif" }}
         >
           {profile.name}
         </h2>
-        <p className="text-[#6b6b80] text-sm">{profile.phone}</p>
+        <p className="text-muted-foreground text-sm">{profile.phone}</p>
       </div>
 
       {/* Expiry warning */}
@@ -129,10 +129,10 @@ export default function MemberPortalPage() {
       {/* Membership card */}
       <div
         className="rounded-2xl p-5"
-        style={{ background: '#111118', border: '1px solid #ffffff0a' }}
+        
       >
         <div className="flex items-center justify-between mb-4">
-          <p className="text-[12px] font-medium uppercase tracking-widest text-[#6b6b80]">
+          <p className="text-[12px] font-medium uppercase tracking-widest text-muted-foreground">
             Membership
           </p>
           <span
@@ -149,29 +149,29 @@ export default function MemberPortalPage() {
         <div className="space-y-3">
           {profile.plan && (
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-[#6b6b80]">
+              <div className="flex items-center gap-2 text-muted-foreground">
                 <CreditCard size={14} />
                 <span className="text-[13px]">Plan</span>
               </div>
-              <span className="text-[13px] font-medium text-white">
+              <span className="text-[13px] font-medium text-foreground">
                 {profile.plan.name}
               </span>
             </div>
           )}
           {profile.membershipStart && (
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-[#6b6b80]">
+              <div className="flex items-center gap-2 text-muted-foreground">
                 <Clock size={14} />
                 <span className="text-[13px]">Started</span>
               </div>
-              <span className="text-[13px] text-white">
+              <span className="text-[13px] text-foreground">
                 {formatDate(profile.membershipStart)}
               </span>
             </div>
           )}
           {profile.membershipExpiry && (
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-[#6b6b80]">
+              <div className="flex items-center gap-2 text-muted-foreground">
                 <CalendarCheck size={14} />
                 <span className="text-[13px]">Expires</span>
               </div>
@@ -208,11 +208,11 @@ export default function MemberPortalPage() {
                 return (
                   <div className="pt-3">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-[12px] text-[#6b6b80]">
+                      <span className="text-[12px] text-muted-foreground">
                         {daysLeft} day{daysLeft !== 1 ? 's' : ''} left
                       </span>
 
-                      <span className="text-[12px] text-[#6b6b80]">
+                      <span className="text-[12px] text-muted-foreground">
                         {Math.round(percentage)}% used
                       </span>
                     </div>
@@ -242,12 +242,9 @@ export default function MemberPortalPage() {
       {profile.ptEnrollments?.[0] && (
         <div
           className="rounded-2xl p-5"
-          style={{
-            background: '#111118',
-            border: '1px solid #ffffff0a'
-          }}
+          
         >
-          <p className="text-[12px] font-medium uppercase tracking-widest text-[#6b6b80] mb-4">
+          <p className="text-[12px] font-medium uppercase tracking-widest text-muted-foreground mb-4">
             Personal Training
           </p>
 
@@ -262,7 +259,7 @@ export default function MemberPortalPage() {
             return (
               <>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-white font-medium">
+                  <span className="text-foreground font-medium">
                     {pt.package.name}
                   </span>
 
@@ -284,11 +281,11 @@ export default function MemberPortalPage() {
                 </div>
 
                 <div className="flex justify-between mb-2">
-                  <span className="text-xs text-[#6b6b80]">
+                  <span className="text-xs text-muted-foreground">
                     Session Progress
                   </span>
 
-                  <span className="text-xs text-white">
+                  <span className="text-xs text-foreground">
                     {pt.usedSessions}/{pt.totalSessions}
                   </span>
                 </div>
@@ -318,7 +315,7 @@ export default function MemberPortalPage() {
                       Remaining
                     </p>
 
-                    <p className="text-2xl font-bold text-white">
+                    <p className="text-2xl font-bold text-foreground">
                       {pt.remainingSessions}
                     </p>
                   </div>
@@ -331,7 +328,7 @@ export default function MemberPortalPage() {
                       Total
                     </p>
 
-                    <p className="text-2xl font-bold text-white">
+                    <p className="text-2xl font-bold text-foreground">
                       {pt.totalSessions}
                     </p>
                   </div>
@@ -340,7 +337,7 @@ export default function MemberPortalPage() {
                 {/* eee */}
                 {pt.sessions?.length > 0 && (
                   <div className="mt-5">
-                    <p className="text-[12px] font-medium uppercase tracking-widest text-[#6b6b80] mb-3">
+                    <p className="text-[12px] font-medium uppercase tracking-widest text-muted-foreground mb-3">
                       Upcoming Sessions
                     </p>
 
@@ -362,7 +359,7 @@ export default function MemberPortalPage() {
                             }}
                           >
                             <div>
-                              <p className="text-sm text-white font-medium">
+                              <p className="text-sm text-foreground font-medium">
                                 {new Date(session.scheduledAt).toLocaleString('en-IN', {
                                   day: 'numeric',
                                   month: 'short',
@@ -372,7 +369,7 @@ export default function MemberPortalPage() {
                                 })}
                               </p>
 
-                              <p className="text-xs text-[#6b6b80]">
+                              <p className="text-xs text-muted-foreground">
                                 Trainer: {session.trainer?.name || 'Not Assigned'}
                               </p>
                             </div>
@@ -400,9 +397,9 @@ export default function MemberPortalPage() {
       {/* This month */}
       <div
         className="rounded-2xl p-5"
-        style={{ background: '#111118', border: '1px solid #ffffff0a' }}
+        
       >
-        <p className="text-[12px] font-medium uppercase tracking-widest text-[#6b6b80] mb-4">
+        <p className="text-[12px] font-medium uppercase tracking-widest text-muted-foreground mb-4">
           This Month
         </p>
         <div className="flex items-center gap-4">
@@ -413,10 +410,10 @@ export default function MemberPortalPage() {
             <CalendarCheck size={20} className="text-violet-400" />
           </div>
           <div>
-            <p className="text-2xl font-bold text-white">
+            <p className="text-2xl font-bold text-foreground">
               {profile.visitsThisMonth}
             </p>
-            <p className="text-[12px] text-[#6b6b80]">gym visits</p>
+            <p className="text-[12px] text-muted-foreground">gym visits</p>
           </div>
         </div>
       </div>
@@ -425,10 +422,7 @@ export default function MemberPortalPage() {
       <Link
         href="/member/diet"
         className="flex items-center justify-between rounded-2xl p-4 transition-colors"
-        style={{
-          background: '#111118',
-          border: '1px solid #ffffff0a'
-        }}
+        
       >
         <div className="flex items-center gap-3">
           <div
@@ -438,24 +432,24 @@ export default function MemberPortalPage() {
             <Utensils size={16} className="text-violet-400" />
           </div>
           <div>
-            <p className="text-[13px] font-medium text-white">
+            <p className="text-[13px] font-medium text-foreground">
               Diet & Weight
             </p>
-            <p className="text-[11px] text-[#6b6b80]">
+            <p className="text-[11px] text-muted-foreground">
               View your diet plan and track weight
             </p>
           </div>
         </div>
-        <ChevronRight size={16} className="text-[#6b6b80]" />
+        <ChevronRight size={16} className="text-muted-foreground" />
       </Link>
 
       {/* Recent attendance */}
       {profile.attendance?.length > 0 && (
         <div
           className="rounded-2xl p-5"
-          style={{ background: '#111118', border: '1px solid #ffffff0a' }}
+          
         >
-          <p className="text-[12px] font-medium uppercase tracking-widest text-[#6b6b80] mb-4">
+          <p className="text-[12px] font-medium uppercase tracking-widest text-muted-foreground mb-4">
             Recent Visits
           </p>
           <div className="space-y-2">
@@ -467,11 +461,11 @@ export default function MemberPortalPage() {
               >
                 <div className="flex items-center gap-2">
                   <CheckCircle size={14} className="text-emerald-400" />
-                  <span className="text-[13px] text-white">
+                  <span className="text-[13px] text-foreground">
                     {formatDate(record.checkInAt)}
                   </span>
                 </div>
-                <span className="text-[11px] text-[#6b6b80]">
+                <span className="text-[11px] text-muted-foreground">
                   {new Date(record.checkInAt).toLocaleTimeString('en-IN', {
                     hour: '2-digit',
                     minute: '2-digit',

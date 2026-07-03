@@ -156,19 +156,19 @@ function AdminGymsContent() {
     { key: 'pending', label: 'Pending', count: tenants.filter(t => !t.isActive).length },
   ]
 
-  const inputCls = 'w-full bg-[#111118] border border-white/5 focus:border-violet-500/50 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-white/20 outline-none transition-all'
+  const inputCls = 'w-full bg-card border border-border focus:border-violet-500/50 rounded-xl px-3.5 py-2.5 text-sm text-foreground placeholder-white/20 outline-none transition-all'
 
   return (
     <div className="space-y-6 max-w-5xl">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">Gyms</h1>
-          <p className="text-sm text-white/40 mt-1">{tenants.length} gyms registered on the platform</p>
+          <h1 className="text-2xl font-bold text-foreground">Gyms</h1>
+          <p className="text-sm text-foreground/40 mt-1">{tenants.length} gyms registered on the platform</p>
         </div>
         <button
           onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium rounded-xl transition-all"
+          className="flex items-center gap-2 px-4 py-2 bg-violet-600 hover:bg-violet-500 text-foreground text-sm font-medium rounded-xl transition-all"
         >
           <Plus size={15} />Add Gym
         </button>
@@ -177,21 +177,21 @@ function AdminGymsContent() {
       {/* Search + Filter */}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
-          <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
+          <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-foreground/30" />
           <input
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search by name or slug..."
-            className="w-full bg-[#111118] border border-white/5 rounded-xl pl-9 pr-4 py-2.5 text-sm text-white placeholder-white/20 outline-none focus:border-violet-500/40 transition-all"
+            className="w-full bg-card border border-border rounded-xl pl-9 pr-4 py-2.5 text-sm text-foreground placeholder-white/20 outline-none focus:border-violet-500/40 transition-all"
           />
         </div>
-        <div className="flex gap-1 bg-[#111118] border border-white/5 rounded-xl p-1">
+        <div className="flex gap-1 bg-card border border-border rounded-xl p-1">
           {filterTabs.map(tab => (
             <button
               key={tab.key}
               onClick={() => setFilter(tab.key as any)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                filter === tab.key ? 'bg-violet-600 text-white' : 'text-white/40 hover:text-white'
+                filter === tab.key ? 'bg-violet-600 text-foreground' : 'text-foreground/40 hover:text-foreground'
               }`}
             >
               {tab.label}
@@ -202,15 +202,15 @@ function AdminGymsContent() {
       </div>
 
       {/* List */}
-      <div className="bg-[#111118] border border-white/5 rounded-3xl overflow-hidden">
+      <div className="bg-card border border-border rounded-3xl overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center py-16">
             <div className="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-full animate-spin" />
           </div>
         ) : filtered.length === 0 ? (
           <div className="py-16 text-center">
-            <Building2 size={28} className="text-white/10 mx-auto mb-3" />
-            <p className="text-white/30 text-sm">No gyms found</p>
+            <Building2 size={28} className="text-foreground/10 mx-auto mb-3" />
+            <p className="text-foreground/30 text-sm">No gyms found</p>
           </div>
         ) : (
           <div className="divide-y divide-white/5">
@@ -228,7 +228,7 @@ function AdminGymsContent() {
                     </div>
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <p className="text-sm font-medium text-white">{gym.name}</p>
+                        <p className="text-sm font-medium text-foreground">{gym.name}</p>
                         {gym.isActive && <CheckCircle size={13} className="text-emerald-400 flex-shrink-0" />}
                         {trial && (
                           <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${trial.color}`}>
@@ -237,13 +237,13 @@ function AdminGymsContent() {
                         )}
                       </div>
                       <div className="flex items-center gap-2 mt-0.5 flex-wrap">
-                        <p className="text-xs text-white/30">{gym.slug}.jovifitx.online</p>
-                        <span className="text-white/10">·</span>
-                        <p className="text-xs text-white/30">{formatDate(gym.createdAt)}</p>
+                        <p className="text-xs text-foreground/30">{gym.slug}.jovifitx.online</p>
+                        <span className="text-foreground/10">·</span>
+                        <p className="text-xs text-foreground/30">{formatDate(gym.createdAt)}</p>
                         {gym._count && (
                           <>
-                            <span className="text-white/10 hidden sm:block">·</span>
-                            <p className="text-xs text-white/30 hidden sm:block">
+                            <span className="text-foreground/10 hidden sm:block">·</span>
+                            <p className="text-xs text-foreground/30 hidden sm:block">
                               {gym._count.members} members · {gym._count.staff} staff
                             </p>
                           </>
@@ -266,7 +266,7 @@ function AdminGymsContent() {
                         Active
                       </span>
                     )}
-                    <ChevronRight size={15} className="text-white/20 group-hover:text-white/50 transition-colors" />
+                    <ChevronRight size={15} className="text-foreground/20 group-hover:text-foreground/50 transition-colors" />
                   </div>
                 </div>
               )
@@ -278,15 +278,15 @@ function AdminGymsContent() {
       {/* Add Gym Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full sm:max-w-md bg-[#0e0e15] border border-white/10 rounded-t-3xl sm:rounded-3xl shadow-2xl max-h-[92vh] overflow-y-auto">
-            <div className="flex items-center justify-between px-6 py-5 border-b border-white/5 sticky top-0 bg-[#0e0e15]">
+          <div className="w-full sm:max-w-md bg-[#0e0e15] border border-border rounded-t-3xl sm:rounded-3xl shadow-2xl max-h-[92vh] overflow-y-auto">
+            <div className="flex items-center justify-between px-6 py-5 border-b border-border sticky top-0 bg-[#0e0e15]">
               <div>
-                <h2 className="text-base font-bold text-white">Add Gym</h2>
-                <p className="text-xs text-white/30 mt-0.5">Gym will be pending until approved</p>
+                <h2 className="text-base font-bold text-foreground">Add Gym</h2>
+                <p className="text-xs text-foreground/30 mt-0.5">Gym will be pending until approved</p>
               </div>
               <button
                 onClick={() => { setShowModal(false); setFormError('') }}
-                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/40 hover:text-white transition-all"
+                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-foreground/40 hover:text-foreground transition-all"
               >
                 <X size={15} />
               </button>
@@ -295,55 +295,55 @@ function AdminGymsContent() {
             <form onSubmit={handleAddGym} className="px-6 py-5 space-y-4">
               {/* Gym info */}
               <div className="space-y-3">
-                <p className="text-[11px] text-white/30 uppercase tracking-widest font-semibold">Gym Info</p>
+                <p className="text-[11px] text-foreground/30 uppercase tracking-widest font-semibold">Gym Info</p>
                 <div className="space-y-1">
-                  <label className="text-xs text-white/40 font-medium">Gym Name *</label>
+                  <label className="text-xs text-foreground/40 font-medium">Gym Name *</label>
                   <input value={form.gymName} onChange={e => handleNameChange(e.target.value)}
                     placeholder="e.g. Iron Temple Fitness" required className={inputCls} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs text-white/40 font-medium">Slug *</label>
-                  <div className="flex items-center bg-[#111118] border border-white/5 focus-within:border-violet-500/50 rounded-xl overflow-hidden transition-all">
-                    <span className="px-3 text-xs text-white/20 border-r border-white/5 py-2.5 whitespace-nowrap flex-shrink-0">
+                  <label className="text-xs text-foreground/40 font-medium">Slug *</label>
+                  <div className="flex items-center bg-card border border-border focus-within:border-violet-500/50 rounded-xl overflow-hidden transition-all">
+                    <span className="px-3 text-xs text-foreground/20 border-r border-border py-2.5 whitespace-nowrap flex-shrink-0">
                       jovifitx.online/
                     </span>
                     <input
                       value={form.slug}
                       onChange={e => setForm(p => ({ ...p, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '-') }))}
                       placeholder="iron-temple" required
-                      className="flex-1 bg-transparent px-3 py-2.5 text-sm text-white placeholder-white/20 outline-none"
+                      className="flex-1 bg-transparent px-3 py-2.5 text-sm text-foreground placeholder-white/20 outline-none"
                     />
                   </div>
                 </div>
               </div>
 
               {/* Owner info */}
-              <div className="space-y-3 pt-1 border-t border-white/5">
-                <p className="text-[11px] text-white/30 uppercase tracking-widest font-semibold">Owner Info</p>
+              <div className="space-y-3 pt-1 border-t border-border">
+                <p className="text-[11px] text-foreground/30 uppercase tracking-widest font-semibold">Owner Info</p>
                 <div className="space-y-1">
-                  <label className="text-xs text-white/40 font-medium">Owner Name *</label>
+                  <label className="text-xs text-foreground/40 font-medium">Owner Name *</label>
                   <input value={form.ownerName} onChange={e => setForm(p => ({ ...p, ownerName: e.target.value }))}
                     placeholder="e.g. Ravi Kumar" required className={inputCls} />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs text-white/40 font-medium">Owner Phone *</label>
+                  <label className="text-xs text-foreground/40 font-medium">Owner Phone *</label>
                   <input value={form.ownerPhone} onChange={e => setForm(p => ({ ...p, ownerPhone: e.target.value }))}
                     placeholder="9876543210" type="tel" required className={inputCls} />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-1">
-                    <label className="text-xs text-white/40 font-medium">Email <span className="text-white/20">(opt)</span></label>
+                    <label className="text-xs text-foreground/40 font-medium">Email <span className="text-foreground/20">(opt)</span></label>
                     <input value={form.ownerEmail} onChange={e => setForm(p => ({ ...p, ownerEmail: e.target.value }))}
                       placeholder="owner@gym.com" type="email" className={inputCls} />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs text-white/40 font-medium">Password <span className="text-white/20">(opt)</span></label>
+                    <label className="text-xs text-foreground/40 font-medium">Password <span className="text-foreground/20">(opt)</span></label>
                     <input value={form.ownerPassword} onChange={e => setForm(p => ({ ...p, ownerPassword: e.target.value }))}
                       placeholder="Welcome@123" type="text" className={inputCls} />
                   </div>
                 </div>
-                <p className="text-[11px] text-white/25">
-                  Leave password blank to use default: <span className="text-white/40 font-mono">Welcome@123</span>
+                <p className="text-[11px] text-foreground/25">
+                  Leave password blank to use default: <span className="text-foreground/40 font-mono">Welcome@123</span>
                 </p>
               </div>
 
@@ -353,11 +353,11 @@ function AdminGymsContent() {
 
               <div className="flex gap-3 pt-1">
                 <button type="button" onClick={() => { setShowModal(false); setFormError('') }}
-                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/60 hover:text-white text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/60 hover:text-foreground text-sm font-medium transition-all">
                   Cancel
                 </button>
                 <button type="submit" disabled={submitting}
-                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-foreground text-sm font-medium transition-all">
                   {submitting ? 'Creating...' : 'Create Gym'}
                 </button>
               </div>

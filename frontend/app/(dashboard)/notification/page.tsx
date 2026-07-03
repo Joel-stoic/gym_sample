@@ -33,9 +33,9 @@ function filterNotifications(notifications: any[], range: FilterRange) {
 
 // ── Skeleton ───────────────────────────────────────────────────────────
 const NotificationSkeleton = () => (
-  <div className="rounded-3xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-white/[0.02] p-5 animate-pulse">
+  <div className="rounded-3xl border border-border bg-gradient-to-b from-white/[0.04] to-white/[0.02] p-5 animate-pulse">
     <div className="flex items-start gap-4">
-      <div className="h-12 w-12 rounded-2xl bg-white/[0.06] border border-white/[0.06] flex-shrink-0" />
+      <div className="h-12 w-12 rounded-2xl bg-white/[0.06] border border-border flex-shrink-0" />
       <div className="flex-1 min-w-0">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
@@ -84,20 +84,20 @@ const NotificationPage = () => {
       {/* HEADER */}
       <div className="flex items-start justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-white">Notifications</h1>
-          <p className="text-sm text-zinc-500 mt-1">WhatsApp renewal alerts & delivery logs</p>
+          <h1 className="text-2xl font-bold text-foreground">Notifications</h1>
+          <p className="text-sm text-muted-foreground mt-1">WhatsApp renewal alerts & delivery logs</p>
         </div>
 
         {/* FILTER TOGGLE */}
-        <div className="flex gap-1 rounded-xl border border-white/[0.06] bg-white/[0.03] p-1">
+        <div className="flex gap-1 rounded-xl border border-border bg-white/[0.03] p-1">
           {FILTER_OPTIONS.map((opt) => (
             <button
               key={opt.value}
               onClick={() => setFilter(opt.value)}
               className={`rounded-lg px-3 py-1.5 text-[11px] font-medium transition-all duration-150
                 ${filter === opt.value
-                  ? 'bg-violet-600 text-white shadow'
-                  : 'text-zinc-500 hover:text-zinc-300'
+                  ? 'bg-violet-600 text-foreground shadow'
+                  : 'text-muted-foreground hover:text-zinc-300'
                 }`}
             >
               {opt.label}
@@ -123,10 +123,10 @@ const NotificationPage = () => {
             <NotificationSkeleton />
           </>
         ) : filtered.length === 0 ? (
-          <div className="rounded-3xl border border-white/[0.06] bg-white/[0.03] py-20 flex flex-col items-center justify-center">
+          <div className="rounded-3xl border border-border bg-white/[0.03] py-20 flex flex-col items-center justify-center">
             <BellDot className="h-12 w-12 text-zinc-600 mb-4" />
-            <h3 className="text-lg font-semibold text-white">No notifications</h3>
-            <p className="text-sm text-zinc-500 mt-2">
+            <h3 className="text-lg font-semibold text-foreground">No notifications</h3>
+            <p className="text-sm text-muted-foreground mt-2">
               No alerts found for this period
             </p>
           </div>
@@ -134,7 +134,7 @@ const NotificationPage = () => {
           filtered.map((notif) => (
             <div
               key={notif.id}
-              className="rounded-3xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-white/[0.02] p-5"
+              className="rounded-3xl border border-border bg-gradient-to-b from-white/[0.04] to-white/[0.02] p-5"
             >
               <div className="flex items-start gap-4">
 
@@ -157,7 +157,7 @@ const NotificationPage = () => {
                       <p className="text-[11px] font-medium uppercase tracking-widest text-violet-400 mb-1">
                         {notif.type.replaceAll('_', ' ')}
                       </p>
-                      <h3 className="text-white font-bold text-base">
+                      <h3 className="text-foreground font-bold text-base">
                         {notif.member?.name}
                       </h3>
                     </div>
@@ -184,27 +184,27 @@ const NotificationPage = () => {
                   {/* Structured info pills */}
                   <div className="flex flex-wrap gap-2 mt-3">
                     {notif.member?.phone && (
-                      <div className="flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.03] px-2.5 py-1.5">
+                      <div className="flex items-center gap-1.5 rounded-lg border border-border bg-white/[0.03] px-2.5 py-1.5">
                         <Phone className="h-3.5 w-3.5 text-green-400 flex-shrink-0" />
-                        <span className="text-xs text-white font-medium">{notif.member.phone}</span>
+                        <span className="text-xs text-foreground font-medium">{notif.member.phone}</span>
                       </div>
                     )}
                     {notif.member?.plan?.name && (
-                      <div className="flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.03] px-2.5 py-1.5">
+                      <div className="flex items-center gap-1.5 rounded-lg border border-border bg-white/[0.03] px-2.5 py-1.5">
                         <CreditCard className="h-3.5 w-3.5 text-violet-400 flex-shrink-0" />
-                        <span className="text-xs text-white font-medium">{notif.member.plan.name}</span>
+                        <span className="text-xs text-foreground font-medium">{notif.member.plan.name}</span>
                       </div>
                     )}
                     {notif.member?.membershipExpiry && (
-                      <div className="flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.03] px-2.5 py-1.5">
+                      <div className="flex items-center gap-1.5 rounded-lg border border-border bg-white/[0.03] px-2.5 py-1.5">
                         <CalendarClock className="h-3.5 w-3.5 text-red-400 flex-shrink-0" />
-                        <span className="text-xs text-white font-medium">
+                        <span className="text-xs text-foreground font-medium">
                           Expires {format(new Date(notif.member.membershipExpiry), 'd MMM yyyy')}
                         </span>
                       </div>
                     )}
-                    <div className="flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.03] px-2.5 py-1.5">
-                      <User className="h-3.5 w-3.5 text-zinc-500 flex-shrink-0" />
+                    <div className="flex items-center gap-1.5 rounded-lg border border-border bg-white/[0.03] px-2.5 py-1.5">
+                      <User className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0" />
                       <span className="text-xs text-zinc-400">
                         {formatDistanceToNow(new Date(notif.createdAt), { addSuffix: true })}
                       </span>

@@ -44,10 +44,10 @@ const mealConfig: Record<string, { color: string; bg: string; border: string }> 
 }
 const defaultMeal = { color: 'text-zinc-400', bg: 'bg-zinc-500/10', border: 'border-zinc-500/20' }
 const card = 'rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5'
-const inputBase = 'w-full bg-black/30 border border-white/[0.08] rounded-xl px-3 py-2.5 text-sm text-white placeholder:text-zinc-600 outline-none focus:border-violet-500/40 transition-colors'
+const inputBase = 'w-full bg-black/30 border border-white/[0.08] rounded-xl px-3 py-2.5 text-sm text-foreground placeholder:text-zinc-600 outline-none focus:border-violet-500/40 transition-colors'
 
 function Label({ children }: { children: React.ReactNode }) {
-  return <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-zinc-500 mb-3">{children}</p>
+  return <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground mb-3">{children}</p>
 }
 
 // ─── PT Session status config ─────────────────────────────
@@ -74,7 +74,7 @@ function PtEnrollmentCard({ enrollment }: { enrollment: PtEnrollment }) {
       >
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
-            <p className="text-sm font-semibold text-white">{enrollment.package.name}</p>
+            <p className="text-sm font-semibold text-foreground">{enrollment.package.name}</p>
             <span className={cn(
               'text-[10px] font-semibold px-2 py-0.5 rounded-full border',
               enrollment.status === 'ACTIVE'
@@ -92,7 +92,7 @@ function PtEnrollmentCard({ enrollment }: { enrollment: PtEnrollment }) {
                 style={{ width: `${pct}%` }}
               />
             </div>
-            <span className="text-[11px] text-zinc-500 flex-shrink-0">
+            <span className="text-[11px] text-muted-foreground flex-shrink-0">
               {enrollment.usedSessions}/{enrollment.totalSessions} sessions
             </span>
           </div>
@@ -109,8 +109,8 @@ function PtEnrollmentCard({ enrollment }: { enrollment: PtEnrollment }) {
           </div>
         </div>
         {open
-          ? <ChevronUp className="h-3.5 w-3.5 text-zinc-500 flex-shrink-0 mt-1" />
-          : <ChevronDown className="h-3.5 w-3.5 text-zinc-500 flex-shrink-0 mt-1" />
+          ? <ChevronUp className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0 mt-1" />
+          : <ChevronDown className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0 mt-1" />
         }
       </button>
 
@@ -120,7 +120,7 @@ function PtEnrollmentCard({ enrollment }: { enrollment: PtEnrollment }) {
           {/* Upcoming sessions */}
           {upcoming.length > 0 && (
             <div>
-              <p className="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider mb-2">
+              <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">
                 Upcoming
               </p>
               <div className="space-y-2">
@@ -133,10 +133,10 @@ function PtEnrollmentCard({ enrollment }: { enrollment: PtEnrollment }) {
                         <Icon className="h-3.5 w-3.5 text-blue-400" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs font-medium text-white">
+                        <p className="text-xs font-medium text-foreground">
                           {format(parseISO(session.scheduledAt), 'EEEE, d MMM yyyy')}
                         </p>
-                        <p className="text-[11px] text-zinc-500 flex items-center gap-1 mt-0.5">
+                        <p className="text-[11px] text-muted-foreground flex items-center gap-1 mt-0.5">
                           <UserCheck className="h-3 w-3" />
                           {session.trainer.name}
                           <span className="mx-1">·</span>
@@ -153,7 +153,7 @@ function PtEnrollmentCard({ enrollment }: { enrollment: PtEnrollment }) {
           {/* Past sessions */}
           {past.length > 0 && (
             <div>
-              <p className="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider mb-2">
+              <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">
                 Past sessions
               </p>
               <div className="space-y-1.5">
@@ -167,10 +167,10 @@ function PtEnrollmentCard({ enrollment }: { enrollment: PtEnrollment }) {
                     )}>
                       <Icon className={cn('h-3.5 w-3.5 flex-shrink-0', s.color)} />
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs text-white">
+                        <p className="text-xs text-foreground">
                           {format(parseISO(session.scheduledAt), 'd MMM yyyy · h:mm a')}
                         </p>
-                        <p className="text-[11px] text-zinc-500">{session.trainer.name}</p>
+                        <p className="text-[11px] text-muted-foreground">{session.trainer.name}</p>
                       </div>
                       <span className={cn('text-[10px] font-semibold', s.color)}>{s.label}</span>
                     </div>
@@ -203,12 +203,12 @@ function DietPlanCard({ plan }: { plan: DietPlan }) {
         className="w-full px-4 py-3.5 flex items-start justify-between gap-3 text-left hover:bg-white/[0.02] transition-colors"
       >
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-semibold text-white leading-tight">{plan.title}</p>
+          <p className="text-sm font-semibold text-foreground leading-tight">{plan.title}</p>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1.5">
-            <span className="text-[11px] text-zinc-500 flex items-center gap-1">
+            <span className="text-[11px] text-muted-foreground flex items-center gap-1">
               <User className="h-3 w-3" />{plan.createdBy.name}
             </span>
-            <span className="text-[11px] text-zinc-500 flex items-center gap-1">
+            <span className="text-[11px] text-muted-foreground flex items-center gap-1">
               <Calendar className="h-3 w-3" />
               {format(parseISO(plan.validFrom), 'd MMM yyyy')}
               {plan.validTo && ` — ${format(parseISO(plan.validTo), 'd MMM yyyy')}`}
@@ -224,7 +224,7 @@ function DietPlanCard({ plan }: { plan: DietPlan }) {
           <span className="text-[11px] text-zinc-600 bg-white/[0.04] px-2 py-0.5 rounded-md">
             {plan.meals.length} meals
           </span>
-          {open ? <ChevronUp className="h-3.5 w-3.5 text-zinc-500" /> : <ChevronDown className="h-3.5 w-3.5 text-zinc-500" />}
+          {open ? <ChevronUp className="h-3.5 w-3.5 text-muted-foreground" /> : <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />}
         </div>
       </button>
 
@@ -257,7 +257,7 @@ function DietPlanCard({ plan }: { plan: DietPlan }) {
             )
           })}
           {plan.notes && (
-            <p className="text-xs text-zinc-500 border-t border-white/[0.05] pt-3 mt-1">
+            <p className="text-xs text-muted-foreground border-t border-white/[0.05] pt-3 mt-1">
               <span className="text-zinc-400 font-medium">Trainer note:</span> {plan.notes}
             </p>
           )}
@@ -305,7 +305,7 @@ function LogWeightForm({ onSuccess }: { onSuccess: () => void }) {
             onKeyDown={e => e.key === 'Enter' && handleLog()}
             className={cn(inputBase, 'pr-12 text-2xl font-semibold tracking-tight', error && 'border-red-500/40')}
           />
-          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-zinc-500 font-medium select-none">kg</span>
+          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground font-medium select-none">kg</span>
         </div>
         {error && (
           <p className="text-xs text-red-400 flex items-center gap-1.5">
@@ -315,7 +315,7 @@ function LogWeightForm({ onSuccess }: { onSuccess: () => void }) {
         <input className={inputBase} placeholder="Notes (optional)" value={notes} onChange={e => setNotes(e.target.value)} />
         <button
           onClick={handleLog} disabled={saving || !weight}
-          className="w-full h-10 rounded-xl text-sm font-medium text-white flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+          className="w-full h-10 rounded-xl text-sm font-medium text-foreground flex items-center justify-center gap-2 transition-all disabled:opacity-50"
           style={{ background: logged ? '#16a34a' : 'linear-gradient(135deg, #7c3aed, #a855f7)' }}
         >
           {saving ? <Loader2 className="h-4 w-4 animate-spin" />
@@ -434,7 +434,7 @@ const setData =
   const entries = weightData?.entries ?? []
   const summary = weightData?.summary ?? null
   const change = summary?.change ?? null
-  const changeColor = change === null ? 'text-zinc-500' : change < 0 ? 'text-emerald-400' : change > 0 ? 'text-red-400' : 'text-zinc-400'
+  const changeColor = change === null ? 'text-muted-foreground' : change < 0 ? 'text-emerald-400' : change > 0 ? 'text-red-400' : 'text-zinc-400'
   const ChangeIcon = change === null ? Minus : change < 0 ? TrendingDown : TrendingUp
 
   return (
@@ -442,8 +442,8 @@ const setData =
 
       {/* Header */}
       <div>
-        <h1 className="text-lg font-semibold text-white leading-tight">Diet &amp; weight</h1>
-        <p className="text-xs text-zinc-500 mt-0.5">Track your progress and follow your trainer's plan</p>
+        <h1 className="text-lg font-semibold text-foreground leading-tight">Diet &amp; weight</h1>
+        <p className="text-xs text-muted-foreground mt-0.5">Track your progress and follow your trainer's plan</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -456,20 +456,20 @@ const setData =
           <div className={card}>
             <Label>Progress</Label>
             <div className="grid grid-cols-3 gap-2 mb-4">
-              <div className="rounded-xl bg-black/20 border border-white/[0.06] p-3 text-center">
-                <p className="text-xl font-semibold text-white leading-none mb-1">{summary?.latest ?? '—'}</p>
-                <p className="text-[10px] text-zinc-500">Now (kg)</p>
+              <div className="rounded-xl bg-black/20 border border-border p-3 text-center">
+                <p className="text-xl font-semibold text-foreground leading-none mb-1">{summary?.latest ?? '—'}</p>
+                <p className="text-[10px] text-muted-foreground">Now (kg)</p>
               </div>
-              <div className="rounded-xl bg-black/20 border border-white/[0.06] p-3 text-center">
-                <p className="text-xl font-semibold text-white leading-none mb-1">{summary?.oldest ?? '—'}</p>
-                <p className="text-[10px] text-zinc-500">Start (kg)</p>
+              <div className="rounded-xl bg-black/20 border border-border p-3 text-center">
+                <p className="text-xl font-semibold text-foreground leading-none mb-1">{summary?.oldest ?? '—'}</p>
+                <p className="text-[10px] text-muted-foreground">Start (kg)</p>
               </div>
-              <div className="rounded-xl bg-black/20 border border-white/[0.06] p-3 text-center">
+              <div className="rounded-xl bg-black/20 border border-border p-3 text-center">
                 <p className={cn('text-xl font-semibold leading-none mb-1 flex items-center justify-center gap-0.5', changeColor)}>
                   <ChangeIcon className="h-4 w-4" />
                   {change !== null ? Math.abs(change) : '—'}
                 </p>
-                <p className="text-[10px] text-zinc-500">
+                <p className="text-[10px] text-muted-foreground">
                   {change === null ? 'Change' : change < 0 ? 'Lost kg' : change > 0 ? 'Gained' : 'Stable'}
                 </p>
               </div>
@@ -500,11 +500,11 @@ const setData =
                       fresh ? 'border-violet-500/20 bg-violet-500/5' : 'border-white/[0.05] bg-black/20'
                     )}>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold text-white flex items-center gap-2">
+                        <p className="text-sm font-semibold text-foreground flex items-center gap-2">
                           {entry.weight} kg
                           {fresh && <span className="text-[10px] text-violet-400 bg-violet-500/10 border border-violet-500/20 px-1.5 py-0.5 rounded">Today</span>}
                         </p>
-                        <p className="text-[11px] text-zinc-500">{format(parseISO(entry.loggedAt), 'd MMM yyyy')}</p>
+                        <p className="text-[11px] text-muted-foreground">{format(parseISO(entry.loggedAt), 'd MMM yyyy')}</p>
                       </div>
                       {diff !== null && diff !== 0 && (
                         <span className={cn('text-[11px] font-medium', diff < 0 ? 'text-emerald-400' : 'text-red-400')}>
@@ -536,7 +536,7 @@ const setData =
                   <Utensils className="h-5 w-5 text-violet-400/60" />
                 </div>
                 <div className="text-center">
-                  <p className="text-sm text-zinc-500">No diet plan yet</p>
+                  <p className="text-sm text-muted-foreground">No diet plan yet</p>
                   <p className="text-xs text-zinc-600 mt-1">Your trainer will add a diet plan for you soon</p>
                 </div>
               </div>
@@ -561,7 +561,7 @@ const setData =
                   <Dumbbell className="h-5 w-5 text-violet-400/60" />
                 </div>
                 <div className="text-center">
-                  <p className="text-sm text-zinc-500">No PT package yet</p>
+                  <p className="text-sm text-muted-foreground">No PT package yet</p>
                   <p className="text-xs text-zinc-600 mt-1">Ask your gym to enroll you in a personal training package</p>
                 </div>
               </div>

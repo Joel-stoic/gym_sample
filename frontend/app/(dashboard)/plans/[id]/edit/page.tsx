@@ -63,12 +63,12 @@ export default function EditPlanPage() {
   }
 
   if (loading) return (
-    <div className="flex h-64 items-center justify-center text-white">Loading...</div>
+    <div className="flex h-64 items-center justify-center text-foreground">Loading...</div>
   )
 
   return (
     <div className="max-w-xl">
-      <h1 className="mb-6 text-2xl font-bold text-white">
+      <h1 className="mb-6 text-2xl font-bold text-foreground">
         Edit Plan
       </h1>
 
@@ -78,7 +78,7 @@ export default function EditPlanPage() {
       >
         {/* Name */}
         <div>
-          <label className="mb-2 block text-sm text-white">
+          <label className="mb-2 block text-sm text-foreground">
             Plan Name
           </label>
 
@@ -90,13 +90,13 @@ export default function EditPlanPage() {
                 name: e.target.value
               })
             }
-            className="w-full rounded-xl border border-white/10 bg-[#111118] px-4 py-3 text-white outline-none"
+            className="w-full rounded-xl border border-border bg-card px-4 py-3 text-foreground outline-none"
           />
         </div>
 
         {/* Duration */}
         <div>
-          <label className="mb-2 block text-sm text-white">
+          <label className="mb-2 block text-sm text-foreground">
             Duration (days)
           </label>
 
@@ -109,13 +109,13 @@ export default function EditPlanPage() {
                 durationDays: e.target.value
               })
             }
-            className="w-full rounded-xl border border-white/10 bg-[#111118] px-4 py-3 text-white outline-none"
+            className="w-full rounded-xl border border-border bg-card px-4 py-3 text-foreground outline-none"
           />
         </div>
 
         {/* Price */}
         <div>
-          <label className="mb-2 block text-sm text-white">
+          <label className="mb-2 block text-sm text-foreground">
             Price (₹)
           </label>
 
@@ -128,13 +128,13 @@ export default function EditPlanPage() {
                 price: e.target.value
               })
             }
-            className="w-full rounded-xl border border-white/10 bg-[#111118] px-4 py-3 text-white outline-none"
+            className="w-full rounded-xl border border-border bg-card px-4 py-3 text-foreground outline-none"
           />
         </div>
 
         {/* Description */}
         <div>
-          <label className="mb-2 block text-sm text-white">
+          <label className="mb-2 block text-sm text-foreground">
             Description
           </label>
 
@@ -147,7 +147,7 @@ export default function EditPlanPage() {
               })
             }
             rows={4}
-            className="w-full rounded-xl border border-white/10 bg-[#111118] px-4 py-3 text-white outline-none"
+            className="w-full rounded-xl border border-border bg-card px-4 py-3 text-foreground outline-none"
           />
         </div>
 
@@ -155,7 +155,7 @@ export default function EditPlanPage() {
         <button
           type="submit"
           disabled={saving}
-          className="rounded-xl bg-violet-600 px-5 py-3 text-white transition hover:bg-violet-500"
+          className="rounded-xl bg-violet-600 px-5 py-3 text-foreground transition hover:bg-violet-500"
         >
           {saving ? 'Updating...' : 'Update Plan'}
         </button>

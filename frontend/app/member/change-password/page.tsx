@@ -55,12 +55,12 @@ function PwField({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] pl-9 pr-10 py-2.5 text-[13px] text-white placeholder:text-[#3d3d52] focus:border-violet-500/50 focus:outline-none transition-colors"
+          className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] pl-9 pr-10 py-2.5 text-[13px] text-foreground placeholder:text-[#3d3d52] focus:border-violet-500/50 focus:outline-none transition-colors"
         />
         <button
           type="button"
           onClick={() => setShow(!show)}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#666] hover:text-white transition-colors"
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#666] hover:text-foreground transition-colors"
         >
           {show ? <EyeOff size={14} /> : <Eye size={14} />}
         </button>
@@ -147,7 +147,7 @@ export default function MemberChangePasswordPage() {
   return (
     <div
       className="min-h-screen flex items-center justify-center p-4"
-      style={{ background: '#0a0a0f', fontFamily: "'DM Sans', sans-serif" }}
+      style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
       {/* Background glow */}
       <div
@@ -169,16 +169,16 @@ export default function MemberChangePasswordPage() {
               boxShadow: '0 8px 32px #7c3aed40',
             }}
           >
-            <ShieldCheck className="h-7 w-7 text-white" />
+            <ShieldCheck className="h-7 w-7 text-foreground" />
           </div>
           <div>
             <h1
-              className="text-[20px] font-bold text-white"
+              className="text-[20px] font-bold text-foreground"
               style={{ fontFamily: "'Syne', sans-serif" }}
             >
               Set Your Password
             </h1>
-            <p className="text-[12px] text-[#6b6b80] mt-1">
+            <p className="text-[12px] text-muted-foreground mt-1">
               Your gym has assigned you a default password.
               Please set a personal one to continue.
             </p>
@@ -230,7 +230,7 @@ export default function MemberChangePasswordPage() {
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className="flex w-full items-center justify-center gap-2 rounded-xl py-3 text-[14px] font-medium text-white transition-all disabled:opacity-60"
+            className="flex w-full items-center justify-center gap-2 rounded-xl py-3 text-[14px] font-medium text-foreground transition-all disabled:opacity-60"
             style={{
               background: loading
                 ? '#7c3aed99'

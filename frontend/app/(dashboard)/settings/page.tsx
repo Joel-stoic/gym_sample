@@ -53,13 +53,13 @@ function Section({
   action?: React.ReactNode
 }) {
   return (
-    <div className="rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-6 sm:p-8">
+    <div className="rounded-2xl border border-border bg-[#0a0a0a] p-6 sm:p-8">
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600/20 text-violet-400">
             <Icon size={18} />
           </div>
-          <h2 className="text-[15px] font-semibold text-white">{title}</h2>
+          <h2 className="text-[15px] font-semibold text-foreground">{title}</h2>
         </div>
         {action}
       </div>
@@ -79,9 +79,9 @@ function InfoRow({
 }) {
   return (
     <div className="flex items-center justify-between border-b border-white/[0.05] py-4 last:border-0">
-      <span className="text-[13px] text-[#6b6b80]">{label}</span>
+      <span className="text-[13px] text-muted-foreground">{label}</span>
       <div className="flex items-center gap-3">
-        <span className={`text-[14px] font-medium text-white ${mono ? 'font-mono' : ''}`}>
+        <span className={`text-[14px] font-medium text-foreground ${mono ? 'font-mono' : ''}`}>
           {value}
         </span>
         {action}
@@ -92,14 +92,14 @@ function InfoRow({
 
 // ─── Styled input ─────────────────────────────────────
 const inputClass =
-  'h-11 rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 text-[14px] text-white placeholder:text-[#6b6b80] focus:border-violet-500/50 focus:outline-none focus:ring-0 w-full transition-colors'
+  'h-11 rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 text-[14px] text-foreground placeholder:text-muted-foreground focus:border-violet-500/50 focus:outline-none focus:ring-0 w-full transition-colors'
 
 // ─── Edit button ──────────────────────────────────────
 function EditButton({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 h-9 text-[13px] font-medium text-[#9898b0] hover:text-white hover:bg-white/[0.08] transition-all"
+      className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 h-9 text-[13px] font-medium text-[#9898b0] hover:text-foreground hover:bg-white/[0.08] transition-all"
     >
       <Pencil size={14} />
       Edit
@@ -112,7 +112,7 @@ function CancelButton({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 h-9 text-[13px] font-medium text-[#9898b0] hover:text-white hover:bg-white/[0.08] transition-all"
+      className="flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 h-9 text-[13px] font-medium text-[#9898b0] hover:text-foreground hover:bg-white/[0.08] transition-all"
     >
       <X size={14} />
       Cancel
@@ -176,13 +176,13 @@ function DefaultPasswordsModal({
       <DialogContent
         className="
     !bg-[#0a0a0a]
-    !text-white
+    !text-foreground
     border border-violet-500/20
     p-0 overflow-hidden gap-0
     sm:max-w-[425px]
     [&>button]:text-violet-300
     [&>button]:opacity-100
-    [&>button]:hover:text-white
+    [&>button]:hover:text-foreground
   "
       >
         <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, #7c3aed, #a855f7)' }} />
@@ -196,7 +196,7 @@ function DefaultPasswordsModal({
               <KeyRound size={20} className="text-violet-400" />
             </div>
             <DialogTitle
-              className="text-[18px] font-semibold text-white"
+              className="text-[18px] font-semibold text-foreground"
               style={{ fontFamily: "'Syne', sans-serif", letterSpacing: '-0.01em' }}
             >
               Set Default Passwords
@@ -224,7 +224,7 @@ function DefaultPasswordsModal({
                 <button
                   type="button"
                   onClick={() => setShowMemberPw(!showMemberPw)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6b6b80] hover:text-white transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {showMemberPw ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
@@ -246,7 +246,7 @@ function DefaultPasswordsModal({
                 <button
                   type="button"
                   onClick={() => setShowStaffPw(!showStaffPw)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6b6b80] hover:text-white transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {showStaffPw ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
@@ -273,7 +273,7 @@ function DefaultPasswordsModal({
             <button
               onClick={handleSave}
               disabled={saving}
-              className="flex-1 h-11 rounded-xl text-[14px] font-medium text-white transition-all flex items-center justify-center gap-2 disabled:opacity-60"
+              className="flex-1 h-11 rounded-xl text-[14px] font-medium text-foreground transition-all flex items-center justify-center gap-2 disabled:opacity-60"
               style={{
                 background: 'linear-gradient(135deg, #7c3aed, #a855f7)',
                 boxShadow: '0 4px 16px #7c3aed28',
@@ -388,7 +388,7 @@ export default function SettingsPage() {
   return (
     <div
       className="min-h-screen p-6 md:p-10 lg:p-12"
-      style={{ background: '#0a0a0f', fontFamily: "'DM Sans', sans-serif" }}
+      style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
       <div className="mx-auto max-w-6xl">
 
@@ -457,14 +457,14 @@ export default function SettingsPage() {
                         <button
                           type="button"
                           onClick={handleCancelGym}
-                          className="h-11 rounded-xl border border-white/[0.08] bg-white/[0.04] px-6 text-[14px] font-medium text-[#9898b0] transition-colors hover:bg-white/[0.08] hover:text-white"
+                          className="h-11 rounded-xl border border-white/[0.08] bg-white/[0.04] px-6 text-[14px] font-medium text-[#9898b0] transition-colors hover:bg-white/[0.08] hover:text-foreground"
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
                           disabled={gymLoading}
-                          className="flex h-11 items-center gap-2 rounded-xl bg-violet-600 px-6 text-[14px] font-medium text-white transition-colors hover:bg-violet-700 disabled:opacity-60"
+                          className="flex h-11 items-center gap-2 rounded-xl bg-violet-600 px-6 text-[14px] font-medium text-foreground transition-colors hover:bg-violet-700 disabled:opacity-60"
                         >
                           {gymLoading && <Loader2 size={16} className="animate-spin" />}
                           {gymLoading ? 'Saving...' : 'Save Changes'}
@@ -475,16 +475,16 @@ export default function SettingsPage() {
                 ) : (
                   <div className="space-y-0 divide-y divide-white/[0.05]">
                     <div className="flex items-center justify-between py-4">
-                      <span className="text-[13px] text-[#6b6b80]">Gym Name</span>
-                      <span className="text-[14px] font-medium text-white">{gymInfo?.name || '—'}</span>
+                      <span className="text-[13px] text-muted-foreground">Gym Name</span>
+                      <span className="text-[14px] font-medium text-foreground">{gymInfo?.name || '—'}</span>
                     </div>
                     <div className="flex items-center justify-between py-4">
-                      <span className="text-[13px] text-[#6b6b80]">Phone</span>
-                      <span className="text-[14px] font-medium text-white">{gymInfo?.phone || '—'}</span>
+                      <span className="text-[13px] text-muted-foreground">Phone</span>
+                      <span className="text-[14px] font-medium text-foreground">{gymInfo?.phone || '—'}</span>
                     </div>
                     <div className="flex items-center justify-between py-4">
-                      <span className="text-[13px] text-[#6b6b80]">Address</span>
-                      <span className="text-[14px] font-medium text-white max-w-[70%] text-right">{gymInfo?.address || '—'}</span>
+                      <span className="text-[13px] text-muted-foreground">Address</span>
+                      <span className="text-[14px] font-medium text-foreground max-w-[70%] text-right">{gymInfo?.address || '—'}</span>
                     </div>
                   </div>
                 )}
@@ -496,14 +496,14 @@ export default function SettingsPage() {
               <Section icon={KeyRound} title="Default Login Passwords">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <p className="text-[14px] text-white font-medium">Member & Staff passwords</p>
-                    <p className="mt-1 text-[13px] text-[#6b6b80] leading-relaxed">
+                    <p className="text-[14px] text-foreground font-medium">Member & Staff passwords</p>
+                    <p className="mt-1 text-[13px] text-muted-foreground leading-relaxed">
                       Set the default passwords assigned when creating new accounts
                     </p>
                   </div>
                   <button
                     onClick={() => setShowDefaultPwModal(true)}
-                    className="flex items-center justify-center gap-2 rounded-xl px-5 h-10 text-[14px] font-medium text-white transition-all flex-shrink-0"
+                    className="flex items-center justify-center gap-2 rounded-xl px-5 h-10 text-[14px] font-medium text-foreground transition-all flex-shrink-0"
                     style={{
                       background: 'linear-gradient(135deg, #7c3aed, #a855f7)',
                       boxShadow: '0 4px 16px #7c3aed28',
@@ -526,7 +526,7 @@ export default function SettingsPage() {
 
             {/* ── Subscription ──────────────────────────────────── */}
             {gymInfo === null ? (
-              <div className="rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-6">
+              <div className="rounded-2xl border border-border bg-[#0a0a0a] p-6">
                 <div className="flex items-center gap-4">
                   <div className="h-12 w-12 rounded-xl bg-white/[0.06] animate-pulse" />
                   <div className="space-y-3">
@@ -553,10 +553,10 @@ export default function SettingsPage() {
                       {isExpired ? <XCircle size={20} /> : <CheckCircle size={20} />}
                     </div>
                     <div className="min-w-0">
-                      <p className="text-[15px] font-semibold text-white">
+                      <p className="text-[15px] font-semibold text-foreground">
                         {isExpired ? 'Trial Expired' : 'Trial Active'}
                       </p>
-                      <p className="text-[13px] text-[#6b6b80] mt-0.5">
+                      <p className="text-[13px] text-muted-foreground mt-0.5">
                         {gymInfo?.trialEndsAt
                           ? isExpired
                             ? `Expired on ${new Date(gymInfo.trialEndsAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}`
@@ -598,7 +598,7 @@ export default function SettingsPage() {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={copyUrl}
-                      className="rounded-lg p-2 text-[#6b6b80] transition-colors hover:bg-white/[0.05] hover:text-white"
+                      className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-white/[0.05] hover:text-foreground"
                       title="Copy URL"
                     >
                       <Copy size={15} />
@@ -607,7 +607,7 @@ export default function SettingsPage() {
                       href={`https://${gymUrl}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-lg p-2 text-[#6b6b80] transition-colors hover:bg-white/[0.05] hover:text-white"
+                      className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-white/[0.05] hover:text-foreground"
                       title="Open URL"
                     >
                       <ExternalLink size={15} />
@@ -641,7 +641,7 @@ export default function SettingsPage() {
                               <div className="relative">
                                 <input type={showCurrentPw ? 'text' : 'password'} className={inputClass} {...field} />
                                 <button type="button" onClick={() => setShowCurrentPw(!showCurrentPw)}
-                                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6b6b80] hover:text-white">
+                                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
                                   {showCurrentPw ? <EyeOff size={16} /> : <Eye size={16} />}
                                 </button>
                               </div>
@@ -660,7 +660,7 @@ export default function SettingsPage() {
                               <div className="relative">
                                 <input type={showNewPw ? 'text' : 'password'} className={inputClass} {...field} />
                                 <button type="button" onClick={() => setShowNewPw(!showNewPw)}
-                                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6b6b80] hover:text-white">
+                                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
                                   {showNewPw ? <EyeOff size={16} /> : <Eye size={16} />}
                                 </button>
                               </div>
@@ -679,7 +679,7 @@ export default function SettingsPage() {
                               <div className="relative">
                                 <input type={showConfirmPw ? 'text' : 'password'} className={inputClass} {...field} />
                                 <button type="button" onClick={() => setShowConfirmPw(!showConfirmPw)}
-                                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6b6b80] hover:text-white">
+                                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
                                   {showConfirmPw ? <EyeOff size={16} /> : <Eye size={16} />}
                                 </button>
                               </div>
@@ -692,14 +692,14 @@ export default function SettingsPage() {
                         <button
                           type="button"
                           onClick={handleCancelPassword}
-                          className="h-11 rounded-xl border border-white/[0.08] bg-white/[0.04] px-6 text-[14px] font-medium text-[#9898b0] transition-colors hover:bg-white/[0.08] hover:text-white"
+                          className="h-11 rounded-xl border border-white/[0.08] bg-white/[0.04] px-6 text-[14px] font-medium text-[#9898b0] transition-colors hover:bg-white/[0.08] hover:text-foreground"
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
                           disabled={passLoading}
-                          className="flex h-11 items-center gap-2 rounded-xl bg-violet-600 px-6 text-[14px] font-medium text-white transition-colors hover:bg-violet-700 disabled:opacity-60"
+                          className="flex h-11 items-center gap-2 rounded-xl bg-violet-600 px-6 text-[14px] font-medium text-foreground transition-colors hover:bg-violet-700 disabled:opacity-60"
                         >
                           {passLoading && <Loader2 size={16} className="animate-spin" />}
                           {passLoading ? 'Changing...' : 'Change Password'}
@@ -710,18 +710,18 @@ export default function SettingsPage() {
                 ) : (
                   /* ── Production-grade read-only state ── */
                   <div className="flex flex-col gap-4">
-                    <div className="flex items-center gap-4 rounded-xl border border-white/[0.06] bg-white/[0.02] px-5 py-4">
+                    <div className="flex items-center gap-4 rounded-xl border border-border bg-white/[0.02] px-5 py-4">
                       <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400">
                         <ShieldCheck size={18} />
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2">
-                          <p className="text-[14px] font-medium text-white">Password secured</p>
+                          <p className="text-[14px] font-medium text-foreground">Password secured</p>
                           <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-400">
                             Active
                           </span>
                         </div>
-                        <p className="mt-1 flex items-center gap-2 text-[13px] text-[#6b6b80]">
+                        <p className="mt-1 flex items-center gap-2 text-[13px] text-muted-foreground">
                           <span className="tracking-[2px] text-[#9898b0]">••••••••••</span>
                           <span className="text-[#3a3a48]">·</span>
                           <span>Last changed recently</span>
@@ -730,8 +730,8 @@ export default function SettingsPage() {
                     </div>
 
                     <div className="flex items-start gap-2.5 rounded-xl border border-white/[0.05] bg-white/[0.015] px-4 py-3">
-                      <ShieldAlert size={14} className="mt-0.5 flex-shrink-0 text-[#6b6b80]" />
-                      <p className="text-[12px] leading-relaxed text-[#6b6b80]">
+                      <ShieldAlert size={14} className="mt-0.5 flex-shrink-0 text-muted-foreground" />
+                      <p className="text-[12px] leading-relaxed text-muted-foreground">
                         For account security, use a unique password you don't reuse elsewhere. Changing it will not sign out other devices.
                       </p>
                     </div>

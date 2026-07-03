@@ -135,7 +135,7 @@ export default function MemberLoginPage() {
   return (
     <div
       className="min-h-screen flex items-center justify-center p-4"
-      style={{ background: '#0a0a0f' }}
+      
     >
       {/* Glow */}
       <div
@@ -157,16 +157,16 @@ export default function MemberLoginPage() {
               boxShadow: '0 8px 32px #7c3aed40',
             }}
           >
-            <Dumbbell className="h-7 w-7 text-white" />
+            <Dumbbell className="h-7 w-7 text-foreground" />
           </div>
           <div className="text-center">
             <h1
-              className="text-lg font-bold text-white"
+              className="text-lg font-bold text-foreground"
               style={{ letterSpacing: '-0.02em' }}
             >
               {gymName}
             </h1>
-            <p className="text-xs text-zinc-500 mt-0.5">Member Portal</p>
+            <p className="text-xs text-muted-foreground mt-0.5">Member Portal</p>
           </div>
         </div>
 
@@ -206,12 +206,12 @@ export default function MemberLoginPage() {
         >
           <div>
             <h2
-              className="text-xl font-bold text-white"
+              className="text-xl font-bold text-foreground"
               style={{ letterSpacing: '-0.02em' }}
             >
               Login
             </h2>
-            <p className="text-sm text-zinc-500 mt-1">
+            <p className="text-sm text-muted-foreground mt-1">
               Enter your registered phone and password
             </p>
           </div>
@@ -261,7 +261,7 @@ export default function MemberLoginPage() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#666] hover:text-white transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#666] hover:text-foreground transition-colors"
               >
                 {showPassword ? (
                   <EyeOff className="h-4 w-4" />
@@ -276,7 +276,7 @@ export default function MemberLoginPage() {
           <button
             onClick={login}
             disabled={loading}
-            className="w-full h-11 rounded-xl text-sm font-medium text-white flex items-center justify-center gap-2 transition-all duration-150 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full h-11 rounded-xl text-sm font-medium text-foreground flex items-center justify-center gap-2 transition-all duration-150 disabled:opacity-60 disabled:cursor-not-allowed"
             style={{
               background: loading
                 ? '#7c3aed99'

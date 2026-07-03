@@ -48,11 +48,11 @@ export default function NotificationsPage() {
     <div className="space-y-6 max-w-5xl">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">WhatsApp Notifications</h1>
-          <p className="text-sm text-white/40 mt-1">Monitor all outgoing messages</p>
+          <h1 className="text-2xl font-bold text-foreground">WhatsApp Notifications</h1>
+          <p className="text-sm text-foreground/40 mt-1">Monitor all outgoing messages</p>
         </div>
         <button onClick={() => fetchLogs()}
-          className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-white/50 hover:text-white text-xs transition-all">
+          className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/50 hover:text-foreground text-xs transition-all">
           <RefreshCw size={13} />Refresh
         </button>
       </div>
@@ -60,13 +60,13 @@ export default function NotificationsPage() {
       {/* Summary */}
       <div className="grid grid-cols-3 gap-3">
         {[
-          { label: 'Total Sent',   value: summary.total,  color: 'text-white' },
+          { label: 'Total Sent',   value: summary.total,  color: 'text-foreground' },
           { label: 'Delivered',    value: summary.sent,   color: 'text-emerald-400' },
           { label: 'Failed',       value: summary.failed, color: 'text-red-400' },
         ].map(s => (
-          <div key={s.label} className="bg-[#111118] border border-white/5 rounded-2xl p-4">
+          <div key={s.label} className="bg-card border border-border rounded-2xl p-4">
             <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
-            <p className="text-xs text-white/40 mt-0.5">{s.label}</p>
+            <p className="text-xs text-foreground/40 mt-0.5">{s.label}</p>
           </div>
         ))}
       </div>
@@ -74,13 +74,13 @@ export default function NotificationsPage() {
       {/* Filters */}
       <div className="flex gap-2">
         <select value={status} onChange={e => setStatus(e.target.value)}
-          className="bg-[#111118] border border-white/5 rounded-xl px-3 py-2 text-sm text-white outline-none">
+          className="bg-card border border-border rounded-xl px-3 py-2 text-sm text-foreground outline-none">
           <option value="">All Status</option>
           <option value="SENT">Sent</option>
           <option value="FAILED">Failed</option>
         </select>
         <select value={type} onChange={e => setType(e.target.value)}
-          className="bg-[#111118] border border-white/5 rounded-xl px-3 py-2 text-sm text-white outline-none">
+          className="bg-card border border-border rounded-xl px-3 py-2 text-sm text-foreground outline-none">
           <option value="">All Types</option>
           <option value="RENEWAL_7DAY">7 Day Reminder</option>
           <option value="RENEWAL_3DAY">3 Day Reminder</option>
@@ -90,9 +90,9 @@ export default function NotificationsPage() {
       </div>
 
       {/* Log table */}
-      <div className="bg-[#111118] border border-white/5 rounded-3xl overflow-hidden">
-        <div className="px-6 py-4 border-b border-white/5">
-          <p className="text-sm font-semibold text-white">Recent Logs</p>
+      <div className="bg-card border border-border rounded-3xl overflow-hidden">
+        <div className="px-6 py-4 border-b border-border">
+          <p className="text-sm font-semibold text-foreground">Recent Logs</p>
         </div>
         {loading ? (
           <div className="flex items-center justify-center py-16">
@@ -100,8 +100,8 @@ export default function NotificationsPage() {
           </div>
         ) : logs.length === 0 ? (
           <div className="py-16 text-center">
-            <Bell size={28} className="text-white/10 mx-auto mb-3" />
-            <p className="text-white/30 text-sm">No notifications found</p>
+            <Bell size={28} className="text-foreground/10 mx-auto mb-3" />
+            <p className="text-foreground/30 text-sm">No notifications found</p>
           </div>
         ) : (
           <div className="divide-y divide-white/5">
@@ -112,20 +112,20 @@ export default function NotificationsPage() {
                     ? <CheckCircle size={15} className="text-emerald-400 flex-shrink-0" />
                     : <XCircle    size={15} className="text-red-400 flex-shrink-0" />}
                   <div className="min-w-0">
-                    <p className="text-sm text-white">
+                    <p className="text-sm text-foreground">
                       {log.member?.name || '—'}
-                      <span className="text-white/30 ml-2 text-xs">{log.member?.phone}</span>
+                      <span className="text-foreground/30 ml-2 text-xs">{log.member?.phone}</span>
                     </p>
-                    <p className="text-xs text-white/30 truncate">
+                    <p className="text-xs text-foreground/30 truncate">
                       {log.tenant?.name} · {TYPE_LABELS[log.type] || log.type}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 flex-shrink-0 ml-4">
-                  <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${STATUS_COLORS[log.status] || 'bg-white/5 text-white/30'}`}>
+                  <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${STATUS_COLORS[log.status] || 'bg-white/5 text-foreground/30'}`}>
                     {log.status}
                   </span>
-                  <p className="text-xs text-white/30">
+                  <p className="text-xs text-foreground/30">
                     {new Date(log.createdAt).toLocaleDateString('en-IN', {
                       day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
                     })}

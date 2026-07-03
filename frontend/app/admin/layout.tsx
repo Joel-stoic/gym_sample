@@ -43,7 +43,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   if (pathname === '/admin/login') return <>{children}</>
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white flex">
+    <div className="min-h-screen bg-background text-foreground flex">
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
@@ -55,21 +55,21 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Sidebar */}
       <aside
         className={`
-          fixed top-0 left-0 h-full w-64 bg-[#111118] border-r border-white/5 z-30
+          fixed top-0 left-0 h-full w-64 bg-card border-r border-border z-30
           flex flex-col transition-transform duration-300
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
           lg:translate-x-0 lg:static lg:z-auto
         `}
       >
         {/* Logo */}
-        <div className="p-6 border-b border-white/5">
+        <div className="p-6 border-b border-border">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center">
-              <Shield size={16} className="text-white" />
+              <Shield size={16} className="text-foreground" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-white font-[Syne]">GymFlow</p>
-              <p className="text-[11px] text-white/40">Admin Console</p>
+              <p className="text-sm font-semibold text-foreground font-[Syne]">GymFlow</p>
+              <p className="text-[11px] text-foreground/40">Admin Console</p>
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-150
                   ${active
                     ? 'bg-violet-600/20 text-violet-400 font-medium'
-                    : 'text-white/50 hover:text-white hover:bg-white/5'
+                    : 'text-foreground/50 hover:text-foreground hover:bg-white/5'
                   }
                 `}
               >
@@ -98,19 +98,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </nav>
 
         {/* User + Logout */}
-        <div className="p-4 border-t border-white/5">
+        <div className="p-4 border-t border-border">
           <div className="flex items-center gap-3 px-3 py-2 mb-2">
             <div className="w-7 h-7 rounded-full bg-violet-600/30 flex items-center justify-center text-violet-400 text-xs font-bold">
               {adminName.charAt(0).toUpperCase()}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium text-white truncate">{adminName}</p>
-              <p className="text-[10px] text-white/30">Super Admin</p>
+              <p className="text-xs font-medium text-foreground truncate">{adminName}</p>
+              <p className="text-[10px] text-foreground/30">Super Admin</p>
             </div>
           </div>
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-white/50 hover:text-red-400 hover:bg-red-400/10 transition-all duration-150"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-foreground/50 hover:text-red-400 hover:bg-red-400/10 transition-all duration-150"
           >
             <LogOut size={16} />
             Sign out
@@ -121,14 +121,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Main */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar (mobile) */}
-        <header className="lg:hidden flex items-center justify-between px-4 py-3 bg-[#111118] border-b border-white/5">
+        <header className="lg:hidden flex items-center justify-between px-4 py-3 bg-card border-b border-border">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 rounded-md bg-violet-600 flex items-center justify-center">
               <Shield size={12} />
             </div>
             <span className="text-sm font-semibold font-[Syne]">GymFlow Admin</span>
           </div>
-          <button onClick={() => setSidebarOpen(true)} className="text-white/50 hover:text-white">
+          <button onClick={() => setSidebarOpen(true)} className="text-foreground/50 hover:text-foreground">
             <Menu size={20} />
           </button>
         </header>

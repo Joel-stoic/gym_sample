@@ -85,12 +85,12 @@ function EmptyState({ filtered }: { filtered: boolean }) {
   return (
     <div className="flex flex-col items-center justify-center py-16 text-center">
       <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/[0.04]">
-        <UserCheck2 className="h-6 w-6 text-[#6b6b80]" />
+        <UserCheck2 className="h-6 w-6 text-muted-foreground" />
       </div>
-      <p className="text-sm font-medium text-white">
+      <p className="text-sm font-medium text-foreground">
         {filtered ? 'No results match your filters' : 'No attendance records yet'}
       </p>
-      <p className="mt-1 text-xs text-[#6b6b80]">
+      <p className="mt-1 text-xs text-muted-foreground">
         {filtered ? 'Try adjusting the date range or search term' : 'Records will appear once members check in'}
       </p>
     </div>
@@ -147,19 +147,19 @@ export default function AllAttendanceView() {
   }
 
   return (
-    <div className="rounded-3xl border border-white/[0.06] bg-[#0a0a0a] p-5">
+    <div className="rounded-3xl border border-border bg-[#0a0a0a] p-5">
 
       {/* Header */}
       <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-lg font-semibold text-white">All Attendance</h2>
-          <p className="mt-0.5 text-sm text-[#6b6b80]">
+          <h2 className="text-lg font-semibold text-foreground">All Attendance</h2>
+          <p className="mt-0.5 text-sm text-muted-foreground">
             {total > 0 ? `${total.toLocaleString()} total check-ins` : 'Full attendance history'}
           </p>
         </div>
         <div className="flex items-center gap-3">
           {isFetching && !isLoading && (
-            <Loader2 className="h-3.5 w-3.5 animate-spin text-[#6b6b80]" />
+            <Loader2 className="h-3.5 w-3.5 animate-spin text-muted-foreground" />
           )}
           {isFiltered && (
             <button
@@ -177,17 +177,17 @@ export default function AllAttendanceView() {
       <div className="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
         {/* Search */}
         <div className="flex flex-col gap-1 sm:col-span-1">
-          <label className="pl-1 text-[11px] font-medium uppercase tracking-wider text-[#6b6b80]">Search</label>
+          <label className="pl-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">Search</label>
           <div className="relative flex items-center">
-            <Search className="absolute left-3 h-4 w-4 text-[#6b6b80]" />
+            <Search className="absolute left-3 h-4 w-4 text-muted-foreground" />
             <input
               value={search}
               onChange={(e) => handleSearchChange(e.target.value)}
               placeholder="Name or phone..."
-              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-9 text-sm text-white placeholder:text-[#6b6b80] focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30"
+              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-9 text-sm text-foreground placeholder:text-muted-foreground focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30"
             />
             {search && (
-              <button onClick={() => handleSearchChange('')} className="absolute right-3 text-[#6b6b80] hover:text-white">
+              <button onClick={() => handleSearchChange('')} className="absolute right-3 text-muted-foreground hover:text-foreground">
                 <X className="h-4 w-4" />
               </button>
             )}
@@ -196,28 +196,28 @@ export default function AllAttendanceView() {
 
         {/* From */}
         <div className="flex flex-col gap-1">
-          <label className="pl-1 text-[11px] font-medium uppercase tracking-wider text-[#6b6b80]">From</label>
+          <label className="pl-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">From</label>
           <div className="relative flex items-center">
-            <Calendar className="absolute left-3 h-4 w-4 text-[#6b6b80]" />
+            <Calendar className="absolute left-3 h-4 w-4 text-muted-foreground" />
             <input
               type="date"
               value={startDate}
               onChange={(e) => handleDateChange('start', e.target.value)}
-              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-3 text-sm text-white focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30 [color-scheme:dark]"
+              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-3 text-sm text-foreground focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30 [color-scheme:dark]"
             />
           </div>
         </div>
 
         {/* To */}
         <div className="flex flex-col gap-1">
-          <label className="pl-1 text-[11px] font-medium uppercase tracking-wider text-[#6b6b80]">To</label>
+          <label className="pl-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">To</label>
           <div className="relative flex items-center">
-            <Calendar className="absolute left-3 h-4 w-4 text-[#6b6b80]" />
+            <Calendar className="absolute left-3 h-4 w-4 text-muted-foreground" />
             <input
               type="date"
               value={endDate}
               onChange={(e) => handleDateChange('end', e.target.value)}
-              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-3 text-sm text-white focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30 [color-scheme:dark]"
+              className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-3 text-sm text-foreground focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30 [color-scheme:dark]"
             />
           </div>
         </div>
@@ -226,7 +226,7 @@ export default function AllAttendanceView() {
       {/* Table */}
       <div className="space-y-1.5">
         {/* Column headers */}
-        <div className="grid grid-cols-[1fr_auto_auto] gap-4 px-4 pb-1 text-[11px] font-medium uppercase tracking-wider text-[#6b6b80] sm:grid-cols-[2fr_1fr_1fr_auto]">
+        <div className="grid grid-cols-[1fr_auto_auto] gap-4 px-4 pb-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground sm:grid-cols-[2fr_1fr_1fr_auto]">
           <span>Member</span>
           <span className="hidden sm:block">Date</span>
           <span>Time</span>
@@ -242,15 +242,15 @@ export default function AllAttendanceView() {
             {records.map((rec) => (
               <div
                 key={rec.id}
-                className="group grid grid-cols-[1fr_auto_auto] items-center gap-4 rounded-2xl border border-transparent px-4 py-3 transition-colors hover:border-white/[0.06] hover:bg-white/[0.02] sm:grid-cols-[2fr_1fr_1fr_auto]"
+                className="group grid grid-cols-[1fr_auto_auto] items-center gap-4 rounded-2xl border border-transparent px-4 py-3 transition-colors hover:border-border hover:bg-white/[0.02] sm:grid-cols-[2fr_1fr_1fr_auto]"
               >
                 <div className="flex min-w-0 items-center gap-3">
                   <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-violet-600/20 text-[11px] font-semibold text-violet-300">
                     {initials(rec.member.name)}
                   </div>
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-medium text-white">{rec.member.name}</p>
-                    <p className="text-[11px] text-[#6b6b80]">{rec.member.phone}</p>
+                    <p className="truncate text-sm font-medium text-foreground">{rec.member.name}</p>
+                    <p className="text-[11px] text-muted-foreground">{rec.member.phone}</p>
                   </div>
                 </div>
 
@@ -277,8 +277,8 @@ export default function AllAttendanceView() {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="mt-5 flex items-center justify-between border-t border-white/[0.06] pt-4">
-          <p className="text-xs text-[#6b6b80]">
+        <div className="mt-5 flex items-center justify-between border-t border-border pt-4">
+          <p className="text-xs text-muted-foreground">
             Page {page} of {totalPages}
             <span className="ml-2 text-[#444455]">({total} total)</span>
           </p>
@@ -288,7 +288,7 @@ export default function AllAttendanceView() {
               size="sm"
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1 || isFetching}
-              className="h-8 border-white/[0.08] bg-[#0a0a0a] px-3 text-white hover:bg-white/[0.05] disabled:opacity-40"
+              className="h-8 border-white/[0.08] bg-[#0a0a0a] px-3 text-foreground hover:bg-white/[0.05] disabled:opacity-40"
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
@@ -297,7 +297,7 @@ export default function AllAttendanceView() {
               size="sm"
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page === totalPages || isFetching}
-              className="h-8 border-white/[0.08] bg-[#0a0a0a] px-3 text-white hover:bg-white/[0.05] disabled:opacity-40"
+              className="h-8 border-white/[0.08] bg-[#0a0a0a] px-3 text-foreground hover:bg-white/[0.05] disabled:opacity-40"
             >
               <ChevronRight className="h-4 w-4" />
             </Button>

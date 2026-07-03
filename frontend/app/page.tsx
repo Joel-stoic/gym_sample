@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600'], variabl
 
 export default function HomePage() {
   return (
-    <div className={`${oswald.variable} ${inter.variable} min-h-screen bg-[#0a0a0f] text-[#F4F2EC] font-[family-name:var(--font-body)]`}>
+    <div className={`${oswald.variable} ${inter.variable} min-h-screen bg-background text-[#F4F2EC] font-[family-name:var(--font-body)]`}>
 
       {/* ── Nav ── */}
       <header className="flex items-center justify-between px-6 sm:px-10 py-6 max-w-6xl mx-auto">
@@ -15,7 +15,7 @@ export default function HomePage() {
 
           <a
           href="/login"
-          className="px-5 py-2 text-sm font-medium rounded-full text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a855f7]"
+          className="px-5 py-2 text-sm font-medium rounded-full text-foreground transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a855f7]"
           style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)' }}
         >
           Log in
@@ -32,14 +32,14 @@ export default function HomePage() {
           <br />
           like clockwork.
         </h1>
-        <p className="text-zinc-500 text-base sm:text-lg mt-7 max-w-md leading-relaxed">
+        <p className="text-muted-foreground text-base sm:text-lg mt-7 max-w-md leading-relaxed">
           Members, attendance, and payments — tracked in one place, so the only thing you have to think about on the floor is the floor.
         </p>
 
         <div className="flex items-center gap-5 mt-9">
           <a
             href="/login"
-            className="px-7 py-3 text-sm font-semibold rounded-full text-white transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a855f7]"
+            className="px-7 py-3 text-sm font-semibold rounded-full text-foreground transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a855f7]"
             style={{
               background: 'linear-gradient(135deg, #7c3aed, #a855f7)',
               boxShadow: '0 4px 20px #7c3aed35',
@@ -56,10 +56,10 @@ export default function HomePage() {
         </div>
 
         {/* ── Scoreboard — signature element ── */}
-        <div className="mt-20 rounded-2xl border border-[#26263a] bg-[#111118] overflow-hidden">
+        <div className="mt-20 rounded-2xl border border-[#26263a] bg-card overflow-hidden">
           <div className="px-6 py-4 border-b border-[#26263a] flex items-center justify-between">
-            <span className="text-xs uppercase tracking-[0.15em] text-zinc-500">Sample dashboard</span>
-            <span className="flex items-center gap-2 text-xs text-zinc-500">
+            <span className="text-xs uppercase tracking-[0.15em] text-muted-foreground">Sample dashboard</span>
+            <span className="flex items-center gap-2 text-xs text-muted-foreground">
               <span className="w-1.5 h-1.5 rounded-full bg-[#8FBF3F]" />
               Live
             </span>
@@ -74,7 +74,7 @@ export default function HomePage() {
                 <p className="font-[family-name:var(--font-display)] text-4xl font-semibold tabular-nums tracking-tight">
                   {stat.value}
                 </p>
-                <p className="text-xs uppercase tracking-[0.1em] text-zinc-500 mt-2">{stat.label}</p>
+                <p className="text-xs uppercase tracking-[0.1em] text-muted-foreground mt-2">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -87,17 +87,17 @@ export default function HomePage() {
             { title: 'Attendance', body: 'A single QR at the door logs every check-in — no manual sign-in sheets.' },
             { title: 'Payments', body: 'See who\u2019s paid, who\u2019s due, and where your revenue actually stands.' },
           ].map((f) => (
-            <div key={f.title} className="bg-[#0a0a0f] p-7">
+            <div key={f.title} className="bg-background p-7">
               <h3 className="font-[family-name:var(--font-display)] uppercase font-semibold text-lg tracking-tight mb-2">
                 {f.title}
               </h3>
-              <p className="text-sm text-zinc-500 leading-relaxed">{f.body}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{f.body}</p>
             </div>
           ))}
         </div>
       </main>
 
-      <footer className="max-w-6xl mx-auto px-6 sm:px-10 py-8 border-t border-[#26263a] text-xs text-zinc-500">
+      <footer className="max-w-6xl mx-auto px-6 sm:px-10 py-8 border-t border-[#26263a] text-xs text-muted-foreground">
         Jovifitx — built for gym owners, not spreadsheets.
       </footer>
     </div>

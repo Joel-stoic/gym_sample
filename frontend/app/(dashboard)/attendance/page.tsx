@@ -99,18 +99,18 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
     <div ref={wrapRef} className="relative">
       <div className="relative flex items-center">
         {searching
-          ? <Loader2 className="absolute left-3 h-4 w-4 animate-spin text-[#6b6b80]" />
-          : <Search className="absolute left-3 h-4 w-4 text-[#6b6b80]" />
+          ? <Loader2 className="absolute left-3 h-4 w-4 animate-spin text-muted-foreground" />
+          : <Search className="absolute left-3 h-4 w-4 text-muted-foreground" />
         }
         <input
           ref={inputRef}
           value={query}
           onChange={handleChange}
           placeholder="Search by name or phone..."
-          className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-9 text-sm text-white placeholder:text-[#6b6b80] focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30"
+          className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-9 pr-9 text-sm text-foreground placeholder:text-muted-foreground focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30"
         />
         {query && (
-          <button onClick={handleClear} className="absolute right-3 text-[#6b6b80] hover:text-white">
+          <button onClick={handleClear} className="absolute right-3 text-muted-foreground hover:text-foreground">
             <X className="h-4 w-4" />
           </button>
         )}
@@ -119,7 +119,7 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
       {open && (
         <div className="absolute z-50 mt-1 w-full overflow-hidden rounded-xl border border-white/[0.08] bg-[#0f0f0f] shadow-2xl">
           {results.length === 0 ? (
-            <div className="px-4 py-3 text-sm text-[#6b6b80]">No members found</div>
+            <div className="px-4 py-3 text-sm text-muted-foreground">No members found</div>
           ) : (
             results.map((member) => (
               <button
@@ -131,8 +131,8 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
                   {member.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium text-white">{member.name}</p>
-                  <p className="text-[11px] text-[#6b6b80]">{member.phone}</p>
+                  <p className="truncate text-sm font-medium text-foreground">{member.name}</p>
+                  <p className="text-[11px] text-muted-foreground">{member.phone}</p>
                 </div>
                 <span className="flex-shrink-0 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-400">
                   Active
@@ -150,11 +150,11 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
 
 function StatsCard({ title, value, icon: Icon, iconClassName }: any) {
   return (
-    <div className="rounded-3xl border border-white/[0.06] bg-[#0a0a0a] p-5">
+    <div className="rounded-3xl border border-border bg-[#0a0a0a] p-5">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm text-[#6b6b80]">{title}</p>
-          <h3 className="mt-2 text-3xl font-bold text-white">{value}</h3>
+          <p className="text-sm text-muted-foreground">{title}</p>
+          <h3 className="mt-2 text-3xl font-bold text-foreground">{value}</h3>
         </div>
         <div className={`rounded-2xl p-3 ${iconClassName}`}>
           <Icon className="h-5 w-5" />
@@ -171,7 +171,7 @@ function TabButton({ active, onClick, children }: { active: boolean; onClick: ()
     <button
       onClick={onClick}
       className={`rounded-xl px-4 py-2 text-sm font-medium transition-colors ${
-        active ? 'bg-violet-600 text-white' : 'text-[#6b6b80] hover:bg-white/[0.04] hover:text-white'
+        active ? 'bg-violet-600 text-foreground' : 'text-muted-foreground hover:bg-white/[0.04] hover:text-foreground'
       }`}
     >
       {children}
@@ -245,7 +245,7 @@ export default function AttendancePage() {
               variant="outline"
               size="sm"
               onClick={() => queryClient.invalidateQueries({ queryKey: ['attendance-today'] })}
-              className="border-white/[0.08] bg-[#0a0a0a] text-white hover:bg-white/[0.05]"
+              className="border-white/[0.08] bg-[#0a0a0a] text-foreground hover:bg-white/[0.05]"
             >
               <RefreshCw className="mr-2 h-4 w-4" />
               Refresh
@@ -259,7 +259,7 @@ export default function AttendancePage() {
                 </Button>
               </DialogTrigger>
 
-              <DialogContent className="border-white/[0.08] bg-[#0a0a0a] text-white">
+              <DialogContent className="border-white/[0.08] bg-[#0a0a0a] text-foreground">
                 <DialogHeader>
                   <DialogTitle className="text-xl">Mark Attendance</DialogTitle>
                 </DialogHeader>
@@ -273,10 +273,10 @@ export default function AttendancePage() {
                         {selectedMember.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-medium text-white">{selectedMember.name}</p>
-                        <p className="text-[11px] text-[#6b6b80]">{selectedMember.phone}</p>
+                        <p className="truncate text-sm font-medium text-foreground">{selectedMember.name}</p>
+                        <p className="text-[11px] text-muted-foreground">{selectedMember.phone}</p>
                       </div>
-                      <button onClick={() => setSelectedMember(null)} className="flex-shrink-0 text-[#6b6b80] hover:text-white">
+                      <button onClick={() => setSelectedMember(null)} className="flex-shrink-0 text-muted-foreground hover:text-foreground">
                         <X className="h-4 w-4" />
                       </button>
                     </div>
@@ -304,7 +304,7 @@ export default function AttendancePage() {
         loading ? (
           <div className="grid gap-4 md:grid-cols-3">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="h-28 animate-pulse rounded-3xl border border-white/[0.06] bg-[#0a0a0a]" />
+              <div key={i} className="h-28 animate-pulse rounded-3xl border border-border bg-[#0a0a0a]" />
             ))}
           </div>
         ) : (
@@ -317,7 +317,7 @@ export default function AttendancePage() {
       )}
 
       {/* Tab switcher */}
-      <div className="flex w-fit gap-1 rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-1">
+      <div className="flex w-fit gap-1 rounded-2xl border border-border bg-[#0a0a0a] p-1">
         <TabButton active={activeTab === 'today'} onClick={() => setActiveTab('today')}>Today</TabButton>
         <TabButton active={activeTab === 'all'}   onClick={() => setActiveTab('all')}>All Records</TabButton>
       </div>
@@ -326,20 +326,20 @@ export default function AttendancePage() {
       {activeTab === 'today' ? (
         loading ? (
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            <div className="h-[320px] animate-pulse rounded-3xl border border-white/[0.06] bg-[#0a0a0a]" />
-            <div className="h-[320px] animate-pulse rounded-3xl border border-white/[0.06] bg-[#0a0a0a] lg:col-span-2" />
+            <div className="h-[320px] animate-pulse rounded-3xl border border-border bg-[#0a0a0a]" />
+            <div className="h-[320px] animate-pulse rounded-3xl border border-border bg-[#0a0a0a] lg:col-span-2" />
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            <div className="rounded-3xl border border-white/[0.06] bg-[#0a0a0a] p-5">
-              <h2 className="text-lg font-semibold text-white">Gym QR</h2>
+            <div className="rounded-3xl border border-border bg-[#0a0a0a] p-5">
+              <h2 className="text-lg font-semibold text-foreground">Gym QR</h2>
               <GymQRCode qrCode={gymQR ?? null} loading={qrLoading} />
             </div>
 
-            <div className="rounded-3xl border border-white/[0.06] bg-[#0a0a0a] p-5 lg:col-span-2">
+            <div className="rounded-3xl border border-border bg-[#0a0a0a] p-5 lg:col-span-2">
               <div className="mb-5">
-                <h2 className="text-lg font-semibold text-white">Today's Attendance</h2>
-                <p className="mt-1 text-sm text-[#6b6b80]">Real-time check-ins</p>
+                <h2 className="text-lg font-semibold text-foreground">Today's Attendance</h2>
+                <p className="mt-1 text-sm text-muted-foreground">Real-time check-ins</p>
               </div>
               <AttendanceTable attendance={todayAttendance} count={todayCount} />
             </div>

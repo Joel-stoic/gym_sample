@@ -59,7 +59,7 @@ function daysFromNow(d: string) {
 
 
 
-const inputCls = 'w-full bg-[#111118] border border-white/5 focus:border-violet-500/50 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-white/20 outline-none transition-all'
+const inputCls = 'w-full bg-card border border-border focus:border-violet-500/50 rounded-xl px-3.5 py-2.5 text-sm text-foreground placeholder-white/20 outline-none transition-all'
 
 // ─── Confirm Dialog ───────────────────────────────────────────────────────────
 
@@ -70,16 +70,16 @@ function ConfirmDialog({ open, title, message, danger, onConfirm, onCancel, load
   if (!open) return null
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-      <div className="w-full max-w-sm bg-[#0e0e15] border border-white/10 rounded-2xl p-6 shadow-2xl">
-        <h3 className="text-base font-bold text-white mb-2">{title}</h3>
-        <p className="text-sm text-white/50 mb-5">{message}</p>
+      <div className="w-full max-w-sm bg-[#0e0e15] border border-border rounded-2xl p-6 shadow-2xl">
+        <h3 className="text-base font-bold text-foreground mb-2">{title}</h3>
+        <p className="text-sm text-foreground/50 mb-5">{message}</p>
         <div className="flex gap-3">
           <button onClick={onCancel}
-            className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/60 text-sm font-medium transition-all">
+            className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/60 text-sm font-medium transition-all">
             Cancel
           </button>
           <button onClick={onConfirm} disabled={loading}
-            className={`flex-1 py-2.5 rounded-xl text-white text-sm font-medium transition-all disabled:opacity-50 ${danger ? 'bg-red-600 hover:bg-red-500' : 'bg-violet-600 hover:bg-violet-500'
+            className={`flex-1 py-2.5 rounded-xl text-foreground text-sm font-medium transition-all disabled:opacity-50 ${danger ? 'bg-red-600 hover:bg-red-500' : 'bg-violet-600 hover:bg-violet-500'
               }`}>
             {loading ? 'Please wait...' : 'Confirm'}
           </button>
@@ -373,8 +373,8 @@ export default function AdminGymDetailPage() {
   if (!tenant) {
     return (
       <div className="flex flex-col items-center justify-center h-64 gap-3">
-        <AlertCircle size={28} className="text-white/20" />
-        <p className="text-white/30 text-sm">Gym not found</p>
+        <AlertCircle size={28} className="text-foreground/20" />
+        <p className="text-foreground/30 text-sm">Gym not found</p>
         <button onClick={() => router.push('/admin/gyms')}
           className="text-xs text-violet-400 hover:text-violet-300">← Back to gyms</button>
       </div>
@@ -437,7 +437,7 @@ export default function AdminGymDetailPage() {
         {/* ── Back + Header ── */}
         <div>
           <button onClick={() => router.push('/admin/gyms')}
-            className="flex items-center gap-2 text-white/40 hover:text-white text-sm mb-4 transition-colors">
+            className="flex items-center gap-2 text-foreground/40 hover:text-foreground text-sm mb-4 transition-colors">
             <ArrowLeft size={15} />Back to Gyms
           </button>
 
@@ -448,7 +448,7 @@ export default function AdminGymDetailPage() {
               </div>
               <div>
                 <div className="flex items-center gap-2 flex-wrap">
-                  <h1 className="text-xl font-bold text-white">{tenant.name}</h1>
+                  <h1 className="text-xl font-bold text-foreground">{tenant.name}</h1>
                   {tenant.isActive
                     ? <CheckCircle size={15} className="text-emerald-400" />
                     : <Clock size={15} className="text-amber-400" />
@@ -460,10 +460,10 @@ export default function AdminGymDetailPage() {
                   )}
                 </div>
                 <div className="flex items-center gap-2 mt-0.5">
-                  <p className="text-xs text-white/30">{tenant.slug}.jovifitx.online</p>
+                  <p className="text-xs text-foreground/30">{tenant.slug}.jovifitx.online</p>
                   <a href={`https://${tenant.slug}.jovifitx.online`} target="_blank" rel="noopener noreferrer"
                     onClick={e => e.stopPropagation()}
-                    className="text-white/20 hover:text-violet-400 transition-colors">
+                    className="text-foreground/20 hover:text-violet-400 transition-colors">
                     <ExternalLink size={11} />
                   </a>
                 </div>
@@ -526,21 +526,21 @@ export default function AdminGymDetailPage() {
             { label: 'Staff Count', value: usage?.staffCount ?? 0, icon: Shield, color: 'text-sky-400', bg: 'bg-sky-500/10' },
             { label: 'Total Revenue', value: toRupees(usage?.totalRevenue ?? 0), icon: TrendingUp, color: 'text-amber-400', bg: 'bg-amber-500/10' },
           ].map(({ label, value, icon: Icon, color, bg }) => (
-            <div key={label} className="bg-[#111118] border border-white/5 rounded-2xl p-4">
+            <div key={label} className="bg-card border border-border rounded-2xl p-4">
               <div className={`w-8 h-8 rounded-xl ${bg} flex items-center justify-center mb-3`}>
                 <Icon size={15} className={color} />
               </div>
-              <p className="text-xl font-bold text-white">{value}</p>
-              <p className="text-[11px] text-white/40 mt-0.5">{label}</p>
+              <p className="text-xl font-bold text-foreground">{value}</p>
+              <p className="text-[11px] text-foreground/40 mt-0.5">{label}</p>
             </div>
           ))}
         </div>
 
         {/* ── Tabs ── */}
-        <div className="flex gap-1 bg-[#111118] border border-white/5 rounded-xl p-1 w-fit">
+        <div className="flex gap-1 bg-card border border-border rounded-xl p-1 w-fit">
           {tabs.map(t => (
             <button key={t.key} onClick={() => setTab(t.key)}
-              className={`px-4 py-1.5 rounded-lg text-xs font-medium transition-all ${tab === t.key ? 'bg-violet-600 text-white' : 'text-white/40 hover:text-white'
+              className={`px-4 py-1.5 rounded-lg text-xs font-medium transition-all ${tab === t.key ? 'bg-violet-600 text-foreground' : 'text-foreground/40 hover:text-foreground'
                 }`}>
               {t.label}
               {t.count !== undefined && <span className="ml-1.5 opacity-60">{t.count}</span>}
@@ -555,8 +555,8 @@ export default function AdminGymDetailPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
             {/* Gym info */}
-            <div className="bg-[#111118] border border-white/5 rounded-2xl p-5 space-y-3">
-              <p className="text-[11px] uppercase tracking-widest text-white/30 font-semibold">Gym Info</p>
+            <div className="bg-card border border-border rounded-2xl p-5 space-y-3">
+              <p className="text-[11px] uppercase tracking-widest text-foreground/30 font-semibold">Gym Info</p>
               <InfoRow label="Name" value={tenant.name} />
               <InfoRow label="Slug" value={`${tenant.slug}.jovifitx.online`} />
               <InfoRow label="Phone" value={tenant.phone || '—'} />
@@ -569,33 +569,33 @@ export default function AdminGymDetailPage() {
             </div>
 
             {/* Trial & Grace */}
-            <div className="bg-[#111118] border border-white/5 rounded-2xl p-5 space-y-4">
-              <p className="text-[11px] uppercase tracking-widest text-white/30 font-semibold">Trial & Access</p>
+            <div className="bg-card border border-border rounded-2xl p-5 space-y-4">
+              <p className="text-[11px] uppercase tracking-widest text-foreground/30 font-semibold">Trial & Access</p>
 
               <div className="space-y-1">
                 <div className="flex items-center justify-between">
-                  <p className="text-xs text-white/40">Trial Expiry</p>
+                  <p className="text-xs text-foreground/40">Trial Expiry</p>
                   <button onClick={() => {
                     setTrialDate(tenant.trialEndsAt ? tenant.trialEndsAt.substring(0, 10) : '')
                     setShowTrialModal(true)
                   }} className="text-[11px] text-violet-400 hover:text-violet-300">Edit</button>
                 </div>
                 {tenant.trialEndsAt ? (
-                  <div className="rounded-xl bg-white/[0.02] border border-white/5 px-3 py-2.5">
-                    <p className="text-sm text-white">{formatDate(tenant.trialEndsAt)}</p>
-                    <p className={`text-xs mt-0.5 ${trialDays! < 0 ? 'text-red-400' : trialDays! <= 5 ? 'text-amber-400' : 'text-white/30'
+                  <div className="rounded-xl bg-white/[0.02] border border-border px-3 py-2.5">
+                    <p className="text-sm text-foreground">{formatDate(tenant.trialEndsAt)}</p>
+                    <p className={`text-xs mt-0.5 ${trialDays! < 0 ? 'text-red-400' : trialDays! <= 5 ? 'text-amber-400' : 'text-foreground/30'
                       }`}>
                       {trialDays! < 0 ? `Expired ${Math.abs(trialDays!)}d ago` : `${trialDays}d remaining`}
                     </p>
                   </div>
                 ) : (
-                  <p className="text-xs text-white/30">Not set</p>
+                  <p className="text-xs text-foreground/30">Not set</p>
                 )}
               </div>
 
               <div className="space-y-1">
                 <div className="flex items-center justify-between">
-                  <p className="text-xs text-white/40">Grace Period</p>
+                  <p className="text-xs text-foreground/40">Grace Period</p>
                   <button onClick={() => {
                     setGraceDate(tenant.gracePeriodEndsAt ? tenant.gracePeriodEndsAt.substring(0, 10) : '')
                     setShowGraceModal(true)
@@ -604,8 +604,8 @@ export default function AdminGymDetailPage() {
                   </button>
                 </div>
                 {tenant.gracePeriodEndsAt ? (
-                  <div className="rounded-xl bg-white/[0.02] border border-white/5 px-3 py-2.5">
-                    <p className="text-sm text-white">{formatDate(tenant.gracePeriodEndsAt)}</p>
+                  <div className="rounded-xl bg-white/[0.02] border border-border px-3 py-2.5">
+                    <p className="text-sm text-foreground">{formatDate(tenant.gracePeriodEndsAt)}</p>
                     <p className={`text-xs mt-0.5 ${graceDays! < 0 ? 'text-red-400' : 'text-sky-400'}`}>
                       {graceDays! < 0 ? 'Grace period ended' : `${graceDays}d remaining`}
                     </p>
@@ -619,26 +619,26 @@ export default function AdminGymDetailPage() {
                     </button>
                   </div>
                 ) : (
-                  <p className="text-xs text-white/30">No grace period set</p>
+                  <p className="text-xs text-foreground/30">No grace period set</p>
                 )}
               </div>
             </div>
 
             {/* Support tools — full width */}
-            <div className="bg-[#111118] border border-white/5 rounded-2xl p-5 sm:col-span-2">
-              <p className="text-[11px] uppercase tracking-widest text-white/30 font-semibold mb-4">Support Tools</p>
+            <div className="bg-card border border-border rounded-2xl p-5 sm:col-span-2">
+              <p className="text-[11px] uppercase tracking-widest text-foreground/30 font-semibold mb-4">Support Tools</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
 
                 {/* Reset password */}
-                <div className="rounded-xl bg-white/[0.02] border border-white/5 p-4">
+                <div className="rounded-xl bg-white/[0.02] border border-border p-4">
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0">
                       <KeyRound size={15} className="text-amber-400" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium text-white">Reset Owner Password</p>
-                      <p className="text-xs text-white/30 mt-0.5">Resets to Welcome@123, forces change on next login</p>
+                      <p className="text-sm font-medium text-foreground">Reset Owner Password</p>
+                      <p className="text-xs text-foreground/30 mt-0.5">Resets to Welcome@123, forces change on next login</p>
                       <button onClick={handleResetPassword} disabled={actionLoading}
                         className="mt-3 px-3 py-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 text-xs font-medium rounded-lg transition-all disabled:opacity-50">
                         Reset Password
@@ -654,14 +654,14 @@ export default function AdminGymDetailPage() {
                 </div>
 
                 {/* Impersonate */}
-                <div className="rounded-xl bg-white/[0.02] border border-white/5 p-4">
+                <div className="rounded-xl bg-white/[0.02] border border-border p-4">
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-lg bg-violet-500/10 flex items-center justify-center flex-shrink-0">
                       <LogIn size={15} className="text-violet-400" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium text-white">Login as Owner</p>
-                      <p className="text-xs text-white/30 mt-0.5">Get a 1-hour access token to support this gym</p>
+                      <p className="text-sm font-medium text-foreground">Login as Owner</p>
+                      <p className="text-xs text-foreground/30 mt-0.5">Get a 1-hour access token to support this gym</p>
                       <button onClick={handleImpersonate} disabled={actionLoading}
                         className="mt-3 px-3 py-1.5 bg-violet-500/10 hover:bg-violet-500/20 text-violet-400 text-xs font-medium rounded-lg transition-all disabled:opacity-50">
                         Generate Token
@@ -685,14 +685,14 @@ export default function AdminGymDetailPage() {
                 </div>
 
                 {/* QR Code */}
-                <div className="rounded-xl bg-white/[0.02] border border-white/5 p-4">
+                <div className="rounded-xl bg-white/[0.02] border border-border p-4">
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
                       <QrCode size={15} className="text-emerald-400" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium text-white">Gym Check-in QR</p>
-                      <p className="text-xs text-white/30 mt-0.5">Generate and download QR for member self check-in</p>
+                      <p className="text-sm font-medium text-foreground">Gym Check-in QR</p>
+                      <p className="text-xs text-foreground/30 mt-0.5">Generate and download QR for member self check-in</p>
                       <button onClick={handleGenerateQR} disabled={qrLoading}
                         className="mt-3 px-3 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 text-xs font-medium rounded-lg transition-all disabled:opacity-50">
                         {qrLoading ? 'Generating...' : 'Generate QR'}
@@ -718,17 +718,17 @@ export default function AdminGymDetailPage() {
               </div>
 
               {/* ── Owners list ── */}
-              <div className="rounded-xl bg-white/[0.02] border border-white/5 overflow-hidden">
-                <div className="flex items-center justify-between px-4 py-3 border-b border-white/5">
+              <div className="rounded-xl bg-white/[0.02] border border-border overflow-hidden">
+                <div className="flex items-center justify-between px-4 py-3 border-b border-border">
                   <div>
-                    <p className="text-sm font-medium text-white flex items-center gap-2">
+                    <p className="text-sm font-medium text-foreground flex items-center gap-2">
                       <UserCheck size={14} className="text-sky-400" />
                       Owners
                       {owners.length > 0 && (
-                        <span className="text-[11px] text-white/30 font-normal">{owners.length}</span>
+                        <span className="text-[11px] text-foreground/30 font-normal">{owners.length}</span>
                       )}
                     </p>
-                    <p className="text-xs text-white/30 mt-0.5">A gym can have multiple owners</p>
+                    <p className="text-xs text-foreground/30 mt-0.5">A gym can have multiple owners</p>
                   </div>
                   <button onClick={openAddOwner}
                     className="flex items-center gap-1.5 px-3 py-1.5 bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 text-xs font-medium rounded-lg transition-all">
@@ -738,7 +738,7 @@ export default function AdminGymDetailPage() {
 
                 {owners.length === 0 ? (
                   <div className="px-4 py-6 text-center">
-                    <p className="text-xs text-white/20">No owners found</p>
+                    <p className="text-xs text-foreground/20">No owners found</p>
                   </div>
                 ) : (
                   <div className="divide-y divide-white/5">
@@ -750,20 +750,20 @@ export default function AdminGymDetailPage() {
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-2">
-                              <p className="text-sm text-white truncate">{o.name}</p>
+                              <p className="text-sm text-foreground truncate">{o.name}</p>
                               {i === 0 && (
                                 <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-sky-500/10 text-sky-400 font-medium flex-shrink-0">
                                   Primary
                                 </span>
                               )}
                             </div>
-                            <p className="text-xs text-white/30 truncate">
+                            <p className="text-xs text-foreground/30 truncate">
                               {o.phone}{o.email ? ` · ${o.email}` : ''}
                             </p>
                           </div>
                         </div>
                         <button onClick={() => openEditOwner(o)}
-                          className="flex-shrink-0 ml-3 px-2.5 py-1 bg-white/5 hover:bg-white/10 text-white/40 hover:text-white text-xs rounded-lg transition-all">
+                          className="flex-shrink-0 ml-3 px-2.5 py-1 bg-white/5 hover:bg-white/10 text-foreground/40 hover:text-foreground text-xs rounded-lg transition-all">
                           Edit
                         </button>
                       </div>
@@ -779,9 +779,9 @@ export default function AdminGymDetailPage() {
             MEMBERS TAB
         ══════════════════════════════════════════════ */}
         {tab === 'members' && (
-          <div className="bg-[#111118] border border-white/5 rounded-3xl overflow-hidden">
-            <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between">
-              <p className="text-sm font-semibold text-white">{members.length} Members</p>
+          <div className="bg-card border border-border rounded-3xl overflow-hidden">
+            <div className="px-6 py-4 border-b border-border flex items-center justify-between">
+              <p className="text-sm font-semibold text-foreground">{members.length} Members</p>
               <button onClick={() => setShowMemberModal(true)}
                 className="flex items-center gap-1.5 px-3 py-1.5 bg-violet-600/20 hover:bg-violet-600/30 text-violet-400 text-xs font-medium rounded-lg transition-all">
                 <Plus size={12} />Add Member
@@ -789,27 +789,27 @@ export default function AdminGymDetailPage() {
             </div>
             {members.length === 0 ? (
               <div className="py-12 text-center">
-                <Users size={24} className="text-white/10 mx-auto mb-3" />
-                <p className="text-white/30 text-sm">No members yet</p>
+                <Users size={24} className="text-foreground/10 mx-auto mb-3" />
+                <p className="text-foreground/30 text-sm">No members yet</p>
               </div>
             ) : (
               <div className="divide-y divide-white/5">
                 {members.map(m => (
                   <div key={m.id} className="px-6 py-3.5 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center text-white/40 text-xs font-medium">
+                      <div className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center text-foreground/40 text-xs font-medium">
                         {m.name.charAt(0).toUpperCase()}
                       </div>
                       <div>
-                        <p className="text-sm text-white">{m.name}</p>
-                        <p className="text-xs text-white/30">{m.phone}</p>
+                        <p className="text-sm text-foreground">{m.name}</p>
+                        <p className="text-xs text-foreground/30">{m.phone}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
-                      {m.plan && <span className="text-xs text-white/30 hidden sm:block">{m.plan.name}</span>}
+                      {m.plan && <span className="text-xs text-foreground/30 hidden sm:block">{m.plan.name}</span>}
                       <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${m.status === 'ACTIVE' ? 'bg-emerald-500/10 text-emerald-400'
                         : m.status === 'EXPIRED' ? 'bg-red-500/10 text-red-400'
-                          : 'bg-white/5 text-white/30'
+                          : 'bg-white/5 text-foreground/30'
                         }`}>{m.status.replace('_', ' ')}</span>
                     </div>
                   </div>
@@ -823,28 +823,28 @@ export default function AdminGymDetailPage() {
             PAYMENTS TAB
         ══════════════════════════════════════════════ */}
         {tab === 'payments' && (
-          <div className="bg-[#111118] border border-white/5 rounded-3xl overflow-hidden">
-            <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between">
-              <p className="text-sm font-semibold text-white">{payments.length} Payments</p>
-              <p className="text-xs text-white/30">Total: {toRupees(totalRevenue)}</p>
+          <div className="bg-card border border-border rounded-3xl overflow-hidden">
+            <div className="px-6 py-4 border-b border-border flex items-center justify-between">
+              <p className="text-sm font-semibold text-foreground">{payments.length} Payments</p>
+              <p className="text-xs text-foreground/30">Total: {toRupees(totalRevenue)}</p>
             </div>
             {payments.length === 0 ? (
-              <div className="py-12 text-center text-white/30 text-sm">No payments yet</div>
+              <div className="py-12 text-center text-foreground/30 text-sm">No payments yet</div>
             ) : (
               <div className="divide-y divide-white/5">
                 {payments.map(p => (
                   <div key={p.id} className="px-6 py-3.5 flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-white">{p.member?.name || '—'}</p>
-                      <p className="text-xs text-white/30">
+                      <p className="text-sm text-foreground">{p.member?.name || '—'}</p>
+                      <p className="text-xs text-foreground/30">
                         {p.plan?.name} · {formatDate(p.createdAt)} · {p.paymentMethod}
                       </p>
                     </div>
                     <div className="flex items-center gap-3">
-                      <p className="text-sm font-semibold text-white">{toRupees(p.finalAmount)}</p>
+                      <p className="text-sm font-semibold text-foreground">{toRupees(p.finalAmount)}</p>
                       <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${p.status === 'PAID' ? 'bg-emerald-500/10 text-emerald-400'
                         : p.status === 'PARTIAL' ? 'bg-amber-500/10 text-amber-400'
-                          : 'bg-white/5 text-white/30'
+                          : 'bg-white/5 text-foreground/30'
                         }`}>{p.status}</span>
                     </div>
                   </div>
@@ -858,13 +858,13 @@ export default function AdminGymDetailPage() {
             ACTIVITY TAB
         ══════════════════════════════════════════════ */}
         {tab === 'activity' && (
-          <div className="bg-[#111118] border border-white/5 rounded-3xl overflow-hidden">
-            <div className="px-6 py-4 border-b border-white/5">
-              <p className="text-sm font-semibold text-white">Recent Activity</p>
-              <p className="text-xs text-white/30 mt-0.5">Last 30 events — payments and check-ins</p>
+          <div className="bg-card border border-border rounded-3xl overflow-hidden">
+            <div className="px-6 py-4 border-b border-border">
+              <p className="text-sm font-semibold text-foreground">Recent Activity</p>
+              <p className="text-xs text-foreground/30 mt-0.5">Last 30 events — payments and check-ins</p>
             </div>
             {activity.length === 0 ? (
-              <div className="py-12 text-center text-white/30 text-sm">No activity yet</div>
+              <div className="py-12 text-center text-foreground/30 text-sm">No activity yet</div>
             ) : (
               <div className="divide-y divide-white/5">
                 {activity.map(a => (
@@ -876,10 +876,10 @@ export default function AdminGymDetailPage() {
                         : <CheckCircle size={13} className="text-violet-400" />}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm text-white truncate">{a.memberName}</p>
-                      <p className="text-xs text-white/30 truncate">{a.detail}</p>
+                      <p className="text-sm text-foreground truncate">{a.memberName}</p>
+                      <p className="text-xs text-foreground/30 truncate">{a.detail}</p>
                     </div>
-                    <p className="text-xs text-white/30 flex-shrink-0">{formatDate(a.timestamp)}</p>
+                    <p className="text-xs text-foreground/30 flex-shrink-0">{formatDate(a.timestamp)}</p>
                   </div>
                 ))}
               </div>
@@ -895,14 +895,14 @@ export default function AdminGymDetailPage() {
       {/* Add Member */}
       {showMemberModal && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full sm:max-w-md bg-[#0e0e15] border border-white/10 rounded-t-3xl sm:rounded-3xl shadow-2xl max-h-[92vh] overflow-y-auto">
-            <div className="flex items-center justify-between px-6 py-5 border-b border-white/5 sticky top-0 bg-[#0e0e15]">
+          <div className="w-full sm:max-w-md bg-[#0e0e15] border border-border rounded-t-3xl sm:rounded-3xl shadow-2xl max-h-[92vh] overflow-y-auto">
+            <div className="flex items-center justify-between px-6 py-5 border-b border-border sticky top-0 bg-[#0e0e15]">
               <div>
-                <h2 className="text-base font-bold text-white">Add Member</h2>
-                <p className="text-xs text-white/30 mt-0.5">to {tenant.name}</p>
+                <h2 className="text-base font-bold text-foreground">Add Member</h2>
+                <p className="text-xs text-foreground/30 mt-0.5">to {tenant.name}</p>
               </div>
               <button onClick={() => { setShowMemberModal(false); setMemberError('') }}
-                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/40 hover:text-white transition-all">
+                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-foreground/40 hover:text-foreground transition-all">
                 <X size={15} />
               </button>
             </div>
@@ -911,17 +911,17 @@ export default function AdminGymDetailPage() {
 
               {/* Personal Info */}
               <div className="space-y-3">
-                <p className="text-[11px] text-white/30 uppercase tracking-widest font-semibold">Personal Info</p>
+                <p className="text-[11px] text-foreground/30 uppercase tracking-widest font-semibold">Personal Info</p>
 
                 <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-1 col-span-2 sm:col-span-1">
-                    <label className="text-xs text-white/40 font-medium">Full Name *</label>
+                    <label className="text-xs text-foreground/40 font-medium">Full Name *</label>
                     <input value={memberForm.name}
                       onChange={e => setMemberForm(p => ({ ...p, name: e.target.value }))}
                       placeholder="Ravi Kumar" required autoFocus className={inputCls} />
                   </div>
                   <div className="space-y-1 col-span-2 sm:col-span-1">
-                    <label className="text-xs text-white/40 font-medium">Phone *</label>
+                    <label className="text-xs text-foreground/40 font-medium">Phone *</label>
                     <input value={memberForm.phone}
                       onChange={e => setMemberForm(p => ({ ...p, phone: e.target.value }))}
                       placeholder="9876543210" type="tel" required className={inputCls} />
@@ -929,7 +929,7 @@ export default function AdminGymDetailPage() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs text-white/40 font-medium">Email <span className="text-white/20">(optional)</span></label>
+                  <label className="text-xs text-foreground/40 font-medium">Email <span className="text-foreground/20">(optional)</span></label>
                   <input value={memberForm.email}
                     onChange={e => setMemberForm(p => ({ ...p, email: e.target.value }))}
                     placeholder="ravi@email.com" type="email" className={inputCls} />
@@ -937,7 +937,7 @@ export default function AdminGymDetailPage() {
 
                 <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-1">
-                    <label className="text-xs text-white/40 font-medium">Gender</label>
+                    <label className="text-xs text-foreground/40 font-medium">Gender</label>
                     <select value={memberForm.gender}
                       onChange={e => setMemberForm(p => ({ ...p, gender: e.target.value }))}
                       className={inputCls + ' appearance-none'}>
@@ -948,7 +948,7 @@ export default function AdminGymDetailPage() {
                     </select>
                   </div>
                   <div className="space-y-1">
-                    <label className="text-xs text-white/40 font-medium">Date of Birth</label>
+                    <label className="text-xs text-foreground/40 font-medium">Date of Birth</label>
                     <input value={memberForm.dateOfBirth}
                       onChange={e => setMemberForm(p => ({ ...p, dateOfBirth: e.target.value }))}
                       type="date" className={inputCls} />
@@ -956,7 +956,7 @@ export default function AdminGymDetailPage() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs text-white/40 font-medium">Address</label>
+                  <label className="text-xs text-foreground/40 font-medium">Address</label>
                   <input value={memberForm.address}
                     onChange={e => setMemberForm(p => ({ ...p, address: e.target.value }))}
                     placeholder="Chennai, Tamil Nadu" className={inputCls} />
@@ -964,8 +964,8 @@ export default function AdminGymDetailPage() {
               </div>
 
               {/* Notes */}
-              <div className="space-y-2 pt-1 border-t border-white/5">
-                <p className="text-[11px] text-white/30 uppercase tracking-widest font-semibold">Notes</p>
+              <div className="space-y-2 pt-1 border-t border-border">
+                <p className="text-[11px] text-foreground/30 uppercase tracking-widest font-semibold">Notes</p>
                 <textarea value={memberForm.notes}
                   onChange={e => setMemberForm(p => ({ ...p, notes: e.target.value }))}
                   placeholder="Health conditions, goals, preferences..."
@@ -980,11 +980,11 @@ export default function AdminGymDetailPage() {
               <div className="flex gap-3 pt-1">
                 <button type="button"
                   onClick={() => { setShowMemberModal(false); setMemberError('') }}
-                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/60 text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/60 text-sm font-medium transition-all">
                   Cancel
                 </button>
                 <button type="submit" disabled={memberSubmitting}
-                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-foreground text-sm font-medium transition-all">
                   {memberSubmitting ? 'Adding...' : 'Add Member'}
                 </button>
               </div>
@@ -995,21 +995,21 @@ export default function AdminGymDetailPage() {
       {/* Trial */}
       {showTrialModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-sm bg-[#0e0e15] border border-white/10 rounded-2xl shadow-2xl p-6">
-            <h2 className="text-base font-bold text-white mb-4">Set Trial Expiry</h2>
+          <div className="w-full max-w-sm bg-[#0e0e15] border border-border rounded-2xl shadow-2xl p-6">
+            <h2 className="text-base font-bold text-foreground mb-4">Set Trial Expiry</h2>
             <form onSubmit={handleSetTrial} className="space-y-4">
               <div className="space-y-1">
-                <label className="text-xs text-white/40 font-medium">Trial Ends On</label>
+                <label className="text-xs text-foreground/40 font-medium">Trial Ends On</label>
                 <input type="date" value={trialDate} onChange={e => setTrialDate(e.target.value)}
                   required className={inputCls} />
               </div>
               <div className="flex gap-3">
                 <button type="button" onClick={() => setShowTrialModal(false)}
-                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/60 text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/60 text-sm font-medium transition-all">
                   Cancel
                 </button>
                 <button type="submit" disabled={actionLoading}
-                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-foreground text-sm font-medium transition-all">
                   {actionLoading ? 'Saving...' : 'Save'}
                 </button>
               </div>
@@ -1021,22 +1021,22 @@ export default function AdminGymDetailPage() {
       {/* Grace Period */}
       {showGraceModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-sm bg-[#0e0e15] border border-white/10 rounded-2xl shadow-2xl p-6">
-            <h2 className="text-base font-bold text-white mb-1">Set Grace Period</h2>
-            <p className="text-xs text-white/30 mb-4">Lets the gym continue using the platform after trial expiry</p>
+          <div className="w-full max-w-sm bg-[#0e0e15] border border-border rounded-2xl shadow-2xl p-6">
+            <h2 className="text-base font-bold text-foreground mb-1">Set Grace Period</h2>
+            <p className="text-xs text-foreground/30 mb-4">Lets the gym continue using the platform after trial expiry</p>
             <form onSubmit={handleSetGrace} className="space-y-4">
               <div className="space-y-1">
-                <label className="text-xs text-white/40 font-medium">Grace Period Ends On</label>
+                <label className="text-xs text-foreground/40 font-medium">Grace Period Ends On</label>
                 <input type="date" value={graceDate} onChange={e => setGraceDate(e.target.value)} className={inputCls} />
-                <p className="text-[11px] text-white/25">Leave blank to remove grace period</p>
+                <p className="text-[11px] text-foreground/25">Leave blank to remove grace period</p>
               </div>
               <div className="flex gap-3">
                 <button type="button" onClick={() => setShowGraceModal(false)}
-                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/60 text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/60 text-sm font-medium transition-all">
                   Cancel
                 </button>
                 <button type="submit" disabled={actionLoading}
-                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-foreground text-sm font-medium transition-all">
                   {actionLoading ? 'Saving...' : 'Save'}
                 </button>
               </div>
@@ -1048,42 +1048,42 @@ export default function AdminGymDetailPage() {
       {/* Add / Edit Owner */}
       {showOwnerModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-sm bg-[#0e0e15] border border-white/10 rounded-3xl shadow-2xl">
-            <div className="flex items-center justify-between px-6 py-5 border-b border-white/5">
+          <div className="w-full max-w-sm bg-[#0e0e15] border border-border rounded-3xl shadow-2xl">
+            <div className="flex items-center justify-between px-6 py-5 border-b border-border">
               <div>
-                <h2 className="text-base font-bold text-white">
+                <h2 className="text-base font-bold text-foreground">
                   {editingOwner ? 'Edit Owner' : 'Add Owner'}
                 </h2>
-                <p className="text-xs text-white/30 mt-0.5">{tenant.name}</p>
+                <p className="text-xs text-foreground/30 mt-0.5">{tenant.name}</p>
               </div>
               <button onClick={() => setShowOwnerModal(false)}
-                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/40 hover:text-white transition-all">
+                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-foreground/40 hover:text-foreground transition-all">
                 <X size={15} />
               </button>
             </div>
             <form onSubmit={handleOwnerSubmit} className="px-6 py-5 space-y-3">
               <div className="space-y-1">
-                <label className="text-xs text-white/40 font-medium">Full Name *</label>
+                <label className="text-xs text-foreground/40 font-medium">Full Name *</label>
                 <input value={ownerForm.name}
                   onChange={e => setOwnerForm(p => ({ ...p, name: e.target.value }))}
                   placeholder="e.g. Ravi Kumar" required autoFocus className={inputCls} />
               </div>
               <div className="space-y-1">
-                <label className="text-xs text-white/40 font-medium">Phone *</label>
+                <label className="text-xs text-foreground/40 font-medium">Phone *</label>
                 <input value={ownerForm.phone}
                   onChange={e => setOwnerForm(p => ({ ...p, phone: e.target.value }))}
                   placeholder="9876543210" type="tel" required className={inputCls} />
               </div>
               <div className="space-y-1">
-                <label className="text-xs text-white/40 font-medium">Email <span className="text-white/20">(optional)</span></label>
+                <label className="text-xs text-foreground/40 font-medium">Email <span className="text-foreground/20">(optional)</span></label>
                 <input value={ownerForm.email}
                   onChange={e => setOwnerForm(p => ({ ...p, email: e.target.value }))}
                   placeholder="owner@gym.com" type="email" className={inputCls} />
               </div>
               {!editingOwner && (
                 <div className="space-y-1">
-                  <label className="text-xs text-white/40 font-medium">
-                    Password <span className="text-white/20">(optional)</span>
+                  <label className="text-xs text-foreground/40 font-medium">
+                    Password <span className="text-foreground/20">(optional)</span>
                   </label>
                   <input value={ownerForm.password}
                     onChange={e => setOwnerForm(p => ({ ...p, password: e.target.value }))}
@@ -1095,11 +1095,11 @@ export default function AdminGymDetailPage() {
               )}
               <div className="flex gap-3 pt-2">
                 <button type="button" onClick={() => setShowOwnerModal(false)}
-                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white/60 text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/60 text-sm font-medium transition-all">
                   Cancel
                 </button>
                 <button type="submit" disabled={ownerSubmitting}
-                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-foreground text-sm font-medium transition-all">
                   {ownerSubmitting ? 'Saving...' : editingOwner ? 'Save Changes' : 'Add Owner'}
                 </button>
               </div>
@@ -1116,8 +1116,8 @@ export default function AdminGymDetailPage() {
 function InfoRow({ label, value }: { label: string; value: ReactNode }) {
   return (
     <div className="flex items-center justify-between gap-4">
-      <span className="text-xs text-white/30 flex-shrink-0">{label}</span>
-      <span className="text-xs text-white text-right truncate">{value}</span>
+      <span className="text-xs text-foreground/30 flex-shrink-0">{label}</span>
+      <span className="text-xs text-foreground text-right truncate">{value}</span>
     </div>
   )
 }

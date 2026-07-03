@@ -84,7 +84,7 @@ export default function NewPlanPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1
-            className="text-[20px] font-bold tracking-tight text-white"
+            className="text-[20px] font-bold tracking-tight text-foreground"
             style={{
               fontFamily: "'Syne', sans-serif",
               letterSpacing: '-0.02em'
@@ -93,14 +93,14 @@ export default function NewPlanPage() {
             Create Plan
           </h1>
 
-          <p className="mt-1 text-[13px] text-[#6b6b80]">
+          <p className="mt-1 text-[13px] text-muted-foreground">
             Add a new membership plan
           </p>
         </div>
 
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-[13px] font-medium text-white transition-all duration-150"
+          className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-[13px] font-medium text-foreground transition-all duration-150"
           style={{
             background: '#111118',
             border: '1px solid #ffffff0f'
@@ -114,10 +114,7 @@ export default function NewPlanPage() {
       {/* Form Card */}
       <div
         className="rounded-2xl p-6"
-        style={{
-          background: '#111118',
-          border: '1px solid #ffffff0a'
-        }}
+        
       >
         <div className="mb-6 flex items-center gap-3">
           <div
@@ -132,13 +129,13 @@ export default function NewPlanPage() {
 
           <div>
             <h2
-              className="text-[15px] font-bold text-white"
+              className="text-[15px] font-bold text-foreground"
               style={{ fontFamily: "'Syne', sans-serif" }}
             >
               Membership Details
             </h2>
 
-            <p className="text-[12px] text-[#6b6b80]">
+            <p className="text-[12px] text-muted-foreground">
               Configure your gym membership plan
             </p>
           </div>
@@ -167,7 +164,7 @@ export default function NewPlanPage() {
                   <FormControl>
                     <Input
                       placeholder="Monthly / Quarterly / Annual"
-                      className="h-11 rounded-xl border-white/10 bg-[#0e0e16] text-white placeholder:text-[#5c5c72] focus-visible:ring-violet-500"
+                      className="h-11 rounded-xl border-border bg-[#0e0e16] text-foreground placeholder:text-[#5c5c72] focus-visible:ring-violet-500"
                       {...field}
                     />
                   </FormControl>
@@ -223,7 +220,7 @@ export default function NewPlanPage() {
                     <Input
                       placeholder="30"
                       type="number"
-                      className="h-11 rounded-xl border-white/10 bg-[#0e0e16] text-white placeholder:text-[#5c5c72]"
+                      className="h-11 rounded-xl border-border bg-[#0e0e16] text-foreground placeholder:text-[#5c5c72]"
                       {...field}
                     />
                   </FormControl>
@@ -247,12 +244,12 @@ export default function NewPlanPage() {
                     <Input
                       placeholder="1000"
                       type="number"
-                      className="h-11 rounded-xl border-white/10 bg-[#0e0e16] text-white placeholder:text-[#5c5c72]"
+                      className="h-11 rounded-xl border-border bg-[#0e0e16] text-foreground placeholder:text-[#5c5c72]"
                       {...field}
                     />
                   </FormControl>
 
-                  <FormDescription className="text-[#6b6b80]">
+                  <FormDescription className="text-muted-foreground">
                     Enter in rupees 
                   </FormDescription>
 
@@ -274,7 +271,7 @@ export default function NewPlanPage() {
                   <FormControl>
                     <Input
                       placeholder="Includes all gym equipment access..."
-                      className="h-11 rounded-xl border-white/10 bg-[#0e0e16] text-white placeholder:text-[#5c5c72]"
+                      className="h-11 rounded-xl border-border bg-[#0e0e16] text-foreground placeholder:text-[#5c5c72]"
                       {...field}
                     />
                   </FormControl>
@@ -288,7 +285,7 @@ export default function NewPlanPage() {
             <button
               type="submit"
               disabled={loading}
-              className="flex h-11 w-full items-center justify-center gap-2 rounded-xl text-[13px] font-medium text-white transition-all duration-150"
+              className="flex h-11 w-full items-center justify-center gap-2 rounded-xl text-[13px] font-medium text-foreground transition-all duration-150"
               style={{
                 background:
                   'linear-gradient(135deg,#7c3aed,#a855f7)',

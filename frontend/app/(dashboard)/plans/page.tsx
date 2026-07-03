@@ -76,13 +76,13 @@ function PlanCard({
           </div>
           <div>
             <h3
-              className="text-[15px] font-bold text-white leading-tight"
+              className="text-[15px] font-bold text-foreground leading-tight"
               style={{ fontFamily: "'Syne', sans-serif" }}
             >
               {plan.name}
             </h3>
             {plan.description && (
-              <p className="mt-0.5 text-[12px] text-[#6b6b80] line-clamp-1">
+              <p className="mt-0.5 text-[12px] text-muted-foreground line-clamp-1">
                 {plan.description}
               </p>
             )}
@@ -130,7 +130,7 @@ function PlanCard({
             >
               {onEdit && (
                 <DropdownMenuItem
-                  className="rounded-lg text-[13px] text-[#9898b0] focus:bg-white/5 focus:text-white cursor-pointer"
+                  className="rounded-lg text-[13px] text-[#9898b0] focus:bg-white/5 focus:text-foreground cursor-pointer"
                   onClick={onEdit}
                 >
                   <Pencil className="mr-2 h-4 w-4" />
@@ -157,14 +157,14 @@ function PlanCard({
 
       {/* Price */}
       <div className="flex items-baseline gap-1">
-        <span className="text-[13px] text-[#6b6b80]">₹</span>
+        <span className="text-[13px] text-muted-foreground">₹</span>
         <span
-          className="text-[28px] font-bold text-white leading-none"
+          className="text-[28px] font-bold text-foreground leading-none"
           style={{ fontFamily: "'Syne', sans-serif", letterSpacing: '-0.03em' }}
         >
           {(plan.price / 100).toLocaleString('en-IN')}
         </span>
-        <span className="text-[12px] text-[#6b6b80]">/ plan</span>
+        <span className="text-[12px] text-muted-foreground">/ plan</span>
       </div>
 
       {/* Meta row */}
@@ -226,7 +226,7 @@ export default function PlansPage() {
       <div className="flex h-64 items-center justify-center">
         <div className="flex flex-col items-center gap-3">
           <div className="h-8 w-8 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
-          <p className="text-[12px] text-[#6b6b80]">Loading plans...</p>
+          <p className="text-[12px] text-muted-foreground">Loading plans...</p>
         </div>
       </div>
     )
@@ -239,19 +239,19 @@ export default function PlansPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1
-            className="text-[20px] font-bold tracking-tight text-white"
+            className="text-[20px] font-bold tracking-tight text-foreground"
             style={{ fontFamily: "'Syne', sans-serif", letterSpacing: '-0.02em' }}
           >
             Plans
           </h1>
-          <p className="mt-1 text-[13px] text-[#6b6b80]">
+          <p className="mt-1 text-[13px] text-muted-foreground">
             {activePlans.length} active plan{activePlans.length !== 1 ? 's' : ''}
           </p>
         </div>
         {canManage && (
           <button
             onClick={() => router.push('/plans/new')}
-            className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-[13px] font-medium text-white transition-all duration-150"
+            className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-[13px] font-medium text-foreground transition-all duration-150"
             style={{
               background: 'linear-gradient(135deg, #7c3aed, #a855f7)',
               boxShadow: '0 4px 20px #7c3aed30',
@@ -279,7 +279,7 @@ export default function PlansPage() {
       {plans.length === 0 && (
         <div
           className="flex h-64 flex-col items-center justify-center gap-4 rounded-2xl"
-          style={{ background: '#111118', border: '1px solid #ffffff0a' }}
+          
         >
           <div
             className="flex h-12 w-12 items-center justify-center rounded-2xl"
@@ -288,15 +288,15 @@ export default function PlansPage() {
             <CreditCard className="h-5 w-5 text-violet-400" />
           </div>
           <div className="text-center">
-            <p className="text-[14px] font-medium text-white">No plans yet</p>
-            <p className="mt-1 text-[12px] text-[#6b6b80]">
+            <p className="text-[14px] font-medium text-foreground">No plans yet</p>
+            <p className="mt-1 text-[12px] text-muted-foreground">
               Create your first membership plan
             </p>
           </div>
           {canManage && (
             <button
               onClick={() => router.push('/plans/new')}
-              className="flex items-center gap-2 rounded-xl px-4 py-2 text-[13px] font-medium text-white"
+              className="flex items-center gap-2 rounded-xl px-4 py-2 text-[13px] font-medium text-foreground"
               style={{ background: '#7c3aed', boxShadow: '0 4px 16px #7c3aed30' }}
             >
               <Plus className="h-4 w-4" />
@@ -352,20 +352,20 @@ export default function PlansPage() {
           }}
         >
           <AlertDialogHeader>
-            <AlertDialogTitle className="text-white">
+            <AlertDialogTitle className="text-foreground">
               Deactivate Plan?
             </AlertDialogTitle>
-            <AlertDialogDescription className="text-[#6b6b80]">
+            <AlertDialogDescription className="text-muted-foreground">
               This plan will no longer be available for new members. Existing
               members on this plan will not be affected.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="rounded-xl border-white/10 bg-white/5 text-white hover:bg-white/10">
+            <AlertDialogCancel className="rounded-xl border-border bg-white/5 text-foreground hover:bg-white/10">
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction
-              className="rounded-xl border-0 bg-red-600 text-white hover:bg-red-500"
+              className="rounded-xl border-0 bg-red-600 text-foreground hover:bg-red-500"
               style={{ boxShadow: '0 4px 16px #ef444430' }}
               onClick={async () => {
                 if (deactivateId) {

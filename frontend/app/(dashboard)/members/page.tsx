@@ -39,7 +39,7 @@ export interface GymPlan {
 // ─── Shared dark style tokens ─────────────────────────────────────────────────
 const surface = { background: '#0a0a0a', border: '1px solid #ffffff0a' }
 const inputCls = `
-  w-full rounded-xl px-3 py-2.5 text-[13px] text-white outline-none transition-all
+  w-full rounded-xl px-3 py-2.5 text-[13px] text-foreground outline-none transition-all
   placeholder:text-[#3d3d52] bg-[#0f0f0f] border border-[#ffffff0a]
   focus:border-[#7c3aed44] focus:shadow-[0_0_0_3px_#7c3aed12]
 `
@@ -217,8 +217,8 @@ function MemberCard({
       </div>
 
       <div className="min-w-0 flex-1">
-        <p className="truncate text-[14.5px] font-medium text-white">{member.name}</p>
-        <p className="mt-0.5 truncate text-[12.5px] text-[#6b6b80]">
+        <p className="truncate text-[14.5px] font-medium text-foreground">{member.name}</p>
+        <p className="mt-0.5 truncate text-[12.5px] text-muted-foreground">
           {subtitle || 'No plan yet'}
         </p>
       </div>
@@ -300,7 +300,7 @@ function DarkSelect({
       <select
         value={value || 'ALL'}
         onChange={(e) => onChange(e.target.value === 'ALL' ? '' : e.target.value)}
-        className="w-full appearance-none rounded-xl px-3 py-2.5 text-[13px] font-medium text-white outline-none transition-all cursor-pointer bg-[#0f0f0f] border border-[#ffffff0a]"
+        className="w-full appearance-none rounded-xl px-3 py-2.5 text-[13px] font-medium text-foreground outline-none transition-all cursor-pointer bg-[#0f0f0f] border border-[#ffffff0a]"
         style={{ color: value ? 'white' : '#6b6b80' }}
       >
         <option value="ALL">{placeholder}</option>
@@ -407,10 +407,10 @@ export default function MembersPage() {
             <Users className="h-4 w-4 text-violet-400" />
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-[24px] font-bold tracking-tight text-white sm:text-[28px]">
+            <span className="text-[24px] font-bold tracking-tight text-foreground sm:text-[28px]">
               {displayTotal}
             </span>
-            <span className="text-[13px] font-medium text-[#6b6b80] sm:text-[14px]">
+            <span className="text-[13px] font-medium text-muted-foreground sm:text-[14px]">
               total members
             </span>
           </div>
@@ -418,7 +418,7 @@ export default function MembersPage() {
         <button
           type="button"
           onClick={() => setIsModalOpen(true)}
-          className="flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-[13px] font-medium text-white transition-all duration-150 sm:w-auto bg-gradient-to-br from-[#7c3aed] to-[#a855f7] shadow-[0_4px_20px_#7c3aed30] hover:shadow-[0_4px_28px_#7c3aed55] hover:-translate-y-[1px]"
+          className="flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-[13px] font-medium text-foreground transition-all duration-150 sm:w-auto bg-gradient-to-br from-[#7c3aed] to-[#a855f7] shadow-[0_4px_20px_#7c3aed30] hover:shadow-[0_4px_28px_#7c3aed55] hover:-translate-y-[1px]"
         >
           <Plus className="h-4 w-4" />
           Add Member
@@ -443,13 +443,13 @@ export default function MembersPage() {
             <Users className="h-5 w-5 text-violet-400" />
           </div>
           <div>
-            <p className="text-[14px] font-medium text-white">No members yet</p>
-            <p className="mt-1 text-[12px] text-[#6b6b80]">Add your first gym member to get started</p>
+            <p className="text-[14px] font-medium text-foreground">No members yet</p>
+            <p className="mt-1 text-[12px] text-muted-foreground">Add your first gym member to get started</p>
           </div>
           <button
             type="button"
             onClick={() => setIsModalOpen(true)}
-            className="flex items-center gap-2 rounded-xl px-4 py-2 text-[13px] font-medium text-white bg-[#7c3aed] shadow-[0_4px_16px_#7c3aed30] hover:bg-[#8b5cf6] transition-colors"
+            className="flex items-center gap-2 rounded-xl px-4 py-2 text-[13px] font-medium text-foreground bg-[#7c3aed] shadow-[0_4px_16px_#7c3aed30] hover:bg-[#8b5cf6] transition-colors"
           >
             <Plus className="h-4 w-4" />
             Add Member
@@ -500,7 +500,7 @@ export default function MembersPage() {
                   Prev
                 </button>
                 <div className="flex flex-shrink-0 flex-col items-center gap-0.5 px-1">
-                  <span className="text-[12px] font-semibold text-white">
+                  <span className="text-[12px] font-semibold text-foreground">
                     {page} <span className="text-[#4d4d66]">/ {totalPages}</span>
                   </span>
                   <span className="text-[9.5px] uppercase tracking-wide text-[#3d3d52]">
@@ -512,7 +512,7 @@ export default function MembersPage() {
                   disabled={page * 20 >= displayTotal}
                   onClick={() => setPage(page + 1)}
                   aria-label="Next page"
-                  className="flex flex-1 items-center justify-center gap-1.5 rounded-xl py-2.5 text-[12.5px] font-medium transition-all duration-150 disabled:opacity-30 bg-[#7c3aed] text-white border border-[#7c3aed]"
+                  className="flex flex-1 items-center justify-center gap-1.5 rounded-xl py-2.5 text-[12.5px] font-medium transition-all duration-150 disabled:opacity-30 bg-[#7c3aed] text-foreground border border-[#7c3aed]"
                 >
                   Next
                   <ChevronRight className="h-4 w-4" />
@@ -521,12 +521,12 @@ export default function MembersPage() {
 
               {/* Desktop */}
               <div className="hidden items-center justify-between gap-3 sm:flex">
-                <p className="flex-shrink-0 text-[12px] text-[#6b6b80]">
-                  Showing <span className="text-white">{(page - 1) * 20 + 1}</span>
+                <p className="flex-shrink-0 text-[12px] text-muted-foreground">
+                  Showing <span className="text-foreground">{(page - 1) * 20 + 1}</span>
                   {'–'}
-                  <span className="text-white">{Math.min(page * 20, displayTotal)}</span>
+                  <span className="text-foreground">{Math.min(page * 20, displayTotal)}</span>
                   {' of '}
-                  <span className="text-white">{displayTotal}</span>
+                  <span className="text-foreground">{displayTotal}</span>
                 </p>
                 <div className="flex items-center gap-2">
                   <button
@@ -551,7 +551,7 @@ export default function MembersPage() {
                           onClick={() => setPage(p)}
                           className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-[12px] font-medium transition-all duration-150 ${
                             page === p
-                              ? 'bg-[#7c3aed] text-white border border-[#7c3aed]'
+                              ? 'bg-[#7c3aed] text-foreground border border-[#7c3aed]'
                               : 'bg-[#0f0f0f] border border-[#ffffff0a] text-[#9898b0] hover:bg-[#ffffff05]'
                           }`}
                         >
@@ -589,12 +589,12 @@ export default function MembersPage() {
                 <Trash2 className="h-[18px] w-[18px]" style={{ color: '#ef4444' }} strokeWidth={2} />
               </div>
               <AlertDialogTitle
-                className="text-[16px] font-semibold text-white sm:text-[17px]"
+                className="text-[16px] font-semibold text-foreground sm:text-[17px]"
                 style={{ fontFamily: "'Syne', sans-serif", letterSpacing: '-0.01em' }}
               >
                 Delete {deletingMember?.name ?? 'member'}?
               </AlertDialogTitle>
-              <AlertDialogDescription className="mt-1.5 text-[12.5px] leading-relaxed text-[#6b6b80] sm:text-[13px]">
+              <AlertDialogDescription className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground sm:text-[13px]">
                 This will hide the member from your list. Their payment history and
                 attendance records will be preserved.
               </AlertDialogDescription>
@@ -608,7 +608,7 @@ export default function MembersPage() {
               </AlertDialogCancel>
               <AlertDialogAction
                 onClick={handleDelete}
-                className="h-10 flex-1 rounded-xl border-0 bg-gradient-to-br from-[#dc2626] to-[#ef4444] shadow-[0_4px_16px_#ef444428] hover:shadow-[0_6px_20px_#ef444448] hover:-translate-y-[1px] text-[13px] font-medium text-white transition-all sm:flex-none"
+                className="h-10 flex-1 rounded-xl border-0 bg-gradient-to-br from-[#dc2626] to-[#ef4444] shadow-[0_4px_16px_#ef444428] hover:shadow-[0_6px_20px_#ef444448] hover:-translate-y-[1px] text-[13px] font-medium text-foreground transition-all sm:flex-none"
               >
                 Delete Member
               </AlertDialogAction>

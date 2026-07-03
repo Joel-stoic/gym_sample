@@ -50,23 +50,23 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
             borderBottom: '1px solid #ffffff0a',
           }}
         >
-          <TableHead className="text-[#6b6b80] text-[11px] font-semibold uppercase tracking-[0.12em]">
+          <TableHead className="text-muted-foreground text-[11px] font-semibold uppercase tracking-[0.12em]">
             Name
           </TableHead>
 
-          <TableHead className="text-[#6b6b80] text-[11px] font-semibold uppercase tracking-[0.12em]">
+          <TableHead className="text-muted-foreground text-[11px] font-semibold uppercase tracking-[0.12em]">
             Phone
           </TableHead>
 
-          <TableHead className="text-[#6b6b80] text-[11px] font-semibold uppercase tracking-[0.12em]">
+          <TableHead className="text-muted-foreground text-[11px] font-semibold uppercase tracking-[0.12em]">
             Plan
           </TableHead>
 
-          <TableHead className="text-[#6b6b80] text-[11px] font-semibold uppercase tracking-[0.12em]">
+          <TableHead className="text-muted-foreground text-[11px] font-semibold uppercase tracking-[0.12em]">
             Expiry
           </TableHead>
 
-          <TableHead className="text-[#6b6b80] text-[11px] font-semibold uppercase tracking-[0.12em]">
+          <TableHead className="text-muted-foreground text-[11px] font-semibold uppercase tracking-[0.12em]">
             Status
           </TableHead>
 
@@ -93,11 +93,11 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
                     {member.name.charAt(0).toUpperCase()}
                   </div>
                   <div>
-                    <p className="text-[13px] font-medium text-white">
+                    <p className="text-[13px] font-medium text-foreground">
                       {member.name}
                     </p>
                     {member.email && (
-                      <p className="text-[11px] text-[#6b6b80]">
+                      <p className="text-[11px] text-muted-foreground">
                         {member.email}
                       </p>
                     )}
@@ -284,7 +284,7 @@ export default function MemberTable({ members, onDelete }: MemberTableProps) {
                     }}
                   >
                     <DropdownMenuItem
-                      className="rounded-lg text-[13px] text-[#9898b0] focus:bg-white/5 focus:text-white"
+                      className="rounded-lg text-[13px] text-[#9898b0] focus:bg-white/5 focus:text-foreground"
                       onClick={() => router.push(`/members/${member.id}`)}
                     >
                       <Eye className="mr-2 h-4 w-4" />
