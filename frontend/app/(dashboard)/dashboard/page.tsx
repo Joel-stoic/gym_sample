@@ -77,16 +77,16 @@ function MetricCard({
   isCurrency?: boolean
 }) {
   return (
-    <div className={`relative overflow-hidden rounded-2xl p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 ${accent ? 'gradient-border-card' : 'glass-panel'} ${className}`}>
-      <div className={`mb-4 flex h-10 w-10 items-center justify-center rounded-xl ${accent ? 'bg-accent text-primary glow-primary shadow-lg' : 'bg-secondary text-foreground'}`}>
-        <Icon size={18} />
+    <div className={`relative overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1 ${accent ? 'gradient-border-card' : 'glass-panel'} ${className}`}>
+      <div className={`mb-3 flex h-8 w-8 items-center justify-center rounded-lg ${accent ? 'bg-accent text-primary glow-primary shadow-md' : 'bg-secondary text-foreground'}`}>
+        <Icon size={14} />
       </div>
-      <p className="text-[28px] sm:text-[34px] font-light tabular-nums text-foreground tracking-tight">
+      <p className="text-[22px] sm:text-[26px] font-light tabular-nums text-foreground tracking-tight">
         {isCurrency ? '₹' : ''}
         <AnimatedCounter value={value} />
       </p>
-      {sub && <p className="mt-1 text-[12px] text-muted-foreground">{sub}</p>}
-      <p className="mt-3 sm:mt-4 text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground">{title}</p>
+      {sub && <p className="mt-0.5 text-[11px] text-muted-foreground">{sub}</p>}
+      <p className="mt-2 sm:mt-3 text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground">{title}</p>
     </div>
   )
 }
@@ -247,7 +247,7 @@ export default function DashboardPage() {
         >
 
       {/* ── Top Bento Grid ── */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MetricCard
           title="Total Members"
           value={metrics?.members?.total ?? 0}
@@ -290,7 +290,7 @@ export default function DashboardPage() {
 
       {/* ── Revenue metric cards ── */}
       {metrics?.revenue && (
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4">
           <MetricCard
             title="Membership Revenue"
             value={metrics.revenue.thisMonth ?? 0}
