@@ -79,47 +79,45 @@
 
 /* ─── :root — single source of truth, no parallel token system ─────────────── */
 :root {
-  --background:           #060517;       /* Mystic Black — page bg               */
-  --foreground:           #F0EDE8;       /* warm off-white — primary text         */
-  --card:                 #0E0C22;       /* one step lighter — elevated surface   */
-  --card-foreground:      #F0EDE8;
-  --popover:              #0E0C22;
-  --popover-foreground:   #F0EDE8;
+  --background:           #060517;
+  --foreground:           #F2EDE8;
+  --card:                 #0D0C22;
+  --card-foreground:      #F2EDE8;
+  --popover:              #0D0C22;
+  --popover-foreground:   #F2EDE8;
 
-  --primary:              #D05B37;       /* Chilean Fire — buttons, active states */
-  --primary-foreground:   #FFFFFF;       /* white on fire (contrast verified ✓)   */
+  --primary:              #D05B37;
+  --primary-foreground:   #F2EDE8;
 
-  --secondary:            #14122A;       /* dark navy — inputs, hover surfaces    */
-  --secondary-foreground: #F0EDE8;
-  --muted:                #14122A;
-  --muted-foreground:     #7A7890;       /* muted blue-gray for labels/timestamps */
+  --secondary:            #131228;
+  --secondary-foreground: #F2EDE8;
+  --muted:                #131228;
+  --muted-foreground:     #7A7898;
 
-  --accent:               rgba(208,91,55,0.12); /* Fire wash — active row bg      */
+  --accent:               rgba(208,91,55,0.14);
   --accent-foreground:    #D05B37;
 
-  --destructive:          #D05B37;       /* reuses primary — no third hue         */
+  --destructive:          #C0392B;
 
-  --border:               #1E1B35;       /* dark navy border                      */
-  --input:                #1E1B35;
+  --border:               #1E1D35;
+  --input:                #1E1D35;
   --ring:                 #D05B37;
 
-  /* Chart palette — fire-anchored, no third hue */
-  --chart-1:              #D05B37;       /* Chilean Fire — primary series         */
-  --chart-2:              #E8836A;       /* lighter fire tint                     */
-  --chart-3:              #7A7890;       /* muted — tertiary                      */
-  --chart-4:              #A84228;       /* deeper fire — secondary               */
-  --chart-5:              #2A2840;       /* dark navy — grid/bg                   */
+  --chart-1:              #D05B37;
+  --chart-2:              #A8432A;
+  --chart-3:              #7A7898;
+  --chart-4:              #131228;
+  --chart-5:              #1E1D35;
 
   --radius: 0.625rem;
 
-  /* Sidebar — darker than page, recedes visually */
-  --sidebar:                    #030210;
-  --sidebar-foreground:         #F0EDE8;
+  --sidebar:                    #030412;
+  --sidebar-foreground:         #F2EDE8;
   --sidebar-primary:            #D05B37;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent:             rgba(208,91,55,0.12);
-  --sidebar-accent-foreground:  #D05B37;
-  --sidebar-border:             #14122A;
+  --sidebar-primary-foreground: #F2EDE8;
+  --sidebar-accent:             rgba(208,91,55,0.10);
+  --sidebar-accent-foreground:  #F2EDE8;
+  --sidebar-border:             #131228;
   --sidebar-ring:               #D05B37;
 }
 
