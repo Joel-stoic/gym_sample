@@ -61,7 +61,7 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 flex flex-shrink-0 items-center justify-between px-4 py-5 md:px-6 bg-background/80 backdrop-blur-xl border-b border-black/10 dark:border-white/10 ${inter.className}`}
+      className={`fixed top-0 right-0 left-0 md:left-64 z-50 flex flex-shrink-0 items-center justify-between px-4 py-5 md:px-6 bg-background/80 backdrop-blur-xl border-b border-black/10 dark:border-white/10 ${inter.className}`}
     >
       {/* Left: hamburger (mobile) + page title */}
       <div className="flex items-center gap-4">
