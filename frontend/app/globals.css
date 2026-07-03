@@ -81,17 +81,17 @@
 :root {
   --background:           #000000;
   --foreground:           #F2EDE8;
-  --card:                 #0D0B1F;
+  --card:                 #080618;
   --card-foreground:      #F2EDE8;
-  --popover:              #0D0B1F;
+  --popover:              #080618;
   --popover-foreground:   #F2EDE8;
 
   --primary:              #D05B37;
   --primary-foreground:   #F2EDE8;
 
-  --secondary:            #151328;
+  --secondary:            #0D0B1F;
   --secondary-foreground: #F2EDE8;
-  --muted:                #151328;
+  --muted:                #0D0B1F;
   --muted-foreground:     #8888AA;
 
   --accent:               rgba(208,91,55,0.14);
@@ -99,15 +99,15 @@
 
   --destructive:          #C0392B;
 
-  --border:               #221F3D;
-  --input:                #221F3D;
+  --border:               #1A1830;
+  --input:                #1A1830;
   --ring:                 #D05B37;
 
   --chart-1:              #D05B37;
   --chart-2:              #A8432A;
   --chart-3:              #8888AA;
-  --chart-4:              #151328;
-  --chart-5:              #221F3D;
+  --chart-4:              #0D0B1F;
+  --chart-5:              #1A1830;
 
   --radius: 0.625rem;
 
