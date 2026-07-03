@@ -33,12 +33,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   if (!isAuthenticated) return null
 
   return (
-    <div className="flex min-h-screen" >
+    <div className="flex h-screen overflow-hidden bg-background">
       {/* Sidebar handles its own mobile/desktop rendering */}
       <Sidebar />
 
-      {/* Main area */}
-      <div className="flex flex-1 flex-col min-w-0 md:ml-64">
+      {/* Main area (Scrollable) */}
+      <div className="flex flex-1 flex-col min-w-0 md:ml-64 h-full overflow-y-auto relative">
         <Header />
         <main className="flex-1 p-4 md:p-6">
           {children}
