@@ -95,7 +95,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
           <button
             onClick={onClose}
             aria-label="Close menu"
-            className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-sm border border-border text-muted-foreground transition-colors hover:bg-[#1A1A1A] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:hidden"
+            className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-sm border border-border text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:hidden"
           >
             <X className="h-3.5 w-3.5" />
           </button>
@@ -127,7 +127,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500',
                 isActive
                   ? 'border-border bg-card text-foreground'
-                  : 'border-transparent text-muted-foreground hover:bg-[#0A0A0A] hover:text-foreground active:bg-[#141414]'
+                  : 'border-transparent text-muted-foreground hover:bg-muted hover:text-foreground active:bg-accent'
               )}
             >
               {isActive && (
@@ -139,7 +139,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
                   style={{ color: isActive ? '#7C3AED' : undefined }}
                 />
                 {item.href === '/notification' && hasNew && (
-                  <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full border-2 border-[#121212] bg-red-600 sm:h-2.5 sm:w-2.5" />
+                  <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full border-2 border-background bg-red-600 sm:h-2.5 sm:w-2.5" />
                 )}
               </span>
               <span className="truncate">{item.label}</span>
