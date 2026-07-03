@@ -99,7 +99,7 @@ function EditButton({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="flex items-center gap-2 rounded-xl border border-border bg-white/[0.04] px-4 h-9 text-[13px] font-medium text-[#9898b0] hover:text-foreground hover:bg-white/[0.08] transition-all"
+      className="flex items-center gap-2 rounded-xl border border-border bg-white/[0.04] px-4 h-9 text-[13px] font-medium text-muted-foreground hover:text-foreground hover:bg-white/[0.08] transition-all"
     >
       <Pencil size={14} />
       Edit
@@ -112,7 +112,7 @@ function CancelButton({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="flex items-center gap-2 rounded-xl border border-border bg-white/[0.04] px-4 h-9 text-[13px] font-medium text-[#9898b0] hover:text-foreground hover:bg-white/[0.08] transition-all"
+      className="flex items-center gap-2 rounded-xl border border-border bg-white/[0.04] px-4 h-9 text-[13px] font-medium text-muted-foreground hover:text-foreground hover:bg-white/[0.08] transition-all"
     >
       <X size={14} />
       Cancel
@@ -201,7 +201,7 @@ function DefaultPasswordsModal({
             >
               Set Default Passwords
             </DialogTitle>
-            <p className="mt-2 text-[14px] leading-relaxed text-[#9898b0]">
+            <p className="mt-2 text-[14px] leading-relaxed text-muted-foreground">
               These passwords will be used when creating new members or staff. Leave a field blank to keep the existing password.
             </p>
           </DialogHeader>
@@ -210,7 +210,7 @@ function DefaultPasswordsModal({
 
           <div className="space-y-5">
             <div className="space-y-2">
-              <label className="text-[13px] font-medium text-[#9898b0]">
+              <label className="text-[13px] font-medium text-muted-foreground">
                 Default Member Password
               </label>
               <div className="relative">
@@ -232,7 +232,7 @@ function DefaultPasswordsModal({
             </div>
 
             <div className="space-y-2">
-              <label className="text-[13px] font-medium text-[#9898b0]">
+              <label className="text-[13px] font-medium text-muted-foreground">
                 Default Staff Password
               </label>
               <div className="relative">
@@ -263,8 +263,8 @@ function DefaultPasswordsModal({
           <div className="mt-8 flex gap-3">
             <button
               onClick={onClose}
-              className="flex-1 h-11 rounded-xl text-[14px] font-medium text-[#9898b0] transition-all"
-              style={{ background: '#ffffff08', border: '1px solid #ffffff0f' }}
+              className="flex-1 h-11 rounded-xl text-[14px] font-medium text-muted-foreground transition-all"
+              style={{ background: '#ffffff08', border: '1px solid var(--border)' }}
               onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = '#ffffff12' }}
               onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = '#ffffff08' }}
             >
@@ -418,7 +418,7 @@ export default function SettingsPage() {
                           name="name"
                           render={({ field }) => (
                             <FormItem className="space-y-2">
-                              <FormLabel className="text-[13px] font-medium text-[#9898b0]">Gym Name</FormLabel>
+                              <FormLabel className="text-[13px] font-medium text-muted-foreground">Gym Name</FormLabel>
                               <FormControl>
                                 <input className={inputClass} {...field} />
                               </FormControl>
@@ -431,7 +431,7 @@ export default function SettingsPage() {
                           name="phone"
                           render={({ field }) => (
                             <FormItem className="space-y-2">
-                              <FormLabel className="text-[13px] font-medium text-[#9898b0]">Phone</FormLabel>
+                              <FormLabel className="text-[13px] font-medium text-muted-foreground">Phone</FormLabel>
                               <FormControl>
                                 <input className={inputClass} {...field} />
                               </FormControl>
@@ -445,7 +445,7 @@ export default function SettingsPage() {
                         name="address"
                         render={({ field }) => (
                           <FormItem className="space-y-2">
-                            <FormLabel className="text-[13px] font-medium text-[#9898b0]">Address</FormLabel>
+                            <FormLabel className="text-[13px] font-medium text-muted-foreground">Address</FormLabel>
                             <FormControl>
                               <input className={inputClass} placeholder="Gym address" {...field} />
                             </FormControl>
@@ -457,7 +457,7 @@ export default function SettingsPage() {
                         <button
                           type="button"
                           onClick={handleCancelGym}
-                          className="h-11 rounded-xl border border-border bg-white/[0.04] px-6 text-[14px] font-medium text-[#9898b0] transition-colors hover:bg-white/[0.08] hover:text-foreground"
+                          className="h-11 rounded-xl border border-border bg-white/[0.04] px-6 text-[14px] font-medium text-muted-foreground transition-colors hover:bg-white/[0.08] hover:text-foreground"
                         >
                           Cancel
                         </button>
@@ -636,7 +636,7 @@ export default function SettingsPage() {
                         name="currentPassword"
                         render={({ field }) => (
                           <FormItem className="space-y-2">
-                            <FormLabel className="text-[13px] font-medium text-[#9898b0]">Current Password</FormLabel>
+                            <FormLabel className="text-[13px] font-medium text-muted-foreground">Current Password</FormLabel>
                             <FormControl>
                               <div className="relative">
                                 <input type={showCurrentPw ? 'text' : 'password'} className={inputClass} {...field} />
@@ -655,7 +655,7 @@ export default function SettingsPage() {
                         name="newPassword"
                         render={({ field }) => (
                           <FormItem className="space-y-2">
-                            <FormLabel className="text-[13px] font-medium text-[#9898b0]">New Password</FormLabel>
+                            <FormLabel className="text-[13px] font-medium text-muted-foreground">New Password</FormLabel>
                             <FormControl>
                               <div className="relative">
                                 <input type={showNewPw ? 'text' : 'password'} className={inputClass} {...field} />
@@ -674,7 +674,7 @@ export default function SettingsPage() {
                         name="confirmPassword"
                         render={({ field }) => (
                           <FormItem className="space-y-2">
-                            <FormLabel className="text-[13px] font-medium text-[#9898b0]">Confirm Password</FormLabel>
+                            <FormLabel className="text-[13px] font-medium text-muted-foreground">Confirm Password</FormLabel>
                             <FormControl>
                               <div className="relative">
                                 <input type={showConfirmPw ? 'text' : 'password'} className={inputClass} {...field} />
@@ -692,7 +692,7 @@ export default function SettingsPage() {
                         <button
                           type="button"
                           onClick={handleCancelPassword}
-                          className="h-11 rounded-xl border border-border bg-white/[0.04] px-6 text-[14px] font-medium text-[#9898b0] transition-colors hover:bg-white/[0.08] hover:text-foreground"
+                          className="h-11 rounded-xl border border-border bg-white/[0.04] px-6 text-[14px] font-medium text-muted-foreground transition-colors hover:bg-white/[0.08] hover:text-foreground"
                         >
                           Cancel
                         </button>
@@ -722,7 +722,7 @@ export default function SettingsPage() {
                           </span>
                         </div>
                         <p className="mt-1 flex items-center gap-2 text-[13px] text-muted-foreground">
-                          <span className="tracking-[2px] text-[#9898b0]">••••••••••</span>
+                          <span className="tracking-[2px] text-muted-foreground">••••••••••</span>
                           <span className="text-[#3a3a48]">·</span>
                           <span>Last changed recently</span>
                         </p>

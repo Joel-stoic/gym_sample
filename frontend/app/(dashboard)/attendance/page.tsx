@@ -117,7 +117,7 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
       </div>
 
       {open && (
-        <div className="absolute z-50 mt-1 w-full overflow-hidden rounded-xl border border-border bg-[#0f0f0f] shadow-2xl">
+        <div className="absolute z-50 mt-1 w-full overflow-hidden rounded-xl border border-border bg-background shadow-2xl">
           {results.length === 0 ? (
             <div className="px-4 py-3 text-sm text-muted-foreground">No members found</div>
           ) : (

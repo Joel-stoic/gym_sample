@@ -69,13 +69,13 @@ function ConfirmDialog({ open, title, message, danger, onConfirm, onCancel, load
 }) {
   if (!open) return null
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-      <div className="w-full max-w-sm bg-[#0e0e15] border border-border rounded-2xl p-6 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/70 backdrop-blur-sm">
+      <div className="w-full max-w-sm bg-background border border-border rounded-2xl p-6 shadow-2xl">
         <h3 className="text-base font-bold text-foreground mb-2">{title}</h3>
         <p className="text-sm text-foreground/50 mb-5">{message}</p>
         <div className="flex gap-3">
           <button onClick={onCancel}
-            className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/60 text-sm font-medium transition-all">
+            className="flex-1 py-2.5 rounded-xl bg-muted hover:bg-muted text-foreground/60 text-sm font-medium transition-all">
             Cancel
           </button>
           <button onClick={onConfirm} disabled={loading}
@@ -763,7 +763,7 @@ export default function AdminGymDetailPage() {
                           </div>
                         </div>
                         <button onClick={() => openEditOwner(o)}
-                          className="flex-shrink-0 ml-3 px-2.5 py-1 bg-white/5 hover:bg-white/10 text-foreground/40 hover:text-foreground text-xs rounded-lg transition-all">
+                          className="flex-shrink-0 ml-3 px-2.5 py-1 bg-muted hover:bg-muted text-foreground/40 hover:text-foreground text-xs rounded-lg transition-all">
                           Edit
                         </button>
                       </div>
@@ -797,7 +797,7 @@ export default function AdminGymDetailPage() {
                 {members.map(m => (
                   <div key={m.id} className="px-6 py-3.5 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center text-foreground/40 text-xs font-medium">
+                      <div className="w-7 h-7 rounded-full bg-muted flex items-center justify-center text-foreground/40 text-xs font-medium">
                         {m.name.charAt(0).toUpperCase()}
                       </div>
                       <div>
@@ -809,7 +809,7 @@ export default function AdminGymDetailPage() {
                       {m.plan && <span className="text-xs text-foreground/30 hidden sm:block">{m.plan.name}</span>}
                       <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${m.status === 'ACTIVE' ? 'bg-emerald-500/10 text-emerald-400'
                         : m.status === 'EXPIRED' ? 'bg-red-500/10 text-red-400'
-                          : 'bg-white/5 text-foreground/30'
+                          : 'bg-muted text-foreground/30'
                         }`}>{m.status.replace('_', ' ')}</span>
                     </div>
                   </div>
@@ -844,7 +844,7 @@ export default function AdminGymDetailPage() {
                       <p className="text-sm font-semibold text-foreground">{toRupees(p.finalAmount)}</p>
                       <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${p.status === 'PAID' ? 'bg-emerald-500/10 text-emerald-400'
                         : p.status === 'PARTIAL' ? 'bg-amber-500/10 text-amber-400'
-                          : 'bg-white/5 text-foreground/30'
+                          : 'bg-muted text-foreground/30'
                         }`}>{p.status}</span>
                     </div>
                   </div>
@@ -894,15 +894,15 @@ export default function AdminGymDetailPage() {
 
       {/* Add Member */}
       {showMemberModal && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full sm:max-w-md bg-[#0e0e15] border border-border rounded-t-3xl sm:rounded-3xl shadow-2xl max-h-[92vh] overflow-y-auto">
-            <div className="flex items-center justify-between px-6 py-5 border-b border-border sticky top-0 bg-[#0e0e15]">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-background/60 backdrop-blur-sm">
+          <div className="w-full sm:max-w-md bg-background border border-border rounded-t-3xl sm:rounded-3xl shadow-2xl max-h-[92vh] overflow-y-auto">
+            <div className="flex items-center justify-between px-6 py-5 border-b border-border sticky top-0 bg-background">
               <div>
                 <h2 className="text-base font-bold text-foreground">Add Member</h2>
                 <p className="text-xs text-foreground/30 mt-0.5">to {tenant.name}</p>
               </div>
               <button onClick={() => { setShowMemberModal(false); setMemberError('') }}
-                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-foreground/40 hover:text-foreground transition-all">
+                className="w-8 h-8 rounded-xl bg-muted hover:bg-muted flex items-center justify-center text-foreground/40 hover:text-foreground transition-all">
                 <X size={15} />
               </button>
             </div>
@@ -980,7 +980,7 @@ export default function AdminGymDetailPage() {
               <div className="flex gap-3 pt-1">
                 <button type="button"
                   onClick={() => { setShowMemberModal(false); setMemberError('') }}
-                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/60 text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-muted hover:bg-muted text-foreground/60 text-sm font-medium transition-all">
                   Cancel
                 </button>
                 <button type="submit" disabled={memberSubmitting}
@@ -994,8 +994,8 @@ export default function AdminGymDetailPage() {
       )}
       {/* Trial */}
       {showTrialModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-sm bg-[#0e0e15] border border-border rounded-2xl shadow-2xl p-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/60 backdrop-blur-sm">
+          <div className="w-full max-w-sm bg-background border border-border rounded-2xl shadow-2xl p-6">
             <h2 className="text-base font-bold text-foreground mb-4">Set Trial Expiry</h2>
             <form onSubmit={handleSetTrial} className="space-y-4">
               <div className="space-y-1">
@@ -1005,7 +1005,7 @@ export default function AdminGymDetailPage() {
               </div>
               <div className="flex gap-3">
                 <button type="button" onClick={() => setShowTrialModal(false)}
-                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/60 text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-muted hover:bg-muted text-foreground/60 text-sm font-medium transition-all">
                   Cancel
                 </button>
                 <button type="submit" disabled={actionLoading}
@@ -1020,8 +1020,8 @@ export default function AdminGymDetailPage() {
 
       {/* Grace Period */}
       {showGraceModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-sm bg-[#0e0e15] border border-border rounded-2xl shadow-2xl p-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/60 backdrop-blur-sm">
+          <div className="w-full max-w-sm bg-background border border-border rounded-2xl shadow-2xl p-6">
             <h2 className="text-base font-bold text-foreground mb-1">Set Grace Period</h2>
             <p className="text-xs text-foreground/30 mb-4">Lets the gym continue using the platform after trial expiry</p>
             <form onSubmit={handleSetGrace} className="space-y-4">
@@ -1032,7 +1032,7 @@ export default function AdminGymDetailPage() {
               </div>
               <div className="flex gap-3">
                 <button type="button" onClick={() => setShowGraceModal(false)}
-                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/60 text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-muted hover:bg-muted text-foreground/60 text-sm font-medium transition-all">
                   Cancel
                 </button>
                 <button type="submit" disabled={actionLoading}
@@ -1047,8 +1047,8 @@ export default function AdminGymDetailPage() {
 
       {/* Add / Edit Owner */}
       {showOwnerModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full max-w-sm bg-[#0e0e15] border border-border rounded-3xl shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/60 backdrop-blur-sm">
+          <div className="w-full max-w-sm bg-background border border-border rounded-3xl shadow-2xl">
             <div className="flex items-center justify-between px-6 py-5 border-b border-border">
               <div>
                 <h2 className="text-base font-bold text-foreground">
@@ -1057,7 +1057,7 @@ export default function AdminGymDetailPage() {
                 <p className="text-xs text-foreground/30 mt-0.5">{tenant.name}</p>
               </div>
               <button onClick={() => setShowOwnerModal(false)}
-                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-foreground/40 hover:text-foreground transition-all">
+                className="w-8 h-8 rounded-xl bg-muted hover:bg-muted flex items-center justify-center text-foreground/40 hover:text-foreground transition-all">
                 <X size={15} />
               </button>
             </div>
@@ -1095,7 +1095,7 @@ export default function AdminGymDetailPage() {
               )}
               <div className="flex gap-3 pt-2">
                 <button type="button" onClick={() => setShowOwnerModal(false)}
-                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/60 text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-muted hover:bg-muted text-foreground/60 text-sm font-medium transition-all">
                   Cancel
                 </button>
                 <button type="submit" disabled={ownerSubmitting}

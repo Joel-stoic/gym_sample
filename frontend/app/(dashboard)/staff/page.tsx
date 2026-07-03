@@ -145,7 +145,7 @@ function FormField({
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="border-border bg-black/20 text-foreground placeholder:text-zinc-600 h-10 rounded-xl focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-violet-500 transition-all"
+        className="border-border bg-background/20 text-foreground placeholder:text-zinc-600 h-10 rounded-xl focus-visible:ring-1 focus-visible:ring-violet-500 focus-visible:border-violet-500 transition-all"
       />
     </div>
   )
@@ -247,8 +247,8 @@ export default function StaffPage() {
     }
   }
 
-  const selectClass = 'border-border bg-black/20 text-foreground rounded-xl h-10 focus:ring-1 focus:ring-violet-500'
-  const selectContentClass = 'border-border bg-[#11111a] text-foreground'
+  const selectClass = 'border-border bg-background/20 text-foreground rounded-xl h-10 focus:ring-1 focus:ring-violet-500'
+  const selectContentClass = 'border-border bg-background text-foreground'
 
   return (
     <div className="space-y-6 pb-12 max-w-7xl mx-auto">
@@ -267,7 +267,7 @@ export default function StaffPage() {
               </Button>
             </DialogTrigger>
 
-            <DialogContent className="border-border bg-[#0f0f18] text-foreground rounded-2xl shadow-2xl sm:max-w-md">
+            <DialogContent className="border-border bg-background text-foreground rounded-2xl shadow-2xl sm:max-w-md">
               <DialogHeader>
                 <DialogTitle className="text-lg font-semibold">New Staff Member</DialogTitle>
                 <DialogDescription className="text-zinc-400">
@@ -311,7 +311,7 @@ export default function StaffPage() {
 
       {/* Edit Modal */}
       <Dialog open={editOpen} onOpenChange={setEditOpen}>
-        <DialogContent className="border-border bg-[#0f0f18] text-foreground rounded-2xl shadow-2xl sm:max-w-md">
+        <DialogContent className="border-border bg-background text-foreground rounded-2xl shadow-2xl sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-lg font-semibold">Edit Staff Profile</DialogTitle>
           </DialogHeader>
@@ -359,7 +359,7 @@ export default function StaffPage() {
 
       {/* Delete Confirmation Prompt */}
       <Dialog open={!!deleteId} onOpenChange={(isOpen) => !isOpen && setDeleteId(null)}>
-        <DialogContent className="border-border bg-[#0f0f18] text-foreground rounded-2xl shadow-2xl sm:max-w-sm">
+        <DialogContent className="border-border bg-background text-foreground rounded-2xl shadow-2xl sm:max-w-sm">
           <DialogHeader>
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-500/10 mb-2">
               <AlertTriangle className="h-6 w-6 text-red-500" />
@@ -398,7 +398,7 @@ export default function StaffPage() {
                 'group relative rounded-2xl border p-5 transition-colors duration-200',
                 member.isActive
                   ? 'bg-white/[0.02] border-border hover:bg-white/[0.04] hover:border-white/[0.12]'
-                  : 'bg-black/20 border-white/[0.03] opacity-75 hover:opacity-100'
+                  : 'bg-background/20 border-white/[0.03] opacity-75 hover:opacity-100'
               )}
             >
               {/* Header */}
@@ -420,7 +420,7 @@ export default function StaffPage() {
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-48 border-border bg-[#11111a] text-foreground p-1 rounded-xl shadow-xl">
+                  <DropdownMenuContent align="end" className="w-48 border-border bg-background text-foreground p-1 rounded-xl shadow-xl">
                     <DropdownMenuItem
                       className="gap-2.5 rounded-lg cursor-pointer hover:bg-white/[0.06] focus:bg-white/[0.06]"
                       onClick={() => { setEditingStaff(member); setEditOpen(true) }}

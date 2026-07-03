@@ -76,8 +76,8 @@ export default function MemberPortalLayout({
       <header
         className="sticky top-0 z-10 flex items-center justify-between px-4 py-3"
         style={{
-          background: '#111118',
-          borderBottom: '1px solid #ffffff0a',
+          background: 'var(--background)',
+          borderBottom: '1px solid var(--border)',
           backdropFilter: 'blur(10px)'
         }}
       >
@@ -104,7 +104,7 @@ export default function MemberPortalLayout({
         <button
           onClick={handleLogout}
           className="flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-[12px] text-muted-foreground transition-colors hover:text-red-400"
-          style={{ border: '1px solid #ffffff08' }}
+          style={{ border: '1px solid var(--border)' }}
         >
           <LogOut size={13} />
           Logout

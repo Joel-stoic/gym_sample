@@ -129,7 +129,7 @@ export default function AdminDashboardPage() {
         <button
           onClick={() => fetchData(true)}
           disabled={refreshing}
-          className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/50 hover:text-foreground text-xs font-medium transition-all disabled:opacity-50"
+          className="flex items-center gap-2 px-3 py-2 rounded-xl bg-muted hover:bg-muted text-foreground/50 hover:text-foreground text-xs font-medium transition-all disabled:opacity-50"
         >
           <RefreshCw size={13} className={refreshing ? 'animate-spin' : ''} />
           Refresh

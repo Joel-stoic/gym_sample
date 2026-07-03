@@ -44,7 +44,7 @@ const mealConfig: Record<string, { color: string; bg: string; border: string }> 
 }
 const defaultMeal = { color: 'text-zinc-400', bg: 'bg-zinc-500/10', border: 'border-zinc-500/20' }
 const card = 'rounded-2xl border border-border bg-white/[0.03] p-5'
-const inputBase = 'w-full bg-black/30 border border-border rounded-xl px-3 py-2.5 text-sm text-foreground placeholder:text-zinc-600 outline-none focus:border-violet-500/40 transition-colors'
+const inputBase = 'w-full bg-background/30 border border-border rounded-xl px-3 py-2.5 text-sm text-foreground placeholder:text-zinc-600 outline-none focus:border-violet-500/40 transition-colors'
 
 function Label({ children }: { children: React.ReactNode }) {
   return <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground mb-3">{children}</p>
@@ -66,7 +66,7 @@ function PtEnrollmentCard({ enrollment }: { enrollment: PtEnrollment }) {
   const past = enrollment.sessions.filter(s => s.status !== 'SCHEDULED' || !isFuture(parseISO(s.scheduledAt)))
 
   return (
-    <div className="rounded-xl border border-white/[0.07] bg-black/20 overflow-hidden">
+    <div className="rounded-xl border border-white/[0.07] bg-background/20 overflow-hidden">
       {/* Header */}
       <button
         onClick={() => setOpen(v => !v)}
@@ -197,7 +197,7 @@ function DietPlanCard({ plan }: { plan: DietPlan }) {
   const totalCal = plan.meals.reduce((s, m) => s + (m.calories ?? 0), 0)
 
   return (
-    <div className="rounded-xl border border-white/[0.07] bg-black/20 overflow-hidden">
+    <div className="rounded-xl border border-white/[0.07] bg-background/20 overflow-hidden">
       <button
         onClick={() => setOpen(v => !v)}
         className="w-full px-4 py-3.5 flex items-start justify-between gap-3 text-left hover:bg-white/[0.02] transition-colors"
@@ -234,7 +234,7 @@ function DietPlanCard({ plan }: { plan: DietPlan }) {
           {plan.meals.map(meal => {
             const mc = mealConfig[meal.time] || defaultMeal
             return (
-              <div key={meal.id} className="rounded-xl border border-white/[0.05] bg-black/20 p-3">
+              <div key={meal.id} className="rounded-xl border border-white/[0.05] bg-background/20 p-3">
                 <div className="flex items-center justify-between mb-2.5">
                   <span className={cn('text-[11px] font-semibold px-2.5 py-0.5 rounded-lg border', mc.color, mc.bg, mc.border)}>
                     {meal.time}
@@ -456,15 +456,15 @@ const setData =
           <div className={card}>
             <Label>Progress</Label>
             <div className="grid grid-cols-3 gap-2 mb-4">
-              <div className="rounded-xl bg-black/20 border border-border p-3 text-center">
+              <div className="rounded-xl bg-background/20 border border-border p-3 text-center">
                 <p className="text-xl font-semibold text-foreground leading-none mb-1">{summary?.latest ?? '—'}</p>
                 <p className="text-[10px] text-muted-foreground">Now (kg)</p>
               </div>
-              <div className="rounded-xl bg-black/20 border border-border p-3 text-center">
+              <div className="rounded-xl bg-background/20 border border-border p-3 text-center">
                 <p className="text-xl font-semibold text-foreground leading-none mb-1">{summary?.oldest ?? '—'}</p>
                 <p className="text-[10px] text-muted-foreground">Start (kg)</p>
               </div>
-              <div className="rounded-xl bg-black/20 border border-border p-3 text-center">
+              <div className="rounded-xl bg-background/20 border border-border p-3 text-center">
                 <p className={cn('text-xl font-semibold leading-none mb-1 flex items-center justify-center gap-0.5', changeColor)}>
                   <ChangeIcon className="h-4 w-4" />
                   {change !== null ? Math.abs(change) : '—'}
@@ -497,7 +497,7 @@ const setData =
                   return (
                     <div key={entry.id} className={cn(
                       'flex items-center gap-3 px-3 py-2.5 rounded-xl border',
-                      fresh ? 'border-violet-500/20 bg-violet-500/5' : 'border-white/[0.05] bg-black/20'
+                      fresh ? 'border-violet-500/20 bg-violet-500/5' : 'border-white/[0.05] bg-background/20'
                     )}>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-semibold text-foreground flex items-center gap-2">

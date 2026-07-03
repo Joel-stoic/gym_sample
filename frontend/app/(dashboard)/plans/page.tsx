@@ -47,7 +47,7 @@ function PlanCard({
     <div
       className="relative flex flex-col gap-4 rounded-2xl p-5 transition-all duration-200"
       style={{
-        background: inactive ? '#0e0e16' : '#111118',
+        background: inactive ? 'var(--accent)' : 'var(--card)',
         border: inactive ? '1px solid #ffffff06' : '1px solid #ffffff0a',
         opacity: inactive ? 0.55 : 1,
       }}
@@ -97,7 +97,7 @@ function PlanCard({
                 style={{
                   background: 'transparent',
                   border: '1px solid transparent',
-                  color: '#6b6b80',
+                  color: 'var(--muted-foreground)',
                 }}
                 onMouseEnter={(e) => {
                   ; (e.currentTarget as HTMLButtonElement).style.background =
@@ -121,8 +121,8 @@ function PlanCard({
             <DropdownMenuContent
               align="end"
               style={{
-                background: '#111118',
-                border: '1px solid #ffffff0f',
+                background: 'var(--background)',
+                border: '1px solid var(--border)',
                 borderRadius: '12px',
                 padding: '4px',
                 boxShadow: '0 16px 40px #00000060',
@@ -130,7 +130,7 @@ function PlanCard({
             >
               {onEdit && (
                 <DropdownMenuItem
-                  className="rounded-lg text-[13px] text-[#9898b0] focus:bg-muted focus:text-foreground cursor-pointer"
+                  className="rounded-lg text-[13px] text-muted-foreground focus:bg-muted focus:text-foreground cursor-pointer"
                   onClick={onEdit}
                 >
                   <Pencil className="mr-2 h-4 w-4" />
@@ -171,7 +171,7 @@ function PlanCard({
       <div className="flex items-center gap-3">
         <div
           className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12px]"
-          style={{ background: '#ffffff08', color: '#9898b0' }}
+          style={{ background: '#ffffff08', color: 'var(--muted-foreground)' }}
         >
           <Clock className="h-3.5 w-3.5 text-red-300" />
           {plan.durationDays} days
@@ -180,7 +180,7 @@ function PlanCard({
         {plan._count && (
           <div
             className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[12px]"
-            style={{ background: '#ffffff08', color: '#9898b0' }}
+            style={{ background: '#ffffff08', color: 'var(--muted-foreground)' }}
           >
             <Users className="h-3.5 w-3.5 text-green-400" />
             {plan._count.members} members
@@ -193,8 +193,8 @@ function PlanCard({
             inactive
               ? {
                 background: '#ffffff08',
-                color: '#6b6b80',
-                border: '1px solid #ffffff0f',
+                color: 'var(--muted-foreground)',
+                border: '1px solid var(--border)',
               }
               : {
                 background: '#10b98115',
@@ -309,7 +309,7 @@ export default function PlansPage() {
       {/* ── Active Plans ─────────────────────────────────────────────────────── */}
       {activePlans.length > 0 && (
         <div>
-          <p className="mb-3 text-[11px] font-medium uppercase tracking-widest text-[#3d3d52]">
+          <p className="mb-3 text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
             Active Plans
           </p>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -328,7 +328,7 @@ export default function PlansPage() {
       {/* ── Inactive Plans ───────────────────────────────────────────────────── */}
       {inactivePlans.length > 0 && (
         <div>
-          <p className="mb-3 text-[11px] font-medium uppercase tracking-widest text-[#3d3d52]">
+          <p className="mb-3 text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
             Inactive Plans
           </p>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -346,8 +346,8 @@ export default function PlansPage() {
       >
         <AlertDialogContent
           style={{
-            background: '#111118',
-            border: '1px solid #ffffff0f',
+            background: 'var(--background)',
+            border: '1px solid var(--border)',
             borderRadius: '16px',
           }}
         >
@@ -361,7 +361,7 @@ export default function PlansPage() {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel className="rounded-xl border-border bg-white/5 text-foreground hover:bg-white/10">
+            <AlertDialogCancel className="rounded-xl border-border bg-muted text-foreground hover:bg-muted">
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction

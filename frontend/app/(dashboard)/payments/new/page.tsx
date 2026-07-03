@@ -247,7 +247,7 @@ export default function NewPaymentPage() {
                     <FormControl>
                       <div className="relative">
                         <input
-                          className="h-12 w-full rounded-xl border border-border bg-white/[0.03] px-4 text-[13px] text-foreground outline-none placeholder:text-[#3d3d52] transition-all focus:border-violet-500/50"
+                          className="h-12 w-full rounded-xl border border-border bg-white/[0.03] px-4 text-[13px] text-foreground outline-none placeholder:text-muted-foreground transition-all focus:border-violet-500/50"
                           placeholder="Search member by name or phone..."
                           value={selectedMember ? `${selectedMember.name} — ${selectedMember.phone}` : memberSearch}
                           onChange={e => {
@@ -263,7 +263,7 @@ export default function NewPaymentPage() {
                         {showMemberDropdown && memberResults.length > 0 && (
                           <div
                             className="absolute z-50 mt-1 w-full overflow-hidden rounded-xl shadow-xl"
-                            style={{ background: '#0d0d14', border: '1px solid #ffffff0a' }}
+                            style={{ background: '#0d0d14', border: '1px solid var(--border)' }}
                           >
                             {memberResults.map(m => (
                               <button
@@ -287,7 +287,7 @@ export default function NewPaymentPage() {
                         {showMemberDropdown && memberResults.length === 0 && !memberSearching && (
                           <div
                             className="absolute z-50 mt-1 w-full rounded-xl px-4 py-3"
-                            style={{ background: '#0d0d14', border: '1px solid #ffffff0a' }}
+                            style={{ background: '#0d0d14', border: '1px solid var(--border)' }}
                           >
                             <p className="text-[13px] text-muted-foreground">No members found</p>
                           </div>
@@ -335,15 +335,15 @@ export default function NewPaymentPage() {
                 <div className="space-y-2">
                   <label className="flex items-center gap-1.5 text-sm font-medium text-[#d4d4dc]">
                     Plan Amount (₹)
-                    <Lock size={11} className="text-[#3d3d52]" />
+                    <Lock size={11} className="text-muted-foreground" />
                   </label>
                   <div className="flex h-12 cursor-not-allowed select-none items-center rounded-xl border border-white/[0.05] bg-white/[0.015] px-4 text-[13px]">
                     {planAmount > 0
                       ? <span className="text-muted-foreground">₹{planAmount}</span>
-                      : <span className="text-[#3d3d52]">Select a plan first</span>
+                      : <span className="text-muted-foreground">Select a plan first</span>
                     }
                   </div>
-                  <p className="text-[11px] text-[#3d3d52]">Fixed by the selected plan</p>
+                  <p className="text-[11px] text-muted-foreground">Fixed by the selected plan</p>
                 </div>
 
                 {/* Discount */}
@@ -389,7 +389,7 @@ export default function NewPaymentPage() {
                           className="h-12 border-border bg-white/[0.03] text-foreground"
                         />
                       </FormControl>
-                      <p className="text-[11px] text-[#3d3d52]">Joining fee, locker, etc.</p>
+                      <p className="text-[11px] text-muted-foreground">Joining fee, locker, etc.</p>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -463,7 +463,7 @@ export default function NewPaymentPage() {
                       />
                     </FormControl>
                     <FormMessage />
-                    <p className="text-[11px] text-[#3d3d52]">
+                    <p className="text-[11px] text-muted-foreground">
                       Leave as today to start immediately. Change for backdated or future plans.
                     </p>
                   </FormItem>
@@ -531,7 +531,7 @@ export default function NewPaymentPage() {
         {/* ── Summary sidebar ── */}
         <div className="space-y-4">
 
-          <div className="rounded-3xl border border-border bg-[#0f0f18] p-5">
+          <div className="rounded-3xl border border-border bg-background p-5">
             <div className="mb-5 flex items-center gap-3">
               <div className="rounded-2xl bg-violet-600/15 p-3 text-violet-400">
                 <IndianRupee className="h-5 w-5" />
@@ -607,7 +607,7 @@ export default function NewPaymentPage() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-border bg-[#0f0f18] p-5">
+          <div className="rounded-3xl border border-border bg-background p-5">
             <p className="mb-4 text-sm font-medium text-foreground">Supported Methods</p>
             <div className="space-y-3">
               {[

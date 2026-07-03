@@ -95,7 +95,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
           <button
             onClick={onClose}
             aria-label="Close menu"
-            className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-sm border border-border text-[#888888] transition-colors hover:bg-[#1A1A1A] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:hidden"
+            className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-sm border border-border text-muted-foreground transition-colors hover:bg-[#1A1A1A] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 md:hidden"
           >
             <X className="h-3.5 w-3.5" />
           </button>
@@ -109,8 +109,8 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
         </p>
       </div>
 
-      {/* Nav — fills the space down to the footer on mobile, packed at the top on desktop */}
-      <nav className="flex flex-1 flex-col justify-around gap-1 overflow-y-auto px-3 pb-3 sm:gap-1 sm:px-4 sm:pb-4 md:justify-start">
+      {/* Nav — fills the space down to the footer */}
+      <nav className="flex flex-1 flex-col justify-around gap-1 overflow-y-auto md:overflow-hidden px-3 pb-3 sm:gap-1 sm:px-4 sm:pb-4">
         {filteredNavItems.map((item) => {
           const Icon = item.icon
           const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
@@ -127,7 +127,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500',
                 isActive
                   ? 'border-border bg-card text-foreground'
-                  : 'border-transparent text-[#888888] hover:bg-[#0A0A0A] hover:text-foreground active:bg-[#141414]'
+                  : 'border-transparent text-muted-foreground hover:bg-[#0A0A0A] hover:text-foreground active:bg-[#141414]'
               )}
             >
               {isActive && (
@@ -165,7 +165,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
         </div>
         <button
           onClick={handleLogout}
-          className="flex w-full items-center justify-center gap-2 rounded-sm border border-border bg-transparent px-3 py-2 text-[10.5px] font-bold uppercase tracking-wider text-[#888888] transition-colors hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 sm:py-3 sm:text-[12px]"
+          className="flex w-full items-center justify-center gap-2 rounded-sm border border-border bg-transparent px-3 py-2 text-[10.5px] font-bold uppercase tracking-wider text-muted-foreground transition-colors hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 sm:py-3 sm:text-[12px]"
         >
           <LogOut className="h-3.5 w-3.5 flex-shrink-0 sm:h-4 sm:w-4" />
           Disconnect
@@ -188,7 +188,7 @@ export default function Sidebar() {
       {/* Mobile: overlay + slide-in drawer */}
       <div
         className={cn(
-          'fixed inset-0 z-40 bg-black/80 transition-opacity duration-300 md:hidden',
+          'fixed inset-0 z-40 bg-background/80 transition-opacity duration-300 md:hidden',
           isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
         )}
         onClick={close}

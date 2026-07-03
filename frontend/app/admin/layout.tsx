@@ -47,7 +47,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/60 z-20 lg:hidden"
+          className="fixed inset-0 bg-background/60 z-20 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}

@@ -56,13 +56,13 @@ interface StaffMember {
 
 // ─── Design tokens (matches your existing app) ────────────────────────────────
 
-const surface = { background: '#0a0a0a', border: '1px solid #ffffff0a' }
+const surface = { background: 'var(--background)', border: '1px solid var(--border)' }
 
 const inp = `
   w-full rounded-xl px-3 py-2.5 text-[13px] text-foreground outline-none transition-all
-  placeholder:text-[#3d3d52]
+  placeholder:text-muted-foreground
 `
-const inpStyle = { background: '#0f0f0f', border: '1px solid #ffffff0a', color: 'white' }
+const inpStyle = { background: 'var(--background)', border: '1px solid var(--border)', color: 'var(--foreground)' }
 
 const card = 'rounded-2xl p-5'
 
@@ -115,7 +115,7 @@ function AddPackageModal({ onClose, onSuccess }: {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
       <div className="w-full max-w-md rounded-2xl border border-border bg-card">
-        <div className="px-6 py-4 flex items-center justify-between" style={{ borderBottom: '1px solid #ffffff08' }}>
+        <div className="px-6 py-4 flex items-center justify-between" style={{ borderBottom: '1px solid var(--border)' }}>
           <h2 className="text-[15px] font-semibold text-foreground">New PT Package</h2>
           <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors text-lg leading-none">✕</button>
         </div>
@@ -218,7 +218,7 @@ function ScheduleSessionModal({ enrollments, trainers, onClose, onSuccess }: {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
       <div className="w-full max-w-md rounded-2xl border border-border bg-card" >
-        <div className="px-6 py-4 flex items-center justify-between" style={{ borderBottom: '1px solid #ffffff08' }}>
+        <div className="px-6 py-4 flex items-center justify-between" style={{ borderBottom: '1px solid var(--border)' }}>
           <h2 className="text-[15px] font-semibold text-foreground">Schedule PT Session</h2>
           <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors text-lg leading-none">✕</button>
         </div>
@@ -228,7 +228,7 @@ function ScheduleSessionModal({ enrollments, trainers, onClose, onSuccess }: {
           <div>
             <label className="text-xs text-muted-foreground mb-1.5 block">Member & Package</label>
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#3d3d52]" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
               <input
                 className={cn(inp, 'pl-9')} style={inpStyle}
                 placeholder="Search by name or phone..."
@@ -238,7 +238,7 @@ function ScheduleSessionModal({ enrollments, trainers, onClose, onSuccess }: {
             </div>
             {showDropdown && filteredEnrollments.length > 0 && (
               <div className="mt-1 rounded-xl overflow-hidden max-h-48 overflow-y-auto"
-                style={{ background: '#0d0d14', border: '1px solid #ffffff0a' }}>
+                style={{ background: '#0d0d14', border: '1px solid var(--border)' }}>
                 {filteredEnrollments.map(e => (
                   <button key={e.id}
                     onClick={() => {
@@ -381,7 +381,7 @@ function EnrollMemberModal({ packages, onClose, onSuccess }: {
           <div>
             <label className="text-xs text-muted-foreground mb-1.5 block">Search Member</label>
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#3d3d52]" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
               <input
                 className={cn(inp, 'pl-9')} style={inpStyle}
                 placeholder="Type name or phone..."
@@ -397,7 +397,7 @@ function EnrollMemberModal({ packages, onClose, onSuccess }: {
               )}
             </div>
             {members.length > 0 && !memberId && (
-              <div className="mt-1 rounded-xl overflow-hidden" style={{ background: '#0d0d14', border: '1px solid #ffffff0a' }}>
+              <div className="mt-1 rounded-xl overflow-hidden" style={{ background: '#0d0d14', border: '1px solid var(--border)' }}>
                 {members.map(m => (
                   <button key={m.id}
                     onClick={() => { setMemberId(m.id); setSelectedMember(m.name); setMembers([]) }}
@@ -493,7 +493,7 @@ function SessionRow({ session, onComplete, onCancel, isTrainer }: {
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
           <p className="text-[13px] font-medium text-foreground">{session.member.name}</p>
-          <span className="text-[#3d3d52]">·</span>
+          <span className="text-muted-foreground">·</span>
           <p className="text-xs text-muted-foreground">{session.enrollment.package.name}</p>
         </div>
         <div className="flex items-center gap-3 mt-0.5 flex-wrap">
@@ -652,14 +652,14 @@ export default function PtPage() {
           
             
               <button onClick={() => setShowEnroll(true)}
-                className="flex items-center gap-2 h-9 px-4 rounded-xl text-[13px] font-medium text-[#9898b0] transition-all hover:text-foreground"
-                style={{ background: '#ffffff0a', border: '1px solid #ffffff12' }}>
+                className="flex items-center gap-2 h-9 px-4 rounded-xl text-[13px] font-medium text-muted-foreground transition-all hover:text-foreground"
+                style={{ background: '#ffffff0a', border: '1px solid var(--border)' }}>
                 <Users className="h-3.5 w-3.5" /> Enroll Members
               </button>
               {isOwnerOrManager && (
               <button onClick={() => setShowPackage(true)}
-                className="flex items-center gap-2 h-9 px-4 rounded-xl text-[13px] font-medium text-[#9898b0] transition-all hover:text-foreground"
-                style={{ background: '#ffffff0a', border: '1px solid #ffffff12' }}>
+                className="flex items-center gap-2 h-9 px-4 rounded-xl text-[13px] font-medium text-muted-foreground transition-all hover:text-foreground"
+                style={{ background: '#ffffff0a', border: '1px solid var(--border)' }}>
                 <Package className="h-3.5 w-3.5" /> Create New Package
               </button>
            
@@ -699,8 +699,8 @@ export default function PtPage() {
           <button key={tab} onClick={() => setActiveTab(tab)}
             className="px-4 py-2 rounded-lg text-[13px] font-medium transition-all capitalize"
             style={activeTab === tab
-              ? { background: 'linear-gradient(135deg, #7c3aed, #a855f7)', color: 'white' }
-              : { color: '#6b6b80' }}>
+              ? { background: 'linear-gradient(135deg, #7c3aed, #a855f7)', color: 'var(--foreground)' }
+              : { color: 'var(--muted-foreground)' }}>
             {tab}
           </button>
         ))}
@@ -717,7 +717,7 @@ export default function PtPage() {
                   className="text-[11px] font-medium px-2.5 py-1 rounded-lg border transition-colors"
                   style={statusFilter === s
                     ? { color: '#a78bfa', background: '#7c3aed15', border: '1px solid #7c3aed30' }
-                    : { color: '#6b6b80', background: '#ffffff05', border: '1px solid #ffffff0a' }}>
+                    : { color: 'var(--muted-foreground)', background: '#ffffff05', border: '1px solid var(--border)' }}>
                   {s === 'ALL' ? 'All' : s === 'NO_SHOW' ? 'No Show' : s.charAt(0) + s.slice(1).toLowerCase()}
                 </button>
               ))}
@@ -757,7 +757,7 @@ export default function PtPage() {
         <div className="space-y-4">
           {enrollments.length === 0 ? (
             <div className="rounded-2xl p-12 flex flex-col items-center gap-3" style={surface}>
-              <Users className="h-8 w-8 text-[#3d3d52]" />
+              <Users className="h-8 w-8 text-muted-foreground" />
               <p className="text-[13px] text-muted-foreground">No enrollments yet</p>
               {isOwnerOrManager && (
                 <button onClick={() => setShowEnroll(true)}
@@ -838,7 +838,7 @@ export default function PtPage() {
 
           {packages.length === 0 ? (
             <div className="py-12 flex flex-col items-center gap-3">
-              <Dumbbell className="h-8 w-8 text-[#3d3d52]" />
+              <Dumbbell className="h-8 w-8 text-muted-foreground" />
               <p className="text-[13px] text-muted-foreground">No packages yet</p>
               {isOwnerOrManager && (
                 <button onClick={() => setShowPackage(true)}
@@ -851,7 +851,7 @@ export default function PtPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {packages.map(pkg => (
                 <div key={pkg.id} className="rounded-xl p-4"
-                  style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}>
+                  style={{ background: 'var(--background)', border: '1px solid var(--border)' }}>
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex-1 min-w-0">
                       <p className="text-[13px] font-semibold text-foreground">{pkg.name}</p>

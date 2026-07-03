@@ -64,7 +64,7 @@ export default function AdminLoginPage() {
               onChange={e => setEmail(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleLogin()}
               placeholder="admin@jovifitx.com"
-              className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder-white/20 outline-none focus:border-violet-500/50 focus:bg-white/[0.07] transition-all"
+              className="w-full bg-muted border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder-white/20 outline-none focus:border-violet-500/50 focus:bg-white/[0.07] transition-all"
             />
           </div>
 
@@ -77,7 +77,7 @@ export default function AdminLoginPage() {
                 onChange={e => setPassword(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleLogin()}
                 placeholder="••••••••"
-                className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 pr-10 text-sm text-foreground placeholder-white/20 outline-none focus:border-violet-500/50 focus:bg-white/[0.07] transition-all"
+                className="w-full bg-muted border border-border rounded-xl px-4 py-3 pr-10 text-sm text-foreground placeholder-white/20 outline-none focus:border-violet-500/50 focus:bg-white/[0.07] transition-all"
               />
               <button
                 type="button"

@@ -47,15 +47,15 @@ function PwField({
 
   return (
     <div className="space-y-1.5">
-      <label className="text-[12px] font-medium text-[#9898b0]">{label}</label>
+      <label className="text-[12px] font-medium text-muted-foreground">{label}</label>
       <div className="relative">
-        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#3d3d52]" />
+        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <input
           type={show ? 'text' : 'password'}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          className="w-full rounded-xl border border-border bg-white/[0.04] pl-9 pr-10 py-2.5 text-[13px] text-foreground placeholder:text-[#3d3d52] focus:border-violet-500/50 focus:outline-none transition-colors"
+          className="w-full rounded-xl border border-border bg-white/[0.04] pl-9 pr-10 py-2.5 text-[13px] text-foreground placeholder:text-muted-foreground focus:border-violet-500/50 focus:outline-none transition-colors"
         />
         <button
           type="button"
@@ -189,8 +189,8 @@ export default function MemberChangePasswordPage() {
         <div
           className="rounded-2xl p-6 space-y-4"
           style={{
-            background: '#111118',
-            border: '1px solid #ffffff0a',
+            background: 'var(--background)',
+            border: '1px solid var(--border)',
             boxShadow: '0 24px 64px #00000060',
           }}
         >

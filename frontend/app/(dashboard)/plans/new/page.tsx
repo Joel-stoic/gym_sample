@@ -102,8 +102,8 @@ export default function NewPlanPage() {
           onClick={() => router.back()}
           className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-[13px] font-medium text-foreground transition-all duration-150"
           style={{
-            background: '#111118',
-            border: '1px solid #ffffff0f'
+            background: 'var(--background)',
+            border: '1px solid var(--border)'
           }}
         >
           <ArrowLeft className="h-4 w-4" />
@@ -157,14 +157,14 @@ export default function NewPlanPage() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-[13px] text-[#9898b0]">
+                  <FormLabel className="text-[13px] text-muted-foreground">
                     Plan Name *
                   </FormLabel>
 
                   <FormControl>
                     <Input
                       placeholder="Monthly / Quarterly / Annual"
-                      className="h-11 rounded-xl border-border bg-[#0e0e16] text-foreground placeholder:text-[#5c5c72] focus-visible:ring-violet-500"
+                      className="h-11 rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-violet-500"
                       {...field}
                     />
                   </FormControl>
@@ -180,7 +180,7 @@ export default function NewPlanPage() {
               name="durationDays"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-[13px] text-[#9898b0]">
+                  <FormLabel className="text-[13px] text-muted-foreground">
                     Duration (days) *
                   </FormLabel>
 
@@ -220,7 +220,7 @@ export default function NewPlanPage() {
                     <Input
                       placeholder="30"
                       type="number"
-                      className="h-11 rounded-xl border-border bg-[#0e0e16] text-foreground placeholder:text-[#5c5c72]"
+                      className="h-11 rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground"
                       {...field}
                     />
                   </FormControl>
@@ -236,7 +236,7 @@ export default function NewPlanPage() {
               name="price"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-[13px] text-[#9898b0]">
+                  <FormLabel className="text-[13px] text-muted-foreground">
                     Price (₹) *
                   </FormLabel>
 
@@ -244,7 +244,7 @@ export default function NewPlanPage() {
                     <Input
                       placeholder="1000"
                       type="number"
-                      className="h-11 rounded-xl border-border bg-[#0e0e16] text-foreground placeholder:text-[#5c5c72]"
+                      className="h-11 rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground"
                       {...field}
                     />
                   </FormControl>
@@ -264,14 +264,14 @@ export default function NewPlanPage() {
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-[13px] text-[#9898b0]">
+                  <FormLabel className="text-[13px] text-muted-foreground">
                     Description
                   </FormLabel>
 
                   <FormControl>
                     <Input
                       placeholder="Includes all gym equipment access..."
-                      className="h-11 rounded-xl border-border bg-[#0e0e16] text-foreground placeholder:text-[#5c5c72]"
+                      className="h-11 rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground"
                       {...field}
                     />
                   </FormControl>

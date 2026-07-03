@@ -37,10 +37,10 @@ export interface GymPlan {
 }
 
 // ─── Shared dark style tokens ─────────────────────────────────────────────────
-const surface = { background: '#0a0a0a', border: '1px solid #ffffff0a' }
+const surface = { background: 'var(--background)', border: '1px solid var(--border)' }
 const inputCls = `
   w-full rounded-xl px-3 py-2.5 text-[13px] text-foreground outline-none transition-all
-  placeholder:text-[#3d3d52] bg-[#0f0f0f] border border-[#ffffff0a]
+  placeholder:text-muted-foreground bg-background border border-border
   focus:border-[#7c3aed44] focus:shadow-[0_0_0_3px_#7c3aed12]
 `
 
@@ -60,7 +60,7 @@ function SkeletonCell({ width = '100%', height = 14 }: { width?: string | number
         width,
         height,
         borderRadius: 6,
-        background: 'linear-gradient(90deg, #171717 25%, #202020 50%, #171717 75%)',
+        background: 'linear-gradient(90deg, var(--muted) 25%, var(--accent) 50%, var(--muted) 75%)',
         backgroundSize: '200% 100%',
         animation: 'shimmer 1.5s infinite',
       }}
@@ -77,7 +77,7 @@ function MemberTableSkeleton() {
       >
         {['Member', 'Phone', 'Plan', 'Status', 'Expires', ''].map((h) => (
           <div key={h} className="flex items-center">
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-[#3d3d52]">
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
               {h}
             </span>
           </div>
@@ -87,14 +87,14 @@ function MemberTableSkeleton() {
       {Array.from({ length: 8 }).map((_, i) => (
         <div
           key={i}
-          className="grid items-center px-5 py-4 border-b border-[#ffffff06]"
+          className="grid items-center px-5 py-4 border-b border-border"
           style={{ gridTemplateColumns: '2fr 1.2fr 1fr 1fr 1fr 80px', opacity: 1 - i * 0.08 }}
         >
           <div className="flex items-center gap-3">
             <div
               style={{
                 width: 36, height: 36, borderRadius: 10, flexShrink: 0,
-                background: 'linear-gradient(90deg, #171717 25%, #202020 50%, #171717 75%)',
+                background: 'linear-gradient(90deg, var(--muted) 25%, var(--accent) 50%, var(--muted) 75%)',
                 backgroundSize: '200% 100%',
                 animation: 'shimmer 1.5s infinite',
                 animationDelay: `${i * 0.07}s`,
@@ -109,7 +109,7 @@ function MemberTableSkeleton() {
           <div>
             <div style={{
               width: 72, height: 24, borderRadius: 20,
-              background: 'linear-gradient(90deg, #171717 25%, #202020 50%, #171717 75%)',
+              background: 'linear-gradient(90deg, var(--muted) 25%, var(--accent) 50%, var(--muted) 75%)',
               backgroundSize: '200% 100%',
               animation: 'shimmer 1.5s infinite',
               animationDelay: `${i * 0.07 + 0.1}s`,
@@ -118,7 +118,7 @@ function MemberTableSkeleton() {
           <div>
             <div style={{
               width: 62, height: 24, borderRadius: 20,
-              background: 'linear-gradient(90deg, #171717 25%, #202020 50%, #171717 75%)',
+              background: 'linear-gradient(90deg, var(--muted) 25%, var(--accent) 50%, var(--muted) 75%)',
               backgroundSize: '200% 100%',
               animation: 'shimmer 1.5s infinite',
               animationDelay: `${i * 0.07 + 0.15}s`,
@@ -128,7 +128,7 @@ function MemberTableSkeleton() {
           <div className="flex justify-end">
             <div style={{
               width: 28, height: 28, borderRadius: 8,
-              background: 'linear-gradient(90deg, #171717 25%, #202020 50%, #171717 75%)',
+              background: 'linear-gradient(90deg, var(--muted) 25%, var(--accent) 50%, var(--muted) 75%)',
               backgroundSize: '200% 100%',
               animation: 'shimmer 1.5s infinite',
               animationDelay: `${i * 0.07 + 0.2}s`,
@@ -155,7 +155,7 @@ function MemberCardSkeleton() {
           <div
             style={{
               width: 46, height: 46, borderRadius: 999, flexShrink: 0,
-              background: 'linear-gradient(90deg, #171717 25%, #202020 50%, #171717 75%)',
+              background: 'linear-gradient(90deg, var(--muted) 25%, var(--accent) 50%, var(--muted) 75%)',
               backgroundSize: '200% 100%',
               animation: 'shimmer 1.5s infinite',
               animationDelay: `${i * 0.06}s`,
@@ -169,7 +169,7 @@ function MemberCardSkeleton() {
             <SkeletonCell width={40} height={10} />
             <div style={{
               width: 10, height: 10, borderRadius: 999,
-              background: 'linear-gradient(90deg, #171717 25%, #202020 50%, #171717 75%)',
+              background: 'linear-gradient(90deg, var(--muted) 25%, var(--accent) 50%, var(--muted) 75%)',
               backgroundSize: '200% 100%',
               animation: 'shimmer 1.5s infinite',
               animationDelay: `${i * 0.06 + 0.1}s`,
@@ -202,8 +202,8 @@ function MemberCard({
 
   return (
     <div
-      className="relative flex items-center gap-3 px-4 py-3 transition-colors active:bg-[#ffffff05] cursor-pointer"
-      style={{ borderBottom: '1px solid #ffffff08' }}
+      className="relative flex items-center gap-3 px-4 py-3 transition-colors active:bg-muted cursor-pointer"
+      style={{ borderBottom: '1px solid var(--border)' }}
       onClick={() => onOpen(member.id)}
       role="button"
       tabIndex={0}
@@ -224,7 +224,7 @@ function MemberCard({
       </div>
 
       <div className="flex flex-shrink-0 flex-col items-center gap-1.5 pr-7">
-        <span className="text-[10.5px] font-medium text-[#4d4d66]">
+        <span className="text-[10.5px] font-medium text-muted-foreground">
           {member.expiresAt
             ? new Date(member.expiresAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })
             : '—'}
@@ -259,25 +259,25 @@ function MemberCard({
 function PaginationSkeleton() {
   return (
     <div
-      className="sticky bottom-0 z-10 -mb-5 flex items-center justify-between gap-3 rounded-t-xl px-4 py-3 border-t border-[#ffffff0a]"
-      style={{ background: 'rgba(10, 10, 10, 0.9)', backdropFilter: 'blur(8px)' }}
+      className="sticky bottom-0 z-10 -mb-5 flex items-center justify-between gap-3 rounded-t-xl px-4 py-3 border-t border-border"
+      style={{ background: 'hsl(var(--background) / 0.9)', backdropFilter: 'blur(8px)' }}
     >
       <div style={{
         width: 90, height: 32, borderRadius: 8, flexShrink: 0,
-        background: 'linear-gradient(90deg, #171717 25%, #202020 50%, #171717 75%)',
+        background: 'linear-gradient(90deg, var(--muted) 25%, var(--accent) 50%, var(--muted) 75%)',
         backgroundSize: '200% 100%',
         animation: 'shimmer 1.5s infinite',
       }} />
       <div style={{
         width: 70, height: 13, borderRadius: 6,
-        background: 'linear-gradient(90deg, #171717 25%, #202020 50%, #171717 75%)',
+        background: 'linear-gradient(90deg, var(--muted) 25%, var(--accent) 50%, var(--muted) 75%)',
         backgroundSize: '200% 100%',
         animation: 'shimmer 1.5s infinite',
         animationDelay: '0.07s',
       }} />
       <div style={{
         width: 90, height: 32, borderRadius: 8, flexShrink: 0,
-        background: 'linear-gradient(90deg, #171717 25%, #202020 50%, #171717 75%)',
+        background: 'linear-gradient(90deg, var(--muted) 25%, var(--accent) 50%, var(--muted) 75%)',
         backgroundSize: '200% 100%',
         animation: 'shimmer 1.5s infinite',
         animationDelay: '0.14s',
@@ -300,8 +300,8 @@ function DarkSelect({
       <select
         value={value || 'ALL'}
         onChange={(e) => onChange(e.target.value === 'ALL' ? '' : e.target.value)}
-        className="w-full appearance-none rounded-xl px-3 py-2.5 text-[13px] font-medium text-foreground outline-none transition-all cursor-pointer bg-[#0f0f0f] border border-[#ffffff0a]"
-        style={{ color: value ? 'white' : '#6b6b80' }}
+        className="w-full appearance-none rounded-xl px-3 py-2.5 text-[13px] font-medium text-foreground outline-none transition-all cursor-pointer bg-background border border-border"
+        style={{ color: value ? 'var(--foreground)' : 'var(--muted-foreground)' }}
       >
         <option value="ALL">{placeholder}</option>
         {options.map((o) => (
@@ -310,7 +310,7 @@ function DarkSelect({
       </select>
       <ChevronDown
         className="pointer-events-none absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2"
-        style={{ color: '#3d3d52' }}
+        style={{ color: 'var(--muted-foreground)' }}
       />
     </div>
   )
@@ -365,7 +365,7 @@ export default function MembersPage() {
         <div className="relative min-w-0 flex-1">
           <Search
             className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"
-            style={{ color: '#3d3d52' }}
+            style={{ color: 'var(--muted-foreground)' }}
           />
           <input
             className={`${inputCls} pl-9`}
@@ -484,8 +484,8 @@ export default function MembersPage() {
           {/* Pagination */}
           {displayTotal > 20 && (
             <div
-              className="sticky bottom-0 z-10 -mb-5 rounded-t-xl border-t border-[#ffffff0a] px-3 py-3 sm:px-4"
-              style={{ background: 'rgba(10, 10, 10, 0.9)', backdropFilter: 'blur(8px)' }}
+              className="sticky bottom-0 z-10 -mb-5 rounded-t-xl border-t border-border px-3 py-3 sm:px-4"
+              style={{ background: 'hsl(var(--background) / 0.9)', backdropFilter: 'blur(8px)' }}
             >
               {/* Mobile */}
               <div className="flex items-center justify-between gap-3 sm:hidden">
@@ -494,16 +494,16 @@ export default function MembersPage() {
                   disabled={page === 1}
                   onClick={() => setPage(page - 1)}
                   aria-label="Previous page"
-                  className="flex flex-1 items-center justify-center gap-1.5 rounded-xl py-2.5 text-[12.5px] font-medium transition-all duration-150 disabled:opacity-30 bg-[#0f0f0f] border border-[#ffffff0a] text-[#9898b0] active:bg-[#ffffff08]"
+                  className="flex flex-1 items-center justify-center gap-1.5 rounded-xl py-2.5 text-[12.5px] font-medium transition-all duration-150 disabled:opacity-30 bg-background border border-border text-muted-foreground active:bg-muted"
                 >
                   <ChevronLeft className="h-4 w-4" />
                   Prev
                 </button>
                 <div className="flex flex-shrink-0 flex-col items-center gap-0.5 px-1">
                   <span className="text-[12px] font-semibold text-foreground">
-                    {page} <span className="text-[#4d4d66]">/ {totalPages}</span>
+                    {page} <span className="text-muted-foreground">/ {totalPages}</span>
                   </span>
-                  <span className="text-[9.5px] uppercase tracking-wide text-[#3d3d52]">
+                  <span className="text-[9.5px] uppercase tracking-wide text-muted-foreground">
                     {(page - 1) * 20 + 1}–{Math.min(page * 20, displayTotal)} of {displayTotal}
                   </span>
                 </div>
@@ -534,7 +534,7 @@ export default function MembersPage() {
                     disabled={page === 1}
                     onClick={() => setPage(page - 1)}
                     aria-label="Previous page"
-                    className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg transition-all duration-150 disabled:opacity-30 bg-[#0f0f0f] border border-[#ffffff0a] text-[#9898b0] hover:bg-[#ffffff05]"
+                    className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg transition-all duration-150 disabled:opacity-30 bg-background border border-border text-muted-foreground hover:bg-muted"
                   >
                     <ChevronLeft className="h-4 w-4" />
                   </button>
@@ -552,7 +552,7 @@ export default function MembersPage() {
                           className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-[12px] font-medium transition-all duration-150 ${
                             page === p
                               ? 'bg-[#7c3aed] text-foreground border border-[#7c3aed]'
-                              : 'bg-[#0f0f0f] border border-[#ffffff0a] text-[#9898b0] hover:bg-[#ffffff05]'
+                              : 'bg-background border border-border text-muted-foreground hover:bg-muted'
                           }`}
                         >
                           {p}
@@ -565,7 +565,7 @@ export default function MembersPage() {
                     disabled={page * 20 >= displayTotal}
                     onClick={() => setPage(page + 1)}
                     aria-label="Next page"
-                    className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg transition-all duration-150 disabled:opacity-30 bg-[#0f0f0f] border border-[#ffffff0a] text-[#9898b0] hover:bg-[#ffffff05]"
+                    className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg transition-all duration-150 disabled:opacity-30 bg-background border border-border text-muted-foreground hover:bg-muted"
                   >
                     <ChevronRight className="h-4 w-4" />
                   </button>
@@ -578,14 +578,14 @@ export default function MembersPage() {
 
       {/* Delete Dialog */}
       <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>
-        <AlertDialogOverlay style={{ background: 'rgba(5, 5, 5, 0.75)', backdropFilter: 'blur(4px)' }} />
+        <AlertDialogOverlay style={{ background: 'hsl(var(--background) / 0.75)', backdropFilter: 'blur(4px)' }} />
         <AlertDialogContent
-          className="w-[calc(100%-2rem)] overflow-hidden p-0 sm:w-full bg-card border border-border rounded-3xl max-w-[400px] shadow-[0_24px_64px_#00000080,0_0_0_1px_#ffffff05]"
+          className="w-[calc(100%-2rem)] overflow-hidden p-0 sm:w-full bg-card border border-border rounded-3xl max-w-[400px] shadow-xl"
         >
           <div className="h-1 w-full bg-gradient-to-r from-[#ef4444] to-[#f87171]" />
           <div className="p-5 sm:p-6">
             <AlertDialogHeader className="mb-5">
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#ef444415] border border-[#ef444425]">
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#ef444415] border border-border">
                 <Trash2 className="h-[18px] w-[18px]" style={{ color: '#ef4444' }} strokeWidth={2} />
               </div>
               <AlertDialogTitle
@@ -602,7 +602,7 @@ export default function MembersPage() {
             <div className="mb-5 h-px bg-[#ef444420]" />
             <AlertDialogFooter className="flex-row gap-3 sm:justify-end">
               <AlertDialogCancel
-                className="h-10 flex-1 rounded-xl border border-[#ffffff0f] bg-[#ffffff08] hover:bg-[#ffffff12] text-[13px] font-medium text-[#9898b0] transition-all sm:flex-none"
+                className="h-10 flex-1 rounded-xl border border-border bg-muted hover:bg-muted text-[13px] font-medium text-muted-foreground transition-all sm:flex-none"
               >
                 Cancel
               </AlertDialogCancel>

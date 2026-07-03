@@ -23,8 +23,8 @@ export default function GlobalError({
           alignItems: 'center',
           justifyContent: 'center',
           height: '100vh',
-          background: '#0a0a0f',
-          color: 'white',
+          background: 'var(--background)',
+          color: 'var(--foreground)',
           fontFamily: 'sans-serif',
           gap: '16px',
         }}
@@ -36,7 +36,7 @@ export default function GlobalError({
           onClick={reset}
           style={{
             background: '#7c3aed',
-            color: 'white',
+            color: 'var(--foreground)',
             border: 'none',
             borderRadius: '10px',
             padding: '10px 20px',

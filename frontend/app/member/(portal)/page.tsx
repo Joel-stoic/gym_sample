@@ -355,7 +355,7 @@ export default function MemberPortalPage() {
                             className="rounded-xl p-3 flex items-center justify-between"
                             style={{
                               background: '#ffffff08',
-                              border: '1px solid #ffffff0a'
+                              border: '1px solid var(--border)'
                             }}
                           >
                             <div>
@@ -457,7 +457,7 @@ export default function MemberPortalPage() {
               <div
                 key={record.id}
                 className="flex items-center justify-between py-2 border-b last:border-0"
-                style={{ borderColor: '#ffffff08' }}
+                style={{ borderColor: 'var(--border)' }}
               >
                 <div className="flex items-center gap-2">
                   <CheckCircle size={14} className="text-emerald-400" />

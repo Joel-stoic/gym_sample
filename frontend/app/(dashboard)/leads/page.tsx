@@ -257,7 +257,7 @@ export default function LeadsPage() {
 
             {/* ───────────────── MODAL ───────────────── */}
 
-            <DialogContent className="border-border bg-[#0f0f18] text-foreground">
+            <DialogContent className="border-border bg-background text-foreground">
               <DialogHeader>
                 <DialogTitle className="text-xl">
                   Add New Lead
@@ -473,7 +473,7 @@ export default function LeadsPage() {
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="h-28 animate-pulse rounded-3xl border border-border bg-[#0f0f18]"
+                className="h-28 animate-pulse rounded-3xl border border-border bg-background"
               />
             ))}
           </div>
@@ -517,7 +517,7 @@ function StatsCard({
   iconClassName
 }: any) {
   return (
-    <div className="rounded-3xl border border-border bg-[#0f0f18] p-5">
+    <div className="rounded-3xl border border-border bg-background p-5">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm text-muted-foreground">
@@ -541,7 +541,7 @@ function StatsCard({
 /* ───────────────── SkeletonCard ───────────────── */
 function SkeletonCard() {
   return (
-    <div className="animate-pulse rounded-3xl border border-border bg-[#0f0f18] p-5">
+    <div className="animate-pulse rounded-3xl border border-border bg-background p-5">
       <div className="mb-4 flex items-start justify-between">
         <div className="space-y-2">
           <div className="h-5 w-32 rounded bg-white/[0.06]" />
@@ -578,7 +578,7 @@ function LeadCard({
   const config = STATUS_CONFIG[lead.status]
 
   return (
-    <div className="rounded-3xl border border-border bg-[#0f0f18] p-5 transition hover:border-violet-500/30">
+    <div className="rounded-3xl border border-border bg-background p-5 transition hover:border-violet-500/30">
       {/* TOP */}
 
       <div className="mb-4 flex items-start justify-between">
@@ -607,7 +607,7 @@ function LeadCard({
 
           <DropdownMenuContent
             align="end"
-            className="border-border bg-[#11111a] text-foreground"
+            className="border-border bg-background text-foreground"
           >
             {Object.entries(STATUS_CONFIG).map(
               ([status, cfg]) => (

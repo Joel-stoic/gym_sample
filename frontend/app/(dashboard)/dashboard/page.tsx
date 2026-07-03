@@ -110,7 +110,7 @@ function RevenueRangeToggle({
           onClick={() => onChange(months)}
           className={`rounded-md px-2.5 sm:px-3 py-1 text-[11px] font-medium transition-all duration-150 ${value === months
             ? 'bg-violet-600 text-foreground shadow'
-            : 'text-muted-foreground hover:text-[#9898b0]'
+            : 'text-muted-foreground hover:text-muted-foreground'
             }`}
         >
           {label}
@@ -124,8 +124,8 @@ function RevenueRangeToggle({
 function CustomTooltip({ active, payload, label }: any) {
   if (active && payload?.length) {
     return (
-      <div className="rounded-xl border border-border bg-[#16161f] px-3 py-2 text-[12px] shadow-xl">
-        <p className="text-[#9898b0]">{label}</p>
+      <div className="rounded-xl border border-border bg-background px-3 py-2 text-[12px] shadow-xl">
+        <p className="text-muted-foreground">{label}</p>
         <p className="mt-1 font-semibold text-violet-300">{toRupees(payload[0].value)}</p>
       </div>
     )
@@ -198,7 +198,7 @@ function ActivityItem({
     <div className="flex items-center gap-3 border-b border-white/[0.05] py-3 last:border-0">
       <div className={`h-2 w-2 flex-shrink-0 rounded-full ${type === 'payment' ? 'bg-emerald-400' : 'bg-violet-400'
         }`} />
-      <p className="flex-1 text-[12px] text-[#9898b0]">
+      <p className="flex-1 text-[12px] text-muted-foreground">
         <span className="font-medium text-foreground">{name}</span>{' '}
         {action}
         {amount && <span className="ml-1 font-medium text-emerald-400">{amount}</span>}

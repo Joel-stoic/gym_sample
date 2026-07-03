@@ -61,7 +61,7 @@ function MemberDetailSkeleton() {
                 {[1, 2, 3].map(i => <div key={i} className="flex items-center gap-3"><Bone className="h-3.5 w-3.5 flex-shrink-0" /><Bone className="h-3.5 flex-1" style={{ maxWidth: `${100 - i * 15}%` }} /></div>)}
               </div>
               <div className="grid grid-cols-2 gap-3 mt-5">
-                {[0, 1].map(i => <div key={i} className="rounded-xl border border-border bg-black/20 p-3 flex flex-col items-center"><Bone className="h-9 w-9 rounded-lg mb-2" /><Bone className="h-6 w-8 mb-1" /><Bone className="h-3 w-10" /></div>)}
+                {[0, 1].map(i => <div key={i} className="rounded-xl border border-border bg-background/20 p-3 flex flex-col items-center"><Bone className="h-9 w-9 rounded-lg mb-2" /><Bone className="h-6 w-8 mb-1" /><Bone className="h-3 w-10" /></div>)}
               </div>
             </div>
           </div>
@@ -71,7 +71,7 @@ function MemberDetailSkeleton() {
                 <Bone className="h-3 w-28 mb-4" />
                 <div className="space-y-2">
                   {[1, 2, 3].map(j => (
-                    <div key={j} className="rounded-xl border border-border bg-black/20 px-4 py-3 flex items-center gap-3">
+                    <div key={j} className="rounded-xl border border-border bg-background/20 px-4 py-3 flex items-center gap-3">
                       <Bone className="h-9 w-9 rounded-xl flex-shrink-0" />
                       <div className="flex-1 space-y-1.5"><Bone className="h-3.5 w-32" /><Bone className="h-3 w-24" /></div>
                       <div className="text-right space-y-1.5"><Bone className="h-3.5 w-16 ml-auto" /><Bone className="h-5 w-12 rounded-full ml-auto" /></div>
@@ -146,7 +146,7 @@ function EmptyState({ icon: Icon, label }: { icon: any; label: string }) {
 }
 
 function ListRow({ children }: { children: React.ReactNode }) {
-  return <div className="rounded-xl border border-border bg-black/20 px-4 py-3 flex items-center gap-3">{children}</div>
+  return <div className="rounded-xl border border-border bg-background/20 px-4 py-3 flex items-center gap-3">{children}</div>
 }
 
 function IconBox({ children, className }: { children: React.ReactNode; className?: string }) {
@@ -181,7 +181,7 @@ function PaymentCard({ payment }: { payment: Payment }) {
   const membershipExpiry = (payment as any).membershipExpiry ?? null
 
   return (
-    <div className="rounded-xl border border-border bg-black/20 overflow-hidden">
+    <div className="rounded-xl border border-border bg-background/20 overflow-hidden">
       <div className="px-4 py-3 flex items-center gap-3">
         <IconBox className="bg-green-500/10"><CreditCard className="h-4 w-4 text-green-400" /></IconBox>
         <div className="flex-1 min-w-0">
@@ -322,7 +322,7 @@ function Modal({ open, onClose, title, children, wide }: {
   if (!open) return null
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-background/70 backdrop-blur-sm" onClick={onClose} />
       <div className={cn('relative z-10 w-full rounded-2xl border border-border bg-card shadow-2xl p-6 max-h-[90vh] overflow-y-auto', wide ? 'max-w-lg' : 'max-w-md')}>
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-base font-semibold text-foreground">{title}</h2>
@@ -754,14 +754,14 @@ export default function MemberDetailPage() {
               </div>
 
               <div className="grid grid-cols-2 gap-3 mt-5">
-                <div className="rounded-xl border border-border bg-black/20 p-3 text-center">
+                <div className="rounded-xl border border-border bg-background/20 p-3 text-center">
                   <div className="h-9 w-9 rounded-lg bg-violet-500/10 flex items-center justify-center mx-auto mb-2">
                     <Activity className="h-4 w-4 text-violet-400" />
                   </div>
                   <p className="text-xl font-bold text-foreground">{member.attendance?.length || 0}</p>
                   <p className="text-[11px] text-muted-foreground mt-0.5">Visits</p>
                 </div>
-                <div className="rounded-xl border border-border bg-black/20 p-3 text-center">
+                <div className="rounded-xl border border-border bg-background/20 p-3 text-center">
                   <div className="h-9 w-9 rounded-lg bg-green-500/10 flex items-center justify-center mx-auto mb-2">
                     <Wallet className="h-4 w-4 text-green-400" />
                   </div>

@@ -32,7 +32,7 @@ export default function GymQRCode({
   }
 
   return (
-    <Card className="border-border bg-[#0f0f18] shadow-none">
+    <Card className="border-border bg-background shadow-none">
       <CardContent className="p-6">
         {loading ? (
           <LoadingSpinner className="h-56" />

@@ -50,7 +50,7 @@ const primaryBtnCls =
   'hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors ' +
   'flex items-center justify-center gap-2'
 
-const labelCls = 'text-[12px] font-semibold text-[#888888] uppercase tracking-wider'
+const labelCls = 'text-[12px] font-semibold text-muted-foreground uppercase tracking-wider'
 
 // ─── Signature element: plate stack (matches LoginPage) ────────────────────────
 function PlateStack({ vertical = true, className = '' }: { vertical?: boolean; className?: string }) {
@@ -64,7 +64,7 @@ function PlateStack({ vertical = true, className = '' }: { vertical?: boolean; c
         <div
           key={i}
           style={vertical ? { width: s, height: 2 } : { height: s, width: 2 }}
-          className={`rounded-full ${i === 3 ? 'bg-violet-600' : 'bg-[#333333]'}`}
+          className={`rounded-full ${i === 3 ? 'bg-violet-600' : 'bg-background'}`}
         />
       ))}
     </div>
@@ -80,7 +80,7 @@ const capabilities = [
 // ─── Brand panel (shared shell for both the form and success screens) ──────────
 function BrandPanel() {
   return (
-    <div className="relative hidden lg:flex lg:w-[45%] flex-col justify-between overflow-hidden bg-black px-16 py-12 border-r border-border">
+    <div className="relative hidden lg:flex lg:w-[45%] flex-col justify-between overflow-hidden bg-background px-16 py-12 border-r border-border">
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}
@@ -104,7 +104,7 @@ function BrandPanel() {
               <div className="h-8 w-8 shrink-0 border border-[#333333] rounded-md flex items-center justify-center">
                 <Icon size={14} className="text-violet-500" />
               </div>
-              <span className={`text-[15px] tracking-widest text-[#888888] ${bebas.className}`}>{label}</span>
+              <span className={`text-[15px] tracking-widest text-muted-foreground ${bebas.className}`}>{label}</span>
             </li>
           ))}
         </ul>
@@ -189,7 +189,7 @@ export default function SignupPage() {
             <h2 className={`text-4xl text-foreground tracking-wide ${bebas.className}`}>
               GYM REGISTERED
             </h2>
-            <p className="text-[14px] text-[#888888] mt-2">
+            <p className="text-[14px] text-muted-foreground mt-2">
               <span className="text-foreground font-medium">{success.gymName}</span> is ready to go.
             </p>
 
@@ -197,7 +197,7 @@ export default function SignupPage() {
               <p className={labelCls}>Your dashboard URL</p>
               <div className="mt-2 flex items-center gap-2 bg-card border border-border rounded-md px-4 py-3">
                 <p className="flex-1 font-mono text-[13px] text-violet-400 truncate">{success.url}</p>
-                <button onClick={copyUrl} className="text-[#888888] hover:text-violet-400 transition-colors shrink-0" aria-label="Copy URL">
+                <button onClick={copyUrl} className="text-muted-foreground hover:text-violet-400 transition-colors shrink-0" aria-label="Copy URL">
                   <Copy size={15} />
                 </button>
               </div>
@@ -239,7 +239,7 @@ export default function SignupPage() {
             <h2 className={`text-4xl text-foreground tracking-wide ${bebas.className}`}>
               CREATE YOUR GYM
             </h2>
-            <p className="text-[14px] text-[#888888] mt-2">Set up your dashboard in a couple of minutes.</p>
+            <p className="text-[14px] text-muted-foreground mt-2">Set up your dashboard in a couple of minutes.</p>
           </div>
 
           <Form {...form}>
@@ -293,7 +293,7 @@ export default function SignupPage() {
                       <button
                         type="button"
                         onClick={() => setShowPassword(v => !v)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888888] hover:text-violet-400 transition-colors"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-violet-400 transition-colors"
                         tabIndex={-1}
                         aria-label={showPassword ? 'Hide password' : 'Show password'}
                       >
@@ -319,7 +319,7 @@ export default function SignupPage() {
                       <button
                         type="button"
                         onClick={() => setShowConfirmPassword(v => !v)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#888888] hover:text-violet-400 transition-colors"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-violet-400 transition-colors"
                         tabIndex={-1}
                         aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
                       >

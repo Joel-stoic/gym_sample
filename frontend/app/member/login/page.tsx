@@ -119,9 +119,9 @@ export default function MemberLoginPage() {
   }
 
   const baseInput: React.CSSProperties = {
-    background: '#16161f',
-    border: '1px solid #ffffff0a',
-    color: 'white',
+    background: 'var(--background)',
+    border: '1px solid var(--border)',
+    color: 'var(--foreground)',
     borderRadius: '12px',
     outline: 'none',
     width: '100%',
@@ -184,7 +184,7 @@ export default function MemberLoginPage() {
             </p>
             <p className="text-xs text-orange-300/70">
               On localhost, append{' '}
-              <code className="bg-white/10 px-1 py-0.5 rounded">
+              <code className="bg-muted px-1 py-0.5 rounded">
                 ?slug=yourgymslug
               </code>{' '}
               to the URL:
@@ -199,8 +199,8 @@ export default function MemberLoginPage() {
         <div
           className="rounded-2xl p-6 space-y-5"
           style={{
-            background: '#111118',
-            border: '1px solid #ffffff0a',
+            background: 'var(--background)',
+            border: '1px solid var(--border)',
             boxShadow: '0 24px 64px #00000060',
           }}
         >
@@ -232,7 +232,7 @@ export default function MemberLoginPage() {
                 onChange={(e) => setPhone(e.target.value)}
                 onFocus={() => setPhoneFocused(true)}
                 onBlur={() => setPhoneFocused(false)}
-                className="placeholder:text-[#3d3d52]"
+                className="placeholder:text-muted-foreground"
                 style={{ ...baseInput, ...(phoneFocused ? focusStyle : {}) }}
               />
             </div>
@@ -251,7 +251,7 @@ export default function MemberLoginPage() {
                 onFocus={() => setPassFocused(true)}
                 onBlur={() => setPassFocused(false)}
                 onKeyDown={(e) => e.key === 'Enter' && login()}
-                className="placeholder:text-[#3d3d52]"
+                className="placeholder:text-muted-foreground"
                 style={{
                   ...baseInput,
                   paddingRight: '2.75rem',

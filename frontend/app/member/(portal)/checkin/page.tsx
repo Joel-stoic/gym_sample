@@ -209,7 +209,7 @@ export default function CheckInPage() {
         {/* SCANNING */}
         {state === 'scanning' && (
           <div className="flex w-full flex-col items-center gap-4">
-            <p className="text-[13px] text-[#9898b0]">Point at the QR code</p>
+            <p className="text-[13px] text-muted-foreground">Point at the QR code</p>
             <div className="relative w-full max-w-sm overflow-hidden rounded-2xl border border-violet-500/20">
               <div id="qr-reader" className="w-full" />
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
@@ -234,7 +234,7 @@ export default function CheckInPage() {
         {state === 'loading' && (
           <div className="flex flex-col items-center gap-5">
             <div className="h-12 w-12 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
-            <p className="text-[13px] text-[#9898b0]">Marking your attendance…</p>
+            <p className="text-[13px] text-muted-foreground">Marking your attendance…</p>
           </div>
         )}
 
@@ -252,7 +252,7 @@ export default function CheckInPage() {
             </div>
             <div className="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2">
               <Clock size={12} className="text-muted-foreground" />
-              <span className="text-[12px] text-[#9898b0]">Checked in at {checkedInTime}</span>
+              <span className="text-[12px] text-muted-foreground">Checked in at {checkedInTime}</span>
             </div>
             {checkInData?.expiryWarning && (
               <div className="w-full rounded-xl border border-amber-500/20 bg-amber-500/10 px-4 py-3 text-[12px] text-amber-400">
@@ -278,7 +278,7 @@ export default function CheckInPage() {
               <p className="text-xl font-bold text-foreground" style={{ fontFamily: "'Syne', sans-serif" }}>
                 Check-in Failed
               </p>
-              <p className="mt-2 text-[13px] leading-relaxed text-[#9898b0]">{errorMsg}</p>
+              <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">{errorMsg}</p>
             </div>
             <button
               onClick={reset}

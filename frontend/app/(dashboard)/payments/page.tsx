@@ -52,7 +52,7 @@ interface RevenueSummary {
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
-    <label className="block text-[12px] font-medium text-[#9898b0] mb-1.5">
+    <label className="block text-[12px] font-medium text-muted-foreground mb-1.5">
       {children}
     </label>
   )
@@ -82,7 +82,7 @@ function StyledInput({
       onChange={e => onChange(e.target.value)}
       placeholder={placeholder}
       className="w-full rounded-xl px-3 py-2.5 text-[14px] text-foreground outline-none transition-all"
-      style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}
+      style={{ background: 'var(--background)', border: '1px solid var(--border)' }}
       onFocus={e => (e.currentTarget.style.border = '1px solid #7c3aed44')}
       onBlur={e  => (e.currentTarget.style.border = '1px solid #ffffff0a')}
     />
@@ -105,7 +105,7 @@ function MethodPicker({ value, onChange }: { value: string; onChange: (v: string
           style={
             value === v
               ? { background: '#7c3aed22', border: '1px solid #7c3aed40', color: '#a855f7' }
-              : { background: '#0f0f0f',   border: '1px solid #ffffff0a', color: '#6b6b80' }
+              : { background: 'var(--background)',   border: '1px solid var(--border)', color: 'var(--muted-foreground)' }
           }
         >
           <Icon size={14} />
@@ -195,7 +195,7 @@ function DeleteConfirmModal({
           <button
             onClick={onClose}
             className="flex-1 rounded-xl py-2.5 text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors"
-            style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}
+            style={{ background: 'var(--background)', border: '1px solid var(--border)' }}
           >
             Cancel
           </button>
@@ -363,7 +363,7 @@ function EditPaymentModal({
                 value={planId}
                 onChange={e => handlePlanChange(e.target.value)}
                 className="w-full rounded-xl px-3 py-2.5 text-[14px] text-foreground outline-none transition-all"
-                style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}
+                style={{ background: 'var(--background)', border: '1px solid var(--border)' }}
                 onFocus={e => (e.currentTarget.style.border = '1px solid #7c3aed44')}
                 onBlur={e  => (e.currentTarget.style.border = '1px solid #ffffff0a')}
               >
@@ -461,7 +461,7 @@ function EditPaymentModal({
               rows={2}
               placeholder="Optional"
               className="w-full rounded-xl px-3 py-2.5 text-[14px] text-foreground placeholder:text-muted-foreground outline-none resize-none transition-all"
-              style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}
+              style={{ background: 'var(--background)', border: '1px solid var(--border)' }}
               onFocus={e => (e.currentTarget.style.border = '1px solid #7c3aed44')}
               onBlur={e  => (e.currentTarget.style.border = '1px solid #ffffff0a')}
             />
@@ -481,7 +481,7 @@ function EditPaymentModal({
             <button
               onClick={onClose}
               className="flex-1 rounded-xl py-2.5 text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors"
-              style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}
+              style={{ background: 'var(--background)', border: '1px solid var(--border)' }}
             >
               Cancel
             </button>
@@ -598,7 +598,7 @@ function CollectDueModal({
           <button
             onClick={onClose}
             className="flex-1 rounded-xl py-2.5 text-[13px] font-medium text-muted-foreground transition-all hover:text-foreground"
-            style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}
+            style={{ background: 'var(--background)', border: '1px solid var(--border)' }}
           >
             Cancel
           </button>
@@ -650,14 +650,14 @@ function Pagination({
         onClick={() => onPageChange(page - 1)}
         disabled={page === 1}
         className={`${btnBase} text-muted-foreground hover:text-foreground disabled:opacity-30`}
-        style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}
+        style={{ background: 'var(--background)', border: '1px solid var(--border)' }}
       >
         <ChevronLeft size={14} />
       </button>
 
       {getPages().map((p, i) =>
         p === '...' ? (
-          <span key={`ellipsis-${i}`} className="px-1 text-[13px] text-[#3d3d52] flex-shrink-0">…</span>
+          <span key={`ellipsis-${i}`} className="px-1 text-[13px] text-muted-foreground flex-shrink-0">…</span>
         ) : (
           <button
             key={p}
@@ -666,7 +666,7 @@ function Pagination({
             style={
               p === page
                 ? { background: 'linear-gradient(135deg,#7c3aed,#a855f7)', color: '#fff', border: '1px solid transparent' }
-                : { background: '#0f0f0f', color: '#9898b0', border: '1px solid #ffffff0a' }
+                : { background: 'var(--background)', color: 'var(--muted-foreground)', border: '1px solid var(--border)' }
             }
           >
             {p}
@@ -678,7 +678,7 @@ function Pagination({
         onClick={() => onPageChange(page + 1)}
         disabled={page === totalPages}
         className={`${btnBase} text-muted-foreground hover:text-foreground disabled:opacity-30`}
-        style={{ background: '#0f0f0f', border: '1px solid #ffffff0a' }}
+        style={{ background: 'var(--background)', border: '1px solid var(--border)' }}
       >
         <ChevronRight size={14} />
       </button>
@@ -779,7 +779,7 @@ export default function PaymentsPage() {
               style={
                 period === p
                   ? { background: 'linear-gradient(135deg,#7c3aed,#a855f7)', color: '#fff' }
-                  : { background: '#0f0f0f', color: '#6b6b80', border: '1px solid #ffffff0a' }
+                  : { background: 'var(--background)', color: 'var(--muted-foreground)', border: '1px solid var(--border)' }
               }
             >
               {PERIOD_LABELS[p]}
@@ -797,7 +797,7 @@ export default function PaymentsPage() {
               <p className="text-sm text-muted-foreground">Revenue · {PERIOD_LABELS[period]}</p>
             </div>
             {summaryLoading ? (
-              <div className="mt-2 h-8 w-32 animate-pulse rounded-lg bg-white/5" />
+              <div className="mt-2 h-8 w-32 animate-pulse rounded-lg bg-muted" />
             ) : (
               <h3 className="mt-1 text-2xl font-bold text-violet-300">{toRupees(periodRevenue)}</h3>
             )}
@@ -806,7 +806,7 @@ export default function PaymentsPage() {
           <div className="rounded-2xl border border-border bg-card p-5">
             <p className="text-sm text-muted-foreground">Pending Dues</p>
             {summaryLoading ? (
-              <div className="mt-2 h-8 w-24 animate-pulse rounded-lg bg-white/5" />
+              <div className="mt-2 h-8 w-24 animate-pulse rounded-lg bg-muted" />
             ) : (
               <h3 className="mt-2 text-2xl font-bold text-amber-400">
                 {toRupees(summary?.pendingDues ?? 0)}
@@ -817,7 +817,7 @@ export default function PaymentsPage() {
           <div className="rounded-2xl border border-border bg-card p-5">
             <p className="text-sm text-muted-foreground">All-Time Revenue</p>
             {summaryLoading ? (
-              <div className="mt-2 h-8 w-28 animate-pulse rounded-lg bg-white/5" />
+              <div className="mt-2 h-8 w-28 animate-pulse rounded-lg bg-muted" />
             ) : (
               <h3 className="mt-2 text-2xl font-bold text-green-400">
                 {toRupees(summary?.total ?? 0)}
@@ -937,7 +937,7 @@ export default function PaymentsPage() {
                           Collect Due
                         </button>
                       ) : (
-                        <span className="text-xs text-[#3d3d52]">—</span>
+                        <span className="text-xs text-muted-foreground">—</span>
                       )}
                     </div>
 
@@ -946,7 +946,7 @@ export default function PaymentsPage() {
                       <button
                         onClick={() => setEditPayment(toEditState(payment))}
                         className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] font-medium text-muted-foreground hover:text-violet-400 transition-colors"
-                        style={{ background: '#ffffff06', border: '1px solid #ffffff0a' }}
+                        style={{ background: '#ffffff06', border: '1px solid var(--border)' }}
                       >
                         <Pencil size={11} />
                         Edit
@@ -959,7 +959,7 @@ export default function PaymentsPage() {
                             amount:     payment.finalAmount ?? 0,
                           })}
                           className="flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-[11px] font-medium text-muted-foreground hover:text-red-400 transition-colors"
-                          style={{ background: '#ffffff06', border: '1px solid #ffffff0a' }}
+                          style={{ background: '#ffffff06', border: '1px solid var(--border)' }}
                         >
                           <Trash2 size={11} />
                         </button>
@@ -1044,7 +1044,7 @@ export default function PaymentsPage() {
                       <button
                         onClick={() => setEditPayment(toEditState(payment))}
                         className="flex flex-1 items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-[12px] font-medium text-muted-foreground hover:text-violet-400 transition-colors"
-                        style={{ background: '#ffffff06', border: '1px solid #ffffff0a' }}
+                        style={{ background: '#ffffff06', border: '1px solid var(--border)' }}
                       >
                         <Pencil size={12} />
                         Edit
@@ -1057,7 +1057,7 @@ export default function PaymentsPage() {
                             amount:     payment.finalAmount ?? 0,
                           })}
                           className="flex items-center justify-center rounded-lg px-3 py-2 text-[12px] text-muted-foreground hover:text-red-400 transition-colors"
-                          style={{ background: '#ffffff06', border: '1px solid #ffffff0a' }}
+                          style={{ background: '#ffffff06', border: '1px solid var(--border)' }}
                         >
                           <Trash2 size={12} />
                         </button>
@@ -1072,7 +1072,7 @@ export default function PaymentsPage() {
           {/* ── Pagination ── */}
           <div className="flex flex-col items-center gap-1">
             <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
-            <p className="text-[12px] text-[#3d3d52]">
+            <p className="text-[12px] text-muted-foreground">
               Page {page} of {totalPages} · {totalCount} payments
             </p>
           </div>

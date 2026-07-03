@@ -217,7 +217,7 @@ function DietPlanCard({
 
                     {plan.description && (
 
-                        <div className="mt-5 rounded-2xl border border-white/[0.05] bg-black/20 p-5">
+                        <div className="mt-5 rounded-2xl border border-white/[0.05] bg-background/20 p-5">
 
                             <p className="text-[15px] leading-7 text-zinc-300">
                                 {plan.description}
@@ -244,7 +244,7 @@ function DietPlanCard({
 
                                     <div
                                         key={meal.id}
-                                        className="rounded-2xl border border-border bg-black/20 p-5 hover:border-white/[0.1] transition-all"
+                                        className="rounded-2xl border border-border bg-background/20 p-5 hover:border-white/[0.1] transition-all"
                                     >
 
                                         {/* MEAL HEADER */}
@@ -412,11 +412,11 @@ function AddDietModal({
         }
     }
 
-    const inputCls = 'w-full bg-black/30 border border-border rounded-xl px-3 py-2 text-sm text-foreground placeholder:text-zinc-600 outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-all'
+    const inputCls = 'w-full bg-background/30 border border-border rounded-xl px-3 py-2 text-sm text-foreground placeholder:text-zinc-600 outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-all'
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
-            <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl" style={{ background: '#111118', border: '1px solid #ffffff12' }}>
+            <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl" style={{ background: 'var(--background)', border: '1px solid var(--border)' }}>
                 <div className="sticky top-0 px-6 py-4 flex items-center justify-between" >
                     <h2 className="text-base font-semibold text-foreground">Create Diet Plan</h2>
                     <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors text-sm">✕</button>
@@ -455,12 +455,12 @@ function AddDietModal({
 
                         <div className="space-y-4">
                             {meals.map((meal, mealIdx) => (
-                                <div key={mealIdx} className="rounded-xl border border-border bg-black/20 p-4">
+                                <div key={mealIdx} className="rounded-xl border border-border bg-background/20 p-4">
                                     <div className="flex items-center gap-3 mb-3">
                                         <select
                                             value={meal.time}
                                             onChange={e => { const u = [...meals]; u[mealIdx].time = e.target.value; setMeals(u) }}
-                                            className="bg-black/40 border border-border rounded-lg px-2 py-1.5 text-xs text-foreground outline-none flex-1"
+                                            className="bg-background/40 border border-border rounded-lg px-2 py-1.5 text-xs text-foreground outline-none flex-1"
                                         >
                                             {mealTimes.map(t => <option key={t} value={t}>{t}</option>)}
                                         </select>
@@ -469,7 +469,7 @@ function AddDietModal({
                                             placeholder="kcal"
                                             value={meal.calories}
                                             onChange={e => { const u = [...meals]; u[mealIdx].calories = e.target.value; setMeals(u) }}
-                                            className="bg-black/40 border border-border rounded-lg px-2 py-1.5 text-xs text-foreground outline-none w-20 placeholder:text-zinc-600"
+                                            className="bg-background/40 border border-border rounded-lg px-2 py-1.5 text-xs text-foreground outline-none w-20 placeholder:text-zinc-600"
                                         />
                                         {meals.length > 1 && (
                                             <button onClick={() => removeMeal(mealIdx)} className="text-red-400/60 hover:text-red-400 transition-colors">
@@ -628,15 +628,15 @@ export default function MemberDietWeightPage() {
                     <Panel>
                         <SectionLabel>Weight summary</SectionLabel>
                         <div className="grid grid-cols-3 gap-3 mb-4">
-                            <div className="rounded-xl bg-black/20 border border-border p-3 text-center">
+                            <div className="rounded-xl bg-background/20 border border-border p-3 text-center">
                                 <p className="text-lg font-bold text-foreground">{summary?.latest ?? '—'}</p>
                                 <p className="text-[10px] text-muted-foreground mt-0.5">Current (kg)</p>
                             </div>
-                            <div className="rounded-xl bg-black/20 border border-border p-3 text-center">
+                            <div className="rounded-xl bg-background/20 border border-border p-3 text-center">
                                 <p className="text-lg font-bold text-foreground">{summary?.oldest ?? '—'}</p>
                                 <p className="text-[10px] text-muted-foreground mt-0.5">Starting (kg)</p>
                             </div>
-                            <div className="rounded-xl bg-black/20 border border-border p-3 text-center">
+                            <div className="rounded-xl bg-background/20 border border-border p-3 text-center">
                                 <p className={cn('text-lg font-bold flex items-center justify-center gap-1', changeColor)}>
                                     <ChangeIcon className="h-4 w-4" />
                                     {change !== null ? Math.abs(change) : '—'}
@@ -668,7 +668,7 @@ export default function MemberDietWeightPage() {
                                     const prev = entries[idx + 1]?.weight
                                     const diff = prev !== undefined ? +(entry.weight - prev).toFixed(1) : null
                                     return (
-                                        <div key={entry.id} className="rounded-xl border border-border bg-black/20 px-3 py-2.5 flex items-center gap-3">
+                                        <div key={entry.id} className="rounded-xl border border-border bg-background/20 px-3 py-2.5 flex items-center gap-3">
                                             <div className="h-8 w-8 rounded-lg bg-violet-500/10 flex items-center justify-center flex-shrink-0">
                                                 <Scale className="h-3.5 w-3.5 text-violet-400" />
                                             </div>

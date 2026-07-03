@@ -52,7 +52,7 @@ export default function NotificationsPage() {
           <p className="text-sm text-foreground/40 mt-1">Monitor all outgoing messages</p>
         </div>
         <button onClick={() => fetchLogs()}
-          className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/50 hover:text-foreground text-xs transition-all">
+          className="flex items-center gap-2 px-3 py-2 rounded-xl bg-muted hover:bg-muted text-foreground/50 hover:text-foreground text-xs transition-all">
           <RefreshCw size={13} />Refresh
         </button>
       </div>
@@ -122,7 +122,7 @@ export default function NotificationsPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3 flex-shrink-0 ml-4">
-                  <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${STATUS_COLORS[log.status] || 'bg-white/5 text-foreground/30'}`}>
+                  <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${STATUS_COLORS[log.status] || 'bg-muted text-foreground/30'}`}>
                     {log.status}
                   </span>
                   <p className="text-xs text-foreground/30">

@@ -277,16 +277,16 @@ function AdminGymsContent() {
 
       {/* Add Gym Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-sm">
-          <div className="w-full sm:max-w-md bg-[#0e0e15] border border-border rounded-t-3xl sm:rounded-3xl shadow-2xl max-h-[92vh] overflow-y-auto">
-            <div className="flex items-center justify-between px-6 py-5 border-b border-border sticky top-0 bg-[#0e0e15]">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-background/60 backdrop-blur-sm">
+          <div className="w-full sm:max-w-md bg-background border border-border rounded-t-3xl sm:rounded-3xl shadow-2xl max-h-[92vh] overflow-y-auto">
+            <div className="flex items-center justify-between px-6 py-5 border-b border-border sticky top-0 bg-background">
               <div>
                 <h2 className="text-base font-bold text-foreground">Add Gym</h2>
                 <p className="text-xs text-foreground/30 mt-0.5">Gym will be pending until approved</p>
               </div>
               <button
                 onClick={() => { setShowModal(false); setFormError('') }}
-                className="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-foreground/40 hover:text-foreground transition-all"
+                className="w-8 h-8 rounded-xl bg-muted hover:bg-muted flex items-center justify-center text-foreground/40 hover:text-foreground transition-all"
               >
                 <X size={15} />
               </button>
@@ -353,7 +353,7 @@ function AdminGymsContent() {
 
               <div className="flex gap-3 pt-1">
                 <button type="button" onClick={() => { setShowModal(false); setFormError('') }}
-                  className="flex-1 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-foreground/60 hover:text-foreground text-sm font-medium transition-all">
+                  className="flex-1 py-2.5 rounded-xl bg-muted hover:bg-muted text-foreground/60 hover:text-foreground text-sm font-medium transition-all">
                   Cancel
                 </button>
                 <button type="submit" disabled={submitting}

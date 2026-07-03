@@ -59,12 +59,12 @@ const STATUS_CONFIG = {
 }
 
 const inputCls = `
-  w-full rounded-xl border border-[#ffffff0a] bg-[#0f0f0f]
-  px-3 py-2.5 text-[13px] text-foreground placeholder:text-[#3d3d52]
+  w-full rounded-xl border border-border bg-background
+  px-3 py-2.5 text-[13px] text-foreground placeholder:text-muted-foreground
   focus:border-[#7c3aed44] focus:shadow-[0_0_0_3px_#7c3aed12] focus:outline-none transition-all
 `
 const selectCls = `
-  w-full rounded-xl border border-[#ffffff0a] bg-[#0f0f0f]
+  w-full rounded-xl border border-border bg-background
   px-3 py-2.5 text-[13px] text-foreground
   focus:border-[#7c3aed44] focus:shadow-[0_0_0_3px_#7c3aed12] focus:outline-none transition-all
   appearance-none cursor-pointer
@@ -84,7 +84,7 @@ function Section({ icon: Icon, title, children }: { icon: React.ElementType; tit
   return (
     <div className="rounded-2xl border border-border bg-card p-5">
       <div className="mb-4 flex items-center gap-2.5">
-        <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#7c3aed15] border border-[#7c3aed25] text-[#a855f7]">
+        <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#7c3aed15] border border-border text-[#a855f7]">
           <Icon size={15} />
         </div>
         <p className="text-[14px] font-semibold text-foreground">{title}</p>
@@ -263,11 +263,11 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
       
       {/* ── Success View ─────────────────────────────────────────────── */}
       {createdMember ? (
-        <div className="w-full max-w-[400px] overflow-hidden rounded-3xl bg-card border border-border shadow-[0_24px_64px_#00000080,0_0_0_1px_#ffffff05] animate-in fade-in-0 zoom-in-95 duration-150">
+        <div className="w-full max-w-[400px] overflow-hidden rounded-3xl bg-card border border-border shadow-xl animate-in fade-in-0 zoom-in-95 duration-150">
           <div className="h-1 w-full bg-gradient-to-r from-[#10b981] to-[#34d399]" />
           <div className="p-5 sm:p-6 space-y-5">
             <div className="flex flex-col items-center text-center">
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#10b98115] border border-[#10b98125]">
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#10b98115] border border-border">
                 <CheckCircle size={22} className="text-[#10b981]" strokeWidth={2} />
               </div>
               <p className="text-[17px] font-semibold text-foreground" style={{ fontFamily: "'Syne', sans-serif", letterSpacing: '-0.01em' }}>
@@ -278,9 +278,9 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               </p>
             </div>
 
-            <div className="h-px bg-[#ffffff0a]" />
+            <div className="h-px bg-muted" />
 
-            <div className="rounded-xl border border-[#ffffff0a] bg-[#0f0f0f] p-4 space-y-3">
+            <div className="rounded-xl border border-border bg-background p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-[12.5px] text-muted-foreground">📱 Phone</span>
                 <span className="text-[13px] font-mono font-medium text-foreground">{createdMember.phone}</span>
@@ -296,7 +296,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                       navigator.clipboard.writeText(createdMember.tempPassword)
                       toast.success('Password copied!')
                     }}
-                    className="rounded-lg p-1.5 text-muted-foreground hover:text-foreground hover:bg-[#ffffff0a] transition-colors"
+                    className="rounded-lg p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                   >
                     <Copy size={13} />
                   </button>
@@ -309,7 +309,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               </div>
             </div>
 
-            <div className="rounded-xl border border-[#7c3aed25] bg-[#7c3aed10] px-4 py-3">
+            <div className="rounded-xl border border-border bg-[#7c3aed10] px-4 py-3">
               <p className="text-[12.5px] text-violet-300">
                 ✅ Login link sent to {createdMember.phone} via WhatsApp
               </p>
@@ -324,7 +324,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   setPlanAmount(0)
                   setValue('planStartDate', toDateInputValue(new Date()))
                 }}
-                className="h-10 flex-1 rounded-xl border border-[#ffffff0f] bg-[#ffffff08] hover:bg-[#ffffff12] text-[13px] font-medium text-[#9898b0] hover:text-foreground transition-all sm:flex-none px-4"
+                className="h-10 flex-1 rounded-xl border border-border bg-muted hover:bg-muted text-[13px] font-medium text-muted-foreground hover:text-foreground transition-all sm:flex-none px-4"
               >
                 Add Another
               </button>
@@ -340,7 +340,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
       ) : (
       
       /* ── Main Form View ────────────────────────────────────────────── */
-        <div className="relative w-full max-w-2xl max-h-full flex flex-col overflow-hidden rounded-3xl bg-card border border-border shadow-[0_24px_64px_#00000080,0_0_0_1px_#ffffff05] animate-in fade-in-0 zoom-in-95 duration-150">
+        <div className="relative w-full max-w-2xl max-h-full flex flex-col overflow-hidden rounded-3xl bg-card border border-border shadow-xl animate-in fade-in-0 zoom-in-95 duration-150">
           
           {/* Header (Sticky) */}
           <div className="flex items-center justify-between border-b border-border px-5 sm:px-6 py-4 bg-card shrink-0">
@@ -352,7 +352,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
             </div>
             <button
               onClick={onClose}
-              className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#ffffff0a] bg-[#0f0f0f] text-[#9898b0] transition-colors hover:bg-[#ffffff05] hover:text-foreground"
+              className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-background text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               <X size={16} />
             </button>
@@ -375,10 +375,10 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                 </Field>
                 <Field label="Gender">
                   <select className={selectCls} {...register('gender')}>
-                    <option value="" style={{ background: '#0f0f0f' }}>Select gender</option>
-                    <option value="MALE"   style={{ background: '#0f0f0f' }}>Male</option>
-                    <option value="FEMALE" style={{ background: '#0f0f0f' }}>Female</option>
-                    <option value="OTHER"  style={{ background: '#0f0f0f' }}>Other</option>
+                    <option value="" style={{ background: 'var(--background)' }}>Select gender</option>
+                    <option value="MALE"   style={{ background: 'var(--background)' }}>Male</option>
+                    <option value="FEMALE" style={{ background: 'var(--background)' }}>Female</option>
+                    <option value="OTHER"  style={{ background: 'var(--background)' }}>Other</option>
                   </select>
                 </Field>
                 <Field label="Date of Birth">
@@ -422,7 +422,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                 className="w-full flex items-center justify-between p-5 text-left hover:bg-[#ffffff03] transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#7c3aed15] border border-[#7c3aed25] text-[#a855f7]">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#7c3aed15] border border-border text-[#a855f7]">
                     <Dumbbell size={15} />
                   </div>
                   <div>
@@ -434,8 +434,8 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                 </div>
                 <div className={`flex-shrink-0 flex items-center gap-1.5 rounded-lg px-3 h-8 text-[12px] font-medium transition-all ${
                   addPayment
-                    ? 'bg-[#7c3aed1a] text-violet-300 border border-[#7c3aed30]'
-                    : 'bg-[#ffffff05] text-[#9898b0] border border-[#ffffff0a]'
+                    ? 'bg-[#7c3aed1a] text-violet-300 border border-border'
+                    : 'bg-muted text-muted-foreground border border-border'
                 }`}>
                   {addPayment ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
                   {addPayment ? 'Hide' : 'Add Plan'}
@@ -448,16 +448,16 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
                       <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7c3aed20] text-[10px] font-bold text-violet-300">1</span>
-                      <span className="text-[12px] font-semibold text-[#9898b0] uppercase tracking-wide">Choose Plan</span>
+                      <span className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wide">Choose Plan</span>
                     </div>
                     <select
                       className={selectCls}
                       {...register('planId')}
                       onChange={e => { register('planId').onChange(e); handlePlanChange(e.target.value) }}
                     >
-                      <option value="" style={{ background: '#0f0f0f' }}>— Select a membership plan —</option>
+                      <option value="" style={{ background: 'var(--background)' }}>— Select a membership plan —</option>
                       {plans.map(plan => (
-                        <option key={plan.id} value={plan.id} style={{ background: '#0f0f0f' }}>
+                        <option key={plan.id} value={plan.id} style={{ background: 'var(--background)' }}>
                           {plan.name}  •  ₹{(plan.price / 100).toLocaleString('en-IN')}  •  {plan.durationDays} days
                         </option>
                       ))}
@@ -469,7 +469,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                       </p>
                     )}
                     {planAmount > 0 && (
-                      <div className="flex items-center justify-between rounded-xl border border-[#7c3aed30] bg-[#7c3aed10] px-4 py-3">
+                      <div className="flex items-center justify-between rounded-xl border border-border bg-[#7c3aed10] px-4 py-3">
                         <div>
                           <p className="text-[13px] font-semibold text-foreground">{plans.find(p => p.id === planId)?.name}</p>
                           <p className="text-[12px] text-muted-foreground mt-0.5">{plans.find(p => p.id === planId)?.durationDays} days membership</p>
@@ -483,8 +483,8 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
                       <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7c3aed20] text-[10px] font-bold text-violet-300">2</span>
-                      <span className="text-[12px] font-semibold text-[#9898b0] uppercase tracking-wide">Adjust Amount</span>
-                      <span className="text-[11px] text-[#3d3d52]">(optional)</span>
+                      <span className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wide">Adjust Amount</span>
+                      <span className="text-[11px] text-muted-foreground">(optional)</span>
                     </div>
                     <div className="grid grid-cols-2 gap-3">
                       <div className="space-y-1.5">
@@ -505,7 +505,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                       </div>
                     </div>
                     {planAmount > 0 && (
-                      <div className="rounded-xl border border-[#ffffff0a] bg-[#ffffff03] p-3 space-y-2 mt-2">
+                      <div className="rounded-xl border border-border bg-[#ffffff03] p-3 space-y-2 mt-2">
                         <div className="flex items-center justify-between text-[13px]">
                           <span className="text-muted-foreground">Plan price</span>
                           <span className="text-foreground">₹{planAmount}</span>
@@ -522,7 +522,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                             <span className="text-[#fbbf24]">+ ₹{additionalFee}</span>
                           </div>
                         )}
-                        <div className="flex items-center justify-between border-t border-[#ffffff0a] pt-2">
+                        <div className="flex items-center justify-between border-t border-border pt-2">
                           <span className="text-[13px] font-semibold text-foreground">Total to collect</span>
                           <span className="text-[16px] font-bold text-foreground">₹{netDue}</span>
                         </div>
@@ -534,7 +534,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
                       <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7c3aed20] text-[10px] font-bold text-violet-300">3</span>
-                      <span className="text-[12px] font-semibold text-[#9898b0] uppercase tracking-wide">Amount Collected Today</span>
+                      <span className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wide">Amount Collected Today</span>
                     </div>
                     <div className="space-y-1.5">
                       <div className="relative">
@@ -570,7 +570,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
                       <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7c3aed20] text-[10px] font-bold text-violet-300">4</span>
-                      <span className="text-[12px] font-semibold text-[#9898b0] uppercase tracking-wide">Membership Start Date</span>
+                      <span className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wide">Membership Start Date</span>
                     </div>
                     <input className={inputCls} type="date" style={{ colorScheme: 'dark' }} {...register('planStartDate')} />
                     {expiryPreview && (
@@ -588,7 +588,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
                       <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7c3aed20] text-[10px] font-bold text-violet-300">5</span>
-                      <span className="text-[12px] font-semibold text-[#9898b0] uppercase tracking-wide">How Did They Pay?</span>
+                      <span className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wide">How Did They Pay?</span>
                     </div>
                     <div className="grid grid-cols-2 gap-2.5">
                       {PAYMENT_METHODS.map(m => {
@@ -606,7 +606,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                             className={`flex items-center justify-center gap-2.5 h-12 rounded-xl border text-[13px] font-medium transition-all ${
                               selected
                                 ? 'border-[#7c3aed50] bg-[#7c3aed20] text-violet-300 shadow-[0_0_0_3px_#7c3aed12]'
-                                : 'border-[#ffffff0a] bg-[#0f0f0f] text-[#9898b0] hover:bg-[#ffffff05]'
+                                : 'border-border bg-background text-muted-foreground hover:bg-muted'
                             }`}
                           >
                             <span className={selected ? 'text-violet-400' : 'text-muted-foreground'}>
@@ -623,7 +623,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   {/* Payment notes */}
                   <div className="space-y-1.5 pt-1">
                     <label className="text-[12px] font-medium text-muted-foreground">
-                      Notes <span className="text-[#3d3d52]">(optional)</span>
+                      Notes <span className="text-muted-foreground">(optional)</span>
                     </label>
                     <input className={inputCls} placeholder="e.g. Paid via GPay, receipt #123" {...register('paymentNotes')} />
                   </div>
@@ -638,7 +638,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
             <button
               type="button"
               onClick={onClose}
-              className="w-full sm:w-auto h-11 rounded-xl border border-[#ffffff0a] bg-[#0f0f0f] px-6 text-[13px] font-medium text-[#9898b0] transition-colors hover:bg-[#ffffff08] hover:text-foreground"
+              className="w-full sm:w-auto h-11 rounded-xl border border-border bg-background px-6 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               Cancel
             </button>
