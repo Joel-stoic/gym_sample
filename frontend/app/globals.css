@@ -79,46 +79,48 @@
 
 /* ─── :root — single source of truth, no parallel token system ─────────────── */
 :root {
-  --background:           #1A1A1A;
-  --foreground:           #F0EEEC;
-  --card:                 #222222;
-  --card-foreground:      #F0EEEC;
-  --popover:              #222222;
-  --popover-foreground:   #F0EEEC;
+  --background:           #232323;       /* Raisin Black — page bg               */
+  --foreground:           #EBCC98;       /* Sunset — primary text                */
+  --card:                 #2A2826;       /* slightly lighter/warmer than bg       */
+  --card-foreground:      #EBCC98;
+  --popover:              #2A2826;
+  --popover-foreground:   #EBCC98;
 
-  --primary:              #6B1615;
-  --primary-foreground:   #F0EEEC;
+  --primary:              #CDA175;       /* Buff — buttons, active states         */
+  --primary-foreground:   #232323;       /* dark text on buff (better contrast)   */
 
-  --secondary:            #2A2A2A;
-  --secondary-foreground: #F0EEEC;
-  --muted:                #2A2A2A;
-  --muted-foreground:     #888888;
+  --secondary:            #302C29;       /* warm dark surface — inputs, hover     */
+  --secondary-foreground: #EBCC98;
+  --muted:                #302C29;
+  --muted-foreground:     #8A7A65;       /* darkened Buff for secondary labels    */
 
-  --accent:               rgba(107,22,21,0.15);
-  --accent-foreground:    #6B1615;
+  --accent:               rgba(205,161,117,0.12); /* Buff wash — active row bg   */
+  --accent-foreground:    #EBCC98;       /* Sunset on accent wash                 */
 
-  --destructive:          #9B2020;
+  --destructive:          #CDA175;       /* reuses primary — no third hue         */
 
-  --border:               #333333;
-  --input:                #333333;
-  --ring:                 #6B1615;
+  --border:               #3D3731;       /* warm dark border                      */
+  --input:                #3D3731;
+  --ring:                 #CDA175;
 
-  --chart-1:              #6B1615;
-  --chart-2:              #9B2020;
-  --chart-3:              #888888;
-  --chart-4:              #2A2A2A;
-  --chart-5:              #333333;
+  /* Chart palette — warm, no third hue */
+  --chart-1:              #CDA175;       /* Buff — primary data series            */
+  --chart-2:              #EBCC98;       /* Sunset — secondary series             */
+  --chart-3:              #8A7A65;       /* muted warm — tertiary                 */
+  --chart-4:              #B08A5F;       /* deeper Buff tint                      */
+  --chart-5:              #4A3F35;       /* dark warm — grid/background           */
 
   --radius: 0.625rem;
 
-  --sidebar:                    #111111;
-  --sidebar-foreground:         #F0EEEC;
-  --sidebar-primary:            #6B1615;
-  --sidebar-primary-foreground: #F0EEEC;
-  --sidebar-accent:             rgba(107,22,21,0.12);
-  --sidebar-accent-foreground:  #F0EEEC;
-  --sidebar-border:             #2A2A2A;
-  --sidebar-ring:               #6B1615;
+  /* Sidebar — slightly darker than page so it recedes */
+  --sidebar:                    #1C1A18;
+  --sidebar-foreground:         #EBCC98;
+  --sidebar-primary:            #CDA175;
+  --sidebar-primary-foreground: #232323;
+  --sidebar-accent:             rgba(205,161,117,0.12);
+  --sidebar-accent-foreground:  #CDA175;
+  --sidebar-border:             #302C29;
+  --sidebar-ring:               #CDA175;
 }
 
 /* ─── Base layer ─────────────────────────────────────────────────────────────  */
