@@ -8,7 +8,7 @@ import api from '@/src/lib/api'
 import { Plan } from '@/src/types'
 import { toast } from 'sonner'
 import {
-  Loader2, User, StickyNote, Dumbbell, ChevronDown, ChevronUp,
+  Loader2, User, StickyNote, Dumbbell, ChevronRight, ChevronLeft,
   AlertCircle, CheckCircle, Clock, CalendarDays, Wallet, CreditCard, 
   Smartphone, Copy, X
 } from 'lucide-react'
@@ -94,8 +94,8 @@ function Section({ icon: Icon, title, children }: { icon: React.ElementType; tit
 
 export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps) {
   const queryClient  = useQueryClient()
+  const [step,           setStep]           = useState<1 | 2>(1)
   const [loading,        setLoading]        = useState(false)
-  const [addPayment,     setAddPayment]     = useState(true)
   const [planAmount,     setPlanAmount]     = useState(0)
   const [createdMember,  setCreatedMember]  = useState<{
     name:         string
@@ -104,7 +104,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
     loginUrl:     string
   } | null>(null)
 
-  const { register, handleSubmit, watch, setValue, reset, formState: { errors } } = useForm<FormData>({
+  const { register, handleSubmit, watch, setValue, reset, trigger, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
       discount:      '0',
@@ -117,7 +117,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
   useEffect(() => {
     if (isOpen) {
       reset()
-      setAddPayment(true)
+      setStep(1)
       setPlanAmount(0)
       setCreatedMember(null)
       setValue('planStartDate', toDateInputValue(new Date()))
@@ -197,6 +197,13 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
     return expiry.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
   })()
 
+  const handleNextStep = async () => {
+    const isValid = await trigger(['name', 'phone', 'email', 'gender', 'dateOfBirth', 'address', 'notes'])
+    if (isValid) {
+      setStep(2)
+    }
+  }
+
   const onSubmit = async (data: FormData) => {
     setLoading(true)
     try {
@@ -216,7 +223,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
       const memberData = memberRes.data.data
       const memberId   = memberData?.id
 
-      if (addPayment && data.planId && data.paymentMethod && memberId) {
+      if (data.planId && data.paymentMethod && memberId) {
         await api.post('/api/payments', {
           memberId,
           planId:        data.planId,
@@ -242,7 +249,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
           loginUrl:     memberData.loginUrl,
         })
       } else {
-        toast.success(addPayment && data.planId ? 'Member added and payment recorded' : 'Member added successfully')
+        toast.success(data.planId ? 'Member added and payment recorded' : 'Member added successfully')
         onClose()
       }
     } catch (error: any) {
@@ -315,7 +322,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                 onClick={() => {
                   setCreatedMember(null)
                   reset()
-                  setAddPayment(true)
+                  setStep(1)
                   setPlanAmount(0)
                   setValue('planStartDate', toDateInputValue(new Date()))
                 }}
@@ -340,7 +347,9 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               <h2 className="text-[18px] font-bold tracking-tight text-foreground sm:text-[20px]" style={{ fontFamily: "'Syne', sans-serif" }}>
                 Add Member
               </h2>
-              <p className="text-[12.5px] text-muted-foreground mt-0.5">Register a new gym member</p>
+              <p className="text-[12.5px] text-muted-foreground mt-0.5">
+                {step === 1 ? 'Step 1 of 2: Personal Details' : 'Step 2 of 2: Assign Plan (Optional)'}
+              </p>
             </div>
             <button
               onClick={onClose}
@@ -352,286 +361,163 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
 
           <form id="new-member-form" onSubmit={handleSubmit(onSubmit)} className="flex-1 overflow-y-auto px-5 sm:px-6 py-5 space-y-5">
             
-            <Section icon={User} title="Personal Information">
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <Field label="Full Name *" error={errors.name?.message}>
-                  <input className={inputCls} placeholder="Ravi Kumar" {...register('name')} />
-                </Field>
-                <Field label="Phone *" error={errors.phone?.message}>
-                  <input className={inputCls} placeholder="9876543210" type="tel" {...register('phone')} />
-                </Field>
-                <Field label="Email" error={errors.email?.message}>
-                  <input className={inputCls} placeholder="ravi@example.com" type="email" {...register('email')} />
-                </Field>
-                <Field label="Gender">
-                  <select className={selectCls} {...register('gender')}>
-                    <option value="" style={{ background: 'var(--background)' }}>Select gender</option>
-                    <option value="MALE"   style={{ background: 'var(--background)' }}>Male</option>
-                    <option value="FEMALE" style={{ background: 'var(--background)' }}>Female</option>
-                    <option value="OTHER"  style={{ background: 'var(--background)' }}>Other</option>
-                  </select>
-                </Field>
-                <Field label="Date of Birth">
-                  <input className={inputCls} type="date" style={{ colorScheme: 'dark' }} {...register('dateOfBirth')} />
-                </Field>
-              </div>
-              <div className="mt-4">
-                <Field label="Address">
-                  <input className={inputCls} placeholder="Chennai, Tamil Nadu" {...register('address')} />
-                </Field>
-              </div>
-            </Section>
-
-            <Section icon={StickyNote} title="Notes">
-              <Field label="Staff Notes">
-                <textarea
-                  className={`${inputCls} min-h-[80px] resize-none`}
-                  placeholder="Health conditions, goals, preferences..."
-                  {...register('notes')}
-                />
-              </Field>
-            </Section>
-
-            <div className="rounded-2xl border border-border bg-card overflow-hidden">
-              <button
-                type="button"
-                onClick={() => {
-                  setAddPayment(p => !p)
-                  if (addPayment) {
-                    setValue('planId', '')
-                    setValue('discount', '0')
-                    setValue('additionalFee', '0')
-                    setValue('paidAmount', '')
-                    setValue('paymentMethod', '')
-                    setValue('paymentNotes', '')
-                    setPlanAmount(0)
-                  }
-                }}
-                className="w-full flex items-center justify-between p-5 text-left hover:bg-[#ffffff03] transition-colors"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#7c3aed15] border border-border text-[#a855f7]">
-                    <Dumbbell size={15} />
+            {step === 1 ? (
+              <>
+                <Section icon={User} title="Personal Information">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <Field label="Full Name *" error={errors.name?.message}>
+                      <input className={inputCls} placeholder="Ravi Kumar" {...register('name')} />
+                    </Field>
+                    <Field label="Phone *" error={errors.phone?.message}>
+                      <input className={inputCls} placeholder="9876543210" type="tel" {...register('phone')} />
+                    </Field>
+                    <Field label="Email" error={errors.email?.message}>
+                      <input className={inputCls} placeholder="ravi@example.com" type="email" {...register('email')} />
+                    </Field>
+                    <Field label="Gender">
+                      <select className={selectCls} {...register('gender')}>
+                        <option value="" style={{ background: 'var(--background)' }}>Select gender</option>
+                        <option value="MALE"   style={{ background: 'var(--background)' }}>Male</option>
+                        <option value="FEMALE" style={{ background: 'var(--background)' }}>Female</option>
+                        <option value="OTHER"  style={{ background: 'var(--background)' }}>Other</option>
+                      </select>
+                    </Field>
+                    <Field label="Date of Birth">
+                      <input className={inputCls} type="date" style={{ colorScheme: 'dark' }} {...register('dateOfBirth')} />
+                    </Field>
                   </div>
-                  <div>
-                    <p className="text-[14px] font-semibold text-foreground">Membership Plan & Payment</p>
-                    <p className="text-[12px] text-muted-foreground mt-0.5">
-                      {addPayment ? 'Will be saved when you click Add Member' : 'Tap to assign a plan now'}
-                    </p>
+                  <div className="mt-4">
+                    <Field label="Address">
+                      <input className={inputCls} placeholder="Chennai, Tamil Nadu" {...register('address')} />
+                    </Field>
                   </div>
-                </div>
-                <div className={`flex-shrink-0 flex items-center gap-1.5 rounded-lg px-3 h-8 text-[12px] font-medium transition-all ${
-                  addPayment
-                    ? 'bg-[#7c3aed1a] text-violet-300 border border-border'
-                    : 'bg-muted text-muted-foreground border border-border'
-                }`}>
-                  {addPayment ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
-                  {addPayment ? 'Hide' : 'Add Plan'}
-                </div>
-              </button>
+                </Section>
 
-              {addPayment && (
-                <div className="border-t border-border p-5 space-y-6">
-                  <div className="space-y-2.5">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7c3aed20] text-[10px] font-bold text-violet-300">1</span>
-                      <span className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wide">Choose Plan</span>
-                    </div>
-                    <select
-                      className={selectCls}
-                      {...register('planId')}
-                      onChange={e => { register('planId').onChange(e); handlePlanChange(e.target.value) }}
-                    >
-                      <option value="" style={{ background: 'var(--background)' }}>— Select a membership plan —</option>
-                      {plans.map(plan => (
-                        <option key={plan.id} value={plan.id} style={{ background: 'var(--background)' }}>
-                          {plan.name}  •  ₹{(plan.price / 100).toLocaleString('en-IN')}  •  {plan.durationDays} days
-                        </option>
-                      ))}
-                    </select>
-                    {errors.planId && <p className="text-[11px] text-[#f87171]">{errors.planId.message}</p>}
-                    {plans.length === 0 && (
-                      <p className="text-[12px] text-muted-foreground">
-                        No plans found. Please create a plan first.
-                      </p>
-                    )}
+                <Section icon={StickyNote} title="Notes">
+                  <Field label="Staff Notes">
+                    <textarea
+                      className={`${inputCls} min-h-[80px] resize-none`}
+                      placeholder="Health conditions, goals, preferences..."
+                      {...register('notes')}
+                    />
+                  </Field>
+                </Section>
+              </>
+            ) : (
+              <div className="space-y-6">
+                <Section icon={Dumbbell} title="Select Plan">
+                  <div className="space-y-4">
+                    <Field label="Membership Plan" error={errors.planId?.message}>
+                      <select
+                        className={selectCls}
+                        {...register('planId')}
+                        onChange={e => { register('planId').onChange(e); handlePlanChange(e.target.value) }}
+                      >
+                        <option value="" style={{ background: 'var(--background)' }}>— Select a plan or leave empty to skip —</option>
+                        {plans.map(plan => (
+                          <option key={plan.id} value={plan.id} style={{ background: 'var(--background)' }}>
+                            {plan.name}  •  ₹{(plan.price / 100).toLocaleString('en-IN')}  •  {plan.durationDays} days
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                    
                     {planAmount > 0 && (
-                      <div className="flex items-center justify-between rounded-xl border border-border bg-[#7c3aed10] px-4 py-3">
-                        <div>
-                          <p className="text-[13px] font-semibold text-foreground">{plans.find(p => p.id === planId)?.name}</p>
-                          <p className="text-[12px] text-muted-foreground mt-0.5">{plans.find(p => p.id === planId)?.durationDays} days membership</p>
-                        </div>
-                        <p className="text-[18px] font-bold text-violet-300">₹{planAmount}</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <Field label="Amount Collected Today (₹)" error={errors.paidAmount?.message}>
+                          <input
+                            className={inputCls}
+                            type="number" inputMode="numeric"
+                            placeholder={netDue > 0 ? netDue.toString() : '0'}
+                            min={0} max={netDue || undefined}
+                            {...register('paidAmount')}
+                          />
+                        </Field>
+
+                        <Field label="Payment Method" error={errors.paymentMethod?.message}>
+                          <select className={selectCls} {...register('paymentMethod')}>
+                            <option value="" style={{ background: 'var(--background)' }}>Select method</option>
+                            {PAYMENT_METHODS.map(m => (
+                              <option key={m.value} value={m.value} style={{ background: 'var(--background)' }}>{m.label}</option>
+                            ))}
+                          </select>
+                        </Field>
                       </div>
                     )}
-                  </div>
-
-                  <div className="space-y-2.5">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7c3aed20] text-[10px] font-bold text-violet-300">2</span>
-                      <span className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wide">Adjust Amount</span>
-                      <span className="text-[11px] text-muted-foreground">(optional)</span>
-                    </div>
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="space-y-1.5">
-                        <label className="text-[12px] font-medium text-muted-foreground">Discount (₹)</label>
-                        <input
-                          className={inputCls} type="number" inputMode="numeric" placeholder="0" min={0}
-                          {...register('discount')}
-                          onChange={e => { register('discount').onChange(e); handleDiscountChange(e.target.value) }}
-                        />
-                      </div>
-                      <div className="space-y-1.5">
-                        <label className="text-[12px] font-medium text-muted-foreground">Extra Charge (₹)</label>
-                        <input
-                          className={inputCls} type="number" inputMode="numeric" placeholder="0" min={0}
-                          {...register('additionalFee')}
-                          onChange={e => { register('additionalFee').onChange(e); handleAdditionalFeeChange(e.target.value) }}
-                        />
-                      </div>
-                    </div>
-                    {planAmount > 0 && (
-                      <div className="rounded-xl border border-border bg-[#ffffff03] p-3 space-y-2 mt-2">
-                        <div className="flex items-center justify-between text-[13px]">
-                          <span className="text-muted-foreground">Plan price</span>
-                          <span className="text-foreground">₹{planAmount}</span>
-                        </div>
-                        {discount > 0 && (
-                          <div className="flex items-center justify-between text-[13px]">
-                            <span className="text-muted-foreground">Discount</span>
-                            <span className="text-[#4ade80]">− ₹{discount}</span>
-                          </div>
-                        )}
-                        {additionalFee > 0 && (
-                          <div className="flex items-center justify-between text-[13px]">
-                            <span className="text-muted-foreground">Extra charge</span>
-                            <span className="text-[#fbbf24]">+ ₹{additionalFee}</span>
-                          </div>
-                        )}
-                        <div className="flex items-center justify-between border-t border-border pt-2">
-                          <span className="text-[13px] font-semibold text-foreground">Total to collect</span>
-                          <span className="text-[16px] font-bold text-foreground">₹{netDue}</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="space-y-2.5">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7c3aed20] text-[10px] font-bold text-violet-300">3</span>
-                      <span className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wide">Amount Collected Today</span>
-                    </div>
-                    <div className="space-y-1.5">
-                      <div className="relative">
-                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[14px] font-semibold text-muted-foreground">₹</span>
-                        <input
-                          className={`${inputCls} pl-7 text-[16px] font-semibold`}
-                          type="number" inputMode="numeric"
-                          placeholder={netDue > 0 ? netDue.toString() : '0'}
-                          min={0} max={netDue || undefined}
-                          {...register('paidAmount')}
-                        />
-                      </div>
-                      {errors.paidAmount && <p className="text-[11px] text-[#f87171]">{errors.paidAmount.message}</p>}
-                    </div>
+                    
                     {planAmount > 0 && (
                       <div className={`flex items-center gap-2.5 rounded-xl border px-4 py-3 ${statusCfg.bg} ${statusCfg.border}`}>
                         <StatusIcon size={16} className={statusCfg.color} />
                         <div>
                           <p className={`text-[13px] font-semibold ${statusCfg.color}`}>
                             {paymentStatus === 'PAID'    && 'Fully Paid ✓'}
-                            {paymentStatus === 'PARTIAL' && `Partial — ₹${pending} still due`}
-                            {paymentStatus === 'PENDING' && 'Nothing paid — member will be Inactive'}
+                            {paymentStatus === 'PARTIAL' && `Partial Payment — ₹${pending} still due`}
+                            {paymentStatus === 'PENDING' && 'Nothing paid — member will be marked as Inactive'}
                           </p>
-                          {paymentStatus === 'PARTIAL' && paidAmount > 0 && (
-                            <p className="text-[11px] text-muted-foreground mt-0.5">You can collect the rest later from Payments</p>
-                          )}
                         </div>
                       </div>
                     )}
-                  </div>
-
-                  <div className="space-y-2.5">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7c3aed20] text-[10px] font-bold text-violet-300">4</span>
-                      <span className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wide">Membership Start Date</span>
-                    </div>
-                    <input className={inputCls} type="date" style={{ colorScheme: 'dark' }} {...register('planStartDate')} />
-                    {expiryPreview && (
-                      <div className="flex items-center justify-between rounded-xl border border-[#22c55e30] bg-[#22c55e15] px-4 py-2.5">
-                        <div className="flex items-center gap-2 text-[12px] text-muted-foreground">
-                          <CalendarDays size={13} className="text-[#4ade80]" />
-                          Membership expires on
-                        </div>
-                        <span className="text-[13px] font-semibold text-[#4ade80]">{expiryPreview}</span>
+                    
+                    {planAmount > 0 && (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <Field label="Membership Start Date">
+                          <input className={inputCls} type="date" style={{ colorScheme: 'dark' }} {...register('planStartDate')} />
+                        </Field>
+                        {expiryPreview && (
+                          <div className="flex flex-col justify-end pb-1.5">
+                            <span className="text-[12px] text-muted-foreground">Expires on: <span className="font-semibold text-[#4ade80]">{expiryPreview}</span></span>
+                          </div>
+                        )}
                       </div>
                     )}
-                  </div>
 
-                  <div className="space-y-2.5">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7c3aed20] text-[10px] font-bold text-violet-300">5</span>
-                      <span className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wide">How Did They Pay?</span>
-                    </div>
-                    <div className="grid grid-cols-2 gap-2.5">
-                      {PAYMENT_METHODS.map(m => {
-                        const selected = watch('paymentMethod') === m.value
-                        const icons: Record<string, React.ReactNode> = {
-                          CASH: <Wallet size={14} />,
-                          UPI:  <Smartphone size={14} />,
-                          CARD: <CreditCard size={14} />,
-                        }
-                        return (
-                          <button
-                            key={m.value}
-                            type="button"
-                            onClick={() => setValue('paymentMethod', m.value)}
-                            className={`flex items-center justify-center gap-2.5 h-12 rounded-xl border text-[13px] font-medium transition-all ${
-                              selected
-                                ? 'border-[#7c3aed50] bg-[#7c3aed20] text-violet-300 shadow-[0_0_0_3px_#7c3aed12]'
-                                : 'border-border bg-background text-muted-foreground hover:bg-muted'
-                            }`}
-                          >
-                            <span className={selected ? 'text-violet-400' : 'text-muted-foreground'}>
-                              {icons[m.value] ?? <Wallet size={14} />}
-                            </span>
-                            {m.label}
-                          </button>
-                        )
-                      })}
-                    </div>
-                    {errors.paymentMethod && <p className="text-[11px] text-[#f87171]">{errors.paymentMethod.message}</p>}
+                    {/* Hidden advanced fields for compatibility with existing schema */}
+                    <input type="hidden" {...register('discount')} />
+                    <input type="hidden" {...register('additionalFee')} />
                   </div>
-
-                  <div className="space-y-1.5 pt-1">
-                    <label className="text-[12px] font-medium text-muted-foreground">
-                      Notes <span className="text-muted-foreground">(optional)</span>
-                    </label>
-                    <input className={inputCls} placeholder="e.g. Paid via GPay, receipt #123" {...register('paymentNotes')} />
-                  </div>
-
-                </div>
-              )}
-            </div>
+                </Section>
+              </div>
+            )}
           </form>
 
-          <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 px-5 sm:px-6 py-4 border-t border-border bg-card shrink-0">
-            <button
-              type="button"
-              onClick={onClose}
-              className="w-full sm:w-auto h-11 rounded-xl border border-border bg-background px-6 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              form="new-member-form"
-              disabled={loading}
-              className="flex w-full sm:w-auto h-11 items-center justify-center gap-2 px-6 text-[13px] font-medium text-foreground transition-all duration-150 disabled:opacity-60 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
-            >
-              {loading && <Loader2 size={16} className="animate-spin" />}
-              {loading ? 'Saving...' : addPayment && planId ? 'Add Member & Record Payment' : 'Add Member'}
-            </button>
+          <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-t border-border bg-card shrink-0">
+            {step === 1 ? (
+              <button
+                type="button"
+                onClick={onClose}
+                className="h-11 rounded-xl border border-border bg-background px-6 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              >
+                Cancel
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setStep(1)}
+                className="flex items-center gap-2 h-11 rounded-xl border border-border bg-background px-6 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              >
+                <ChevronLeft size={16} /> Back
+              </button>
+            )}
+            
+            {step === 1 ? (
+              <button
+                type="button"
+                onClick={handleNextStep}
+                className="flex items-center gap-2 h-11 px-6 text-[13px] font-medium text-foreground transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+              >
+                Next: Assign Plan <ChevronRight size={16} />
+              </button>
+            ) : (
+              <button
+                type="submit"
+                form="new-member-form"
+                disabled={loading}
+                className="flex h-11 items-center justify-center gap-2 px-6 text-[13px] font-medium text-foreground transition-all duration-150 disabled:opacity-60 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+              >
+                {loading && <Loader2 size={16} className="animate-spin" />}
+                {loading ? 'Saving...' : planId ? 'Save Member & Plan' : 'Save Member Only'}
+              </button>
+            )}
           </div>
         </div>
       )}
