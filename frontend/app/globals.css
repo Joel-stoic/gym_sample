@@ -79,48 +79,48 @@
 
 /* ─── :root — single source of truth, no parallel token system ─────────────── */
 :root {
-  --background:           #232323;       /* Raisin Black — page bg               */
-  --foreground:           #EBCC98;       /* Sunset — primary text                */
-  --card:                 #2A2826;       /* slightly lighter/warmer than bg       */
-  --card-foreground:      #EBCC98;
-  --popover:              #2A2826;
-  --popover-foreground:   #EBCC98;
+  --background:           #060517;       /* Mystic Black — page bg               */
+  --foreground:           #F0EDE8;       /* warm off-white — primary text         */
+  --card:                 #0E0C22;       /* one step lighter — elevated surface   */
+  --card-foreground:      #F0EDE8;
+  --popover:              #0E0C22;
+  --popover-foreground:   #F0EDE8;
 
-  --primary:              #CDA175;       /* Buff — buttons, active states         */
-  --primary-foreground:   #232323;       /* dark text on buff (better contrast)   */
+  --primary:              #D05B37;       /* Chilean Fire — buttons, active states */
+  --primary-foreground:   #FFFFFF;       /* white on fire (contrast verified ✓)   */
 
-  --secondary:            #302C29;       /* warm dark surface — inputs, hover     */
-  --secondary-foreground: #EBCC98;
-  --muted:                #302C29;
-  --muted-foreground:     #8A7A65;       /* darkened Buff for secondary labels    */
+  --secondary:            #14122A;       /* dark navy — inputs, hover surfaces    */
+  --secondary-foreground: #F0EDE8;
+  --muted:                #14122A;
+  --muted-foreground:     #7A7890;       /* muted blue-gray for labels/timestamps */
 
-  --accent:               rgba(205,161,117,0.12); /* Buff wash — active row bg   */
-  --accent-foreground:    #EBCC98;       /* Sunset on accent wash                 */
+  --accent:               rgba(208,91,55,0.12); /* Fire wash — active row bg      */
+  --accent-foreground:    #D05B37;
 
-  --destructive:          #CDA175;       /* reuses primary — no third hue         */
+  --destructive:          #D05B37;       /* reuses primary — no third hue         */
 
-  --border:               #3D3731;       /* warm dark border                      */
-  --input:                #3D3731;
-  --ring:                 #CDA175;
+  --border:               #1E1B35;       /* dark navy border                      */
+  --input:                #1E1B35;
+  --ring:                 #D05B37;
 
-  /* Chart palette — warm, no third hue */
-  --chart-1:              #CDA175;       /* Buff — primary data series            */
-  --chart-2:              #EBCC98;       /* Sunset — secondary series             */
-  --chart-3:              #8A7A65;       /* muted warm — tertiary                 */
-  --chart-4:              #B08A5F;       /* deeper Buff tint                      */
-  --chart-5:              #4A3F35;       /* dark warm — grid/background           */
+  /* Chart palette — fire-anchored, no third hue */
+  --chart-1:              #D05B37;       /* Chilean Fire — primary series         */
+  --chart-2:              #E8836A;       /* lighter fire tint                     */
+  --chart-3:              #7A7890;       /* muted — tertiary                      */
+  --chart-4:              #A84228;       /* deeper fire — secondary               */
+  --chart-5:              #2A2840;       /* dark navy — grid/bg                   */
 
   --radius: 0.625rem;
 
-  /* Sidebar — slightly darker than page so it recedes */
-  --sidebar:                    #1C1A18;
-  --sidebar-foreground:         #EBCC98;
-  --sidebar-primary:            #CDA175;
-  --sidebar-primary-foreground: #232323;
-  --sidebar-accent:             rgba(205,161,117,0.12);
-  --sidebar-accent-foreground:  #CDA175;
-  --sidebar-border:             #302C29;
-  --sidebar-ring:               #CDA175;
+  /* Sidebar — darker than page, recedes visually */
+  --sidebar:                    #030210;
+  --sidebar-foreground:         #F0EDE8;
+  --sidebar-primary:            #D05B37;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent:             rgba(208,91,55,0.12);
+  --sidebar-accent-foreground:  #D05B37;
+  --sidebar-border:             #14122A;
+  --sidebar-ring:               #D05B37;
 }
 
 /* ─── Base layer ─────────────────────────────────────────────────────────────  */
