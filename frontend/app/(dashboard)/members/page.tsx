@@ -361,7 +361,10 @@ export default function MembersPage() {
       `}</style>
 
       {/* Sticky Top Header Section (Search + Filters + Total) */}
-      <div className="sticky top-0 z-20 -mx-4 px-4 pt-1 pb-4 sm:-mx-6 sm:px-6 mb-5 border-b border-border shadow-sm" style={{ background: 'hsl(var(--background) / 0.9)', backdropFilter: 'blur(8px)' }}>
+      <div 
+        className="sticky z-40 -mx-4 px-4 pt-1 pb-4 sm:-mx-6 sm:px-6 mb-5 border-b border-black/10 dark:border-white/10 bg-background/30 backdrop-blur-2xl backdrop-saturate-150 shadow-sm transition-all"
+        style={{ top: '77px' }}
+      >
         
         {/* Filters */}
         <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:gap-3">
