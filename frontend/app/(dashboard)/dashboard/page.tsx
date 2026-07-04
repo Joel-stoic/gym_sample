@@ -280,7 +280,7 @@ export default function DashboardPage() {
           value={metrics?.members?.expiringThisWeek ?? 0}
           sub="expiring this week"
           icon={TrendingUp}
-          iconClass="bg-amber-100 text-amber-600 dark:bg-amber-500/20 dark:text-amber-400"
+          iconClass="bg-red-100 text-red-600 dark:bg-red-500/20 dark:text-red-400"
         />
       </div>
 
