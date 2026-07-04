@@ -74,13 +74,13 @@ function MetricCard({
 }) {
   return (
     <div className={`relative overflow-hidden rounded-md border p-3.5 sm:p-5 transition-all duration-200 ${redAccent
-      ? 'border-red-500/20 bg-red-500/10 hover:border-red-500/30'
-      : 'border-border bg-card hover:border-border'
+      ? 'border-border bg-secondary hover:border-border dark:border-red-500/20 dark:bg-red-500/10 dark:hover:border-red-500/30'
+      : 'border-border bg-secondary hover:border-border dark:bg-card'
       }`}>
       {redAccent && (
-        <div className="pointer-events-none absolute -right-4 -top-4 h-20 w-20 rounded-md bg-red-500 opacity-20 blur-2xl" />
+        <div className="hidden dark:block pointer-events-none absolute -right-4 -top-4 h-20 w-20 rounded-md bg-red-500 opacity-20 blur-2xl" />
       )}
-      <div className={`mb-3 sm:mb-4 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl ${iconClass ?? 'bg-accent text-foreground'}`}>
+      <div className={`mb-3 sm:mb-4 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl ${iconClass ?? 'bg-background text-foreground dark:bg-accent'}`}>
         <Icon size={18} />
       </div>
       <p className="font-['Syne'] text-lg sm:text-2xl font-bold tracking-tight text-foreground truncate">{value}</p>
@@ -248,7 +248,7 @@ export default function DashboardPage() {
           value={metrics?.members?.total ?? 0}
           sub={`+${metrics?.members?.newThisMonth ?? 0} new this month`}
           icon={Users}
-          iconClass="bg-violet-100 text-violet-600 dark:bg-violet-600/20 dark:text-violet-400"
+          iconClass="bg-background text-foreground dark:bg-violet-600/20 dark:text-violet-400"
         />
         <MetricCard
           title="Active Members"
@@ -257,14 +257,14 @@ export default function DashboardPage() {
             ? Math.round(((metrics.members.active ?? 0) / metrics.members.total) * 100)
             : 0}% retention`}
           icon={UserCheck}
-          iconClass="bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400"
+          iconClass="bg-background text-foreground dark:bg-emerald-500/20 dark:text-emerald-400"
         />
         <MetricCard
           title="Today's Attendance"
           value={metrics?.attendance?.today ?? 0}
           sub="check-ins today"
           icon={CalendarCheck}
-          iconClass="bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400"
+          iconClass="bg-background text-foreground dark:bg-blue-500/20 dark:text-blue-400"
         />
         <MetricCard
           redAccent
@@ -272,7 +272,7 @@ export default function DashboardPage() {
           value={metrics?.members?.expired ?? 0}
           sub="inactive memberships"
           icon={UserX}
-          iconClass="bg-red-100 text-red-600 dark:bg-red-500/20 dark:text-red-400"
+          iconClass="bg-background text-foreground dark:bg-red-500/20 dark:text-red-400"
         />
         <MetricCard
           redAccent
@@ -280,7 +280,7 @@ export default function DashboardPage() {
           value={metrics?.members?.expiringThisWeek ?? 0}
           sub="expiring this week"
           icon={TrendingUp}
-          iconClass="bg-red-100 text-red-600 dark:bg-red-500/20 dark:text-red-400"
+          iconClass="bg-background text-foreground dark:bg-red-500/20 dark:text-red-400"
         />
       </div>
 
@@ -292,21 +292,21 @@ export default function DashboardPage() {
             value={toRupees(metrics.revenue.thisMonth ?? 0)}
             sub="this month"
             icon={IndianRupee}
-            iconClass="bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400"
+            iconClass="bg-background text-foreground dark:bg-emerald-500/20 dark:text-emerald-400"
           />
           <MetricCard
             title="PT Revenue"
             value={toRupees(metrics.revenue.ptThisMonth ?? 0)}
             sub="personal training"
             icon={IndianRupee}
-            iconClass="bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400"
+            iconClass="bg-background text-foreground dark:bg-blue-500/20 dark:text-blue-400"
           />
           <MetricCard
             title="Total Revenue"
             value={toRupees(metrics.revenue.totalThisMonth ?? 0)}
             sub="membership + PT"
             icon={IndianRupee}
-            iconClass="bg-violet-100 text-violet-600 dark:bg-violet-600/20 dark:text-violet-400"
+            iconClass="bg-background text-foreground dark:bg-violet-600/20 dark:text-violet-400"
           />
           <MetricCard
             redAccent
@@ -314,7 +314,7 @@ export default function DashboardPage() {
             value={toRupees(metrics.revenue.pendingDues ?? 0)}
             sub="unpaid"
             icon={AlertCircle}
-            iconClass="bg-red-100 text-red-600 dark:bg-red-500/20 dark:text-red-400"
+            iconClass="bg-background text-foreground dark:bg-red-500/20 dark:text-red-400"
           />
         </div>
       )}

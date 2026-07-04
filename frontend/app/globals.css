@@ -54,7 +54,7 @@ html, body {
 }
 
 :root {
-  --background: #f4f4f5;
+  --background: #ffffff;
   --foreground: #18181b;
   --card: #ffffff;
   --card-foreground: #18181b;
@@ -62,15 +62,15 @@ html, body {
   --popover-foreground: #18181b;
   --primary: #52525b;
   --primary-foreground: #ffffff;
-  --secondary: #e4e4e7;
+  --secondary: #f4f4f5;
   --secondary-foreground: #18181b;
   --muted: #f4f4f5;
   --muted-foreground: #71717a;
-  --accent: #e4e4e7;
+  --accent: #f4f4f5;
   --accent-foreground: #18181b;
   --destructive: #ef4444;
-  --border: #d4d4d8;
-  --input: #d4d4d8;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
   --ring: #52525b;
   --radius: 0.5rem;
 }

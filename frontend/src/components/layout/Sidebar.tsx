@@ -126,7 +126,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
                 'group relative flex items-center gap-3 border px-3 py-2.5 text-[12.5px] font-medium transition-colors sm:gap-3 sm:px-3 sm:py-2.5 sm:text-[13px]',
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground',
                 isActive
-                  ? 'border border-foreground/10 bg-foreground/10 text-foreground backdrop-blur-sm rounded-xl shadow-sm'
+                  ? 'border border-transparent bg-primary text-primary-foreground shadow-sm rounded-xl'
                   : 'border border-transparent text-muted-foreground hover:bg-muted hover:text-foreground active:bg-accent rounded-xl'
               )}
             >
