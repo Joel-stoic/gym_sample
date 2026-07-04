@@ -109,8 +109,8 @@ function RevenueRangeToggle({
           key={months}
           onClick={() => onChange(months)}
           className={`rounded-md px-2.5 sm:px-3 py-1 text-[11px] font-medium transition-all duration-150 ${value === months
-            ? 'bg-violet-600 text-foreground shadow'
-            : 'text-muted-foreground hover:text-muted-foreground'
+            ? 'bg-primary text-primary-foreground shadow dark:bg-violet-600 dark:text-foreground'
+            : 'text-muted-foreground hover:text-foreground'
             }`}
         >
           {label}
@@ -152,10 +152,10 @@ function RevenueStats({ data }: { data: { month: string; revenue: number }[] }) 
       {stats.map(({ label, value }) => (
         <div
           key={label}
-          className="flex flex-col gap-1.5 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.07] px-3 sm:px-4 py-3 sm:py-3.5"
+          className="flex flex-col gap-1.5 rounded-xl border border-border bg-background px-3 sm:px-4 py-3 sm:py-3.5 dark:border-emerald-500/20 dark:bg-emerald-500/[0.07]"
         >
-          <span className="text-[12px] sm:text-[14px] font-semibold text-emerald-300">{value}</span>
-          <span className="text-[10px] sm:text-[11px] tracking-wide text-emerald-600">{label}</span>
+          <span className="text-[12px] sm:text-[14px] font-semibold text-foreground dark:text-emerald-300">{value}</span>
+          <span className="text-[10px] sm:text-[11px] tracking-wide text-muted-foreground dark:text-emerald-600">{label}</span>
         </div>
       ))}
     </div>
@@ -168,7 +168,7 @@ function ExpiringMemberRow({ name, daysLeft }: { name: string; daysLeft: number 
   const isCritical = daysLeft <= 2
   return (
     <div className="flex items-center gap-3 py-2">
-      <div className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl text-[11px] font-semibold ${isCritical ? 'bg-red-500/20 text-red-400' : 'bg-amber-500/20 text-amber-400'
+      <div className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl text-[11px] font-semibold ${isCritical ? 'bg-background text-foreground dark:bg-red-500/20 dark:text-red-400' : 'bg-background text-foreground dark:bg-amber-500/20 dark:text-amber-400'
         }`}>
         {initials}
       </div>
@@ -179,8 +179,8 @@ function ExpiringMemberRow({ name, daysLeft }: { name: string; daysLeft: number 
         </p>
       </div>
       <span className={`flex-shrink-0 rounded-md border px-2 py-1 text-[10px] font-medium ${isCritical
-        ? 'border-red-500/20 bg-red-500/10 text-red-400'
-        : 'border-amber-500/20 bg-amber-500/10 text-amber-400'
+        ? 'border-border bg-background text-foreground dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-400'
+        : 'border-border bg-background text-foreground dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-400'
         }`}>
         {isCritical ? 'Critical' : 'Soon'}
       </span>
@@ -196,12 +196,12 @@ function ActivityItem({
 }) {
   return (
     <div className="flex items-center gap-3 border-b border-border py-3 last:border-0">
-      <div className={`h-2 w-2 flex-shrink-0 rounded-md ${type === 'payment' ? 'bg-emerald-400' : 'bg-violet-400'
+      <div className={`h-2 w-2 flex-shrink-0 rounded-full ${type === 'payment' ? 'bg-primary dark:bg-emerald-400' : 'bg-primary dark:bg-violet-400'
         }`} />
       <p className="flex-1 text-[12px] text-muted-foreground">
         <span className="font-medium text-foreground">{name}</span>{' '}
         {action}
-        {amount && <span className="ml-1 font-medium text-emerald-400">{amount}</span>}
+        {amount && <span className="ml-1 font-medium text-foreground dark:text-emerald-400">{amount}</span>}
       </p>
       <span className="flex-shrink-0 text-[11px] text-muted-foreground">{time}</span>
     </div>
@@ -323,7 +323,7 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
 
         {/* ── Revenue chart ── */}
-        <div className="rounded-md border border-border bg-card p-4 sm:p-6 lg:col-span-2">
+        <div className="rounded-md border border-border bg-secondary dark:bg-card p-4 sm:p-6 lg:col-span-2">
 
           {/* Header */}
           <div className="mb-5 sm:mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -377,10 +377,10 @@ export default function DashboardPage() {
                         key={`cell-${index}`}
                         fill={
                           index === monthlyRevenue.length - 1
-                            ? '#a855f7'
+                            ? 'var(--primary)'
                             : Number(entry.revenue) === 0
-                              ? 'rgba(124,58,237,0.12)'
-                              : '#7c3aed55'
+                              ? 'var(--border)'
+                              : 'var(--muted-foreground)'
                         }
                       />
                     ))}
@@ -402,7 +402,7 @@ export default function DashboardPage() {
         </div>
 
         {/* ── Expiring members ── */}
-        <div className="rounded-md border border-border bg-card p-4 sm:p-5 lg:col-span-1">
+        <div className="rounded-md border border-border bg-secondary dark:bg-card p-4 sm:p-5 lg:col-span-1">
           <p className="mb-1 text-[13px] font-semibold text-foreground">Expiring members</p>
           <p className="mb-4 text-[11px] text-muted-foreground">Members expiring within 7 days</p>
           {expiringMembers?.length > 0 ? (
@@ -419,7 +419,7 @@ export default function DashboardPage() {
         </div>
 
         {/* ── Recent activity ── */}
-        <div className="rounded-md border border-border bg-card p-4 sm:p-5 lg:col-span-1">
+        <div className="rounded-md border border-border bg-secondary dark:bg-card p-4 sm:p-5 lg:col-span-1">
           <p className="mb-1 text-[13px] font-semibold text-foreground">Recent activity</p>
           <p className="mb-3 text-[11px] text-muted-foreground">Latest payments & check-ins</p>
 
