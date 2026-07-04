@@ -1,7 +1,7 @@
 'use client'
 
 import { Inter } from 'next/font/google'
-import { ArrowRight, Users, CheckCircle, CreditCard, Activity, BarChart, Smartphone, ShieldCheck, ChevronRight, Search, Plus } from 'lucide-react'
+import { ArrowRight, Users, CheckCircle, CreditCard, Activity, BarChart, Smartphone, ShieldCheck, ChevronRight, Search, Plus, QrCode } from 'lucide-react'
 import LightRays from '@/src/components/ui/LightRays'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-body' })
@@ -225,8 +225,8 @@ export default function HomePage() {
               preview: (
                 <div className="mt-4 p-3 rounded-lg border border-border bg-background flex flex-col items-center gap-2">
                   {/* Mock QR Representation */}
-                  <div className="w-16 h-16 border-2 border-border p-1 rounded bg-secondary flex items-center justify-center">
-                    <div className="w-full h-full bg-foreground opacity-80" style={{ clipPath: 'polygon(0 0, 40% 0, 40% 40%, 0 40%, 0 0, 60% 0, 100% 0, 100% 40%, 60% 40%, 60% 0, 0 60%, 40% 60%, 40% 100%, 0 100%, 0 60%, 60% 60%, 100% 60%, 100% 100%, 60% 100%, 60% 60%)' }} />
+                  <div className="w-16 h-16 border border-border/50 p-2 rounded-xl bg-white dark:bg-zinc-100 flex items-center justify-center shadow-sm">
+                    <QrCode className="w-full h-full text-black" strokeWidth={1.5} />
                   </div>
                   <span className="text-[8px] text-muted-foreground font-medium">Scan to Check-in</span>
                 </div>
