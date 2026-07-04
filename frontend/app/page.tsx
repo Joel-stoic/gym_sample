@@ -225,8 +225,8 @@ export default function HomePage() {
               preview: (
                 <div className="mt-4 p-3 rounded-lg border border-border bg-background flex flex-col items-center gap-2">
                   {/* Mock QR Representation */}
-                  <div className="w-16 h-16 border border-border/50 p-2 rounded-xl bg-white dark:bg-zinc-100 flex items-center justify-center shadow-sm">
-                    <QrCode className="w-full h-full text-black" strokeWidth={1.5} />
+                  <div className="w-16 h-16 border border-border/50 p-2 rounded-xl bg-zinc-950 dark:bg-black flex items-center justify-center shadow-sm">
+                    <QrCode className="w-full h-full text-white" strokeWidth={1.5} />
                   </div>
                   <span className="text-[8px] text-muted-foreground font-medium">Scan to Check-in</span>
                 </div>
