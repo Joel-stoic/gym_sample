@@ -669,7 +669,7 @@ export default function PtPage() {
       {/* ── Header Actions ── */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         {/* Left: Tabs (Moved from below to the top left for better UX) */}
-        <div className="inline-flex items-center gap-1 p-1 rounded-md border border-border bg-card  w-fit">
+        <div className="flex overflow-x-auto whitespace-nowrap w-full sm:w-auto items-center gap-1 p-1 rounded-md border border-border bg-card scrollbar-hide">
           {(['sessions', 'enrollments', 'packages'] as const).map(tab => (
             <button key={tab} onClick={() => setActiveTab(tab)}
               className={`px-5 py-1.5 rounded-md text-[13px] font-medium transition-all duration-200 capitalize ${activeTab === tab ? 'bg-background shadow-sm text-foreground' : 'text-muted-foreground hover:text-foreground'}`}>

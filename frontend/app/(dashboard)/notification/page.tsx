@@ -89,7 +89,7 @@ const NotificationPage = () => {
         </div>
 
         {/* FILTER TOGGLE */}
-        <div className="flex gap-1 rounded-xl border border-border bg-card p-1">
+        <div className="flex flex-wrap gap-1 rounded-xl border border-border bg-card p-1">
           {FILTER_OPTIONS.map((opt) => (
             <button
               key={opt.value}
