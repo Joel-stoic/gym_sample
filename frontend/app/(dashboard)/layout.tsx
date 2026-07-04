@@ -37,9 +37,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <Sidebar />
 
       <main className="md:ml-64" style={{ flex: 1, minWidth: 0, overflowY: 'auto' }}>
-        <div style={{ position: 'sticky', top: 0, zIndex: 50 }}>
+        {/* <div style={{ position: 'sticky', top: 0, zIndex: 50 }}> */}
           <Header />
-        </div>
+        {/* </div> */}
         <div className="p-4 md:p-6">
           {children}
         </div>
