@@ -287,16 +287,16 @@ function PaginationSkeleton() {
 }
 
 function DarkSelect({
-  value, onChange, options, placeholder, width = 160,
+  value, onChange, options, placeholder, className,
 }: {
   value: string
   onChange: (v: string) => void
   options: { label: string; value: string }[]
   placeholder: string
-  width?: number
+  className?: string
 }) {
   return (
-    <div className="relative w-full sm:w-auto" style={{ maxWidth: width }}>
+    <div className={`relative w-full sm:w-auto min-w-[140px] ${className || ''}`}>
       <select
         value={value || 'ALL'}
         onChange={(e) => onChange(e.target.value === 'ALL' ? '' : e.target.value)}
@@ -380,34 +380,38 @@ export default function MembersPage() {
               onChange={(e) => { setSearch(e.target.value); setPage(1) }}
             />
           </div>
-          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
-            <DarkSelect
-              value={status}
-              onChange={(v) => { setStatus(v); setPage(1) }}
-              placeholder="All Status"
-              width={150}
-              options={[
-                { label: 'Active',         value: 'ACTIVE' },
-                { label: 'Expired',        value: 'EXPIRED' },
-                { label: 'Suspended',      value: 'SUSPENDED' },
-                { label: 'Plan Not Added', value: 'PLAN_NOT_ADDED' },
-              ]}
-            />
-            <DarkSelect
-              value={plan}
-              onChange={(v) => { setPlan(v); setPage(1) }}
-              placeholder="All Plans"
-              width={180}
-              options={plans.map((p: GymPlan) => ({ label: p.name, value: p.id }))}
-            />
-            <button
-              type="button"
-              onClick={() => setIsModalOpen(true)}
-              className="flex h-10 items-center justify-center gap-2 px-5 text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
-            >
-              <Plus className="h-4 w-4" />
-              Add Member
-            </button>
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3">
+            <div className="w-full sm:w-auto">
+              <DarkSelect
+                value={status}
+                onChange={(v) => { setStatus(v); setPage(1) }}
+                placeholder="All Status"
+                options={[
+                  { label: 'Active',         value: 'ACTIVE' },
+                  { label: 'Expired',        value: 'EXPIRED' },
+                  { label: 'Suspended',      value: 'SUSPENDED' },
+                  { label: 'Plan Not Added', value: 'PLAN_NOT_ADDED' },
+                ]}
+              />
+            </div>
+            <div className="flex flex-1 sm:flex-none items-center gap-2.5 sm:gap-3">
+              <div className="flex-1 min-w-0 sm:w-auto">
+                <DarkSelect
+                  value={plan}
+                  onChange={(v) => { setPlan(v); setPage(1) }}
+                  placeholder="All Plans"
+                  options={plans.map((p: GymPlan) => ({ label: p.name, value: p.id }))}
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(true)}
+                className="flex flex-shrink-0 h-[42px] sm:h-10 items-center justify-center gap-2 px-4 text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
+              >
+                <Plus className="h-4 w-4" />
+                Add Member
+              </button>
+            </div>
           </div>
         </div>
 

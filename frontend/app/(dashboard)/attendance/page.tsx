@@ -242,12 +242,12 @@ export default function AttendancePage() {
 
   return (
     <div className="space-y-8" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-      <div className="flex items-center justify-end">
-        <div className="flex gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between sm:justify-end gap-3">
+        <div className="flex gap-3 w-full sm:w-auto">
           <Button
             variant="ghost"
             onClick={() => queryClient.invalidateQueries({ queryKey: ['attendance-today'] })}
-            className="h-10 rounded-md bg-black/5 px-5 text-[13px] font-medium text-foreground  transition-all hover:bg-black/10 bg-card hover:bg-accent border border-border hover:shadow-sm"
+            className="flex-1 sm:flex-none h-10 rounded-md bg-black/5 px-5 text-[13px] font-medium text-foreground  transition-all hover:bg-black/10 bg-card hover:bg-accent border border-border hover:shadow-sm"
           >
             <RefreshCw className="mr-2 h-4 w-4" />
             Refresh
@@ -257,7 +257,7 @@ export default function AttendancePage() {
             <DialogTrigger asChild>
               <Button 
                 variant="ghost"
-                className="h-10 rounded-md bg-violet-500/10 px-5 text-[13px] font-medium   transition-all hover:bg-violet-500/20 border border-violet-500/20 hover:shadow-md"
+                className="flex-1 sm:flex-none h-10 rounded-md bg-violet-500/10 px-5 text-[13px] font-medium   transition-all hover:bg-violet-500/20 border border-violet-500/20 hover:shadow-md"
               >
                 <UserCheck className="mr-2 h-4 w-4" />
                 Mark Attendance
@@ -319,7 +319,7 @@ export default function AttendancePage() {
       )}
 
       {/* Tab switcher */}
-      <div className="flex w-full sm:w-fit gap-1 rounded-lg border border-border bg-card p-1.5 ">
+      <div className="flex overflow-x-auto whitespace-nowrap w-full sm:w-fit gap-1 rounded-lg border border-border bg-card p-1.5 scrollbar-hide">
         <TabButton active={activeTab === 'today'} onClick={() => setActiveTab('today')}>Today</TabButton>
         <TabButton active={activeTab === 'all'}   onClick={() => setActiveTab('all')}>All Records</TabButton>
       </div>

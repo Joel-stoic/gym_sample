@@ -30,7 +30,7 @@ export default function AttendanceTable({
   return (
     <div className="w-full">
       {/* Header */}
-      <div className="pb-3 border-b border-border/50 mb-3 flex items-center justify-between">
+      <div className="pb-3 border-b border-border/50 mb-3 flex flex-wrap items-center justify-between gap-2">
         <h3 className="text-base font-semibold text-foreground">
           Today's Check-ins
         </h3>

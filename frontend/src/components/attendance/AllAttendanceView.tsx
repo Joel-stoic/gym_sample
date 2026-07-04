@@ -277,7 +277,7 @@ export default function AllAttendanceView() {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="mt-5 flex items-center justify-between border-t border-border pt-4">
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-4">
           <p className="text-xs text-muted-foreground">
             Page {page} of {totalPages}
             <span className="ml-2 text-[#444455]">({total} total)</span>
