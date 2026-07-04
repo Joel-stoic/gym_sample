@@ -2,7 +2,7 @@
 
 import { Inter } from 'next/font/google'
 import { ArrowRight, Users, CheckCircle, CreditCard, Activity, BarChart, Smartphone, ShieldCheck, ChevronRight, Search, Plus } from 'lucide-react'
-import LightRays from '@/components/ui/LightRays'
+import LightRays from '@/src/components/ui/LightRays'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-body' })
 
