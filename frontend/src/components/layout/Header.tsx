@@ -62,7 +62,7 @@ export default function Header() {
   return (
     <header
       style={{ position: 'sticky', top: 0, zIndex: 50 }}
-      className={`flex-shrink-0 flex items-center justify-between px-4 py-5 md:px-6 bg-background/30 backdrop-blur-2xl backdrop-saturate-150 border-b border-black/10 dark:border-white/10 ${inter.className}`}
+      className={`flex-shrink-0 flex items-center justify-between px-4 py-5 md:px-6 bg-background/10 backdrop-blur-2xl backdrop-saturate-150 border-b border-black/10 dark:border-white/10 ${inter.className}`}
     >
       {/* Left: hamburger (mobile) + page title */}
       <div className="flex items-center gap-4">
