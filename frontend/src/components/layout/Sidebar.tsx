@@ -126,14 +126,16 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
                 'group relative flex items-center gap-3 border px-3 py-2.5 text-[12.5px] font-medium transition-colors sm:gap-3 sm:px-3 sm:py-2.5 sm:text-[13px]',
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground',
                 isActive
-                  ? 'border-transparent bg-primary text-primary-foreground rounded-xl shadow-sm'
-                  : 'border-transparent text-muted-foreground hover:bg-muted hover:text-foreground active:bg-accent rounded-xl'
+                  ? 'border border-foreground/10 bg-foreground/10 text-foreground backdrop-blur-sm rounded-xl shadow-sm'
+                  : 'border border-transparent text-muted-foreground hover:bg-muted hover:text-foreground active:bg-accent rounded-xl'
               )}
             >
               <span className="relative flex-shrink-0">
                 <Icon
-                  className="h-[17px] w-[17px] transition-colors sm:h-[18px] sm:w-[18px]"
-                  style={{ color: isActive ? '#FFFFFF' : undefined }}
+                  className={cn(
+                    "h-[17px] w-[17px] transition-colors sm:h-[18px] sm:w-[18px]",
+                    isActive ? "text-foreground" : "text-inherit"
+                  )}
                 />
                 {item.href === '/notification' && hasNew && (
                   <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full border-2 border-background bg-red-600 sm:h-2.5 sm:w-2.5" />
