@@ -54,24 +54,24 @@ html, body {
 }
 
 :root {
-  --background: #f3f0e7;
-  --foreground: #2a2529;
-  --card: #f3f0e7;
-  --card-foreground: #2a2529;
-  --popover: #f3f0e7;
-  --popover-foreground: #2a2529;
-  --primary: #2a2529;
-  --primary-foreground: #f3f0e7;
-  --secondary: #e3ded1;
-  --secondary-foreground: #2a2529;
-  --muted: #eae6da;
+  --background: #f1faee;
+  --foreground: #212529;
+  --card: #f1faee;
+  --card-foreground: #212529;
+  --popover: #f1faee;
+  --popover-foreground: #212529;
+  --primary: #212529;
+  --primary-foreground: #f1faee;
+  --secondary: #212529;
+  --secondary-foreground: #f1faee;
+  --muted: #e1ebde;
   --muted-foreground: #666666;
-  --accent: #eae6da;
-  --accent-foreground: #2a2529;
+  --accent: #e1ebde;
+  --accent-foreground: #212529;
   --destructive: #ef4444;
-  --border: #d6d0c4;
-  --input: #d6d0c4;
-  --ring: #2a2529;
+  --border: #d1dacd;
+  --input: #d1dacd;
+  --ring: #212529;
   --radius: 0.3rem;
 }
 
