@@ -1,161 +1,261 @@
 'use client'
 
 import { Inter } from 'next/font/google'
-import { ArrowRight, Users, CheckCircle, CreditCard, Activity, BarChart, Smartphone } from 'lucide-react'
+import { ArrowRight, Users, CheckCircle, CreditCard, Activity, BarChart, Smartphone, ShieldCheck, ChevronRight, Search, Plus } from 'lucide-react'
 
-// Using only Inter for a clean, cohesive, professional look.
 const inter = Inter({ subsets: ['latin'], variable: '--font-body' })
 
 export default function HomePage() {
   return (
-    <div className={`${inter.variable} min-h-screen bg-background text-foreground font-[family-name:var(--font-body)] relative selection:bg-black/10 dark:selection:bg-white/10`}>
+    <div className={`${inter.variable} min-h-screen bg-background text-foreground font-[family-name:var(--font-body)] relative overflow-hidden selection:bg-primary/10`}>
       
-      {/* ── Minimalist Background Pattern ── */}
-      <div 
-        className="absolute inset-0 z-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 1px)',
-          backgroundSize: '24px 24px'
-        }}
-      />
+      {/* ── Grid System Lines (Linear SaaS style) ── */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]">
+        {/* Dot pattern */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 1px)',
+            backgroundSize: '32px 32px'
+          }}
+        />
+        {/* Subtle grid lines */}
+        <div className="absolute top-0 bottom-0 left-[10%] w-[1px] bg-foreground" />
+        <div className="absolute top-0 bottom-0 left-[50%] w-[1px] bg-foreground hidden md:block" />
+        <div className="absolute top-0 bottom-0 right-[10%] w-[1px] bg-foreground" />
+        <div className="absolute left-0 right-0 top-[20%] h-[1px] bg-foreground" />
+        <div className="absolute left-0 right-0 top-[60%] h-[1px] bg-foreground hidden md:block" />
+      </div>
 
-      {/* ── Nav ── */}
-      <header className="relative z-10 flex items-center justify-between px-6 sm:px-10 py-6 max-w-7xl mx-auto">
-        <span className="font-bold text-xl tracking-tight">
-          Jovifitx
-        </span>
+      {/* ── Header ── */}
+      <header className="relative z-10 border-b border-border/50 bg-background/80 backdrop-blur-md">
+        <div className="flex items-center justify-between px-6 sm:px-10 py-5 max-w-7xl mx-auto">
+          <div className="flex items-center gap-3">
+            <span className="font-bold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
+              Jovifitx
+            </span>
+            <span className="px-2 py-0.5 rounded bg-secondary text-[10px] font-medium text-muted-foreground border border-border">
+              v2.0
+            </span>
+          </div>
 
-        <a
-          href="/login"
-          className="inline-flex items-center justify-center px-5 py-2 text-sm font-medium text-foreground bg-secondary hover:bg-secondary/80 rounded-md transition-colors border border-border"
-        >
-          Log in
-        </a>
+          <div className="flex items-center gap-6">
+            <a href="#features" className="hidden sm:inline-block text-xs font-medium text-muted-foreground hover:text-foreground transition-colors">
+              Features
+            </a>
+            <a
+              href="/login"
+              className="group inline-flex items-center justify-center px-4 py-2 text-xs font-semibold text-primary-foreground bg-primary hover:bg-primary/95 rounded-md transition-all shadow-sm"
+            >
+              Log in
+              <ArrowRight className="w-3.5 h-3.5 ml-1.5 transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </div>
+        </div>
       </header>
 
       {/* ── Hero ── */}
-      <main className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 pt-20 sm:pt-32 pb-24 lg:pb-32 grid lg:grid-cols-2 gap-16 lg:gap-12 items-center">
+      <main className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 pt-20 sm:pt-28 pb-28 lg:pb-36 grid lg:grid-cols-2 gap-16 lg:gap-12 items-center">
         
         {/* Left: Text Content */}
         <div className="flex flex-col items-start text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-secondary/50 border border-border text-muted-foreground text-xs font-medium mb-8">
-            <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-            Gym Management, Simplified
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/80 border border-border/80 text-muted-foreground text-xs font-medium mb-8">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            The operating system for your gym
           </div>
           
-          <h1 className="font-semibold leading-[1.1] text-5xl sm:text-6xl md:text-7xl tracking-tighter text-foreground mb-6">
+          <h1 className="font-bold leading-[1.05] text-5xl sm:text-6xl md:text-7xl tracking-tighter text-foreground mb-6">
             Run your gym. <br />
-            Like clockwork.
+            <span className="text-muted-foreground">Like clockwork.</span>
           </h1>
           
-          <p className="text-muted-foreground text-lg max-w-lg leading-relaxed mb-10">
-            Members, attendance, and payments — tracked perfectly in one place. Focus on your floor, we'll handle the paperwork.
+          <p className="text-muted-foreground text-base sm:text-lg max-w-lg leading-relaxed mb-10">
+            Automate members tracking, attendance logs, and payment collections. Jovifitx puts your operations on autopilot so you can focus on the floor.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
             <a
               href="/login"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-sm font-medium text-primary-foreground bg-primary rounded-md hover:opacity-90 transition-opacity shadow-sm"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-xs font-semibold text-primary-foreground bg-primary hover:bg-primary/95 rounded-md transition-all shadow-sm"
             >
               Launch Dashboard 
-              <ArrowRight className="w-4 h-4 ml-2" />
+              <ChevronRight className="w-4 h-4 ml-1" />
             </a>
             <a
               href="#features"
-              className="w-full sm:w-auto text-center px-6 py-3.5 text-sm font-medium text-foreground bg-background hover:bg-accent border border-border rounded-md transition-colors shadow-sm"
+              className="w-full sm:w-auto text-center px-6 py-3.5 text-xs font-semibold text-foreground bg-background hover:bg-accent border border-border rounded-md transition-colors shadow-sm"
             >
-              Explore Features
+              See How It Works
             </a>
           </div>
         </div>
 
-        {/* Right: Crisp, Flat Mockup */}
+        {/* Right: High-Fidelity Mockup (Real Gym Software Preview) */}
         <div className="relative w-full aspect-square md:aspect-video lg:aspect-square flex items-center justify-center">
-          <div className="relative w-full max-w-md bg-background border border-border rounded-xl shadow-2xl p-6">
+          <div className="relative w-full max-w-md bg-background border border-border rounded-xl shadow-2xl overflow-hidden">
             
-            {/* Mock Window Controls */}
-            <div className="flex items-center gap-1.5 mb-6 pb-4 border-b border-border/50">
-              <div className="w-2.5 h-2.5 rounded-full bg-border" />
-              <div className="w-2.5 h-2.5 rounded-full bg-border" />
-              <div className="w-2.5 h-2.5 rounded-full bg-border" />
+            {/* Window bar */}
+            <div className="flex items-center justify-between px-4 py-3 bg-secondary/30 border-b border-border/50">
+              <div className="flex items-center gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-border" />
+                <div className="w-2.5 h-2.5 rounded-full bg-border" />
+                <div className="w-2.5 h-2.5 rounded-full bg-border" />
+              </div>
+              <div className="text-[10px] font-medium text-muted-foreground select-none">app.jovifitx.com</div>
+              <div className="w-10" /> {/* Spacer */}
             </div>
 
-            {/* Mock Header */}
-            <div className="flex items-center justify-between mb-8">
-              <div>
-                <div className="text-sm font-semibold text-foreground">Live Dashboard</div>
-                <div className="text-[11px] text-muted-foreground mt-0.5">Overview</div>
-              </div>
-              <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-secondary/50 border border-border text-[10px] font-medium text-muted-foreground">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Syncing
-              </div>
-            </div>
-
-            {/* Mock Stats */}
-            <div className="space-y-3">
-              {[
-                { title: 'Total Members', value: '312', trend: '+12 this week', icon: Users },
-                { title: 'Today\'s Check-ins', value: '84', trend: 'Peak hour', icon: CheckCircle },
-                { title: 'Revenue (MTD)', value: '₹2.1L', trend: '+8% vs last month', icon: CreditCard },
-              ].map((stat, i) => (
-                <div key={i} className="flex items-center justify-between p-3.5 rounded-lg border border-border bg-card">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-md bg-secondary flex items-center justify-center flex-shrink-0">
-                      <stat.icon className="w-4 h-4 text-muted-foreground" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-muted-foreground">{stat.title}</div>
-                      <div className="text-sm font-semibold text-foreground tracking-tight mt-0.5">{stat.value}</div>
-                    </div>
-                  </div>
-                  <div className="text-[11px] text-muted-foreground">
-                    {stat.trend}
-                  </div>
+            {/* Mock Dashboard Area */}
+            <div className="p-5 space-y-5">
+              
+              {/* Header inside Mock */}
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Active Gym</div>
+                  <div className="text-xs font-semibold text-foreground">Jovifitx Fitness Club</div>
                 </div>
-              ))}
-            </div>
+                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Live
+                </div>
+              </div>
 
+              {/* Stats Grid inside Mock */}
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  { label: 'Members', val: '312', change: '+12' },
+                  { label: 'Today check-in', val: '84', change: 'Live' },
+                  { label: 'Revenue (MTD)', val: '₹2.1L', change: '84%' },
+                ].map((stat, i) => (
+                  <div key={i} className="p-3 rounded-lg border border-border bg-card">
+                    <div className="text-[9px] text-muted-foreground font-medium uppercase">{stat.label}</div>
+                    <div className="text-sm font-semibold tracking-tight text-foreground mt-1">{stat.val}</div>
+                    <div className="text-[8px] text-muted-foreground mt-0.5">{stat.change}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Recent Check-ins List inside Mock */}
+              <div className="space-y-2.5">
+                <div className="text-[9px] text-muted-foreground font-semibold uppercase tracking-wider">Recent Check-ins</div>
+                <div className="space-y-1.5">
+                  {[
+                    { initials: 'JD', name: 'John Doe', time: '10:45 AM', plan: 'Premium Yearly', status: 'Active', statusBg: 'bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400' },
+                    { initials: 'AS', name: 'Alice Smith', time: '10:30 AM', plan: 'Monthly Strength', status: 'Active', statusBg: 'bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400' },
+                    { initials: 'MR', name: 'Mike Ross', time: '10:15 AM', plan: 'Quarterly Cardio', status: 'Expired', statusBg: 'bg-red-500/10 border-red-500/20 text-red-600 dark:text-red-400' },
+                  ].map((user, i) => (
+                    <div key={i} className="flex items-center justify-between p-2 rounded border border-border bg-card/50">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded bg-secondary flex items-center justify-center text-[9px] font-semibold text-muted-foreground border border-border">
+                          {user.initials}
+                        </div>
+                        <div>
+                          <div className="text-[10px] font-semibold text-foreground">{user.name}</div>
+                          <div className="text-[8px] text-muted-foreground">{user.plan}</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[8px] text-muted-foreground">{user.time}</span>
+                        <span className={`text-[8px] px-1.5 py-0.5 rounded border ${user.statusBg} font-medium`}>
+                          {user.status}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </main>
 
       {/* ── Features ── */}
       <section id="features" className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 pb-32">
-        <div className="mb-12">
-          <h2 className="font-semibold text-2xl sm:text-3xl text-foreground tracking-tight">
-            Everything you need.<br />
-            <span className="text-muted-foreground">Nothing you don't.</span>
+        <div className="mb-16 text-left">
+          <h2 className="font-bold text-3xl sm:text-4xl text-foreground tracking-tight">
+            Designed for operations.<br />
+            <span className="text-muted-foreground">Built for growth.</span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {[
             { 
-              title: 'Members', 
-              body: 'Add members, assign plans, and track who\'s active without digging through old registers.', 
+              title: 'Members Management', 
+              body: 'Assign plans, track active status, and search easily. Skip the spreadsheet stress.', 
               icon: Users,
+              preview: (
+                <div className="mt-4 p-3 rounded-lg border border-border bg-background space-y-2">
+                  <div className="flex items-center justify-between text-[9px] text-muted-foreground font-semibold">
+                    <span>NAME</span>
+                    <span>PLAN</span>
+                    <span>STATUS</span>
+                  </div>
+                  <div className="h-[1px] bg-border/50" />
+                  <div className="flex items-center justify-between text-[9px] font-medium">
+                    <span className="text-foreground">Alex Carter</span>
+                    <span className="text-muted-foreground">Monthly Pro</span>
+                    <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400">Active</span>
+                  </div>
+                  <div className="flex items-center justify-between text-[9px] font-medium">
+                    <span className="text-foreground">David Miller</span>
+                    <span className="text-muted-foreground">Cardio Basic</span>
+                    <span className="px-1.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400">Pending</span>
+                  </div>
+                </div>
+              )
             },
             { 
-              title: 'Attendance', 
-              body: 'A single QR at the door logs every check-in instantly — no manual sign-in sheets.', 
+              title: 'QR Attendance', 
+              body: 'Generate a unique QR for your gym entrance. Members scan at the door to check in automatically.', 
               icon: Smartphone,
+              preview: (
+                <div className="mt-4 p-3 rounded-lg border border-border bg-background flex flex-col items-center gap-2">
+                  {/* Mock QR Representation */}
+                  <div className="w-16 h-16 border-2 border-border p-1 rounded bg-secondary flex items-center justify-center">
+                    <div className="w-full h-full bg-foreground opacity-80" style={{ clipPath: 'polygon(0 0, 40% 0, 40% 40%, 0 40%, 0 0, 60% 0, 100% 0, 100% 40%, 60% 40%, 60% 0, 0 60%, 40% 60%, 40% 100%, 0 100%, 0 60%, 60% 60%, 100% 60%, 100% 100%, 60% 100%, 60% 60%)' }} />
+                  </div>
+                  <span className="text-[8px] text-muted-foreground font-medium">Scan to Check-in</span>
+                </div>
+              )
             },
             { 
-              title: 'Payments', 
-              body: 'See exactly who\'s paid, who\'s due, and where your revenue stands in real-time.', 
+              title: 'Revenue Metrics', 
+              body: 'Gain transparent insights into payments collected, outstanding due balances, and monthly growth.', 
               icon: BarChart,
+              preview: (
+                <div className="mt-4 p-3 rounded-lg border border-border bg-background space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[9px] font-semibold text-muted-foreground uppercase">Collection Rate</span>
+                    <span className="text-[9px] font-bold text-foreground">94.2%</span>
+                  </div>
+                  <div className="w-full h-2 rounded bg-secondary overflow-hidden border border-border">
+                    <div className="h-full bg-primary w-[94.2%] rounded-r" />
+                  </div>
+                  <div className="flex justify-between text-[8px] text-muted-foreground">
+                    <span>Collected: ₹2.1L</span>
+                    <span>Due: ₹12k</span>
+                  </div>
+                </div>
+              )
             },
           ].map((f) => (
-            <div key={f.title} className="p-6 rounded-xl border border-border bg-card">
-              <div className="w-10 h-10 rounded-lg bg-secondary border border-border flex items-center justify-center mb-5">
-                <f.icon className="w-5 h-5 text-muted-foreground" />
+            <div key={f.title} className="p-6 rounded-xl border border-border bg-card flex flex-col justify-between hover:shadow-md transition-shadow">
+              <div>
+                <div className="w-10 h-10 rounded-lg bg-secondary border border-border flex items-center justify-center mb-5">
+                  <f.icon className="w-5 h-5 text-muted-foreground" />
+                </div>
+                <h3 className="font-semibold text-base tracking-tight mb-2 text-foreground">
+                  {f.title}
+                </h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  {f.body}
+                </p>
               </div>
-              <h3 className="font-semibold text-base tracking-tight mb-2 text-foreground">
-                {f.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {f.body}
-              </p>
+              {f.preview}
             </div>
           ))}
         </div>
@@ -163,7 +263,7 @@ export default function HomePage() {
 
       {/* ── Footer ── */}
       <footer className="relative z-10 border-t border-border bg-background">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <span className="font-semibold text-sm tracking-tight text-foreground">
               Jovifitx
@@ -171,7 +271,7 @@ export default function HomePage() {
             <span className="text-xs text-muted-foreground">© {new Date().getFullYear()}</span>
           </div>
           <p className="text-xs text-muted-foreground">
-            Built for gym owners.
+            Operating system for modern gyms.
           </p>
         </div>
       </footer>
