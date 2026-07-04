@@ -45,7 +45,7 @@ function PlanCard({
 }) {
   return (
     <div
-      className="relative flex flex-col gap-4 rounded-2xl p-5 transition-all duration-200"
+      className="relative flex flex-col gap-4 rounded-md p-5 transition-all duration-200"
       style={{
         background: inactive ? 'var(--accent)' : 'var(--card)',
         border: inactive ? '1px solid #ffffff06' : '1px solid #ffffff0a',
@@ -162,7 +162,7 @@ function PlanCard({
         )}
 
         <span
-          className={`ml-auto rounded-full px-2.5 py-1 text-[11px] font-medium border ${inactive ? 'bg-muted/50 text-muted-foreground border-border' : 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20'}`}
+          className={`ml-auto rounded-md px-2.5 py-1 text-[11px] font-medium border ${inactive ? 'bg-muted/50 text-muted-foreground border-border' : 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20'}`}
         >
           {inactive ? 'Inactive' : 'Active'}
         </span>
@@ -186,7 +186,7 @@ export default function PlansPage() {
     return (
       <div className="flex h-64 items-center justify-center">
         <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
+          <div className="h-8 w-8 animate-spin rounded-md border-2 border-violet-500 border-t-transparent" />
           <p className="text-[12px] text-muted-foreground">Loading plans...</p>
         </div>
       </div>
@@ -212,7 +212,7 @@ export default function PlansPage() {
         {canManage && (
           <button
             onClick={() => router.push('/plans/new')}
-            className="flex h-10 items-center justify-center gap-2 px-5 text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground hover:-translate-y-0.5"
+            className="flex h-10 items-center justify-center gap-2 px-5 text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm hover:-translate-y-0.5"
           >
             <Plus className="h-4 w-4" />
             Add Plan
@@ -223,11 +223,11 @@ export default function PlansPage() {
       {/* ── Empty ───────────────────────────────────────────────────────────── */}
       {plans.length === 0 && (
         <div
-          className="flex h-64 flex-col items-center justify-center gap-4 rounded-2xl"
+          className="flex h-64 flex-col items-center justify-center gap-4 rounded-md"
           
         >
           <div
-            className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/10 text-violet-500"
+            className="flex h-12 w-12 items-center justify-center rounded-md bg-violet-500/10 text-violet-500"
           >
             <CreditCard className="h-5 w-5" />
           </div>
@@ -240,7 +240,7 @@ export default function PlansPage() {
           {canManage && (
             <button
               onClick={() => router.push('/plans/new')}
-              className="flex h-10 items-center justify-center gap-2 px-5 text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground hover:-translate-y-0.5"
+              className="flex h-10 items-center justify-center gap-2 px-5 text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm hover:-translate-y-0.5"
             >
               <Plus className="h-4 w-4" />
               Add Plan

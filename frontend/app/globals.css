@@ -54,25 +54,25 @@ html, body {
 }
 
 :root {
-  --background: #fdfcff;
-  --foreground: #1c1938;
-  --card: #ffffff;
-  --card-foreground: #1c1938;
-  --popover: #ffffff;
-  --popover-foreground: #1c1938;
-  --primary: #7c3aed;
+  --background: #faf9f8;
+  --foreground: #111111;
+  --card: #f4f2ec;
+  --card-foreground: #111111;
+  --popover: #f4f2ec;
+  --popover-foreground: #111111;
+  --primary: #111111;
   --primary-foreground: #ffffff;
-  --secondary: #f1f5f9;
-  --secondary-foreground: #334155;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #f5f3ff;
-  --accent-foreground: #6d28d9;
+  --secondary: #b6cad1;
+  --secondary-foreground: #111111;
+  --muted: #e8e6e1;
+  --muted-foreground: #666666;
+  --accent: #e8e6e1;
+  --accent-foreground: #111111;
   --destructive: #ef4444;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #7c3aed;
-  --radius: 0.75rem;
+  --border: #e5e3db;
+  --input: #e5e3db;
+  --ring: #111111;
+  --radius: 0.3rem;
 }
 
 .dark {

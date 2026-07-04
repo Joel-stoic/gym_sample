@@ -70,7 +70,7 @@ function SkeletonCell({ width = '100%', height = 14 }: { width?: string | number
 
 function MemberTableSkeleton() {
   return (
-    <div className="hidden overflow-hidden rounded-2xl md:block" style={surface}>
+    <div className="hidden overflow-hidden rounded-md md:block" style={surface}>
       <div
         className="grid px-5 py-3 border-b border-border bg-card"
         style={{ gridTemplateColumns: '2fr 1.2fr 1fr 1fr 1fr 80px' }}
@@ -142,7 +142,7 @@ function MemberTableSkeleton() {
 
 function MemberCardSkeleton() {
   return (
-    <div className="flex flex-col md:hidden sm:rounded-2xl" style={{ ...surface, borderRadius: 0 }}>
+    <div className="flex flex-col md:hidden sm:rounded-md" style={{ ...surface, borderRadius: 0 }}>
       {Array.from({ length: 7 }).map((_, i) => (
         <div
           key={i}
@@ -210,7 +210,7 @@ function MemberCard({
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onOpen(member.id) }}
     >
       <div
-        className="flex h-[46px] w-[46px] flex-shrink-0 items-center justify-center rounded-full text-[15px] font-semibold text-violet-300"
+        className="flex h-[46px] w-[46px] flex-shrink-0 items-center justify-center rounded-md text-[15px] font-semibold text-violet-300"
         style={{ background: '#7c3aed1f', border: '1px solid #7c3aed35' }}
       >
         {initials}
@@ -230,10 +230,10 @@ function MemberCard({
             : '—'}
         </span>
         <span
-          className="flex items-center gap-1 rounded-full px-1.5 py-[3px]"
+          className="flex items-center gap-1 rounded-md px-1.5 py-[3px]"
           style={{ background: st.bg }}
         >
-          <span className="rounded-full" style={{ width: 5, height: 5, background: st.dot }} />
+          <span className="rounded-md" style={{ width: 5, height: 5, background: st.dot }} />
           <span className="text-[9.5px] font-semibold uppercase tracking-wide" style={{ color: st.text }}>
             {st.label}
           </span>
@@ -362,7 +362,7 @@ export default function MembersPage() {
 
       {/* Sticky Top Header Section (Search + Filters + Total) */}
       <div 
-        className="sticky z-40 -mx-4 px-4 pt-1 pb-4 sm:-mx-6 sm:px-6 mb-5 border-b border-black/10 dark:border-white/10 bg-background/15 backdrop-blur-2xl backdrop-saturate-150 shadow-sm transition-all"
+        className="sticky z-40 -mx-4 px-4 pt-1 pb-4 sm:-mx-6 sm:px-6 mb-5 border-b border-border bg-background border-border backdrop-saturate-150 shadow-sm transition-all"
         style={{ top: '93px' }}
       >
         
@@ -403,7 +403,7 @@ export default function MembersPage() {
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="flex h-10 items-center justify-center gap-2 px-5 text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+              className="flex h-10 items-center justify-center gap-2 px-5 text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
             >
               <Plus className="h-4 w-4" />
               Add Member
@@ -438,10 +438,10 @@ export default function MembersPage() {
         </>
       ) : members.length === 0 ? (
         <div
-          className="mx-4 flex h-56 flex-col items-center justify-center gap-4 rounded-2xl px-4 text-center sm:mx-0 sm:h-64"
+          className="mx-4 flex h-56 flex-col items-center justify-center gap-4 rounded-md px-4 text-center sm:mx-0 sm:h-64"
           style={surface}
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl" style={{ background: '#7c3aed20' }}>
+          <div className="flex h-12 w-12 items-center justify-center rounded-md" style={{ background: '#7c3aed20' }}>
             <Users className="h-5 w-5 text-violet-400" />
           </div>
           <div>
@@ -451,7 +451,7 @@ export default function MembersPage() {
           <button
             type="button"
             onClick={() => setIsModalOpen(true)}
-            className="flex h-10 items-center justify-center gap-2 px-5 text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+            className="flex h-10 items-center justify-center gap-2 px-5 text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
           >
             <Plus className="h-4 w-4" />
             Add Member
@@ -460,15 +460,15 @@ export default function MembersPage() {
       ) : (
         <>
           {/* Desktop table */}
-          <div className="hidden overflow-hidden rounded-2xl px-4 sm:px-0 md:block">
-            <div className="overflow-hidden rounded-2xl" style={surface}>
+          <div className="hidden overflow-hidden rounded-md px-4 sm:px-0 md:block">
+            <div className="overflow-hidden rounded-md" style={surface}>
               <MemberTable members={members} onDelete={(id: string) => setDeleteId(id)} />
             </div>
           </div>
 
           {/* Mobile list */}
           <div
-            className="flex flex-col overflow-hidden md:hidden sm:rounded-2xl"
+            className="flex flex-col overflow-hidden md:hidden sm:rounded-md"
             style={{ ...surface, borderRadius: 0 }}
           >
             {members.map((m: Member) => (
@@ -582,12 +582,12 @@ export default function MembersPage() {
       <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>
         <AlertDialogOverlay style={{ background: 'hsl(var(--background) / 0.75)', backdropFilter: 'blur(4px)' }} />
         <AlertDialogContent
-          className="w-[calc(100%-2rem)] overflow-hidden p-0 sm:w-full bg-card border border-border rounded-3xl max-w-[400px] shadow-xl"
+          className="w-[calc(100%-2rem)] overflow-hidden p-0 sm:w-full bg-card border border-border rounded-lg max-w-[400px] shadow-xl"
         >
           <div className="h-1 w-full bg-gradient-to-r from-[#ef4444] to-[#f87171]" />
           <div className="p-5 sm:p-6">
             <AlertDialogHeader className="mb-5">
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#ef444415] border border-border">
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-md bg-[#ef444415] border border-border">
                 <Trash2 className="h-[18px] w-[18px]" style={{ color: '#ef4444' }} strokeWidth={2} />
               </div>
               <AlertDialogTitle
@@ -610,7 +610,7 @@ export default function MembersPage() {
               </AlertDialogCancel>
               <AlertDialogAction
                 onClick={handleDelete}
-                className="h-10 flex-1 border-0 text-[13px] font-medium text-foreground transition-all sm:flex-none bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+                className="h-10 flex-1 border-0 text-[13px] font-medium text-foreground transition-all sm:flex-none bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
               >
                 Delete Member
               </AlertDialogAction>

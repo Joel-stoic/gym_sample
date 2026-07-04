@@ -64,7 +64,7 @@ export default function NotificationsPage() {
           { label: 'Delivered',    value: summary.sent,   color: 'text-emerald-400' },
           { label: 'Failed',       value: summary.failed, color: 'text-red-400' },
         ].map(s => (
-          <div key={s.label} className="bg-card border border-border rounded-2xl p-4">
+          <div key={s.label} className="bg-card border border-border rounded-md p-4">
             <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
             <p className="text-xs text-foreground/40 mt-0.5">{s.label}</p>
           </div>
@@ -90,13 +90,13 @@ export default function NotificationsPage() {
       </div>
 
       {/* Log table */}
-      <div className="bg-card border border-border rounded-3xl overflow-hidden">
+      <div className="bg-card border border-border rounded-lg overflow-hidden">
         <div className="px-6 py-4 border-b border-border">
           <p className="text-sm font-semibold text-foreground">Recent Logs</p>
         </div>
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <div className="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-full animate-spin" />
+            <div className="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-md animate-spin" />
           </div>
         ) : logs.length === 0 ? (
           <div className="py-16 text-center">
@@ -122,7 +122,7 @@ export default function NotificationsPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3 flex-shrink-0 ml-4">
-                  <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${STATUS_COLORS[log.status] || 'bg-muted text-foreground/30'}`}>
+                  <span className={`text-xs px-2 py-0.5 rounded-md font-medium ${STATUS_COLORS[log.status] || 'bg-muted text-foreground/30'}`}>
                     {log.status}
                   </span>
                   <p className="text-xs text-foreground/30">

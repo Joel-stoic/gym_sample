@@ -15,7 +15,7 @@ export default function HomePage() {
 
           <a
           href="/login"
-          className="px-5 py-2 text-sm font-medium rounded-full text-foreground transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a855f7]"
+          className="px-5 py-2 text-sm font-medium rounded-md text-foreground transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a855f7]"
           style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)' }}
         >
           Log in
@@ -39,7 +39,7 @@ export default function HomePage() {
         <div className="flex items-center gap-5 mt-9">
           <a
             href="/login"
-            className="px-7 py-3 text-sm font-semibold rounded-full text-foreground transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a855f7]"
+            className="px-7 py-3 text-sm font-semibold rounded-md text-foreground transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a855f7]"
             style={{
               background: 'linear-gradient(135deg, #7c3aed, #a855f7)',
               boxShadow: '0 4px 20px #7c3aed35',
@@ -56,11 +56,11 @@ export default function HomePage() {
         </div>
 
         {/* ── Scoreboard — signature element ── */}
-        <div className="mt-20 rounded-2xl border border-[#26263a] bg-card overflow-hidden">
+        <div className="mt-20 rounded-md border border-[#26263a] bg-card overflow-hidden">
           <div className="px-6 py-4 border-b border-[#26263a] flex items-center justify-between">
             <span className="text-xs uppercase tracking-[0.15em] text-muted-foreground">Sample dashboard</span>
             <span className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#8FBF3F]" />
+              <span className="w-1.5 h-1.5 rounded-md bg-[#8FBF3F]" />
               Live
             </span>
           </div>
@@ -81,7 +81,7 @@ export default function HomePage() {
         </div>
 
         {/* ── Features ── */}
-        <div id="how-it-works" className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[#26263a] mt-20 rounded-2xl overflow-hidden">
+        <div id="how-it-works" className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[#26263a] mt-20 rounded-md overflow-hidden">
           {[
             { title: 'Members', body: 'Add members, assign plans, and track who\u2019s active without digging through registers.' },
             { title: 'Attendance', body: 'A single QR at the door logs every check-in — no manual sign-in sheets.' },

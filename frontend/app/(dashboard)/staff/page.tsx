@@ -58,11 +58,11 @@ interface StaffMember {
 // ─── Skeleton ────────────────────────────────────────────
 function StaffCardSkeleton() {
   return (
-    <div className="rounded-2xl border border-white/[0.04] bg-white/[0.02] p-5 space-y-4 animate-pulse">
+    <div className="rounded-md border border-white/[0.04] bg-white/[0.02] p-5 space-y-4 animate-pulse">
       <div className="flex items-start justify-between">
         <div className="space-y-2.5">
           <div className="h-4 w-32 bg-white/[0.06] rounded-md" />
-          <div className="h-5 w-20 bg-white/[0.06] rounded-full" />
+          <div className="h-5 w-20 bg-white/[0.06] rounded-md" />
         </div>
         <div className="h-8 w-8 bg-white/[0.06] rounded-lg" />
       </div>
@@ -108,11 +108,11 @@ function ActiveIndicator({ isActive }: { isActive: boolean }) {
     >
       {isActive ? (
         <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-md bg-emerald-400 opacity-75" />
+          <span className="relative inline-flex h-2 w-2 rounded-md bg-emerald-500" />
         </span>
       ) : (
-        <span className="h-2 w-2 rounded-full bg-zinc-600" />
+        <span className="h-2 w-2 rounded-md bg-zinc-600" />
       )}
       {isActive ? 'Active Account' : 'Inactive'}
     </span>
@@ -261,13 +261,13 @@ export default function StaffPage() {
             if (!val) setForm(EMPTY_FORM) // Reset on close
           }}>
             <DialogTrigger asChild>
-              <Button className="h-10 px-4 text-sm font-medium gap-2 transition-all active:scale-95 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+              <Button className="h-10 px-4 text-sm font-medium gap-2 transition-all active:scale-95 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                 <Plus className="h-4 w-4" />
                 Add Staff Member
               </Button>
             </DialogTrigger>
 
-            <DialogContent className="border-border bg-background text-foreground rounded-2xl shadow-2xl sm:max-w-md">
+            <DialogContent className="border-border bg-background text-foreground rounded-md shadow-2xl sm:max-w-md">
               <DialogHeader>
                 <DialogTitle className="text-lg font-semibold">New Staff Member</DialogTitle>
                 <DialogDescription className="text-zinc-400">
@@ -293,7 +293,7 @@ export default function StaffPage() {
                 <div className="pt-2">
                   <Button
                     disabled={saving || !form.name || !form.phone}
-                    className="w-full h-11 text-base font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+                    className="w-full h-11 text-base font-medium transition-all bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
                     onClick={addStaff}
                   >
                     {saving ? (
@@ -311,7 +311,7 @@ export default function StaffPage() {
 
       {/* Edit Modal */}
       <Dialog open={editOpen} onOpenChange={setEditOpen}>
-        <DialogContent className="border-border bg-background text-foreground rounded-2xl shadow-2xl sm:max-w-md">
+        <DialogContent className="border-border bg-background text-foreground rounded-md shadow-2xl sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-lg font-semibold">Edit Staff Profile</DialogTitle>
           </DialogHeader>
@@ -348,7 +348,7 @@ export default function StaffPage() {
               </div>
 
               <div className="pt-2">
-                <Button disabled={saving} className="w-full h-11 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground" onClick={updateStaff}>
+                <Button disabled={saving} className="w-full h-11 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm" onClick={updateStaff}>
                   {saving ? <RefreshCcw className="h-4 w-4 mr-2 animate-spin" /> : 'Save Changes'}
                 </Button>
               </div>
@@ -359,9 +359,9 @@ export default function StaffPage() {
 
       {/* Delete Confirmation Prompt */}
       <Dialog open={!!deleteId} onOpenChange={(isOpen) => !isOpen && setDeleteId(null)}>
-        <DialogContent className="border-border bg-background text-foreground rounded-2xl shadow-2xl sm:max-w-sm">
+        <DialogContent className="border-border bg-background text-foreground rounded-md shadow-2xl sm:max-w-sm">
           <DialogHeader>
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-500/10 mb-2">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-md bg-red-500/10 mb-2">
               <AlertTriangle className="h-6 w-6 text-red-500" />
             </div>
             <DialogTitle className="text-center text-lg font-semibold">Remove Staff Member?</DialogTitle>
@@ -395,7 +395,7 @@ export default function StaffPage() {
             <div
               key={member.id}
               className={cn(
-                'group relative rounded-2xl border p-5 transition-colors duration-200',
+                'group relative rounded-md border p-5 transition-colors duration-200',
                 member.isActive
                   ? 'bg-white/[0.02] border-border hover:bg-white/[0.04] hover:border-white/[0.12]'
                   : 'bg-background/20 border-white/[0.03] opacity-75 hover:opacity-100'
@@ -457,7 +457,7 @@ export default function StaffPage() {
               <div className="flex flex-col justify-between h-auto gap-4">
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 text-sm text-zinc-300 group-hover:text-zinc-200 transition-colors">
-                    <div className="flex h-7 w-7 items-center justify-center bg-violet-500/10 text-violet-500 rounded-full">
+                    <div className="flex h-7 w-7 items-center justify-center bg-violet-500/10 text-violet-500 rounded-md">
                       <Phone className="h-3.5 w-3.5" />
                     </div>
                     <span>{member.phone}</span>
@@ -465,7 +465,7 @@ export default function StaffPage() {
                   
                   {member.email && (
                     <div className="flex items-center gap-3 text-sm text-zinc-300 group-hover:text-zinc-200 transition-colors">
-                      <div className="flex h-7 w-7 items-center justify-center bg-violet-500/10 text-violet-500 rounded-full">
+                      <div className="flex h-7 w-7 items-center justify-center bg-violet-500/10 text-violet-500 rounded-md">
                         <Mail className="h-3.5 w-3.5" />
                       </div>
                       <span className="truncate">{member.email}</span>

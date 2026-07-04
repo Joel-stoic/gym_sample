@@ -33,9 +33,9 @@ function filterNotifications(notifications: any[], range: FilterRange) {
 
 // ── Skeleton ───────────────────────────────────────────────────────────
 const NotificationSkeleton = () => (
-  <div className="rounded-3xl border border-border bg-gradient-to-b from-white/[0.04] to-white/[0.02] p-5 animate-pulse">
+  <div className="rounded-lg border border-border bg-gradient-to-b from-white/[0.04] to-white/[0.02] p-5 animate-pulse">
     <div className="flex items-start gap-4">
-      <div className="h-12 w-12 rounded-2xl bg-white/[0.06] border border-border flex-shrink-0" />
+      <div className="h-12 w-12 rounded-md bg-white/[0.06] border border-border flex-shrink-0" />
       <div className="flex-1 min-w-0">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
@@ -96,7 +96,7 @@ const NotificationPage = () => {
               onClick={() => setFilter(opt.value)}
               className={`rounded-lg px-3 py-1.5 text-[11px] font-medium transition-all duration-150
                 ${filter === opt.value
-                  ? 'bg-black/10 dark:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground shadow'
+                  ? 'bg-accent  border border-border text-foreground shadow'
                   : 'bg-transparent text-muted-foreground hover:bg-muted border border-transparent'
                 }`}
             >
@@ -123,7 +123,7 @@ const NotificationPage = () => {
             <NotificationSkeleton />
           </>
         ) : filtered.length === 0 ? (
-          <div className="rounded-3xl border border-border bg-white/[0.03] py-20 flex flex-col items-center justify-center">
+          <div className="rounded-lg border border-border bg-white/[0.03] py-20 flex flex-col items-center justify-center">
             <BellDot className="h-12 w-12 text-zinc-600 mb-4" />
             <h3 className="text-lg font-semibold text-foreground">No notifications</h3>
             <p className="text-sm text-muted-foreground mt-2">
@@ -134,12 +134,12 @@ const NotificationPage = () => {
           filtered.map((notif) => (
             <div
               key={notif.id}
-              className="rounded-3xl border border-border bg-gradient-to-b from-white/[0.04] to-white/[0.02] p-5"
+              className="rounded-lg border border-border bg-gradient-to-b from-white/[0.04] to-white/[0.02] p-5"
             >
               <div className="flex items-start gap-4">
 
                 {/* ICON */}
-                <div className={`h-12 w-12 rounded-2xl flex items-center justify-center border flex-shrink-0
+                <div className={`h-12 w-12 rounded-md flex items-center justify-center border flex-shrink-0
                   ${notif.status === 'SENT'
                     ? 'bg-green-500/10 border-green-500/20'
                     : 'bg-red-500/10 border-red-500/20'
@@ -169,12 +169,12 @@ const NotificationPage = () => {
                       }`}>
                       {notif.status === 'SENT' ? (
                         <span className="flex items-center gap-1">
-                          <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+                          <span className="h-2 w-2 rounded-md bg-green-400 animate-pulse" />
                           Sent
                         </span>
                       ) : (
                         <span className="flex items-center gap-1">
-                          <span className="h-2 w-2 rounded-full bg-red-400" />
+                          <span className="h-2 w-2 rounded-md bg-red-400" />
                           Failed
                         </span>
                       )}

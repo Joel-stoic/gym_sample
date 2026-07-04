@@ -69,8 +69,8 @@ function ConfirmDialog({ open, title, message, danger, onConfirm, onCancel, load
 }) {
   if (!open) return null
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/70 backdrop-blur-sm">
-      <div className="w-full max-w-sm bg-background border border-border rounded-2xl p-6 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/70 ">
+      <div className="w-full max-w-sm bg-background border border-border rounded-md p-6 shadow-2xl">
         <h3 className="text-base font-bold text-foreground mb-2">{title}</h3>
         <p className="text-sm text-foreground/50 mb-5">{message}</p>
         <div className="flex gap-3">
@@ -365,7 +365,7 @@ export default function AdminGymDetailPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-md animate-spin" />
       </div>
     )
   }
@@ -443,7 +443,7 @@ export default function AdminGymDetailPage() {
 
           <div className="flex items-start justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl /20 flex items-center justify-center text-violet-400 text-lg font-bold flex-shrink-0 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+              <div className="w-12 h-12 rounded-md /20 flex items-center justify-center text-violet-400 text-lg font-bold flex-shrink-0 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                 {tenant.name.charAt(0).toUpperCase()}
               </div>
               <div>
@@ -454,7 +454,7 @@ export default function AdminGymDetailPage() {
                     : <Clock size={15} className="text-amber-400" />
                   }
                   {!tenant.isActive && (
-                    <span className="text-[11px] px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 font-medium">
+                    <span className="text-[11px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-400 font-medium">
                       Pending Approval
                     </span>
                   )}
@@ -490,7 +490,7 @@ export default function AdminGymDetailPage() {
                 </button>
               )}
               <button onClick={() => setShowMemberModal(true)}
-                className="flex items-center gap-1.5 px-3 py-2 /20 hover:/30 text-violet-400 text-xs font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                className="flex items-center gap-1.5 px-3 py-2 /20 hover:/30 text-violet-400 text-xs font-medium transition-all bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                 <Plus size={13} />Add Member
               </button>
               <button onClick={handleDelete} disabled={actionLoading}
@@ -503,7 +503,7 @@ export default function AdminGymDetailPage() {
 
         {/* ── Trial alert ── */}
         {trialDays !== null && trialDays <= 5 && (
-          <div className={`flex items-center gap-3 px-5 py-3.5 rounded-2xl border ${trialDays < 0
+          <div className={`flex items-center gap-3 px-5 py-3.5 rounded-md border ${trialDays < 0
             ? 'bg-red-500/10 border-red-500/20 text-red-400'
             : 'bg-amber-500/10 border-amber-500/20 text-amber-400'
             }`}>
@@ -526,7 +526,7 @@ export default function AdminGymDetailPage() {
             { label: 'Staff Count', value: usage?.staffCount ?? 0, icon: Shield, color: 'text-sky-400', bg: 'bg-sky-500/10' },
             { label: 'Total Revenue', value: toRupees(usage?.totalRevenue ?? 0), icon: TrendingUp, color: 'text-amber-400', bg: 'bg-amber-500/10' },
           ].map(({ label, value, icon: Icon, color, bg }) => (
-            <div key={label} className="bg-card border border-border rounded-2xl p-4">
+            <div key={label} className="bg-card border border-border rounded-md p-4">
               <div className={`w-8 h-8 rounded-xl ${bg} flex items-center justify-center mb-3`}>
                 <Icon size={15} className={color} />
               </div>
@@ -555,7 +555,7 @@ export default function AdminGymDetailPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
             {/* Gym info */}
-            <div className="bg-card border border-border rounded-2xl p-5 space-y-3">
+            <div className="bg-card border border-border rounded-md p-5 space-y-3">
               <p className="text-[11px] uppercase tracking-widest text-foreground/30 font-semibold">Gym Info</p>
               <InfoRow label="Name" value={tenant.name} />
               <InfoRow label="Slug" value={`${tenant.slug}.jovifitx.online`} />
@@ -563,13 +563,13 @@ export default function AdminGymDetailPage() {
               <InfoRow label="Email" value={tenant.email || '—'} />
               <InfoRow label="Joined" value={formatDate(tenant.createdAt)} />
               <InfoRow label="Status" value={
-                <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${tenant.isActive ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400'
+                <span className={`text-xs px-2 py-0.5 rounded-md font-medium ${tenant.isActive ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400'
                   }`}>{tenant.isActive ? 'Active' : 'Inactive'}</span>
               } />
             </div>
 
             {/* Trial & Grace */}
-            <div className="bg-card border border-border rounded-2xl p-5 space-y-4">
+            <div className="bg-card border border-border rounded-md p-5 space-y-4">
               <p className="text-[11px] uppercase tracking-widest text-foreground/30 font-semibold">Trial & Access</p>
 
               <div className="space-y-1">
@@ -625,7 +625,7 @@ export default function AdminGymDetailPage() {
             </div>
 
             {/* Support tools — full width */}
-            <div className="bg-card border border-border rounded-2xl p-5 sm:col-span-2">
+            <div className="bg-card border border-border rounded-md p-5 sm:col-span-2">
               <p className="text-[11px] uppercase tracking-widest text-foreground/30 font-semibold mb-4">Support Tools</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
@@ -656,18 +656,18 @@ export default function AdminGymDetailPage() {
                 {/* Impersonate */}
                 <div className="rounded-xl bg-white/[0.02] border border-border p-4">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 /10 flex items-center justify-center flex-shrink-0 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                    <div className="w-8 h-8 /10 flex items-center justify-center flex-shrink-0 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                       <LogIn size={15} className="text-violet-400" />
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-medium text-foreground">Login as Owner</p>
                       <p className="text-xs text-foreground/30 mt-0.5">Get a 1-hour access token to support this gym</p>
                       <button onClick={handleImpersonate} disabled={actionLoading}
-                        className="mt-3 px-3 py-1.5 /10 hover:/20 text-violet-400 text-xs font-medium transition-all disabled:opacity-50 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                        className="mt-3 px-3 py-1.5 /10 hover:/20 text-violet-400 text-xs font-medium transition-all disabled:opacity-50 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                         Generate Token
                       </button>
                       {impersonateResult && (
-                        <div className="mt-2 p-2 /5 border border-violet-500/10 space-y-1 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                        <div className="mt-2 p-2 /5 border border-violet-500/10 space-y-1 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                           <p className="text-[11px] text-violet-400/80">
                             Token for {impersonateResult.ownerName} (expires in {impersonateResult.expiresIn}):
                           </p>
@@ -745,7 +745,7 @@ export default function AdminGymDetailPage() {
                     {owners.map((o, i) => (
                       <div key={o.id} className="flex items-center justify-between px-4 py-3">
                         <div className="flex items-center gap-3 min-w-0">
-                          <div className="w-7 h-7 rounded-full bg-sky-500/10 flex items-center justify-center text-sky-400 text-xs font-bold flex-shrink-0">
+                          <div className="w-7 h-7 rounded-md bg-sky-500/10 flex items-center justify-center text-sky-400 text-xs font-bold flex-shrink-0">
                             {o.name.charAt(0).toUpperCase()}
                           </div>
                           <div className="min-w-0">
@@ -779,11 +779,11 @@ export default function AdminGymDetailPage() {
             MEMBERS TAB
         ══════════════════════════════════════════════ */}
         {tab === 'members' && (
-          <div className="bg-card border border-border rounded-3xl overflow-hidden">
+          <div className="bg-card border border-border rounded-lg overflow-hidden">
             <div className="px-6 py-4 border-b border-border flex items-center justify-between">
               <p className="text-sm font-semibold text-foreground">{members.length} Members</p>
               <button onClick={() => setShowMemberModal(true)}
-                className="flex items-center gap-1.5 px-3 py-1.5 /20 hover:/30 text-violet-400 text-xs font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                className="flex items-center gap-1.5 px-3 py-1.5 /20 hover:/30 text-violet-400 text-xs font-medium transition-all bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                 <Plus size={12} />Add Member
               </button>
             </div>
@@ -797,7 +797,7 @@ export default function AdminGymDetailPage() {
                 {members.map(m => (
                   <div key={m.id} className="px-6 py-3.5 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-7 h-7 rounded-full bg-muted flex items-center justify-center text-foreground/40 text-xs font-medium">
+                      <div className="w-7 h-7 rounded-md bg-muted flex items-center justify-center text-foreground/40 text-xs font-medium">
                         {m.name.charAt(0).toUpperCase()}
                       </div>
                       <div>
@@ -807,7 +807,7 @@ export default function AdminGymDetailPage() {
                     </div>
                     <div className="flex items-center gap-3">
                       {m.plan && <span className="text-xs text-foreground/30 hidden sm:block">{m.plan.name}</span>}
-                      <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${m.status === 'ACTIVE' ? 'bg-emerald-500/10 text-emerald-400'
+                      <span className={`text-xs px-2 py-0.5 rounded-md font-medium ${m.status === 'ACTIVE' ? 'bg-emerald-500/10 text-emerald-400'
                         : m.status === 'EXPIRED' ? 'bg-red-500/10 text-red-400'
                           : 'bg-muted text-foreground/30'
                         }`}>{m.status.replace('_', ' ')}</span>
@@ -823,7 +823,7 @@ export default function AdminGymDetailPage() {
             PAYMENTS TAB
         ══════════════════════════════════════════════ */}
         {tab === 'payments' && (
-          <div className="bg-card border border-border rounded-3xl overflow-hidden">
+          <div className="bg-card border border-border rounded-lg overflow-hidden">
             <div className="px-6 py-4 border-b border-border flex items-center justify-between">
               <p className="text-sm font-semibold text-foreground">{payments.length} Payments</p>
               <p className="text-xs text-foreground/30">Total: {toRupees(totalRevenue)}</p>
@@ -842,7 +842,7 @@ export default function AdminGymDetailPage() {
                     </div>
                     <div className="flex items-center gap-3">
                       <p className="text-sm font-semibold text-foreground">{toRupees(p.finalAmount)}</p>
-                      <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${p.status === 'PAID' ? 'bg-emerald-500/10 text-emerald-400'
+                      <span className={`text-xs px-2 py-0.5 rounded-md font-medium ${p.status === 'PAID' ? 'bg-emerald-500/10 text-emerald-400'
                         : p.status === 'PARTIAL' ? 'bg-amber-500/10 text-amber-400'
                           : 'bg-muted text-foreground/30'
                         }`}>{p.status}</span>
@@ -858,7 +858,7 @@ export default function AdminGymDetailPage() {
             ACTIVITY TAB
         ══════════════════════════════════════════════ */}
         {tab === 'activity' && (
-          <div className="bg-card border border-border rounded-3xl overflow-hidden">
+          <div className="bg-card border border-border rounded-lg overflow-hidden">
             <div className="px-6 py-4 border-b border-border">
               <p className="text-sm font-semibold text-foreground">Recent Activity</p>
               <p className="text-xs text-foreground/30 mt-0.5">Last 30 events — payments and check-ins</p>
@@ -894,8 +894,8 @@ export default function AdminGymDetailPage() {
 
       {/* Add Member */}
       {showMemberModal && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-background/60 backdrop-blur-sm">
-          <div className="w-full sm:max-w-md bg-background border border-border rounded-t-3xl sm:rounded-3xl shadow-2xl max-h-[92vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-background/60 ">
+          <div className="w-full sm:max-w-md bg-background border border-border rounded-t-3xl sm:rounded-lg shadow-2xl max-h-[92vh] overflow-y-auto">
             <div className="flex items-center justify-between px-6 py-5 border-b border-border sticky top-0 bg-background">
               <div>
                 <h2 className="text-base font-bold text-foreground">Add Member</h2>
@@ -984,7 +984,7 @@ export default function AdminGymDetailPage() {
                   Cancel
                 </button>
                 <button type="submit" disabled={memberSubmitting}
-                  className="flex-1 py-2.5 text-foreground text-sm font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                  className="flex-1 py-2.5 text-foreground text-sm font-medium transition-all bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                   {memberSubmitting ? 'Adding...' : 'Add Member'}
                 </button>
               </div>
@@ -994,8 +994,8 @@ export default function AdminGymDetailPage() {
       )}
       {/* Trial */}
       {showTrialModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/60 backdrop-blur-sm">
-          <div className="w-full max-w-sm bg-background border border-border rounded-2xl shadow-2xl p-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/60 ">
+          <div className="w-full max-w-sm bg-background border border-border rounded-md shadow-2xl p-6">
             <h2 className="text-base font-bold text-foreground mb-4">Set Trial Expiry</h2>
             <form onSubmit={handleSetTrial} className="space-y-4">
               <div className="space-y-1">
@@ -1009,7 +1009,7 @@ export default function AdminGymDetailPage() {
                   Cancel
                 </button>
                 <button type="submit" disabled={actionLoading}
-                  className="flex-1 py-2.5 text-foreground text-sm font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                  className="flex-1 py-2.5 text-foreground text-sm font-medium transition-all bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                   {actionLoading ? 'Saving...' : 'Save'}
                 </button>
               </div>
@@ -1020,8 +1020,8 @@ export default function AdminGymDetailPage() {
 
       {/* Grace Period */}
       {showGraceModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/60 backdrop-blur-sm">
-          <div className="w-full max-w-sm bg-background border border-border rounded-2xl shadow-2xl p-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/60 ">
+          <div className="w-full max-w-sm bg-background border border-border rounded-md shadow-2xl p-6">
             <h2 className="text-base font-bold text-foreground mb-1">Set Grace Period</h2>
             <p className="text-xs text-foreground/30 mb-4">Lets the gym continue using the platform after trial expiry</p>
             <form onSubmit={handleSetGrace} className="space-y-4">
@@ -1036,7 +1036,7 @@ export default function AdminGymDetailPage() {
                   Cancel
                 </button>
                 <button type="submit" disabled={actionLoading}
-                  className="flex-1 py-2.5 text-foreground text-sm font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                  className="flex-1 py-2.5 text-foreground text-sm font-medium transition-all bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                   {actionLoading ? 'Saving...' : 'Save'}
                 </button>
               </div>
@@ -1047,8 +1047,8 @@ export default function AdminGymDetailPage() {
 
       {/* Add / Edit Owner */}
       {showOwnerModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/60 backdrop-blur-sm">
-          <div className="w-full max-w-sm bg-background border border-border rounded-3xl shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/60 ">
+          <div className="w-full max-w-sm bg-background border border-border rounded-lg shadow-2xl">
             <div className="flex items-center justify-between px-6 py-5 border-b border-border">
               <div>
                 <h2 className="text-base font-bold text-foreground">
@@ -1099,7 +1099,7 @@ export default function AdminGymDetailPage() {
                   Cancel
                 </button>
                 <button type="submit" disabled={ownerSubmitting}
-                  className="flex-1 py-2.5 text-foreground text-sm font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                  className="flex-1 py-2.5 text-foreground text-sm font-medium transition-all bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                   {ownerSubmitting ? 'Saving...' : editingOwner ? 'Save Changes' : 'Add Owner'}
                 </button>
               </div>

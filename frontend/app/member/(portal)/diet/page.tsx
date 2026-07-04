@@ -43,7 +43,7 @@ const mealConfig: Record<string, { color: string; bg: string; border: string }> 
   Snacks: { color: 'text-orange-400', bg: 'bg-orange-500/10', border: 'border-orange-500/20' },
 }
 const defaultMeal = { color: 'text-zinc-400', bg: 'bg-zinc-500/10', border: 'border-zinc-500/20' }
-const card = 'rounded-2xl border border-border bg-white/[0.03] p-5'
+const card = 'rounded-md border border-border bg-white/[0.03] p-5'
 const inputBase = 'w-full bg-background/30 border border-border rounded-xl px-3 py-2.5 text-sm text-foreground placeholder:text-zinc-600 outline-none focus:border-violet-500/40 transition-colors'
 
 function Label({ children }: { children: React.ReactNode }) {
@@ -76,7 +76,7 @@ function PtEnrollmentCard({ enrollment }: { enrollment: PtEnrollment }) {
           <div className="flex items-center gap-2 mb-1">
             <p className="text-sm font-semibold text-foreground">{enrollment.package.name}</p>
             <span className={cn(
-              'text-[10px] font-semibold px-2 py-0.5 rounded-full border',
+              'text-[10px] font-semibold px-2 py-0.5 rounded-md border',
               enrollment.status === 'ACTIVE'
                 ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20'
                 : 'text-zinc-400 bg-zinc-500/10 border-zinc-500/20'
@@ -86,9 +86,9 @@ function PtEnrollmentCard({ enrollment }: { enrollment: PtEnrollment }) {
           </div>
           {/* Progress bar */}
           <div className="flex items-center gap-2 mt-2">
-            <div className="flex-1 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+            <div className="flex-1 h-1.5 bg-zinc-800 rounded-md overflow-hidden">
               <div
-                className="h-full rounded-full transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+                className="h-full rounded-md transition-all bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
                 style={{ width: `${pct}%` }}
               />
             </div>
@@ -248,7 +248,7 @@ function DietPlanCard({ plan }: { plan: DietPlan }) {
                 <ul className="space-y-1.5">
                   {meal.items.map((item, i) => (
                     <li key={i} className="text-xs text-zinc-300 flex items-center gap-2">
-                      <span className="h-1 w-1 rounded-full bg-zinc-600 flex-shrink-0 mt-px" />
+                      <span className="h-1 w-1 rounded-md bg-zinc-600 flex-shrink-0 mt-px" />
                       {item}
                     </li>
                   ))}
@@ -421,11 +421,11 @@ const setData =
     return (
       <div className="space-y-4 animate-pulse">
 
-        <div className="h-32 rounded-2xl bg-white/[0.04]" />
+        <div className="h-32 rounded-md bg-white/[0.04]" />
 
-        <div className="h-40 rounded-2xl bg-white/[0.04]" />
+        <div className="h-40 rounded-md bg-white/[0.04]" />
 
-        <div className="h-40 rounded-2xl bg-white/[0.04]" />
+        <div className="h-40 rounded-md bg-white/[0.04]" />
 
       </div>
     )
@@ -502,7 +502,7 @@ const setData =
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-semibold text-foreground flex items-center gap-2">
                           {entry.weight} kg
-                          {fresh && <span className="text-[10px] text-violet-400 /10 border border-violet-500/20 px-1.5 py-0.5 rounded bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">Today</span>}
+                          {fresh && <span className="text-[10px] text-violet-400 /10 border border-violet-500/20 px-1.5 py-0.5 rounded bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">Today</span>}
                         </p>
                         <p className="text-[11px] text-muted-foreground">{format(parseISO(entry.loggedAt), 'd MMM yyyy')}</p>
                       </div>
@@ -532,7 +532,7 @@ const setData =
             </div>
             {diets.length === 0 ? (
               <div className="py-12 flex flex-col items-center gap-3 text-zinc-600">
-                <div className="h-12 w-12 rounded-2xl /10 flex items-center justify-center bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                <div className="h-12 w-12 rounded-md /10 flex items-center justify-center bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                   <Utensils className="h-5 w-5 text-violet-400/60" />
                 </div>
                 <div className="text-center">
@@ -557,7 +557,7 @@ const setData =
             </div>
             {ptEnrollments.length === 0 ? (
               <div className="py-12 flex flex-col items-center gap-3 text-zinc-600">
-                <div className="h-12 w-12 rounded-2xl /10 flex items-center justify-center bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                <div className="h-12 w-12 rounded-md /10 flex items-center justify-center bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                   <Dumbbell className="h-5 w-5 text-violet-400/60" />
                 </div>
                 <div className="text-center">

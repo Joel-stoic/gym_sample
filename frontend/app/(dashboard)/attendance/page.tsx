@@ -127,14 +127,14 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
                 onClick={() => handleSelect(member)}
                 className="flex w-full items-center gap-3 px-4 py-2.5 text-left transition-colors hover:bg-muted"
               >
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-[11px] font-semibold text-violet-500">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md bg-violet-500/10 text-[11px] font-semibold text-violet-500">
                   {member.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-medium text-foreground">{member.name}</p>
                   <p className="text-[11px] text-muted-foreground">{member.phone}</p>
                 </div>
-                <span className="flex-shrink-0 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-400">
+                <span className="flex-shrink-0 rounded-md bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-400">
                   Active
                 </span>
               </button>
@@ -150,14 +150,14 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
 
 function StatsCard({ title, value, icon: Icon, iconClassName }: any) {
   return (
-    <div className="group relative overflow-hidden rounded-3xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 p-5 backdrop-blur-xl transition-all hover:shadow-lg hover:border-violet-500/30">
+    <div className="group relative overflow-hidden rounded-lg border border-border bg-card p-5  transition-all hover:shadow-lg hover:border-violet-500/30">
       <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
       <div className="relative flex items-center justify-between">
         <div>
           <p className="text-[12px] font-medium uppercase tracking-wider text-muted-foreground">{title}</p>
           <h3 className="mt-1.5 text-3xl font-bold tracking-tight text-foreground">{value}</h3>
         </div>
-        <div className={`rounded-2xl p-3 shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${iconClassName}`}>
+        <div className={`rounded-md p-3 shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${iconClassName}`}>
           <Icon className="h-5 w-5" />
         </div>
       </div>
@@ -247,7 +247,7 @@ export default function AttendancePage() {
           <Button
             variant="ghost"
             onClick={() => queryClient.invalidateQueries({ queryKey: ['attendance-today'] })}
-            className="h-10 rounded-full bg-black/5 px-5 text-[13px] font-medium text-foreground backdrop-blur-md transition-all hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 hover:shadow-sm"
+            className="h-10 rounded-md bg-black/5 px-5 text-[13px] font-medium text-foreground  transition-all hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 border border-border hover:shadow-sm"
           >
             <RefreshCw className="mr-2 h-4 w-4" />
             Refresh
@@ -257,7 +257,7 @@ export default function AttendancePage() {
             <DialogTrigger asChild>
               <Button 
                 variant="ghost"
-                className="h-10 rounded-full bg-violet-500/10 px-5 text-[13px] font-medium text-violet-600 dark:text-violet-400 backdrop-blur-md transition-all hover:bg-violet-500/20 border border-violet-500/20 hover:shadow-[0_0_15px_rgba(139,92,246,0.15)]"
+                className="h-10 rounded-md bg-violet-500/10 px-5 text-[13px] font-medium   transition-all hover:bg-violet-500/20 border border-violet-500/20 hover:shadow-md"
               >
                 <UserCheck className="mr-2 h-4 w-4" />
                 Mark Attendance
@@ -273,8 +273,8 @@ export default function AttendancePage() {
                 <MemberSearch onSelect={setSelectedMember} />
 
                 {selectedMember && (
-                  <div className="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-3">
-                    <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-[11px] font-semibold text-violet-500">
+                  <div className="flex items-center gap-3 rounded-md border border-border bg-card px-4 py-3">
+                    <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md bg-violet-500/10 text-[11px] font-semibold text-violet-500">
                       {selectedMember.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
                     </div>
                     <div className="min-w-0 flex-1">
@@ -288,7 +288,7 @@ export default function AttendancePage() {
                 )}
 
                 <Button
-                  className="h-11 w-full bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+                  className="h-11 w-full bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
                   onClick={handleMarkAttendance}
                   disabled={markMutation.isPending || !selectedMember}
                 >
@@ -307,7 +307,7 @@ export default function AttendancePage() {
       {loading ? (
         <div className="grid gap-4 md:grid-cols-3">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="h-24 animate-pulse rounded-3xl border border-border bg-card" />
+            <div key={i} className="h-24 animate-pulse rounded-lg border border-border bg-card" />
           ))}
         </div>
       ) : (
@@ -319,7 +319,7 @@ export default function AttendancePage() {
       )}
 
       {/* Tab switcher */}
-      <div className="flex w-full sm:w-fit gap-1 rounded-3xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 p-1.5 backdrop-blur-md">
+      <div className="flex w-full sm:w-fit gap-1 rounded-lg border border-border bg-card p-1.5 ">
         <TabButton active={activeTab === 'today'} onClick={() => setActiveTab('today')}>Today</TabButton>
         <TabButton active={activeTab === 'all'}   onClick={() => setActiveTab('all')}>All Records</TabButton>
       </div>
@@ -328,16 +328,16 @@ export default function AttendancePage() {
       {activeTab === 'today' ? (
         loading ? (
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            <div className="h-[320px] animate-pulse rounded-3xl border border-border bg-card" />
-            <div className="h-[320px] animate-pulse rounded-3xl border border-border bg-card lg:col-span-2" />
+            <div className="h-[320px] animate-pulse rounded-lg border border-border bg-card" />
+            <div className="h-[320px] animate-pulse rounded-lg border border-border bg-card lg:col-span-2" />
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_2fr]">
-            <div className="rounded-3xl border border-border bg-card p-5">
+            <div className="rounded-lg border border-border bg-card p-5">
               <GymQRCode qrCode={gymQR ?? null} loading={qrLoading} />
             </div>
 
-            <div className="rounded-3xl border border-border bg-card p-5">
+            <div className="rounded-lg border border-border bg-card p-5">
               <AttendanceTable attendance={todayAttendance} count={todayCount} />
             </div>
           </div>

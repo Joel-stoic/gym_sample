@@ -64,7 +64,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Logo */}
         <div className="p-6 border-b border-border">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 flex items-center justify-center bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+            <div className="w-8 h-8 flex items-center justify-center bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
               <Shield size={16} className="text-foreground" />
             </div>
             <div>
@@ -100,7 +100,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* User + Logout */}
         <div className="p-4 border-t border-border">
           <div className="flex items-center gap-3 px-3 py-2 mb-2">
-            <div className="w-7 h-7 rounded-full /30 flex items-center justify-center text-violet-400 text-xs font-bold bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+            <div className="w-7 h-7 rounded-md /30 flex items-center justify-center text-violet-400 text-xs font-bold bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
               {adminName.charAt(0).toUpperCase()}
             </div>
             <div className="flex-1 min-w-0">
@@ -123,7 +123,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Top bar (mobile) */}
         <header className="lg:hidden flex items-center justify-between px-4 py-3 bg-card border-b border-border">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 flex items-center justify-center bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+            <div className="w-6 h-6 flex items-center justify-center bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
               <Shield size={12} />
             </div>
             <span className="text-sm font-semibold font-[Syne]">GymFlow Admin</span>

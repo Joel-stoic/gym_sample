@@ -74,7 +74,7 @@ export default function AdminDashboardPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-md animate-spin" />
       </div>
     )
   }
@@ -139,7 +139,7 @@ export default function AdminDashboardPage() {
       {/* Stat cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {statCards.map(({ label, value, icon: Icon, color, bg, border, sub }) => (
-          <div key={label} className={`bg-card border ${border} rounded-2xl p-5`}>
+          <div key={label} className={`bg-card border ${border} rounded-md p-5`}>
             <div className={`w-9 h-9 rounded-xl ${bg} flex items-center justify-center mb-4`}>
               <Icon size={17} className={color} />
             </div>
@@ -152,7 +152,7 @@ export default function AdminDashboardPage() {
 
       {/* Pending approval alert */}
       {(stats?.pendingGyms ?? 0) > 0 && (
-        <div className="flex items-center justify-between bg-amber-500/10 border border-amber-500/20 rounded-2xl px-5 py-4">
+        <div className="flex items-center justify-between bg-amber-500/10 border border-amber-500/20 rounded-md px-5 py-4">
           <div className="flex items-center gap-3">
             <AlertCircle size={16} className="text-amber-400 flex-shrink-0" />
             <div>
@@ -172,7 +172,7 @@ export default function AdminDashboardPage() {
       )}
 
       {/* Recent gyms */}
-      <div className="bg-card border border-border rounded-3xl overflow-hidden">
+      <div className="bg-card border border-border rounded-lg overflow-hidden">
         <div className="px-6 py-4 border-b border-border flex items-center justify-between">
           <h2 className="text-sm font-semibold text-foreground">Recent Gyms</h2>
           <button
@@ -193,7 +193,7 @@ export default function AdminDashboardPage() {
                 className="px-6 py-4 flex items-center justify-between hover:bg-white/[0.02] transition-colors cursor-pointer group"
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-8 h-8 /20 flex items-center justify-center text-violet-400 text-xs font-bold flex-shrink-0 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                  <div className="w-8 h-8 /20 flex items-center justify-center text-violet-400 text-xs font-bold flex-shrink-0 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                     {gym.name.charAt(0).toUpperCase()}
                   </div>
                   <div className="min-w-0">
@@ -210,7 +210,7 @@ export default function AdminDashboardPage() {
                     </div>
                   )}
                   <span className="text-xs text-foreground/30">{formatDate(gym.createdAt)}</span>
-                  <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${
+                  <span className={`text-xs px-2.5 py-1 rounded-md font-medium ${
                     gym.isActive
                       ? 'bg-emerald-500/10 text-emerald-400'
                       : 'bg-amber-500/10 text-amber-400'
@@ -227,7 +227,7 @@ export default function AdminDashboardPage() {
 
       {/* Revenue summary */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="bg-card border border-border rounded-2xl p-5">
+        <div className="bg-card border border-border rounded-md p-5">
           <div className="flex items-center gap-2 mb-4">
             <IndianRupee size={14} className="text-emerald-400" />
             <p className="text-xs font-semibold text-foreground/60 uppercase tracking-widest">This Month</p>
@@ -235,7 +235,7 @@ export default function AdminDashboardPage() {
           <p className="text-3xl font-bold text-foreground">{toRupees(stats?.mrr ?? 0)}</p>
           <p className="text-xs text-foreground/30 mt-1">Monthly recurring revenue</p>
         </div>
-        <div className="bg-card border border-border rounded-2xl p-5">
+        <div className="bg-card border border-border rounded-md p-5">
           <div className="flex items-center gap-2 mb-4">
             <IndianRupee size={14} className="text-violet-400" />
             <p className="text-xs font-semibold text-foreground/60 uppercase tracking-widest">All Time</p>

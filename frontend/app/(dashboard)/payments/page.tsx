@@ -156,7 +156,7 @@ function DeleteConfirmModal({
       onClick={onClose}
     >
       <div
-        className="w-full sm:max-w-sm rounded-t-2xl sm:rounded-2xl p-5 sm:p-6 shadow-2xl border border-border bg-card"
+        className="w-full sm:max-w-sm rounded-t-2xl sm:rounded-md p-5 sm:p-6 shadow-2xl border border-border bg-card"
         onClick={e => e.stopPropagation()}
       >
         <div className="mb-4 flex items-start justify-between">
@@ -334,7 +334,7 @@ function EditPaymentModal({
       onClick={onClose}
     >
       <div
-        className="w-full sm:max-w-md rounded-t-2xl sm:rounded-2xl p-5 sm:p-6 shadow-2xl overflow-y-auto max-h-[92vh] sm:max-h-[90vh] border border-border bg-card"
+        className="w-full sm:max-w-md rounded-t-2xl sm:rounded-md p-5 sm:p-6 shadow-2xl overflow-y-auto max-h-[92vh] sm:max-h-[90vh] border border-border bg-card"
         
         onClick={e => e.stopPropagation()}
       >
@@ -417,7 +417,7 @@ function EditPaymentModal({
             </div>
           </div>
 
-          <div className="rounded-xl border border-black/5 dark:border-white/5 bg-black/5 dark:bg-white/5 p-3">
+          <div className="rounded-xl border border-black/5 dark:border-white/5 bg-card p-3">
             <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Bill Summary</p>
             <div className="space-y-1.5 text-[13px]">
               <div className="flex justify-between text-muted-foreground">
@@ -523,7 +523,7 @@ function EditPaymentModal({
             <button
               onClick={handleSave}
               disabled={saving}
-              className="flex flex-1 items-center justify-center gap-2 h-10 px-5 text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground hover:-translate-y-0.5 disabled:opacity-50"
+              className="flex flex-1 items-center justify-center gap-2 h-10 px-5 text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm hover:-translate-y-0.5 disabled:opacity-50"
             >
               {saving
                 ? <Loader2 size={13} className="animate-spin" />
@@ -586,7 +586,7 @@ function CollectDueModal({
       onClick={onClose}
     >
       <div
-        className="w-full sm:max-w-sm rounded-t-2xl sm:rounded-2xl p-5 sm:p-6 shadow-2xl border border-border bg-card"
+        className="w-full sm:max-w-sm rounded-t-2xl sm:rounded-md p-5 sm:p-6 shadow-2xl border border-border bg-card"
         
         onClick={e => e.stopPropagation()}
       >
@@ -639,7 +639,7 @@ function CollectDueModal({
           <button
             onClick={handleSubmit}
             disabled={submitting}
-            className="flex flex-1 items-center justify-center gap-2 h-10 px-5 text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground hover:-translate-y-0.5 disabled:opacity-50"
+            className="flex flex-1 items-center justify-center gap-2 h-10 px-5 text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm hover:-translate-y-0.5 disabled:opacity-50"
           >
             {submitting && <Loader2 size={13} className="animate-spin" />}
             {submitting ? 'Collecting...' : 'Collect'}
@@ -695,7 +695,7 @@ function Pagination({
           <button
             key={p}
             onClick={() => onPageChange(p as number)}
-            className={`${btnBase} ${p === page ? 'bg-black/10 dark:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground' : 'bg-transparent text-muted-foreground border border-border hover:bg-muted'}`}
+            className={`${btnBase} ${p === page ? 'bg-accent  border border-border text-foreground' : 'bg-transparent text-muted-foreground border border-border hover:bg-muted'}`}
           >
             {p}
           </button>
@@ -788,7 +788,7 @@ export default function PaymentsPage() {
         action={
           <Button
             onClick={() => router.push('/payments/new')}
-            className="h-10 w-full sm:w-auto px-4 text-foreground hover: bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+            className="h-10 w-full sm:w-auto px-4 text-foreground hover: bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
           >
             <Plus className="mr-2 h-4 w-4" />
             Record Payment
@@ -803,7 +803,7 @@ export default function PaymentsPage() {
             <button
               key={p}
               onClick={() => setPeriod(p)}
-              className={`rounded-full px-4 py-1.5 text-[13px] font-medium transition-all ${period === p ? 'bg-black/10 dark:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground' : 'bg-transparent text-muted-foreground border border-border hover:bg-muted'}`}
+              className={`rounded-md px-4 py-1.5 text-[13px] font-medium transition-all ${period === p ? 'bg-accent  border border-border text-foreground' : 'bg-transparent text-muted-foreground border border-border hover:bg-muted'}`}
             >
               {PERIOD_LABELS[p]}
             </button>
@@ -814,7 +814,7 @@ export default function PaymentsPage() {
       {/* ── Stats ── */}
       {(isOwner || isManager) && (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl p-5 border border-border bg-card" >
+          <div className="rounded-md p-5 border border-border bg-card" >
             <div className="mb-2 flex items-center gap-2">
               <TrendingUp size={14} className="text-violet-400" />
               <p className="text-sm text-muted-foreground">Revenue · {PERIOD_LABELS[period]}</p>
@@ -826,7 +826,7 @@ export default function PaymentsPage() {
             )}
           </div>
 
-          <div className="rounded-2xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <p className="text-sm text-muted-foreground">Pending Dues</p>
             {summaryLoading ? (
               <div className="mt-2 h-8 w-24 animate-pulse rounded-lg bg-muted" />
@@ -837,7 +837,7 @@ export default function PaymentsPage() {
             )}
           </div>
 
-          <div className="rounded-2xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <p className="text-sm text-muted-foreground">All-Time Revenue</p>
             {summaryLoading ? (
               <div className="mt-2 h-8 w-28 animate-pulse rounded-lg bg-muted" />
@@ -863,7 +863,7 @@ export default function PaymentsPage() {
         <>
           {/* ── Table / Cards ── */}
           <div
-            className="overflow-hidden rounded-3xl border border-border bg-card"
+            className="overflow-hidden rounded-lg border border-border bg-card"
             style={{ opacity: isFetching && payments.length > 0 ? 0.6 : 1, transition: 'opacity 0.15s' }}
           >
             {/* desktop header */}
@@ -904,7 +904,7 @@ export default function PaymentsPage() {
 
                     {/* method */}
                     <div>
-                      <div className="inline-flex items-center gap-2 rounded-full border border-border bg-white/[0.03] px-3 py-1.5">
+                      <div className="inline-flex items-center gap-2 rounded-md border border-border bg-white/[0.03] px-3 py-1.5">
                         <Icon className="h-3.5 w-3.5 text-violet-400" />
                         <span className="text-xs text-[#d4d4dc]">
                           {METHOD_LABELS[payment.paymentMethod] || payment.paymentMethod}
@@ -1015,7 +1015,7 @@ export default function PaymentsPage() {
                     {/* plan + method */}
                     <div className="flex items-center justify-between gap-3">
                       <p className="text-sm text-[#d4d4dc]">{payment.plan?.name}</p>
-                      <div className="inline-flex flex-shrink-0 items-center gap-1.5 rounded-full border border-border bg-white/[0.03] px-2.5 py-1">
+                      <div className="inline-flex flex-shrink-0 items-center gap-1.5 rounded-md border border-border bg-white/[0.03] px-2.5 py-1">
                         <Icon className="h-3 w-3 text-violet-400" />
                         <span className="text-[11px] text-[#d4d4dc]">
                           {METHOD_LABELS[payment.paymentMethod] || payment.paymentMethod}

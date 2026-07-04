@@ -21,7 +21,7 @@ function Skeleton({ className = '' }: { className?: string }) {
 }
 function MetricCardSkeleton() {
   return (
-    <div className="rounded-2xl border border-border bg-card p-5">
+    <div className="rounded-md border border-border bg-card p-5">
       <Skeleton className="mb-4 h-9 w-9 rounded-xl" />
       <Skeleton className="mb-2 h-7 w-24" />
       <Skeleton className="mb-3 h-3 w-32" />
@@ -37,7 +37,7 @@ function DashboardSkeleton() {
           <Skeleton className="mb-2 h-6 w-32" />
           <Skeleton className="h-4 w-48" />
         </div>
-        <Skeleton className="h-8 w-36 rounded-full" />
+        <Skeleton className="h-8 w-36 rounded-md" />
       </div>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-5">
         {[...Array(5)].map((_, i) => <MetricCardSkeleton key={i} />)}
@@ -46,12 +46,12 @@ function DashboardSkeleton() {
         {[...Array(4)].map((_, i) => <MetricCardSkeleton key={i} />)}
       </div>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
-        <div className="h-72 rounded-2xl border border-border bg-card p-5 lg:col-span-2">
+        <div className="h-72 rounded-md border border-border bg-card p-5 lg:col-span-2">
           <Skeleton className="mb-4 h-4 w-32" />
           <Skeleton className="h-full w-full" />
         </div>
         {[...Array(2)].map((_, i) => (
-          <div key={i} className="h-72 rounded-2xl border border-border bg-card p-5">
+          <div key={i} className="h-72 rounded-md border border-border bg-card p-5">
             <Skeleton className="mb-4 h-4 w-32" />
             <Skeleton className="h-full w-full" />
           </div>
@@ -73,12 +73,12 @@ function MetricCard({
   iconClass?: string
 }) {
   return (
-    <div className={`relative overflow-hidden rounded-2xl border p-3.5 sm:p-5 transition-all duration-200 ${redAccent
+    <div className={`relative overflow-hidden rounded-md border p-3.5 sm:p-5 transition-all duration-200 ${redAccent
       ? 'border-red-500/20 bg-red-500/10 hover:border-red-500/30'
       : 'border-border bg-card hover:border-white/[0.10]'
       }`}>
       {redAccent && (
-        <div className="pointer-events-none absolute -right-4 -top-4 h-20 w-20 rounded-full bg-red-500 opacity-20 blur-2xl" />
+        <div className="pointer-events-none absolute -right-4 -top-4 h-20 w-20 rounded-md bg-red-500 opacity-20 blur-2xl" />
       )}
       <div className={`mb-3 sm:mb-4 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-xl ${iconClass ?? 'bg-white/[0.06] text-foreground'}`}>
         <Icon size={16} />
@@ -178,7 +178,7 @@ function ExpiringMemberRow({ name, daysLeft }: { name: string; daysLeft: number 
           {daysLeft === 0 ? 'Expires today' : `Expires in ${daysLeft} day${daysLeft > 1 ? 's' : ''}`}
         </p>
       </div>
-      <span className={`flex-shrink-0 rounded-full border px-2 py-1 text-[10px] font-medium ${isCritical
+      <span className={`flex-shrink-0 rounded-md border px-2 py-1 text-[10px] font-medium ${isCritical
         ? 'border-red-500/20 bg-red-500/10 text-red-400'
         : 'border-amber-500/20 bg-amber-500/10 text-amber-400'
         }`}>
@@ -196,7 +196,7 @@ function ActivityItem({
 }) {
   return (
     <div className="flex items-center gap-3 border-b border-white/[0.05] py-3 last:border-0">
-      <div className={`h-2 w-2 flex-shrink-0 rounded-full ${type === 'payment' ? 'bg-emerald-400' : 'bg-violet-400'
+      <div className={`h-2 w-2 flex-shrink-0 rounded-md ${type === 'payment' ? 'bg-emerald-400' : 'bg-violet-400'
         }`} />
       <p className="flex-1 text-[12px] text-muted-foreground">
         <span className="font-medium text-foreground">{name}</span>{' '}
@@ -323,7 +323,7 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
 
         {/* ── Revenue chart ── */}
-        <div className="rounded-2xl border border-border bg-card p-4 sm:p-6 lg:col-span-2">
+        <div className="rounded-md border border-border bg-card p-4 sm:p-6 lg:col-span-2">
 
           {/* Header */}
           <div className="mb-5 sm:mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -339,7 +339,7 @@ export default function DashboardPage() {
           {/* Chart */}
           {chartLoading ? (
             <div className="flex h-48 sm:h-56 items-center justify-center">
-              <div className="h-6 w-6 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
+              <div className="h-6 w-6 animate-spin rounded-md border-2 border-violet-500 border-t-transparent" />
             </div>
           ) : monthlyRevenue.length > 0 ? (
             <>
@@ -402,7 +402,7 @@ export default function DashboardPage() {
         </div>
 
         {/* ── Expiring members ── */}
-        <div className="rounded-2xl border border-border bg-card p-4 sm:p-5 lg:col-span-1">
+        <div className="rounded-md border border-border bg-card p-4 sm:p-5 lg:col-span-1">
           <p className="mb-1 text-[13px] font-semibold text-foreground">Expiring members</p>
           <p className="mb-4 text-[11px] text-muted-foreground">Members expiring within 7 days</p>
           {expiringMembers?.length > 0 ? (
@@ -419,7 +419,7 @@ export default function DashboardPage() {
         </div>
 
         {/* ── Recent activity ── */}
-        <div className="rounded-2xl border border-border bg-card p-4 sm:p-5 lg:col-span-1">
+        <div className="rounded-md border border-border bg-card p-4 sm:p-5 lg:col-span-1">
           <p className="mb-1 text-[13px] font-semibold text-foreground">Recent activity</p>
           <p className="mb-3 text-[11px] text-muted-foreground">Latest payments & check-ins</p>
 

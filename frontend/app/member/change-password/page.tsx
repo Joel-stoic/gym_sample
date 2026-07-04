@@ -163,7 +163,7 @@ export default function MemberChangePasswordPage() {
         {/* Icon + heading */}
         <div className="flex flex-col items-center gap-3 text-center">
           <div
-            className="h-14 w-14 rounded-2xl flex items-center justify-center"
+            className="h-14 w-14 rounded-md flex items-center justify-center"
             style={{
               background: 'linear-gradient(135deg, #7c3aed, #a855f7)',
               boxShadow: '0 8px 32px #7c3aed40',
@@ -187,7 +187,7 @@ export default function MemberChangePasswordPage() {
 
         {/* Card */}
         <div
-          className="rounded-2xl p-6 space-y-4"
+          className="rounded-md p-6 space-y-4"
           style={{
             background: 'var(--background)',
             border: '1px solid var(--border)',

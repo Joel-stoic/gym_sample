@@ -60,7 +60,7 @@ interface WeightSummary {
 // ─── Panel wrapper ────────────────────────────────────────
 function Panel({ children, className }: { children: React.ReactNode; className?: string }) {
     return (
-        <div className={cn('rounded-2xl border border-border bg-white/[0.03] p-5', className)}>
+        <div className={cn('rounded-md border border-border bg-white/[0.03] p-5', className)}>
             {children}
         </div>
     )
@@ -104,7 +104,7 @@ function DietPlanCard({
         )
 
     return (
-        <div className="rounded-3xl border border-border bg-gradient-to-b from-white/[0.04] to-white/[0.02] overflow-hidden shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
+        <div className="rounded-lg border border-border bg-gradient-to-b from-white/[0.04] to-white/[0.02] overflow-hidden shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
 
             {/* HEADER */}
 
@@ -123,7 +123,7 @@ function DietPlanCard({
 
                     <div className="flex items-center gap-3 mb-3">
 
-                        <div className="h-11 w-11 rounded-2xl /10 border border-violet-500/20 flex items-center justify-center flex-shrink-0 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                        <div className="h-11 w-11 rounded-md /10 border border-violet-500/20 flex items-center justify-center flex-shrink-0 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                             <Utensils className="h-5 w-5 text-violet-400" />
                         </div>
 
@@ -179,7 +179,7 @@ function DietPlanCard({
                             </div>
                         )}
 
-                        <div className="flex items-center gap-1.5 text-sm text-violet-300 /10 border border-violet-500/20 px-3 py-1.5 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                        <div className="flex items-center gap-1.5 text-sm text-violet-300 /10 border border-violet-500/20 px-3 py-1.5 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
 
                             {plan.meals.length} meals
 
@@ -217,7 +217,7 @@ function DietPlanCard({
 
                     {plan.description && (
 
-                        <div className="mt-5 rounded-2xl border border-white/[0.05] bg-background/20 p-5">
+                        <div className="mt-5 rounded-md border border-white/[0.05] bg-background/20 p-5">
 
                             <p className="text-[15px] leading-7 text-zinc-300">
                                 {plan.description}
@@ -244,7 +244,7 @@ function DietPlanCard({
 
                                     <div
                                         key={meal.id}
-                                        className="rounded-2xl border border-border bg-background/20 p-5 hover:border-white/[0.1] transition-all"
+                                        className="rounded-md border border-border bg-background/20 p-5 hover:border-white/[0.1] transition-all"
                                     >
 
                                         {/* MEAL HEADER */}
@@ -289,7 +289,7 @@ function DietPlanCard({
                                                         className="flex items-start gap-3 text-[15px] leading-7 text-zinc-300"
                                                     >
 
-                                                        <span className="h-2 w-2 rounded-full mt-2 flex-shrink-0 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground" />
+                                                        <span className="h-2 w-2 rounded-md mt-2 flex-shrink-0 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm" />
 
                                                         {item}
 
@@ -312,7 +312,7 @@ function DietPlanCard({
 
                     {plan.notes && (
 
-                        <div className="mt-5 rounded-2xl border border-violet-500/10 /[0.03] p-5 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                        <div className="mt-5 rounded-md border border-violet-500/10 /[0.03] p-5 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
 
                             <p className="text-sm font-semibold text-violet-300 mb-2">
                                 Trainer Notes
@@ -416,7 +416,7 @@ function AddDietModal({
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
-            <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl" style={{ background: 'var(--background)', border: '1px solid var(--border)' }}>
+            <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-md" style={{ background: 'var(--background)', border: '1px solid var(--border)' }}>
                 <div className="sticky top-0 px-6 py-4 flex items-center justify-between" >
                     <h2 className="text-base font-semibold text-foreground">Create Diet Plan</h2>
                     <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors text-sm">✕</button>
@@ -481,7 +481,7 @@ function AddDietModal({
                                     <div className="space-y-2">
                                         {meal.items.map((item, itemIdx) => (
                                             <div key={itemIdx} className="flex items-center gap-2">
-                                                <span className="h-1 w-1 rounded-full bg-zinc-600 flex-shrink-0" />
+                                                <span className="h-1 w-1 rounded-md bg-zinc-600 flex-shrink-0" />
                                                 <input
                                                     className="flex-1 bg-transparent border-b border-border pb-1 text-xs text-foreground placeholder:text-zinc-600 outline-none focus:border-violet-500/40 transition-colors"
                                                     placeholder={`Food item ${itemIdx + 1} (e.g. 2 eggs)`}
@@ -669,7 +669,7 @@ export default function MemberDietWeightPage() {
                                     const diff = prev !== undefined ? +(entry.weight - prev).toFixed(1) : null
                                     return (
                                         <div key={entry.id} className="rounded-xl border border-border bg-background/20 px-3 py-2.5 flex items-center gap-3">
-                                            <div className="h-8 w-8 /10 flex items-center justify-center flex-shrink-0 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                                            <div className="h-8 w-8 /10 flex items-center justify-center flex-shrink-0 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                                                 <Scale className="h-3.5 w-3.5 text-violet-400" />
                                             </div>
                                             <div className="flex-1 min-w-0">

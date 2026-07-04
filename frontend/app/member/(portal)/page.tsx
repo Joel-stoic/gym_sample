@@ -55,7 +55,7 @@ export default function MemberPortalPage() {
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="h-6 w-6 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
+        <div className="h-6 w-6 animate-spin rounded-md border-2 border-violet-500 border-t-transparent" />
       </div>
     )
   }
@@ -84,7 +84,7 @@ export default function MemberPortalPage() {
       {/* Welcome */}
       <div className="text-center py-4">
         <div
-          className="h-16 w-16 rounded-2xl flex items-center justify-center text-2xl font-bold text-foreground mx-auto mb-3"
+          className="h-16 w-16 rounded-md flex items-center justify-center text-2xl font-bold text-foreground mx-auto mb-3"
           style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7)' }}
         >
           {profile.name?.charAt(0).toUpperCase()}
@@ -101,7 +101,7 @@ export default function MemberPortalPage() {
       {/* Expiry warning */}
       {(isExpiringSoon || isExpired) && (
         <div
-          className="rounded-2xl p-4 flex items-start gap-3"
+          className="rounded-md p-4 flex items-start gap-3"
           style={{
             background: isExpired ? '#ef444410' : '#f9731610',
             border: `1px solid ${isExpired ? '#ef444430' : '#f9731630'}`
@@ -128,7 +128,7 @@ export default function MemberPortalPage() {
 
       {/* Membership card */}
       <div
-        className="rounded-2xl p-5"
+        className="rounded-md p-5"
         
       >
         <div className="flex items-center justify-between mb-4">
@@ -136,7 +136,7 @@ export default function MemberPortalPage() {
             Membership
           </p>
           <span
-            className="rounded-full px-2.5 py-1 text-[11px] font-semibold"
+            className="rounded-md px-2.5 py-1 text-[11px] font-semibold"
             style={{
               background: profile.status === 'ACTIVE' ? '#16a34a20' : '#ef444420',
               color: profile.status === 'ACTIVE' ? '#4ade80' : '#f87171'
@@ -218,11 +218,11 @@ export default function MemberPortalPage() {
                     </div>
 
                     <div
-                      className="h-2 w-full rounded-full overflow-hidden"
+                      className="h-2 w-full rounded-md overflow-hidden"
                       style={{ background: '#ffffff10' }}
                     >
                       <div
-                        className="h-full rounded-full transition-all"
+                        className="h-full rounded-md transition-all"
                         style={{
                           width: `${percentage}%`,
                           background:
@@ -241,7 +241,7 @@ export default function MemberPortalPage() {
       </div>
       {profile.ptEnrollments?.[0] && (
         <div
-          className="rounded-2xl p-5"
+          className="rounded-md p-5"
           
         >
           <p className="text-[12px] font-medium uppercase tracking-widest text-muted-foreground mb-4">
@@ -292,7 +292,7 @@ export default function MemberPortalPage() {
 
 
                 <div
-                  className="h-2 rounded-full overflow-hidden"
+                  className="h-2 rounded-md overflow-hidden"
                   style={{ background: '#ffffff10' }}
                 >
                   <div
@@ -396,7 +396,7 @@ export default function MemberPortalPage() {
 
       {/* This month */}
       <div
-        className="rounded-2xl p-5"
+        className="rounded-md p-5"
         
       >
         <p className="text-[12px] font-medium uppercase tracking-widest text-muted-foreground mb-4">
@@ -421,7 +421,7 @@ export default function MemberPortalPage() {
       {/* Quick links */}
       <Link
         href="/member/diet"
-        className="flex items-center justify-between rounded-2xl p-4 transition-colors"
+        className="flex items-center justify-between rounded-md p-4 transition-colors"
         
       >
         <div className="flex items-center gap-3">
@@ -446,7 +446,7 @@ export default function MemberPortalPage() {
       {/* Recent attendance */}
       {profile.attendance?.length > 0 && (
         <div
-          className="rounded-2xl p-5"
+          className="rounded-md p-5"
           
         >
           <p className="text-[12px] font-medium uppercase tracking-widest text-muted-foreground mb-4">

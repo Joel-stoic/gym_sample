@@ -113,7 +113,7 @@ export default function NewPlanPage() {
 
       {/* Form Card */}
       <div
-        className="rounded-2xl p-6"
+        className="rounded-md p-6"
         
       >
         <div className="mb-6 flex items-center gap-3">

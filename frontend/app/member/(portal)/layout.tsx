@@ -55,7 +55,7 @@ export default function MemberPortalLayout({
         className="min-h-screen flex items-center justify-center"
         
       >
-        <div className="h-6 w-6 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
+        <div className="h-6 w-6 animate-spin rounded-md border-2 border-violet-500 border-t-transparent" />
       </div>
     )
   }

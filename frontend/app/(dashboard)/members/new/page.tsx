@@ -82,7 +82,7 @@ function Field({ label, error, children }: { label: string; error?: string; chil
 
 function Section({ icon: Icon, title, children }: { icon: React.ElementType; title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-border bg-card p-5">
+    <div className="rounded-md border border-border bg-card p-5">
       <div className="mb-4 flex items-center gap-2.5">
         <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#7c3aed15] border border-border text-[#a855f7]">
           <Icon size={15} />
@@ -263,11 +263,11 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
       
       {/* ── Success View ─────────────────────────────────────────────── */}
       {createdMember ? (
-        <div className="w-full max-w-[400px] overflow-hidden rounded-3xl bg-card border border-border shadow-xl animate-in fade-in-0 zoom-in-95 duration-150">
+        <div className="w-full max-w-[400px] overflow-hidden rounded-lg bg-card border border-border shadow-xl animate-in fade-in-0 zoom-in-95 duration-150">
           <div className="h-1 w-full bg-gradient-to-r from-[#10b981] to-[#34d399]" />
           <div className="p-5 sm:p-6 space-y-5">
             <div className="flex flex-col items-center text-center">
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#10b98115] border border-border">
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-md bg-[#10b98115] border border-border">
                 <CheckCircle size={22} className="text-[#10b981]" strokeWidth={2} />
               </div>
               <p className="text-[17px] font-semibold text-foreground" style={{ fontFamily: "'Syne', sans-serif", letterSpacing: '-0.01em' }}>
@@ -330,7 +330,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               </button>
               <button
                 onClick={onClose}
-                className="h-10 flex-1 border-0 text-[13px] font-medium text-foreground transition-all sm:flex-none px-6 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+                className="h-10 flex-1 border-0 text-[13px] font-medium text-foreground transition-all sm:flex-none px-6 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
               >
                 Done
               </button>
@@ -340,7 +340,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
       ) : (
       
       /* ── Main Form View ────────────────────────────────────────────── */
-        <div className="relative w-full max-w-2xl max-h-full flex flex-col overflow-hidden rounded-3xl bg-card border border-border shadow-xl animate-in fade-in-0 zoom-in-95 duration-150">
+        <div className="relative w-full max-w-2xl max-h-full flex flex-col overflow-hidden rounded-lg bg-card border border-border shadow-xl animate-in fade-in-0 zoom-in-95 duration-150">
           
           {/* Header (Sticky) */}
           <div className="flex items-center justify-between border-b border-border px-5 sm:px-6 py-4 bg-card shrink-0">
@@ -404,7 +404,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
             </Section>
 
             {/* Membership & Payment */}
-            <div className="rounded-2xl border border-border bg-card overflow-hidden">
+            <div className="rounded-md border border-border bg-card overflow-hidden">
               <button
                 type="button"
                 onClick={() => {
@@ -447,7 +447,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   {/* Step 1: Plan */}
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7c3aed20] text-[10px] font-bold text-violet-300">1</span>
+                      <span className="flex h-5 w-5 items-center justify-center rounded-md bg-[#7c3aed20] text-[10px] font-bold text-violet-300">1</span>
                       <span className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wide">Choose Plan</span>
                     </div>
                     <select
@@ -482,7 +482,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   {/* Step 2: Adjust Amount */}
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7c3aed20] text-[10px] font-bold text-violet-300">2</span>
+                      <span className="flex h-5 w-5 items-center justify-center rounded-md bg-[#7c3aed20] text-[10px] font-bold text-violet-300">2</span>
                       <span className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wide">Adjust Amount</span>
                       <span className="text-[11px] text-muted-foreground">(optional)</span>
                     </div>
@@ -533,7 +533,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   {/* Step 3: Amount Collected */}
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7c3aed20] text-[10px] font-bold text-violet-300">3</span>
+                      <span className="flex h-5 w-5 items-center justify-center rounded-md bg-[#7c3aed20] text-[10px] font-bold text-violet-300">3</span>
                       <span className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wide">Amount Collected Today</span>
                     </div>
                     <div className="space-y-1.5">
@@ -569,7 +569,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   {/* Step 4: Start Date */}
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7c3aed20] text-[10px] font-bold text-violet-300">4</span>
+                      <span className="flex h-5 w-5 items-center justify-center rounded-md bg-[#7c3aed20] text-[10px] font-bold text-violet-300">4</span>
                       <span className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wide">Membership Start Date</span>
                     </div>
                     <input className={inputCls} type="date" style={{ colorScheme: 'dark' }} {...register('planStartDate')} />
@@ -587,7 +587,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
                   {/* Step 5: Payment Method */}
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#7c3aed20] text-[10px] font-bold text-violet-300">5</span>
+                      <span className="flex h-5 w-5 items-center justify-center rounded-md bg-[#7c3aed20] text-[10px] font-bold text-violet-300">5</span>
                       <span className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wide">How Did They Pay?</span>
                     </div>
                     <div className="grid grid-cols-2 gap-2.5">
@@ -646,7 +646,7 @@ export default function NewMemberModal({ isOpen, onClose }: NewMemberModalProps)
               type="submit"
               form="new-member-form"
               disabled={loading}
-              className="flex w-full sm:w-auto h-11 items-center justify-center gap-2 px-6 text-[13px] font-medium text-foreground transition-all duration-150 disabled:opacity-60 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+              className="flex w-full sm:w-auto h-11 items-center justify-center gap-2 px-6 text-[13px] font-medium text-foreground transition-all duration-150 disabled:opacity-60 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
             >
               {loading && <Loader2 size={16} className="animate-spin" />}
               {loading ? 'Saving...' : addPayment && planId ? 'Add Member & Record Payment' : 'Add Member'}

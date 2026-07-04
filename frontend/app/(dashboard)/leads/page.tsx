@@ -249,7 +249,7 @@ export default function LeadsPage() {
             onOpenChange={setDialogOpen}
           >
             <DialogTrigger asChild>
-              <Button className="bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+              <Button className="bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                 <Plus className="mr-2 h-4 w-4" />
                 Add Lead
               </Button>
@@ -387,7 +387,7 @@ export default function LeadsPage() {
                   <Button
                     type="submit"
                     disabled={submitting}
-                    className="h-11 w-full bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+                    className="h-11 w-full bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
                   >
                     {submitting && (
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -453,7 +453,7 @@ export default function LeadsPage() {
             onClick={() => setStatusFilter(status)}
             className={
               statusFilter === status
-                ? 'bg-black/10 dark:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground'
+                ? 'bg-accent  border border-border text-foreground'
                 : 'border-border bg-transparent text-muted-foreground hover:bg-muted'
             }
           >
@@ -473,7 +473,7 @@ export default function LeadsPage() {
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="h-28 animate-pulse rounded-3xl border border-border bg-background"
+                className="h-28 animate-pulse rounded-lg border border-border bg-background"
               />
             ))}
           </div>
@@ -517,7 +517,7 @@ function StatsCard({
   iconClassName
 }: any) {
   return (
-    <div className="rounded-3xl border border-border bg-background p-5">
+    <div className="rounded-lg border border-border bg-background p-5">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm text-muted-foreground">
@@ -530,7 +530,7 @@ function StatsCard({
         </div>
 
         <div
-          className={`rounded-2xl p-3 ${iconClassName}`}
+          className={`rounded-md p-3 ${iconClassName}`}
         >
           <Icon className="h-5 w-5" />
         </div>
@@ -541,7 +541,7 @@ function StatsCard({
 /* ───────────────── SkeletonCard ───────────────── */
 function SkeletonCard() {
   return (
-    <div className="animate-pulse rounded-3xl border border-border bg-background p-5">
+    <div className="animate-pulse rounded-lg border border-border bg-background p-5">
       <div className="mb-4 flex items-start justify-between">
         <div className="space-y-2">
           <div className="h-5 w-32 rounded bg-white/[0.06]" />
@@ -557,7 +557,7 @@ function SkeletonCard() {
       </div>
 
       <div className="mt-5 flex items-center justify-between">
-        <div className="h-6 w-20 rounded-full bg-white/[0.05]" />
+        <div className="h-6 w-20 rounded-md bg-white/[0.05]" />
       </div>
     </div>
   )
@@ -578,7 +578,7 @@ function LeadCard({
   const config = STATUS_CONFIG[lead.status]
 
   return (
-    <div className="rounded-3xl border border-border bg-background p-5 transition hover:border-violet-500/30">
+    <div className="rounded-lg border border-border bg-background p-5 transition hover:border-violet-500/30">
       {/* TOP */}
 
       <div className="mb-4 flex items-start justify-between">
@@ -659,7 +659,7 @@ function LeadCard({
       {/* NOTES */}
 
       {lead.notes && (
-        <div className="mt-4 rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3">
+        <div className="mt-4 rounded-md border border-white/[0.05] bg-white/[0.02] p-3">
           <p className="text-sm text-muted-foreground">
             {lead.notes}
           </p>
@@ -670,7 +670,7 @@ function LeadCard({
 
       <div className="mt-5 flex items-center justify-between">
         <span
-          className={`inline-flex rounded-full px-3 py-1 text-xs font-medium ${config?.className}`}
+          className={`inline-flex rounded-md px-3 py-1 text-xs font-medium ${config?.className}`}
         >
           {config?.label}
         </span>

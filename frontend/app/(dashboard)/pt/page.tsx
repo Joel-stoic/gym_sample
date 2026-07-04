@@ -64,7 +64,7 @@ const inp = `
 `
 const inpStyle = { background: 'var(--background)', border: '1px solid var(--border)', color: 'var(--foreground)' }
 
-const card = 'rounded-2xl p-5'
+const card = 'rounded-md p-5'
 
 // ─── Session status config ────────────────────────────────────────────────────
 
@@ -114,7 +114,7 @@ function AddPackageModal({ onClose, onSuccess }: {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
-      <div className="w-full max-w-md rounded-2xl border border-border bg-card">
+      <div className="w-full max-w-md rounded-md border border-border bg-card">
         <div className="px-6 py-4 flex items-center justify-between" style={{ borderBottom: '1px solid var(--border)' }}>
           <h2 className="text-[15px] font-semibold text-foreground">New PT Package</h2>
           <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors text-lg leading-none">✕</button>
@@ -148,7 +148,7 @@ function AddPackageModal({ onClose, onSuccess }: {
               value={description} onChange={e => setDescription(e.target.value)} />
           </div>
           <button onClick={handleSave} disabled={saving}
-            className="w-full h-11 flex items-center justify-center gap-2 rounded-xl text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground hover:-translate-y-0.5 mt-2 disabled:opacity-50">
+            className="w-full h-11 flex items-center justify-center gap-2 rounded-xl text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent dark:bg-white/5 dark:hover:bg-white/10  border border-border text-foreground hover:-translate-y-0.5 mt-2 disabled:opacity-50">
             {saving && <Loader2 className="h-4 w-4 animate-spin" />}
             {saving ? 'Creating...' : 'Create Package'}
           </button>
@@ -216,7 +216,7 @@ function ScheduleSessionModal({ enrollments, trainers, onClose, onSuccess }: {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
-      <div className="w-full max-w-md rounded-2xl border border-border bg-card" >
+      <div className="w-full max-w-md rounded-md border border-border bg-card" >
         <div className="px-6 py-4 flex items-center justify-between" style={{ borderBottom: '1px solid var(--border)' }}>
           <h2 className="text-[15px] font-semibold text-foreground">Schedule PT Session</h2>
           <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors text-lg leading-none">✕</button>
@@ -298,7 +298,7 @@ function ScheduleSessionModal({ enrollments, trainers, onClose, onSuccess }: {
           </div>
 
           <button onClick={handleSave} disabled={saving}
-            className="w-full h-11 flex items-center justify-center gap-2 rounded-xl text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground hover:-translate-y-0.5 mt-2 disabled:opacity-50">
+            className="w-full h-11 flex items-center justify-center gap-2 rounded-xl text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent dark:bg-white/5 dark:hover:bg-white/10  border border-border text-foreground hover:-translate-y-0.5 mt-2 disabled:opacity-50">
             {saving && <Loader2 className="h-4 w-4 animate-spin" />}
             {saving ? 'Scheduling...' : 'Schedule Session'}
           </button>
@@ -366,7 +366,7 @@ function EnrollMemberModal({ packages, onClose, onSuccess }: {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
-      <div className="w-full max-w-md rounded-2xl max-h-[90vh] overflow-y-auto border border-border bg-card"
+      <div className="w-full max-w-md rounded-md max-h-[90vh] overflow-y-auto border border-border bg-card"
         >
         <div className="sticky top-0 px-6 py-4 flex items-center justify-between border-b border-border bg-card"
           >
@@ -459,7 +459,7 @@ function EnrollMemberModal({ packages, onClose, onSuccess }: {
           </div>
 
           <button onClick={handleSave} disabled={saving || !memberId || !packageId}
-            className="w-full h-11 flex items-center justify-center gap-2 rounded-xl text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground hover:-translate-y-0.5 mt-2 disabled:opacity-50">
+            className="w-full h-11 flex items-center justify-center gap-2 rounded-xl text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent dark:bg-white/5 dark:hover:bg-white/10  border border-border text-foreground hover:-translate-y-0.5 mt-2 disabled:opacity-50">
             {saving && <Loader2 className="h-4 w-4 animate-spin" />}
             {saving ? 'Enrolling...' : 'Enroll Member'}
           </button>
@@ -482,7 +482,7 @@ function SessionRow({ session, onComplete, onCancel, isTrainer }: {
   const isUpcoming = session.status === 'SCHEDULED' && isFuture(parseISO(session.scheduledAt))
 
   return (
-    <div className={cn('flex items-center gap-4 rounded-2xl border bg-background/50 backdrop-blur-sm px-5 py-4 transition-all hover:bg-background/80 shadow-sm', s.border)}>
+    <div className={cn('flex items-center gap-4 rounded-md border bg-card border border-border shadow-sm px-5 py-4 transition-all hover:bg-background/80 shadow-sm', s.border)}>
       <div className={cn('h-10 w-10 rounded-xl flex items-center justify-center flex-shrink-0', s.bg)}>
         <Icon className={cn('h-5 w-5', s.color)} />
       </div>
@@ -507,7 +507,7 @@ function SessionRow({ session, onComplete, onCancel, isTrainer }: {
 
       <div className="flex items-center gap-3 flex-shrink-0">
         <span className={cn(
-          'text-[11px] font-semibold px-3 py-1 rounded-full border hidden sm:inline-flex tracking-wide',
+          'text-[11px] font-semibold px-3 py-1 rounded-md border hidden sm:inline-flex tracking-wide',
           s.color, s.bg, s.border
         )}>
           {s.label}
@@ -515,12 +515,12 @@ function SessionRow({ session, onComplete, onCancel, isTrainer }: {
         {isUpcoming && (
           <div className="flex items-center gap-2">
             <button onClick={() => onComplete(session.id)}
-              className="text-[12px] font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 px-4 py-1.5 rounded-full transition-all hover:shadow-[0_0_10px_rgba(16,185,129,0.15)]">
+              className="text-[12px] font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 px-4 py-1.5 rounded-md transition-all hover:shadow-md">
               Complete
             </button>
             {!isTrainer && (
               <button onClick={() => onCancel(session.id)}
-                className="text-[12px] font-medium text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-4 py-1.5 rounded-full transition-all">
+                className="text-[12px] font-medium text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-4 py-1.5 rounded-md transition-all">
                 Cancel
               </button>
             )}
@@ -609,7 +609,7 @@ export default function PtPage() {
     return (
       <div className="flex items-center justify-center h-[60vh]">
         <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
+          <div className="h-8 w-8 animate-spin rounded-md border-2 border-violet-500 border-t-transparent" />
           <p className="text-[12px] text-muted-foreground">Loading PT data...</p>
         </div>
       </div>
@@ -645,10 +645,10 @@ export default function PtPage() {
       {/* ── Header Actions ── */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         {/* Left: Tabs (Moved from below to the top left for better UX) */}
-        <div className="inline-flex items-center gap-1 p-1 rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 backdrop-blur-md w-fit">
+        <div className="inline-flex items-center gap-1 p-1 rounded-md border border-border bg-card  w-fit">
           {(['sessions', 'enrollments', 'packages'] as const).map(tab => (
             <button key={tab} onClick={() => setActiveTab(tab)}
-              className={`px-5 py-1.5 rounded-full text-[13px] font-medium transition-all duration-200 capitalize ${activeTab === tab ? 'bg-background shadow-sm text-foreground' : 'text-muted-foreground hover:text-foreground'}`}>
+              className={`px-5 py-1.5 rounded-md text-[13px] font-medium transition-all duration-200 capitalize ${activeTab === tab ? 'bg-background shadow-sm text-foreground' : 'text-muted-foreground hover:text-foreground'}`}>
               {tab === 'pt' ? 'Sessions' : tab}
             </button>
           ))}
@@ -657,19 +657,19 @@ export default function PtPage() {
         {/* Right: Actions */}
         <div className="flex flex-wrap items-center gap-2">
           <button onClick={() => setShowEnroll(true)}
-            className="flex items-center gap-2 h-10 px-4 rounded-full text-[13px] font-medium text-foreground bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 transition-all">
+            className="flex items-center gap-2 h-10 px-4 rounded-md text-[13px] font-medium text-foreground bg-card hover:bg-accent dark:bg-white/5 dark:hover:bg-white/10  border border-border transition-all">
             <Users className="h-4 w-4" /> Enroll Member
           </button>
           
           {isOwnerOrManager && (
             <button onClick={() => setShowPackage(true)}
-              className="flex items-center gap-2 h-10 px-4 rounded-full text-[13px] font-medium text-foreground bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 transition-all">
+              className="flex items-center gap-2 h-10 px-4 rounded-md text-[13px] font-medium text-foreground bg-card hover:bg-accent dark:bg-white/5 dark:hover:bg-white/10  border border-border transition-all">
               <Package className="h-4 w-4" /> New Package
             </button>
           )}
 
           <button onClick={() => setShowSchedule(true)}
-            className="flex items-center gap-2 h-10 px-5 rounded-full text-[13px] font-medium text-violet-600 dark:text-violet-400 bg-violet-500/10 hover:bg-violet-500/20 backdrop-blur-md border border-violet-500/20 transition-all hover:shadow-[0_0_15px_rgba(139,92,246,0.15)]">
+            className="flex items-center gap-2 h-10 px-5 rounded-md text-[13px] font-medium  bg-violet-500/10 hover:bg-violet-500/20  border border-violet-500/20 transition-all hover:shadow-md">
             <Plus className="h-4 w-4" /> Schedule Session
           </button>
         </div>
@@ -685,7 +685,7 @@ export default function PtPage() {
           { label: 'Enrollments', value: enrollments.length, icon: Users, color: 'text-blue-500 dark:text-blue-400', bg: 'bg-blue-500/10' },
         ].map(stat => (
           <div key={stat.label}
-            className="group relative overflow-hidden rounded-2xl border border-black/10 dark:border-white/10 bg-background/30 backdrop-blur-md p-4 transition-all hover:bg-background/40 shadow-sm">
+            className="group relative overflow-hidden rounded-md border border-border bg-background/30  p-4 transition-all hover:bg-background/40 shadow-sm">
             <div className="flex items-center gap-3">
               <div className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl ${stat.bg}`}>
                 <stat.icon className={`h-5 w-5 ${stat.color}`} />
@@ -701,13 +701,13 @@ export default function PtPage() {
 
       {/* ── Sessions Tab ── */}
       {activeTab === 'sessions' && (
-        <div className="rounded-3xl p-5 border border-black/10 dark:border-white/10 bg-background/30 backdrop-blur-md shadow-sm">
+        <div className="rounded-lg p-5 border border-border bg-card border border-border shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
             <p className="text-[15px] font-bold text-foreground">All Sessions</p>
-            <div className="inline-flex items-center gap-1 p-1 rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 overflow-x-auto w-full sm:w-auto">
+            <div className="inline-flex items-center gap-1 p-1 rounded-md border border-border bg-card overflow-x-auto w-full sm:w-auto">
               {['ALL', 'SCHEDULED', 'COMPLETED', 'CANCELLED', 'NO_SHOW'].map(s => (
                 <button key={s} onClick={() => setStatusFilter(s)}
-                  className={`px-4 py-1.5 rounded-full text-[12px] font-medium transition-all whitespace-nowrap ${statusFilter === s ? 'bg-background shadow-sm text-violet-500 dark:text-violet-400' : 'text-muted-foreground hover:text-foreground'}`}>
+                  className={`px-4 py-1.5 rounded-md text-[12px] font-medium transition-all whitespace-nowrap ${statusFilter === s ? 'bg-background shadow-sm text-violet-500 dark:text-violet-400' : 'text-muted-foreground hover:text-foreground'}`}>
                   {s === 'ALL' ? 'All' : s === 'NO_SHOW' ? 'No Show' : s.charAt(0) + s.slice(1).toLowerCase()}
                 </button>
               ))}
@@ -716,7 +716,7 @@ export default function PtPage() {
 
           {filtered.length === 0 ? (
             <div className="py-16 flex flex-col items-center gap-3">
-              <div className="h-12 w-12 rounded-2xl flex items-center justify-center"
+              <div className="h-12 w-12 rounded-md flex items-center justify-center"
                 style={{ background: '#7c3aed15' }}>
                 <Dumbbell className="h-5 w-5 text-violet-400/60" />
               </div>
@@ -746,12 +746,12 @@ export default function PtPage() {
       {activeTab === 'enrollments' && (
         <div className="space-y-4">
           {enrollments.length === 0 ? (
-            <div className="rounded-3xl p-12 flex flex-col items-center gap-3 border border-black/10 dark:border-white/10 bg-background/30 backdrop-blur-md shadow-sm">
+            <div className="rounded-lg p-12 flex flex-col items-center gap-3 border border-border bg-card border border-border shadow-sm">
               <Users className="h-8 w-8 text-muted-foreground" />
               <p className="text-[13px] text-muted-foreground">No enrollments yet</p>
               {isOwnerOrManager && (
                 <button onClick={() => setShowEnroll(true)}
-                  className="text-[13px] font-medium text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 flex items-center gap-1 mt-2">
+                  className="text-[13px] font-medium  hover:text-violet-700 dark:hover:text-violet-300 flex items-center gap-1 mt-2">
                   <Plus className="h-4 w-4" /> Enroll a member
                 </button>
               )}
@@ -761,7 +761,7 @@ export default function PtPage() {
               {enrollments.map((e) => {
                 const progress = (e.usedSessions / e.totalSessions) * 100
                 return (
-                  <div key={e.id} className="rounded-3xl p-5 transition-all border border-black/10 dark:border-white/10 bg-background/30 backdrop-blur-md shadow-sm hover:bg-background/40">
+                  <div key={e.id} className="rounded-lg p-5 transition-all border border-border bg-card border border-border shadow-sm hover:bg-accent">
 
                     {/* Member info */}
                     <div className="flex items-center justify-between mb-4">
@@ -786,8 +786,8 @@ export default function PtPage() {
                       <span className="text-muted-foreground">Sessions used</span>
                       <span className="text-foreground font-medium">{e.usedSessions}/{e.totalSessions}</span>
                     </div>
-                    <div className="h-1.5 rounded-full overflow-hidden mb-4" style={{ background: '#ffffff08' }}>
-                      <div className="h-full rounded-full transition-all"
+                    <div className="h-1.5 rounded-md overflow-hidden mb-4" style={{ background: '#ffffff08' }}>
+                      <div className="h-full rounded-md transition-all"
                         style={{ width: `${progress}%`, background: 'linear-gradient(90deg,#7c3aed,#a855f7)' }} />
                     </div>
 
@@ -814,12 +814,12 @@ export default function PtPage() {
 
       {/* ── Packages Tab ── */}
       {activeTab === 'packages' && (
-        <div className="rounded-3xl p-5 border border-black/10 dark:border-white/10 bg-background/30 backdrop-blur-md shadow-sm">
+        <div className="rounded-lg p-5 border border-border bg-card border border-border shadow-sm">
           <div className="flex items-center justify-between mb-6">
             <p className="text-[15px] font-bold text-foreground">PT Packages</p>
             {isOwnerOrManager && (
               <button onClick={() => setShowPackage(true)}
-                className="flex items-center gap-1.5 text-[12px] font-medium text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 transition-colors">
+                className="flex items-center gap-1.5 text-[12px] font-medium  hover:text-violet-700 dark:hover:text-violet-300 transition-colors">
                 <Plus className="h-3.5 w-3.5" /> Add Package
               </button>
             )}
@@ -831,7 +831,7 @@ export default function PtPage() {
               <p className="text-[13px] text-muted-foreground">No packages yet</p>
               {isOwnerOrManager && (
                 <button onClick={() => setShowPackage(true)}
-                  className="text-[13px] font-medium text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 flex items-center gap-1 mt-2">
+                  className="text-[13px] font-medium  hover:text-violet-700 dark:hover:text-violet-300 flex items-center gap-1 mt-2">
                   <Plus className="h-4 w-4" /> Create first package
                 </button>
               )}
@@ -839,7 +839,7 @@ export default function PtPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {packages.map(pkg => (
-                <div key={pkg.id} className="rounded-2xl p-5 border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 transition-all hover:bg-black/10 dark:hover:bg-white/10">
+                <div key={pkg.id} className="rounded-md p-5 border border-border bg-card transition-all hover:bg-black/10 dark:hover:bg-white/10">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1 min-w-0">
                       <p className="text-[14px] font-bold text-foreground">{pkg.name}</p>

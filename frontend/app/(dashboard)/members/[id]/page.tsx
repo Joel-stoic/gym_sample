@@ -52,10 +52,10 @@ function MemberDetailSkeleton() {
         </div>
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
           <div className="space-y-4">
-            <div className="rounded-2xl border border-border bg-white/[0.03] p-5">
+            <div className="rounded-md border border-border bg-white/[0.03] p-5">
               <div className="flex flex-col items-center pb-5 border-b border-border">
-                <Bone className="h-20 w-20 rounded-full mb-3" /><Bone className="h-4 w-28 mb-2" />
-                <Bone className="h-5 w-16 rounded-full mb-3" /><Bone className="h-7 w-24 rounded-lg" />
+                <Bone className="h-20 w-20 rounded-md mb-3" /><Bone className="h-4 w-28 mb-2" />
+                <Bone className="h-5 w-16 rounded-md mb-3" /><Bone className="h-7 w-24 rounded-lg" />
               </div>
               <div className="pt-4 space-y-3">
                 {[1, 2, 3].map(i => <div key={i} className="flex items-center gap-3"><Bone className="h-3.5 w-3.5 flex-shrink-0" /><Bone className="h-3.5 flex-1" style={{ maxWidth: `${100 - i * 15}%` }} /></div>)}
@@ -67,14 +67,14 @@ function MemberDetailSkeleton() {
           </div>
           <div className="xl:col-span-2 space-y-4">
             {[1, 2].map(i => (
-              <div key={i} className="rounded-2xl border border-border bg-white/[0.03] p-5">
+              <div key={i} className="rounded-md border border-border bg-white/[0.03] p-5">
                 <Bone className="h-3 w-28 mb-4" />
                 <div className="space-y-2">
                   {[1, 2, 3].map(j => (
                     <div key={j} className="rounded-xl border border-border bg-background/20 px-4 py-3 flex items-center gap-3">
                       <Bone className="h-9 w-9 rounded-xl flex-shrink-0" />
                       <div className="flex-1 space-y-1.5"><Bone className="h-3.5 w-32" /><Bone className="h-3 w-24" /></div>
-                      <div className="text-right space-y-1.5"><Bone className="h-3.5 w-16 ml-auto" /><Bone className="h-5 w-12 rounded-full ml-auto" /></div>
+                      <div className="text-right space-y-1.5"><Bone className="h-3.5 w-16 ml-auto" /><Bone className="h-5 w-12 rounded-md ml-auto" /></div>
                     </div>
                   ))}
                 </div>
@@ -110,8 +110,8 @@ function MembershipProgressBar({ start, expiry }: { start: string; expiry: strin
         <span>{daysLeft <= 0 ? 'Expired' : `${daysLeft} days left`}</span>
         <span>{pct}% used</span>
       </div>
-      <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
-        <div className={cn('h-full rounded-full transition-all duration-500', barColor)} style={{ width: `${pct}%` }} />
+      <div className="h-2 bg-zinc-800 rounded-md overflow-hidden">
+        <div className={cn('h-full rounded-md transition-all duration-500', barColor)} style={{ width: `${pct}%` }} />
       </div>
       <div className="flex items-center justify-between text-[11px] text-zinc-600 mt-2">
         <span>{format(startDate, 'd MMM yyyy')}</span>
@@ -127,7 +127,7 @@ function MembershipProgressBar({ start, expiry }: { start: string; expiry: strin
 
 function Panel({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn('rounded-2xl border border-border bg-white/[0.03] backdrop-blur-xl p-5', className)}>
+    <div className={cn('rounded-md border border-border bg-white/[0.03]  p-5', className)}>
       {children}
     </div>
   )
@@ -322,8 +322,8 @@ function Modal({ open, onClose, title, children, wide }: {
   if (!open) return null
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-background/70 backdrop-blur-sm" onClick={onClose} />
-      <div className={cn('relative z-10 w-full rounded-2xl border border-border bg-card shadow-2xl p-6 max-h-[90vh] overflow-y-auto', wide ? 'max-w-lg' : 'max-w-md')}>
+      <div className="absolute inset-0 bg-background/70 " onClick={onClose} />
+      <div className={cn('relative z-10 w-full rounded-md border border-border bg-card shadow-2xl p-6 max-h-[90vh] overflow-y-auto', wide ? 'max-w-lg' : 'max-w-md')}>
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-base font-semibold text-foreground">{title}</h2>
           <button onClick={onClose} className="h-8 w-8 rounded-lg border border-border bg-white/[0.03] flex items-center justify-center text-zinc-400 hover:text-foreground transition-colors">
@@ -408,8 +408,8 @@ function AddPaymentModal({ open, onClose, memberId, memberName, onSaved }: {
   return (
     <Modal open={open} onClose={onClose} title="Record Payment" wide>
       {/* Member chip */}
-      <div className="flex items-center gap-2 mb-5 px-3 py-2 /10 border border-violet-500/20 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
-        <div className="h-6 w-6 rounded-full /30 flex items-center justify-center text-[10px] font-bold text-violet-300 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+      <div className="flex items-center gap-2 mb-5 px-3 py-2 /10 border border-violet-500/20 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
+        <div className="h-6 w-6 rounded-md /30 flex items-center justify-center text-[10px] font-bold text-violet-300 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
           {memberName[0]?.toUpperCase()}
         </div>
         <span className="text-sm text-violet-300 font-medium">{memberName}</span>
@@ -526,10 +526,10 @@ function AddPaymentModal({ open, onClose, memberId, memberName, onSaved }: {
           <button
             onClick={handleSubmit}
             disabled={saving || !planId}
-            className="flex-1 py-2.5 text-sm text-foreground font-medium flex items-center justify-center gap-2 transition-colors bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+            className="flex-1 py-2.5 text-sm text-foreground font-medium flex items-center justify-center gap-2 transition-colors bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
           >
             {saving
-              ? <span className="h-4 w-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+              ? <span className="h-4 w-4 rounded-md border-2 border-white/30 border-t-white animate-spin" />
               : <CreditCard className="h-3.5 w-3.5" />}
             Record Payment
           </button>
@@ -600,8 +600,8 @@ function EditProfileModal({ open, onClose, member, onSaved }: {
         </div>
         <div className="flex gap-2 pt-1">
           <button onClick={onClose} className="flex-1 rounded-xl border border-border bg-white/[0.03] py-2.5 text-sm text-zinc-400 hover:text-foreground transition-colors">Cancel</button>
-          <button onClick={handleSave} disabled={saving} className="flex-1 py-2.5 text-sm text-foreground font-medium flex items-center justify-center gap-2 transition-colors bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
-            {saving ? <span className="h-4 w-4 rounded-full border-2 border-white/30 border-t-white animate-spin" /> : <Save className="h-3.5 w-3.5" />}
+          <button onClick={handleSave} disabled={saving} className="flex-1 py-2.5 text-sm text-foreground font-medium flex items-center justify-center gap-2 transition-colors bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
+            {saving ? <span className="h-4 w-4 rounded-md border-2 border-white/30 border-t-white animate-spin" /> : <Save className="h-3.5 w-3.5" />}
             Save Changes
           </button>
         </div>
@@ -696,7 +696,7 @@ export default function MemberDetailPage() {
             </button>
             <Button
               onClick={() => router.push(`/members/${id}/diet`)}
-              className="text-foreground h-9 px-4 text-sm gap-2 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+              className="text-foreground h-9 px-4 text-sm gap-2 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
             >
               <Utensils className="h-3.5 w-3.5" />
               Diet & Weight
@@ -711,7 +711,7 @@ export default function MemberDetailPage() {
           <div className="space-y-4">
             <Panel>
               <div className="flex flex-col items-center text-center pb-5 border-b border-border">
-                <div className="h-20 w-20 rounded-full /20 border border-violet-500/30 flex items-center justify-center text-xl font-bold text-violet-400 mb-3 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                <div className="h-20 w-20 rounded-md /20 border border-violet-500/30 flex items-center justify-center text-xl font-bold text-violet-400 mb-3 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                   {getInitials(member.name)}
                 </div>
                 <h2 className="text-base font-semibold text-foreground">{member.name}</h2>
@@ -755,7 +755,7 @@ export default function MemberDetailPage() {
 
               <div className="grid grid-cols-2 gap-3 mt-5">
                 <div className="rounded-xl border border-border bg-background/20 p-3 text-center">
-                  <div className="h-9 w-9 /10 flex items-center justify-center mx-auto mb-2 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                  <div className="h-9 w-9 /10 flex items-center justify-center mx-auto mb-2 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                     <Activity className="h-4 w-4 text-violet-400" />
                   </div>
                   <p className="text-xl font-bold text-foreground">{member.attendance?.length || 0}</p>
@@ -846,7 +846,7 @@ export default function MemberDetailPage() {
                 <div className="space-y-2">
                   {member.attendance.map((record: Attendance) => (
                     <ListRow key={record.id}>
-                      <IconBox className="/10 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                      <IconBox className="/10 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                         <CheckCircle2 className="h-4 w-4 text-green-400" />
                       </IconBox>
                       <div className="flex-1 min-w-0">

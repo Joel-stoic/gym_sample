@@ -41,7 +41,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+          <div className="w-12 h-12 rounded-md flex items-center justify-center mb-4 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
             <Shield size={24} className="text-foreground" />
           </div>
           <h1 className="text-xl font-bold text-foreground font-[Syne]">GymFlow Admin</h1>
@@ -49,7 +49,7 @@ export default function AdminLoginPage() {
         </div>
 
         {/* Card */}
-        <div className="bg-card border border-border rounded-3xl p-6 space-y-4">
+        <div className="bg-card border border-border rounded-lg p-6 space-y-4">
           {error && (
             <div className="bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 text-sm text-red-400">
               {error}
@@ -92,7 +92,7 @@ export default function AdminLoginPage() {
           <button
             onClick={handleLogin}
             disabled={loading}
-            className="w-full disabled:cursor-not-allowed text-foreground font-medium py-3 text-sm transition-all duration-150 mt-2 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+            className="w-full disabled:cursor-not-allowed text-foreground font-medium py-3 text-sm transition-all duration-150 mt-2 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
           >
             {loading ? 'Signing in...' : 'Sign in'}
           </button>

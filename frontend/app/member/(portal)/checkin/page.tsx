@@ -181,7 +181,7 @@ export default function CheckInPage() {
         {/* IDLE */}
         {state === 'idle' && (
           <div className="flex flex-col items-center gap-6 text-center">
-            <div className="relative flex h-28 w-28 items-center justify-center rounded-3xl /10 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+            <div className="relative flex h-28 w-28 items-center justify-center rounded-lg /10 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
               <span className="absolute left-3 top-3 h-4 w-4 rounded-tl-lg border-l-2 border-t-2 border-violet-500/50" />
               <span className="absolute right-3 top-3 h-4 w-4 rounded-tr-lg border-r-2 border-t-2 border-violet-500/50" />
               <span className="absolute bottom-3 left-3 h-4 w-4 rounded-bl-lg border-b-2 border-l-2 border-violet-500/50" />
@@ -198,7 +198,7 @@ export default function CheckInPage() {
             </div>
             <button
               onClick={startScanner}
-              className="flex items-center gap-2.5 rounded-2xl px-8 py-3.5 text-[14px] font-semibold text-foreground transition-all hover:active:scale-95 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+              className="flex items-center gap-2.5 rounded-md px-8 py-3.5 text-[14px] font-semibold text-foreground transition-all hover:active:scale-95 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
             >
               <Camera size={16} />
               Open Camera
@@ -210,7 +210,7 @@ export default function CheckInPage() {
         {state === 'scanning' && (
           <div className="flex w-full flex-col items-center gap-4">
             <p className="text-[13px] text-muted-foreground">Point at the QR code</p>
-            <div className="relative w-full max-w-sm overflow-hidden rounded-2xl border border-violet-500/20">
+            <div className="relative w-full max-w-sm overflow-hidden rounded-md border border-violet-500/20">
               <div id="qr-reader" className="w-full" />
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
                 <div className="relative h-52 w-52">
@@ -233,7 +233,7 @@ export default function CheckInPage() {
         {/* LOADING */}
         {state === 'loading' && (
           <div className="flex flex-col items-center gap-5">
-            <div className="h-12 w-12 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
+            <div className="h-12 w-12 animate-spin rounded-md border-2 border-violet-500 border-t-transparent" />
             <p className="text-[13px] text-muted-foreground">Marking your attendance…</p>
           </div>
         )}
@@ -241,7 +241,7 @@ export default function CheckInPage() {
         {/* SUCCESS */}
         {state === 'success' && (
           <div className="flex w-full max-w-xs flex-col items-center gap-5 text-center">
-            <div className="flex h-24 w-24 items-center justify-center rounded-3xl bg-emerald-500/10">
+            <div className="flex h-24 w-24 items-center justify-center rounded-lg bg-emerald-500/10">
               <CheckCircle size={44} className="text-emerald-400" />
             </div>
             <div>
@@ -250,7 +250,7 @@ export default function CheckInPage() {
               </p>
               <p className="mt-1 text-[13px] text-emerald-400">Attendance marked successfully</p>
             </div>
-            <div className="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2">
+            <div className="flex items-center gap-2 rounded-md border border-border bg-card px-4 py-2">
               <Clock size={12} className="text-muted-foreground" />
               <span className="text-[12px] text-muted-foreground">Checked in at {checkedInTime}</span>
             </div>
@@ -261,7 +261,7 @@ export default function CheckInPage() {
             )}
             <button
               onClick={() => router.push('/member')}
-              className="w-full rounded-2xl border border-white/[0.10] py-3 text-[13px] font-medium text-foreground transition-all hover:bg-muted active:scale-95"
+              className="w-full rounded-md border border-white/[0.10] py-3 text-[13px] font-medium text-foreground transition-all hover:bg-muted active:scale-95"
             >
               Back to Home
             </button>
@@ -271,7 +271,7 @@ export default function CheckInPage() {
         {/* ERROR */}
         {state === 'error' && (
           <div className="flex w-full max-w-xs flex-col items-center gap-5 text-center">
-            <div className="flex h-24 w-24 items-center justify-center rounded-3xl bg-red-500/10">
+            <div className="flex h-24 w-24 items-center justify-center rounded-lg bg-red-500/10">
               <XCircle size={44} className="text-red-400" />
             </div>
             <div>
@@ -282,7 +282,7 @@ export default function CheckInPage() {
             </div>
             <button
               onClick={reset}
-              className="flex w-full items-center justify-center gap-2 rounded-2xl py-3 text-[13px] font-semibold text-foreground transition-all hover:active:scale-95 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+              className="flex w-full items-center justify-center gap-2 rounded-md py-3 text-[13px] font-semibold text-foreground transition-all hover:active:scale-95 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
             >
               <Camera size={14} />
               Try Again

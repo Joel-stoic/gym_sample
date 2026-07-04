@@ -233,7 +233,7 @@ export default function NewPaymentPage() {
       <div className="grid gap-6 lg:grid-cols-[1fr_340px]">
 
         {/* ── Form ── */}
-        <div className="rounded-3xl border border-border bg-background p-6">
+        <div className="rounded-lg border border-border bg-background p-6">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
 
@@ -519,7 +519,7 @@ export default function NewPaymentPage() {
               <Button
                 type="submit"
                 disabled={loading}
-                className="h-12 w-full text-foreground hover: bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+                className="h-12 w-full text-foreground hover: bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
               >
                 {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 {loading ? 'Recording...' : 'Record Payment'}
@@ -531,9 +531,9 @@ export default function NewPaymentPage() {
         {/* ── Summary sidebar ── */}
         <div className="space-y-4">
 
-          <div className="rounded-3xl border border-border bg-background p-5">
+          <div className="rounded-lg border border-border bg-background p-5">
             <div className="mb-5 flex items-center gap-3">
-              <div className="rounded-2xl /15 p-3 text-violet-400 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+              <div className="rounded-md /15 p-3 text-violet-400 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                 <IndianRupee className="h-5 w-5" />
               </div>
               <div>
@@ -607,7 +607,7 @@ export default function NewPaymentPage() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-border bg-background p-5">
+          <div className="rounded-lg border border-border bg-background p-5">
             <p className="mb-4 text-sm font-medium text-foreground">Supported Methods</p>
             <div className="space-y-3">
               {[
@@ -615,7 +615,7 @@ export default function NewPaymentPage() {
                 { icon: Smartphone,  label: 'UPI'         },
                 { icon: CreditCard,  label: 'Card / Online' },
               ].map(({ icon: Icon, label }) => (
-                <div key={label} className="flex items-center gap-3 rounded-2xl border border-white/[0.05] bg-white/[0.02] p-3">
+                <div key={label} className="flex items-center gap-3 rounded-md border border-white/[0.05] bg-white/[0.02] p-3">
                   <Icon className="h-4 w-4 text-violet-400" />
                   <span className="text-sm text-[#d4d4dc]">{label}</span>
                 </div>

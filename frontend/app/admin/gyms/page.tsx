@@ -168,7 +168,7 @@ function AdminGymsContent() {
         </div>
         <button
           onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 px-4 py-2 text-foreground text-sm font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground"
+          className="flex items-center gap-2 px-4 py-2 text-foreground text-sm font-medium transition-all bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
         >
           <Plus size={15} />Add Gym
         </button>
@@ -202,10 +202,10 @@ function AdminGymsContent() {
       </div>
 
       {/* List */}
-      <div className="bg-card border border-border rounded-3xl overflow-hidden">
+      <div className="bg-card border border-border rounded-lg overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <div className="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-full animate-spin" />
+            <div className="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-md animate-spin" />
           </div>
         ) : filtered.length === 0 ? (
           <div className="py-16 text-center">
@@ -223,7 +223,7 @@ function AdminGymsContent() {
                   className="px-6 py-4 flex items-center justify-between hover:bg-white/[0.02] transition-colors cursor-pointer group"
                 >
                   <div className="flex items-center gap-4 min-w-0">
-                    <div className="w-9 h-9 /15 flex items-center justify-center text-violet-400 text-sm font-bold flex-shrink-0 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                    <div className="w-9 h-9 /15 flex items-center justify-center text-violet-400 text-sm font-bold flex-shrink-0 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                       {gym.name.charAt(0).toUpperCase()}
                     </div>
                     <div className="min-w-0">
@@ -231,7 +231,7 @@ function AdminGymsContent() {
                         <p className="text-sm font-medium text-foreground">{gym.name}</p>
                         {gym.isActive && <CheckCircle size={13} className="text-emerald-400 flex-shrink-0" />}
                         {trial && (
-                          <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${trial.color}`}>
+                          <span className={`text-[10px] px-2 py-0.5 rounded-md font-medium ${trial.color}`}>
                             {trial.label}
                           </span>
                         )}
@@ -262,7 +262,7 @@ function AdminGymsContent() {
                         {approvingId === gym.id ? 'Approving...' : 'Approve'}
                       </button>
                     ) : (
-                      <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 font-medium">
+                      <span className="text-xs px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 font-medium">
                         Active
                       </span>
                     )}
@@ -277,8 +277,8 @@ function AdminGymsContent() {
 
       {/* Add Gym Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-background/60 backdrop-blur-sm">
-          <div className="w-full sm:max-w-md bg-background border border-border rounded-t-3xl sm:rounded-3xl shadow-2xl max-h-[92vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-background/60 ">
+          <div className="w-full sm:max-w-md bg-background border border-border rounded-t-3xl sm:rounded-lg shadow-2xl max-h-[92vh] overflow-y-auto">
             <div className="flex items-center justify-between px-6 py-5 border-b border-border sticky top-0 bg-background">
               <div>
                 <h2 className="text-base font-bold text-foreground">Add Gym</h2>
@@ -357,7 +357,7 @@ function AdminGymsContent() {
                   Cancel
                 </button>
                 <button type="submit" disabled={submitting}
-                  className="flex-1 py-2.5 text-foreground text-sm font-medium transition-all bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+                  className="flex-1 py-2.5 text-foreground text-sm font-medium transition-all bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                   {submitting ? 'Creating...' : 'Create Gym'}
                 </button>
               </div>
@@ -374,7 +374,7 @@ function AdminGymsContent() {
 function LoadingSpinner() {
   return (
     <div className="flex items-center justify-center h-64">
-      <div className="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-full animate-spin" />
+      <div className="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-md animate-spin" />
     </div>
   )
 }
