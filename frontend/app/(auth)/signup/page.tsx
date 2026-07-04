@@ -68,8 +68,8 @@ function BrandPanel() {
         <div className="h-8 w-8 flex items-center justify-center bg-[#090909] border border-[#1a1a1a] rounded-md shadow-sm">
           <Dumbbell className="h-4 w-4 text-white" />
         </div>
-        <span className={`text-lg font-bold tracking-tight text-white`}>
-          Jovifitx
+        <span className={`text-2xl font-black tracking-tighter text-white uppercase`}>
+          JOVIFITX
         </span>
       </div>
 
@@ -111,7 +111,7 @@ function BackgroundLayer() {
         rayLength={3.0}
         lightSpread={2.5}
         saturation={0}
-        className="opacity-30 mix-blend-screen w-full max-w-[1400px]"
+        className="opacity-60 mix-blend-screen w-full max-w-[1400px]"
       />
     </div>
   )
@@ -177,7 +177,7 @@ export default function SignupPage() {
               <div className="h-10 w-10 flex items-center justify-center mb-4 bg-[#090909] border border-[#1a1a1a] rounded-md shadow-sm">
                 <Dumbbell className="h-5 w-5 text-white" />
               </div>
-              <h1 className={`text-2xl font-bold tracking-tight text-white`}>Jovifitx</h1>
+              <h1 className={`text-2xl font-black tracking-tighter text-white uppercase`}>JOVIFITX</h1>
             </div>
 
             <div className="flex justify-start mb-8">
@@ -236,7 +236,7 @@ export default function SignupPage() {
             <div className="h-10 w-10 flex items-center justify-center mb-4 bg-[#090909] border border-[#1a1a1a] rounded-md shadow-sm">
               <Dumbbell className="h-5 w-5 text-white" />
             </div>
-            <h1 className={`text-2xl font-bold tracking-tight text-white`}>Jovifitx</h1>
+            <h1 className={`text-2xl font-black tracking-tighter text-white uppercase`}>JOVIFITX</h1>
           </div>
 
           <div className="mb-10 text-left">
