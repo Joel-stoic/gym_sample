@@ -482,49 +482,49 @@ function SessionRow({ session, onComplete, onCancel, isTrainer }: {
   const isUpcoming = session.status === 'SCHEDULED' && isFuture(parseISO(session.scheduledAt))
 
   return (
-    <div className={cn('flex items-center gap-3 rounded-xl border px-4 py-3 transition-colors', s.bg, s.border)}>
-      <div className={cn('h-8 w-8 rounded-lg flex items-center justify-center flex-shrink-0', s.bg)}>
-        <Icon className={cn('h-4 w-4', s.color)} />
+    <div className={cn('flex items-center gap-4 rounded-2xl border bg-background/50 backdrop-blur-sm px-5 py-4 transition-all hover:bg-background/80 shadow-sm', s.border)}>
+      <div className={cn('h-10 w-10 rounded-xl flex items-center justify-center flex-shrink-0', s.bg)}>
+        <Icon className={cn('h-5 w-5', s.color)} />
       </div>
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <p className="text-[13px] font-medium text-foreground">{session.member.name}</p>
-          <span className="text-muted-foreground">·</span>
-          <p className="text-xs text-muted-foreground">{session.enrollment.package.name}</p>
+          <p className="text-[14px] font-semibold text-foreground">{session.member.name}</p>
+          <span className="text-muted-foreground hidden sm:inline">·</span>
+          <p className="text-[13px] text-muted-foreground">{session.enrollment.package.name}</p>
         </div>
-        <div className="flex items-center gap-3 mt-0.5 flex-wrap">
-          <span className="text-[11px] text-muted-foreground flex items-center gap-1">
-            <Calendar className="h-3 w-3" />
-            {format(parseISO(session.scheduledAt), 'EEE d MMM · h:mm a')}
+        <div className="flex items-center gap-4 mt-1.5 flex-wrap">
+          <span className="text-[12px] text-muted-foreground flex items-center gap-1.5">
+            <Calendar className="h-3.5 w-3.5 opacity-70" />
+            {format(parseISO(session.scheduledAt), 'EEE, d MMM • h:mm a')}
           </span>
-          <span className="text-[11px] text-muted-foreground flex items-center gap-1">
-            <UserCheck className="h-3 w-3" />
+          <span className="text-[12px] text-muted-foreground flex items-center gap-1.5">
+            <UserCheck className="h-3.5 w-3.5 opacity-70" />
             {session.trainer.name}
           </span>
         </div>
       </div>
 
-      <div className="flex items-center gap-2 flex-shrink-0">
+      <div className="flex items-center gap-3 flex-shrink-0">
         <span className={cn(
-          'text-[10px] font-semibold px-2 py-0.5 rounded-full border hidden sm:inline-flex',
+          'text-[11px] font-semibold px-3 py-1 rounded-full border hidden sm:inline-flex tracking-wide',
           s.color, s.bg, s.border
         )}>
           {s.label}
         </span>
         {isUpcoming && (
-          <>
+          <div className="flex items-center gap-2">
             <button onClick={() => onComplete(session.id)}
-              className="text-[11px] text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-lg transition-colors">
+              className="text-[12px] font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 px-4 py-1.5 rounded-full transition-all hover:shadow-[0_0_10px_rgba(16,185,129,0.15)]">
               Complete
             </button>
             {!isTrainer && (
               <button onClick={() => onCancel(session.id)}
-                className="text-[11px] text-red-400 hover:text-red-300 bg-red-500/10 border border-red-500/20 px-2.5 py-1 rounded-lg transition-colors">
+                className="text-[12px] font-medium text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-4 py-1.5 rounded-full transition-all">
                 Cancel
               </button>
             )}
-          </>
+          </div>
         )}
       </div>
     </div>
@@ -642,75 +642,72 @@ export default function PtPage() {
         />
       )}
 
-      {/* ── Header ── */}
-      <div className="flex items-center justify-between flex-wrap gap-3">
-        
-        <div className="flex items-center gap-2">
+      {/* ── Header Actions ── */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        {/* Left: Tabs (Moved from below to the top left for better UX) */}
+        <div className="inline-flex items-center gap-1 p-1 rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 backdrop-blur-md w-fit">
+          {(['sessions', 'enrollments', 'packages'] as const).map(tab => (
+            <button key={tab} onClick={() => setActiveTab(tab)}
+              className={`px-5 py-1.5 rounded-full text-[13px] font-medium transition-all duration-200 capitalize ${activeTab === tab ? 'bg-background shadow-sm text-foreground' : 'text-muted-foreground hover:text-foreground'}`}>
+              {tab === 'pt' ? 'Sessions' : tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Right: Actions */}
+        <div className="flex flex-wrap items-center gap-2">
+          <button onClick={() => setShowEnroll(true)}
+            className="flex items-center gap-2 h-10 px-4 rounded-full text-[13px] font-medium text-foreground bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 transition-all">
+            <Users className="h-4 w-4" /> Enroll Member
+          </button>
           
-            
-              <button onClick={() => setShowEnroll(true)}
-                className="flex items-center gap-2 h-9 px-4 rounded-xl text-[13px] font-medium text-muted-foreground transition-all hover:text-foreground"
-                style={{ background: '#ffffff0a', border: '1px solid var(--border)' }}>
-                <Users className="h-3.5 w-3.5" /> Enroll Members
-              </button>
-              {isOwnerOrManager && (
-              <button onClick={() => setShowPackage(true)}
-                className="flex items-center gap-2 h-9 px-4 rounded-xl text-[13px] font-medium text-muted-foreground transition-all hover:text-foreground"
-                style={{ background: '#ffffff0a', border: '1px solid var(--border)' }}>
-                <Package className="h-3.5 w-3.5" /> Create New Package
-              </button>
-           
+          {isOwnerOrManager && (
+            <button onClick={() => setShowPackage(true)}
+              className="flex items-center gap-2 h-10 px-4 rounded-full text-[13px] font-medium text-foreground bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 transition-all">
+              <Package className="h-4 w-4" /> New Package
+            </button>
           )}
+
           <button onClick={() => setShowSchedule(true)}
-            className="flex h-9 items-center justify-center gap-2 px-4 text-[13px] font-medium transition-all duration-150 bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-xl text-foreground hover:-translate-y-0.5">
-            <Plus className="h-3.5 w-3.5" /> Schedule Session to Members
+            className="flex items-center gap-2 h-10 px-5 rounded-full text-[13px] font-medium text-violet-600 dark:text-violet-400 bg-violet-500/10 hover:bg-violet-500/20 backdrop-blur-md border border-violet-500/20 transition-all hover:shadow-[0_0_15px_rgba(139,92,246,0.15)]">
+            <Plus className="h-4 w-4" /> Schedule Session
           </button>
         </div>
       </div>
 
-      {/* ── Compact Stats Bar ── */}
-      <div className="flex items-center gap-2 flex-wrap">
+      {/* ── Stats Bar ── */}
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
         {[
-          { label: 'Total', value: sessions.length, color: '#a78bfa' },
-          { label: 'Upcoming', value: upcoming.length, color: '#e879f9' },
-          { label: 'Completed', value: completed, color: '#34d399' },
-          { label: 'Packages', value: packages.length, color: '#fb923c' },
-          { label: 'Enrollments', value: enrollments.length, color: '#22d3ee' },
+          { label: 'Total Sessions', value: sessions.length, icon: Dumbbell, color: 'text-fuchsia-500 dark:text-fuchsia-400', bg: 'bg-fuchsia-500/10' },
+          { label: 'Upcoming', value: upcoming.length, icon: Clock, color: 'text-violet-500 dark:text-violet-400', bg: 'bg-violet-500/10' },
+          { label: 'Completed', value: completed, icon: CheckCircle, color: 'text-emerald-500 dark:text-emerald-400', bg: 'bg-emerald-500/10' },
+          { label: 'Packages', value: packages.length, icon: Package, color: 'text-amber-500 dark:text-amber-400', bg: 'bg-amber-500/10' },
+          { label: 'Enrollments', value: enrollments.length, icon: Users, color: 'text-blue-500 dark:text-blue-400', bg: 'bg-blue-500/10' },
         ].map(stat => (
           <div key={stat.label}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border bg-card"
-            >
-            <span className="text-[18px] font-bold" style={{ color: stat.color }}>
-              {stat.value}
-            </span>
-            <span className="text-[12px] text-muted-foreground">{stat.label}</span>
+            className="group relative overflow-hidden rounded-2xl border border-black/10 dark:border-white/10 bg-background/30 backdrop-blur-md p-4 transition-all hover:bg-background/40 shadow-sm">
+            <div className="flex items-center gap-3">
+              <div className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl ${stat.bg}`}>
+                <stat.icon className={`h-5 w-5 ${stat.color}`} />
+              </div>
+              <div>
+                <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground mb-0.5">{stat.label}</p>
+                <p className="text-2xl font-bold text-foreground leading-none">{stat.value}</p>
+              </div>
+            </div>
           </div>
-        ))}
-      </div>
-
-      {/* ── Tabs ── */}
-      <div className="flex items-center gap-1 p-1 rounded-xl w-fit"
-        style={{ background: '#ffffff08' }}>
-        {(['sessions', 'enrollments', 'packages'] as const).map(tab => (
-          <button key={tab} onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2 rounded-lg text-[13px] font-medium transition-all capitalize ${activeTab === tab ? 'bg-black/10 dark:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground' : 'bg-transparent text-muted-foreground hover:bg-muted border border-transparent'}`}>
-            {tab}
-          </button>
         ))}
       </div>
 
       {/* ── Sessions Tab ── */}
       {activeTab === 'sessions' && (
-        <div className="rounded-2xl p-5" style={surface}>
-          <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-            <p className="text-[13px] font-semibold text-foreground">All Sessions</p>
-            <div className="flex items-center gap-1.5 flex-wrap">
+        <div className="rounded-3xl p-5 border border-black/10 dark:border-white/10 bg-background/30 backdrop-blur-md shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
+            <p className="text-[15px] font-bold text-foreground">All Sessions</p>
+            <div className="inline-flex items-center gap-1 p-1 rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 overflow-x-auto w-full sm:w-auto">
               {['ALL', 'SCHEDULED', 'COMPLETED', 'CANCELLED', 'NO_SHOW'].map(s => (
                 <button key={s} onClick={() => setStatusFilter(s)}
-                  className="text-[11px] font-medium px-2.5 py-1 rounded-lg border transition-colors"
-                  style={statusFilter === s
-                    ? { color: '#a78bfa', background: '#7c3aed15', border: '1px solid #7c3aed30' }
-                    : { color: 'var(--muted-foreground)', background: '#ffffff05', border: '1px solid var(--border)' }}>
+                  className={`px-4 py-1.5 rounded-full text-[12px] font-medium transition-all whitespace-nowrap ${statusFilter === s ? 'bg-background shadow-sm text-violet-500 dark:text-violet-400' : 'text-muted-foreground hover:text-foreground'}`}>
                   {s === 'ALL' ? 'All' : s === 'NO_SHOW' ? 'No Show' : s.charAt(0) + s.slice(1).toLowerCase()}
                 </button>
               ))}
@@ -749,13 +746,13 @@ export default function PtPage() {
       {activeTab === 'enrollments' && (
         <div className="space-y-4">
           {enrollments.length === 0 ? (
-            <div className="rounded-2xl p-12 flex flex-col items-center gap-3" style={surface}>
+            <div className="rounded-3xl p-12 flex flex-col items-center gap-3 border border-black/10 dark:border-white/10 bg-background/30 backdrop-blur-md shadow-sm">
               <Users className="h-8 w-8 text-muted-foreground" />
               <p className="text-[13px] text-muted-foreground">No enrollments yet</p>
               {isOwnerOrManager && (
                 <button onClick={() => setShowEnroll(true)}
-                  className="text-xs text-violet-400 hover:text-violet-300 flex items-center gap-1">
-                  <Plus className="h-3 w-3" /> Enroll a member
+                  className="text-[13px] font-medium text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 flex items-center gap-1 mt-2">
+                  <Plus className="h-4 w-4" /> Enroll a member
                 </button>
               )}
             </div>
@@ -764,8 +761,7 @@ export default function PtPage() {
               {enrollments.map((e) => {
                 const progress = (e.usedSessions / e.totalSessions) * 100
                 return (
-                  <div key={e.id} className="rounded-2xl p-5 transition-all border border-border bg-card"
-                    >
+                  <div key={e.id} className="rounded-3xl p-5 transition-all border border-black/10 dark:border-white/10 bg-background/30 backdrop-blur-md shadow-sm hover:bg-background/40">
 
                     {/* Member info */}
                     <div className="flex items-center justify-between mb-4">
@@ -818,12 +814,12 @@ export default function PtPage() {
 
       {/* ── Packages Tab ── */}
       {activeTab === 'packages' && (
-        <div className="rounded-2xl p-5" style={surface}>
-          <div className="flex items-center justify-between mb-4">
-            <p className="text-[13px] font-semibold text-foreground">PT Packages</p>
+        <div className="rounded-3xl p-5 border border-black/10 dark:border-white/10 bg-background/30 backdrop-blur-md shadow-sm">
+          <div className="flex items-center justify-between mb-6">
+            <p className="text-[15px] font-bold text-foreground">PT Packages</p>
             {isOwnerOrManager && (
               <button onClick={() => setShowPackage(true)}
-                className="flex items-center gap-1.5 text-xs text-violet-400 hover:text-violet-300 transition-colors">
+                className="flex items-center gap-1.5 text-[12px] font-medium text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 transition-colors">
                 <Plus className="h-3.5 w-3.5" /> Add Package
               </button>
             )}
@@ -835,21 +831,20 @@ export default function PtPage() {
               <p className="text-[13px] text-muted-foreground">No packages yet</p>
               {isOwnerOrManager && (
                 <button onClick={() => setShowPackage(true)}
-                  className="text-xs text-violet-400 hover:text-violet-300 flex items-center gap-1">
-                  <Plus className="h-3 w-3" /> Create first package
+                  className="text-[13px] font-medium text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 flex items-center gap-1 mt-2">
+                  <Plus className="h-4 w-4" /> Create first package
                 </button>
               )}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {packages.map(pkg => (
-                <div key={pkg.id} className="rounded-xl p-4"
-                  style={{ background: 'var(--background)', border: '1px solid var(--border)' }}>
-                  <div className="flex items-start justify-between mb-2">
+                <div key={pkg.id} className="rounded-2xl p-5 border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 transition-all hover:bg-black/10 dark:hover:bg-white/10">
+                  <div className="flex items-start justify-between mb-3">
                     <div className="flex-1 min-w-0">
-                      <p className="text-[13px] font-semibold text-foreground">{pkg.name}</p>
+                      <p className="text-[14px] font-bold text-foreground">{pkg.name}</p>
                       {pkg.description && (
-                        <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{pkg.description}</p>
+                        <p className="text-[12.5px] text-muted-foreground mt-1 line-clamp-2 leading-relaxed">{pkg.description}</p>
                       )}
                     </div>
                     <span className="text-[14px] font-bold text-emerald-400 ml-3 flex-shrink-0">
