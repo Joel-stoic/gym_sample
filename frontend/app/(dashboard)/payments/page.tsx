@@ -301,6 +301,7 @@ function EditPaymentModal({
     if (discNum > planAmount) return toast.error('Discount cannot exceed plan price')
     if (feeNum  < 0)          return toast.error('Additional fee cannot be negative')
     if (paidNum < 0)          return toast.error('Paid amount cannot be negative')
+    if (paidNum > netDue)     return toast.error('Amount paid cannot exceed final amount due')
 
     setSaving(true)
     try {
@@ -455,7 +456,9 @@ function EditPaymentModal({
             <p className="mt-1.5 text-[11px] leading-relaxed text-muted-foreground">
               How much money the member has actually paid so far. <br/>
               <span className="font-medium text-foreground">Status: </span>
-              {paid >= netDue && netDue > 0
+              {paid > netDue
+                ? <span className="text-red-500 font-bold">Error: Cannot exceed Final Amount Due (₹{netDue})</span>
+                : paid >= netDue && netDue > 0
                 ? <span className="text-green-500 font-medium">Fully Paid ✓</span>
                 : paid > 0
                   ? <span className="text-amber-500 font-medium">Partial Payment (₹{pending.toFixed(0)} still pending)</span>
