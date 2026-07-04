@@ -311,7 +311,7 @@ function EditPaymentModal({
         additionalFee: Math.round(feeNum  * 100),
         paidAmount:    Math.round(paidNum * 100),
         paymentMethod: method,
-        planStartDate: startDate || undefined,
+        planStartDate: startDate ? new Date(startDate).toISOString() : undefined,
         notes:         notes     || undefined,
       })
       toast.success('Payment updated')
@@ -457,7 +457,7 @@ function EditPaymentModal({
               How much money the member has actually paid so far. <br/>
               <span className="font-medium text-foreground">Status: </span>
               {paid > netDue
-                ? <span className="text-red-500 font-bold">Error: Cannot exceed Final Amount Due (₹{netDue})</span>
+                ? <span className="text-red-400 font-medium">Overpaid (Maximum due is ₹{netDue})</span>
                 : paid >= netDue && netDue > 0
                 ? <span className="text-green-500 font-medium">Fully Paid ✓</span>
                 : paid > 0
