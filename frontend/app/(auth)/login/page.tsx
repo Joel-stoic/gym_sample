@@ -23,6 +23,7 @@ import {
   Eye, EyeOff, KeyRound, ArrowLeft,
   MessageSquare, Check, Users, Receipt, CalendarCheck,
 } from 'lucide-react'
+import { useTheme } from 'next-themes'
 import { toast } from 'sonner'
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
@@ -381,6 +382,7 @@ const capabilities = [
 export default function LoginPage() {
   const router = useRouter()
   const { setAuth, logout } = useAuthStore()
+  const { setTheme } = useTheme()
 
   const [loading,         setLoading]         = useState(false)
   const [showPassword,    setShowPassword]    = useState(false)
@@ -425,6 +427,8 @@ export default function LoginPage() {
       setAuth(staff, { id: tenant.id, name: tenant.name, slug: tenant.slug })
       toast.success(`Welcome back, ${staff.name}`)
 
+      setTheme('dark')
+      
       if (staff.mustChangePassword)      router.push('/staff/change-password')
       else if (staff.role === 'TRAINER') router.push('/members')
       else                               router.push('/dashboard')

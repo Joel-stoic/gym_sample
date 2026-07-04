@@ -3,11 +3,13 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Shield, Eye, EyeOff } from 'lucide-react'
+import { useTheme } from 'next-themes'
 
 const API = process.env.NEXT_PUBLIC_API_URL
 
 export default function AdminLoginPage() {
   const router = useRouter()
+  const { setTheme } = useTheme()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -28,6 +30,7 @@ export default function AdminLoginPage() {
       if (!res.ok) throw new Error(data.message || 'Login failed')
       localStorage.setItem('adminToken', data.token)
       localStorage.setItem('adminName', data.name || 'Super Admin')
+      setTheme('dark')
       router.replace('/admin')
     } catch (err: any) {
       setError(err.message)

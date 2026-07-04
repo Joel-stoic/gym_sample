@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import { Dumbbell, Loader2, Lock, Phone, Eye, EyeOff } from 'lucide-react'
+import { Dumbbell, Eye, EyeOff, Loader2, Lock, Phone } from 'lucide-react'
+import { useTheme } from 'next-themes'
 import { toast } from 'sonner'
 import { setAccessToken, setTenantSlug } from '@/src/lib/auth'
 
@@ -34,6 +35,7 @@ const getSlug = (): string => {
 
 export default function MemberLoginPage() {
   const router = useRouter()
+  const { setTheme } = useTheme()
 
   const [phone, setPhone]       = useState('')
   const [password, setPassword] = useState('')
@@ -101,6 +103,8 @@ export default function MemberLoginPage() {
       toast.success(`Welcome, ${member.name}!`)
 
       // ── Redirect based on mustChangePassword ──
+      setTheme('dark')
+
       if (member.mustChangePassword) {
         router.push('/member/change-password')
       } else {
