@@ -150,14 +150,15 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
 
 function StatsCard({ title, value, icon: Icon, iconClassName }: any) {
   return (
-    <div className="rounded-3xl border border-border bg-card p-5">
-      <div className="flex items-center justify-between">
+    <div className="group relative overflow-hidden rounded-3xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 p-6 backdrop-blur-xl transition-all hover:shadow-lg hover:border-violet-500/30">
+      <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+      <div className="relative flex items-center justify-between">
         <div>
-          <p className="text-sm text-muted-foreground">{title}</p>
-          <h3 className="mt-2 text-3xl font-bold text-foreground">{value}</h3>
+          <p className="text-[13px] font-medium uppercase tracking-wider text-muted-foreground">{title}</p>
+          <h3 className="mt-2 text-4xl font-bold tracking-tight text-foreground">{value}</h3>
         </div>
-        <div className={`rounded-2xl p-3 ${iconClassName}`}>
-          <Icon className="h-5 w-5" />
+        <div className={`rounded-2xl p-3.5 shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${iconClassName}`}>
+          <Icon className="h-6 w-6" />
         </div>
       </div>
     </div>
@@ -170,11 +171,16 @@ function TabButton({ active, onClick, children }: { active: boolean; onClick: ()
   return (
     <button
       onClick={onClick}
-      className={`rounded-xl px-4 py-2 text-sm font-medium transition-colors ${
-        active ? 'bg-violet-600 text-foreground' : 'text-muted-foreground hover:bg-white/[0.04] hover:text-foreground'
+      className={`relative flex-1 sm:flex-none min-w-[120px] rounded-[20px] px-6 py-2.5 text-[14px] font-semibold transition-all duration-300 ${
+        active 
+          ? 'text-foreground' 
+          : 'text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5'
       }`}
     >
-      {children}
+      {active && (
+        <span className="absolute inset-0 rounded-[20px] bg-white dark:bg-white/15 shadow-sm border border-black/5 dark:border-white/10" style={{ zIndex: -1 }} />
+      )}
+      <span className="relative z-10">{children}</span>
     </button>
   )
 }
@@ -235,7 +241,7 @@ export default function AttendancePage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8" style={{ fontFamily: "'DM Sans', sans-serif" }}>
       <div className="flex items-center justify-end">
         <div className="flex gap-2">
           <Button
@@ -313,7 +319,7 @@ export default function AttendancePage() {
       )}
 
       {/* Tab switcher */}
-      <div className="flex w-fit gap-1 rounded-2xl border border-border bg-card p-1">
+      <div className="flex w-full sm:w-fit gap-1 rounded-3xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 p-1.5 backdrop-blur-md">
         <TabButton active={activeTab === 'today'} onClick={() => setActiveTab('today')}>Today</TabButton>
         <TabButton active={activeTab === 'all'}   onClick={() => setActiveTab('all')}>All Records</TabButton>
       </div>
