@@ -89,9 +89,12 @@ export default function Header() {
         {mounted && (
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="flex h-9 w-9 items-center justify-center rounded-sm border border-border text-muted-foreground hover:text-foreground hover:bg-card transition-colors"
+            className="flex h-9 w-9 items-center justify-center rounded-sm border border-border bg-card transition-all hover:bg-muted"
           >
-            {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            {theme === 'dark' 
+              ? <Sun className="h-4 w-4 text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]" /> 
+              : <Moon className="h-4 w-4 text-blue-500 drop-shadow-[0_0_8px_rgba(59,130,246,0.3)]" />
+            }
           </button>
         )}
         <span
