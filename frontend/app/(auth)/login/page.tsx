@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import axios from 'axios'
-import { Bebas_Neue, Inter } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import { useAuthStore } from '@/src/store/authStore'
 import { setAccessToken, setTenantSlug } from '@/src/lib/auth'
 import { Button } from '@/components/ui/button'
@@ -24,9 +24,9 @@ import {
   MessageSquare, Check, Users, Receipt, CalendarCheck,
 } from 'lucide-react'
 import { toast } from 'sonner'
+import LightRays from '@/src/components/ui/LightRays'
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
-const bebas = Bebas_Neue({ weight: '400', subsets: ['latin'] })
 const inter = Inter({ subsets: ['latin'] })
 
 // ─── Schemas ──────────────────────────────────────────────────────────────────
@@ -58,26 +58,20 @@ type OtpForm         = z.infer<typeof otpSchema>
 type NewPasswordForm = z.infer<typeof newPasswordSchema>
 
 // ─── Shared Styles ─────────────────────────────────────────────────────────────
-// Monochrome base with flat violet accents for branding and interaction.
-// The autofill overrides below stop Chrome/Edge from painting saved-credential
-// fields white — without them, autofilled inputs break the dark theme (that's
-// what was happening in the screenshot: the browser painting its own colors
-// over your dark inputs, not a bug in the component itself).
-
 const inputCls =
-  'h-12 bg-card border border-border text-foreground placeholder:text-muted-foreground ' +
-  'focus-visible:ring-1 focus-visible:ring-violet-600 focus-visible:border-violet-600 rounded-md transition-colors shadow-none text-[14px] ' +
+  'h-12 bg-background/50 backdrop-blur-sm border border-border/50 text-foreground placeholder:text-muted-foreground ' +
+  'focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary rounded-md transition-colors shadow-none text-[14px] ' +
   '[&:-webkit-autofill]:[-webkit-text-fill-color:white] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0px_1000px_#121212_inset] ' +
   '[&:-webkit-autofill]:[transition:background-color_9999s_ease-in-out_0s]'
 
 const primaryBtnCls =
-  'h-12 rounded-md text-[14px] font-semibold tracking-wide text-foreground bg-violet-600 ' +
-  'hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors ' +
+  'h-12 rounded-md text-[14px] font-semibold tracking-wide text-primary-foreground bg-primary ' +
+  'hover:bg-primary/95 disabled:opacity-50 disabled:cursor-not-allowed transition-colors ' +
   'flex items-center justify-center gap-2'
 
 const ghostBtnCls =
-  'h-12 rounded-md text-[14px] font-medium text-muted-foreground bg-transparent border border-border ' +
-  'hover:border-violet-600 hover:text-foreground transition-colors'
+  'h-12 rounded-md text-[14px] font-medium text-muted-foreground bg-transparent border border-border/50 ' +
+  'hover:border-primary hover:text-foreground transition-colors'
 
 // ─── Signature element: plate stack ───────────────────────────────────────────
 function PlateStack({ vertical = true, className = '' }: { vertical?: boolean; className?: string }) {
@@ -91,7 +85,7 @@ function PlateStack({ vertical = true, className = '' }: { vertical?: boolean; c
         <div
           key={i}
           style={vertical ? { width: s, height: 2 } : { height: s, width: 2 }}
-          className={`rounded-md ${i === 3 ? 'bg-violet-600' : 'bg-background'}`}
+          className={`rounded-md ${i === 3 ? 'bg-primary' : 'bg-border/30'}`}
         />
       ))}
     </div>
@@ -214,21 +208,21 @@ function ForgotPasswordModal({
   }
 
   const stepMeta = {
-    phone:       { title: 'Forgot password',  icon: <KeyRound size={18} className="text-violet-500" /> },
-    otp:         { title: 'Enter OTP',        icon: <MessageSquare size={18} className="text-violet-500" /> },
-    newPassword: { title: 'New password',     icon: <KeyRound size={18} className="text-violet-500" /> },
-    done:        { title: 'Password reset',   icon: <ShieldCheck size={18} className="text-violet-500" /> },
+    phone:       { title: 'Forgot password',  icon: <KeyRound size={18} className="text-primary" /> },
+    otp:         { title: 'Enter OTP',        icon: <MessageSquare size={18} className="text-primary" /> },
+    newPassword: { title: 'New password',     icon: <KeyRound size={18} className="text-primary" /> },
+    done:        { title: 'Password reset',   icon: <ShieldCheck size={18} className="text-primary" /> },
   }[step]
 
   const stepIndex = { phone: 0, otp: 1, newPassword: 2, done: 3 }[step]
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className={`!bg-background !text-foreground border border-border p-0 overflow-hidden gap-0 rounded-xl sm:max-w-[420px] ${inter.className}`}>
+      <DialogContent className={`!bg-background/90 backdrop-blur-2xl !text-foreground border border-border/50 p-0 overflow-hidden gap-0 rounded-xl sm:max-w-[420px] ${inter.className}`}>
         <div className="p-8">
           <DialogHeader className="mb-6">
             <div className="flex items-center justify-between mb-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-md bg-card border border-border">
+              <div className="flex h-12 w-12 items-center justify-center rounded-md bg-background/50 border border-border/50">
                 {stepMeta.icon}
               </div>
               <div className="flex items-center gap-2" aria-hidden="true">
@@ -236,13 +230,13 @@ function ForgotPasswordModal({
                   <div
                     key={i}
                     className={`h-1 rounded-md transition-all duration-300 ${
-                      i <= stepIndex ? 'w-6 bg-violet-600' : 'w-2 bg-background'
+                      i <= stepIndex ? 'w-6 bg-primary' : 'w-2 bg-border/50'
                     }`}
                   />
                 ))}
               </div>
             </div>
-            <DialogTitle className={`text-2xl font-normal tracking-wide text-foreground ${bebas.className}`}>
+            <DialogTitle className={`text-2xl font-bold tracking-tight text-foreground`}>
               {stepMeta.title}
             </DialogTitle>
           </DialogHeader>
@@ -285,7 +279,7 @@ function ForgotPasswordModal({
                         placeholder="000000"
                         maxLength={6}
                         inputMode="numeric"
-                        className={`${inputCls} tracking-[0.75em] text-center text-xl font-medium tabular-nums h-14 text-violet-400`}
+                        className={`${inputCls} tracking-[0.75em] text-center text-xl font-medium tabular-nums h-14 text-primary`}
                         {...field}
                       />
                     </FormControl>
@@ -296,7 +290,7 @@ function ForgotPasswordModal({
                   <button type="button" onClick={() => setStep('phone')} className="flex items-center gap-1.5 text-[13px] text-muted-foreground hover:text-foreground transition-colors">
                     <ArrowLeft size={14} /> Change number
                   </button>
-                  <button type="button" onClick={handleResend} disabled={resendWait > 0 || loading} className="text-[13px] font-medium text-violet-500 hover:text-violet-400 disabled:text-[#444444] transition-colors">
+                  <button type="button" onClick={handleResend} disabled={resendWait > 0 || loading} className="text-[13px] font-medium text-primary hover:text-primary/80 disabled:text-muted-foreground transition-colors">
                     {resendWait > 0 ? `Resend in ${resendWait}s` : 'Resend OTP'}
                   </button>
                 </div>
@@ -321,7 +315,7 @@ function ForgotPasswordModal({
                     <FormControl>
                       <div className="relative">
                         <Input type={showPw ? 'text' : 'password'} className={`${inputCls} pr-11`} {...field} />
-                        <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-violet-400 transition-colors">
+                        <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors">
                           {showPw ? <EyeOff size={16} /> : <Eye size={16} />}
                         </button>
                       </div>
@@ -335,7 +329,7 @@ function ForgotPasswordModal({
                     <FormControl>
                       <div className="relative">
                         <Input type={showCfm ? 'text' : 'password'} className={`${inputCls} pr-11`} {...field} />
-                        <button type="button" onClick={() => setShowCfm(!showCfm)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-violet-400 transition-colors">
+                        <button type="button" onClick={() => setShowCfm(!showCfm)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors">
                           {showCfm ? <EyeOff size={16} /> : <Eye size={16} />}
                         </button>
                       </div>
@@ -354,12 +348,12 @@ function ForgotPasswordModal({
           {step === 'done' && (
             <div className="text-center space-y-6 py-4">
               <div className="flex justify-center">
-                <div className="h-16 w-16 rounded-md /10 border border-violet-500/20 flex items-center justify-center bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
-                  <Check size={28} className="text-violet-500" strokeWidth={2.5} />
+                <div className="h-16 w-16 rounded-md bg-background/50 border border-primary/20 flex items-center justify-center shadow-sm">
+                  <Check size={28} className="text-primary" strokeWidth={2.5} />
                 </div>
               </div>
               <div>
-                <p className={`text-2xl tracking-wide text-foreground ${bebas.className}`}>Password reset</p>
+                <p className={`text-2xl font-bold tracking-tight text-foreground`}>Password reset</p>
                 <p className="mt-2 text-[14px] text-muted-foreground">You can log in with your new password now.</p>
               </div>
               <button onClick={onClose} className={`w-full ${primaryBtnCls}`}>Back to login</button>
@@ -441,35 +435,57 @@ export default function LoginPage() {
   }
 
   return (
-    <div className={`min-h-screen bg-background flex items-stretch ${inter.className}`}>
+    <div className={`min-h-screen flex items-stretch relative overflow-hidden ${inter.className}`}>
+      
+      {/* ── Background Grid & Light Rays ── */}
+      <div className="absolute inset-0 z-0 pointer-events-none bg-background">
+        <div className="absolute inset-0 overflow-hidden" style={{ clipPath: 'inset(0 0 0 0)' }}>
+          <LightRays 
+            raysOrigin="top-center" 
+            raysColor="#ffffff" 
+            raysSpeed={1.5}
+            rayLength={2.5}
+            lightSpread={2.0}
+            saturation={1.5}
+            className="opacity-100 dark:opacity-80 mix-blend-plus-lighter"
+          />
+        </div>
+        <div 
+          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 1px)', backgroundSize: '32px 32px' }}
+        />
+        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
+          <div className="absolute top-0 bottom-0 left-[10%] w-[1px] bg-foreground" />
+          <div className="absolute top-0 bottom-0 left-[50%] w-[1px] bg-foreground hidden md:block" />
+          <div className="absolute top-0 bottom-0 right-[10%] w-[1px] bg-foreground" />
+          <div className="absolute left-0 right-0 top-[20%] h-[1px] bg-foreground" />
+          <div className="absolute left-0 right-0 top-[60%] h-[1px] bg-foreground hidden md:block" />
+        </div>
+      </div>
 
-      {/* ── Brand panel ─────────────────────────────────────────────────── */}
-      <div className="relative hidden lg:flex lg:w-[45%] flex-col justify-between overflow-hidden bg-background px-16 py-12 border-r border-border">
-
-        {/* Subtle noise/texture overlay for a premium feel */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} />
-
+      {/* ── Brand panel ── */}
+      <div className="relative hidden lg:flex lg:w-[45%] flex-col justify-between overflow-hidden bg-background/40 backdrop-blur-md px-16 py-12 border-r border-border/20 z-10 shadow-2xl">
         <div className="relative z-10 flex items-center gap-3">
-          <div className="h-10 w-10 flex items-center justify-center bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
+          <div className="h-10 w-10 flex items-center justify-center bg-background/50 backdrop-blur-md text-foreground border border-border/50 rounded-md shadow-sm">
             <Dumbbell className="h-5 w-5 text-foreground" />
           </div>
-          <span className={`text-2xl tracking-widest text-foreground mt-1 ${bebas.className}`}>
-            JOVIFITX
+          <span className={`text-2xl font-bold tracking-tighter text-foreground mt-1`}>
+            Jovifitx
           </span>
         </div>
 
         <div className="relative z-10 max-w-md">
-          <h1 className={`text-[4rem] leading-[0.9] text-foreground tracking-wide mb-8 ${bebas.className}`}>
-            RUN THE FLOOR.<br />NOT THE<br />SPREADSHEETS.
+          <h1 className={`text-5xl md:text-6xl font-bold tracking-tighter leading-[1.05] text-foreground mb-8`}>
+            Run the floor.<br /><span className="text-muted-foreground">Not the spreadsheets.</span>
           </h1>
 
           <ul className="space-y-5">
             {capabilities.map(({ icon: Icon, label }) => (
               <li key={label} className="flex items-center gap-4">
-                <div className="h-8 w-8 shrink-0 border border-[#333333] rounded-md flex items-center justify-center">
-                  <Icon size={14} className="text-violet-500" />
+                <div className="h-8 w-8 shrink-0 border border-border/50 bg-background/50 rounded-md flex items-center justify-center">
+                  <Icon size={14} className="text-primary" />
                 </div>
-                <span className={`text-[15px] tracking-widest text-muted-foreground ${bebas.className}`}>{label}</span>
+                <span className={`text-xs font-bold uppercase tracking-wider text-muted-foreground`}>{label}</span>
               </li>
             ))}
           </ul>
@@ -483,21 +499,21 @@ export default function LoginPage() {
         <PlateStack className="absolute top-1/2 -right-[1px] -translate-y-1/2 z-10" />
       </div>
 
-      {/* ── Form panel ──────────────────────────────────────────────────── */}
-      <div className="flex-1 flex items-center justify-center px-6 py-12 relative bg-background">
+      {/* ── Form panel ── */}
+      <div className="flex-1 flex items-center justify-center px-6 py-12 relative z-10 bg-background/60 backdrop-blur-xl">
 
         <div className="relative z-10 w-full max-w-[400px]">
           {/* Mobile wordmark */}
           <div className="lg:hidden flex flex-col items-center text-center mb-10">
-            <div className="h-14 w-14 flex items-center justify-center mb-4 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
+            <div className="h-14 w-14 flex items-center justify-center mb-4 bg-background/50 backdrop-blur-md text-foreground border border-border/50 rounded-md shadow-sm">
               <Dumbbell className="h-6 w-6 text-foreground" />
             </div>
-            <h1 className={`text-4xl tracking-widest text-foreground ${bebas.className}`}>JOVIFITX</h1>
+            <h1 className={`text-4xl font-bold tracking-tighter text-foreground`}>Jovifitx</h1>
           </div>
 
           <div className="mb-10">
-            <h2 className={`text-4xl text-foreground tracking-wide ${bebas.className}`}>
-              WELCOME BACK
+            <h2 className={`text-3xl font-bold tracking-tighter text-foreground`}>
+              Welcome back
             </h2>
             <p className="text-[14px] text-muted-foreground mt-2">Log in to your gym dashboard.</p>
           </div>
@@ -533,7 +549,7 @@ export default function LoginPage() {
                     <button
                       type="button"
                       onClick={handleForgotClick}
-                      className="text-[12px] font-medium text-violet-400 hover:text-violet-300 transition-colors"
+                      className="text-[12px] font-medium text-primary hover:text-primary/80 transition-colors"
                     >
                       Forgot password?
                     </button>
@@ -547,7 +563,7 @@ export default function LoginPage() {
                         {...field}
                       />
                       <button type="button" onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-violet-400 transition-colors">
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors">
                         {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                       </button>
                     </div>
@@ -569,9 +585,9 @@ export default function LoginPage() {
             </form>
           </Form>
 
-          <div className="mt-10 text-center text-[13px] text-[#666666]">
+          <div className="mt-10 text-center text-[13px] text-muted-foreground">
             Don&apos;t have a gym account?{' '}
-            <a href="/signup" className="text-foreground font-medium hover:text-violet-400 transition-colors border-b border-white hover:border-violet-400 pb-[1px]">
+            <a href="/signup" className="text-foreground font-medium hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-[1px]">
               Create one
             </a>
           </div>
