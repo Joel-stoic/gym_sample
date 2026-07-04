@@ -12,7 +12,8 @@ export default function HomePage() {
       
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Light Rays Background */}
-        <div className="absolute inset-0 overflow-hidden" style={{ clipPath: 'inset(0 0 0 0)' }}>
+        <div className="absolute inset-0 overflow-hidden flex justify-center" style={{ clipPath: 'inset(0 0 0 0)' }}>
+          <div className="absolute top-[-10%] w-[300px] h-[300px] bg-white/[0.08] blur-[80px] rounded-full mix-blend-screen sm:hidden" />
           <LightRays 
             raysOrigin="top-center" 
             raysColor="#ffffff" 
@@ -20,7 +21,7 @@ export default function HomePage() {
             rayLength={2.5}
             lightSpread={2.0}
             saturation={1.5}
-            className="opacity-100 dark:opacity-80 mix-blend-plus-lighter"
+            className="opacity-100 mix-blend-plus-lighter w-full min-w-[150vw] sm:min-w-0"
           />
         </div>
         {/* Dot pattern */}
