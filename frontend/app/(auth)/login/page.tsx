@@ -59,22 +59,19 @@ type NewPasswordForm = z.infer<typeof newPasswordSchema>
 
 // ─── Shared Styles ─────────────────────────────────────────────────────────────
 const inputCls =
-  'h-12 bg-white/[0.03] dark:bg-white/[0.03] border border-white/[0.08] dark:border-white/[0.08] text-foreground placeholder:text-muted-foreground ' +
-  'hover:bg-white/[0.05] dark:hover:bg-white/[0.05] ' +
-  'focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary focus-visible:bg-white/[0.05] ' +
-  'rounded-xl transition-all shadow-inner text-[15px] px-4 ' +
+  'h-12 bg-black/5 dark:bg-white/5 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground placeholder:text-muted-foreground ' +
+  'focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary rounded-xl transition-all shadow-inner text-[14px] ' +
   '[&:-webkit-autofill]:[-webkit-text-fill-color:white] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0px_1000px_#121212_inset] ' +
   '[&:-webkit-autofill]:[transition:background-color_9999s_ease-in-out_0s]'
 
 const primaryBtnCls =
-  'h-12 rounded-xl text-[14px] font-bold tracking-wide text-primary-foreground bg-primary ' +
-  'hover:bg-primary/90 hover:scale-[1.02] shadow-[0_0_20px_rgba(168,85,247,0.3)] hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] ' +
-  'disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none disabled:cursor-not-allowed transition-all ' +
+  'h-12 rounded-xl text-[14px] font-semibold tracking-wide text-primary-foreground bg-primary ' +
+  'hover:bg-primary/90 hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed transition-all shadow-lg ' +
   'flex items-center justify-center gap-2'
 
 const ghostBtnCls =
-  'h-12 rounded-xl text-[14px] font-medium text-muted-foreground bg-transparent border border-white/10 ' +
-  'hover:bg-white/5 hover:text-foreground transition-all'
+  'h-12 rounded-xl text-[14px] font-medium text-muted-foreground bg-transparent border border-black/10 dark:border-white/10 ' +
+  'hover:bg-black/5 dark:hover:bg-white/5 hover:text-foreground transition-all'
 
 // ─── Signature element: plate stack ───────────────────────────────────────────
 function PlateStack({ vertical = true, className = '' }: { vertical?: boolean; className?: string }) {
@@ -88,7 +85,7 @@ function PlateStack({ vertical = true, className = '' }: { vertical?: boolean; c
         <div
           key={i}
           style={vertical ? { width: s, height: 2 } : { height: s, width: 2 }}
-          className={`rounded-full ${i === 3 ? 'bg-primary shadow-[0_0_8px_rgba(168,85,247,0.8)]' : 'bg-white/20'}`}
+          className={`rounded-full ${i === 3 ? 'bg-primary' : 'bg-black/20 dark:bg-white/20'}`}
         />
       ))}
     </div>
@@ -221,11 +218,11 @@ function ForgotPasswordModal({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className={`!bg-zinc-950/80 backdrop-blur-3xl !text-foreground border border-white/10 p-0 overflow-hidden gap-0 rounded-2xl sm:max-w-[420px] shadow-2xl ${inter.className}`}>
+      <DialogContent className={`!bg-background/80 dark:!bg-black/60 backdrop-blur-3xl !text-foreground border border-black/10 dark:border-white/10 p-0 overflow-hidden gap-0 rounded-2xl sm:max-w-[420px] shadow-2xl ${inter.className}`}>
         <div className="p-8">
           <DialogHeader className="mb-6">
             <div className="flex items-center justify-between mb-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 border border-white/10 shadow-inner">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 shadow-inner">
                 {stepMeta.icon}
               </div>
               <div className="flex items-center gap-2" aria-hidden="true">
@@ -233,7 +230,7 @@ function ForgotPasswordModal({
                   <div
                     key={i}
                     className={`h-1 rounded-full transition-all duration-300 ${
-                      i <= stepIndex ? 'w-8 bg-primary shadow-[0_0_10px_rgba(168,85,247,0.5)]' : 'w-2 bg-white/10'
+                      i <= stepIndex ? 'w-8 bg-primary' : 'w-2 bg-black/10 dark:bg-white/10'
                     }`}
                   />
                 ))}
@@ -438,11 +435,8 @@ export default function LoginPage() {
   }
 
   return (
-    <div className={`min-h-screen flex items-center justify-center relative overflow-hidden bg-black p-4 sm:p-8 ${inter.className}`}>
+    <div className={`min-h-screen flex items-center justify-center relative overflow-hidden bg-background p-4 sm:p-8 ${inter.className}`}>
       
-      {/* ── Intense Ambient Glow behind the card ── */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] pointer-events-none z-0" />
-
       {/* ── Background Grid & Light Rays ── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 overflow-hidden" style={{ clipPath: 'inset(0 0 0 0)' }}>
@@ -453,84 +447,87 @@ export default function LoginPage() {
             rayLength={2.5}
             lightSpread={2.0}
             saturation={1.5}
-            className="opacity-60 mix-blend-plus-lighter"
+            className="opacity-100 dark:opacity-80 mix-blend-plus-lighter"
           />
         </div>
         <div 
-          className="absolute inset-0 opacity-[0.05]"
+          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
           style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 1px)', backgroundSize: '32px 32px' }}
         />
+        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
+          <div className="absolute top-0 bottom-0 left-[10%] w-[1px] bg-foreground" />
+          <div className="absolute top-0 bottom-0 left-[50%] w-[1px] bg-foreground hidden md:block" />
+          <div className="absolute top-0 bottom-0 right-[10%] w-[1px] bg-foreground" />
+          <div className="absolute left-0 right-0 top-[20%] h-[1px] bg-foreground" />
+          <div className="absolute left-0 right-0 top-[60%] h-[1px] bg-foreground hidden md:block" />
+        </div>
       </div>
 
       {/* ── Floating Glass Card ── */}
-      <div className="relative z-10 flex w-full max-w-5xl h-[700px] max-h-[calc(100vh-4rem)] bg-zinc-950/60 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] overflow-hidden">
+      <div className="relative z-10 flex w-full max-w-[1000px] bg-background/60 dark:bg-black/40 backdrop-blur-3xl border border-black/10 dark:border-white/10 rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.4)] overflow-hidden min-h-[600px]">
         
         {/* ── Brand panel ── */}
-        <div className="hidden lg:flex w-[45%] flex-col justify-between overflow-hidden bg-gradient-to-br from-primary/5 via-transparent to-transparent px-12 py-14 border-r border-white/10 relative">
+        <div className="hidden lg:flex w-[45%] flex-col justify-between overflow-hidden bg-black/5 dark:bg-white/5 px-12 py-12 border-r border-black/10 dark:border-white/10 relative">
           
-          {/* Subtle noise over brand panel */}
-          <div className="absolute inset-0 opacity-[0.02] pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} />
-
           <div className="relative z-10 flex items-center gap-3">
-            <div className="h-10 w-10 flex items-center justify-center bg-white/5 border border-white/10 rounded-xl shadow-sm">
-              <Dumbbell className="h-5 w-5 text-white" />
+            <div className="h-10 w-10 flex items-center justify-center bg-background/50 backdrop-blur-md text-foreground border border-black/10 dark:border-white/10 rounded-xl shadow-sm">
+              <Dumbbell className="h-5 w-5 text-foreground" />
             </div>
-            <span className={`text-2xl font-extrabold tracking-tighter text-white mt-1`}>
+            <span className={`text-2xl font-extrabold tracking-tighter text-foreground mt-1`}>
               Jovifitx
             </span>
           </div>
 
           <div className="relative z-10">
-            <h1 className={`text-5xl md:text-6xl font-extrabold tracking-tighter leading-[1.05] text-white mb-8`}>
-              Run the floor.<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-primary">Not the spreadsheets.</span>
+            <h1 className={`text-5xl font-extrabold tracking-tighter leading-[1.05] text-foreground mb-8`}>
+              Run the floor.<br /><span className="text-muted-foreground">Not the spreadsheets.</span>
             </h1>
 
-            <ul className="space-y-6">
+            <ul className="space-y-5">
               {capabilities.map(({ icon: Icon, label }) => (
-                <li key={label} className="flex items-center gap-4 group">
-                  <div className="h-8 w-8 shrink-0 border border-white/10 bg-white/5 rounded-lg flex items-center justify-center transition-colors group-hover:bg-primary/20 group-hover:border-primary/30">
+                <li key={label} className="flex items-center gap-4">
+                  <div className="h-8 w-8 shrink-0 border border-black/10 dark:border-white/10 bg-background/50 backdrop-blur-sm rounded-lg flex items-center justify-center">
                     <Icon size={14} className="text-primary" />
                   </div>
-                  <span className={`text-[11px] font-bold uppercase tracking-widest text-zinc-400 group-hover:text-zinc-200 transition-colors`}>{label}</span>
+                  <span className={`text-[11px] font-bold uppercase tracking-wider text-muted-foreground`}>{label}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <p className="relative z-10 text-[11px] font-bold tracking-[0.2em] text-zinc-500 uppercase">
+          <p className="relative z-10 text-[11px] font-bold tracking-[0.15em] text-muted-foreground uppercase">
             Built for gyms across India.
           </p>
 
-          {/* Minimalist plate stack overlay */}
+          {/* Minimalist plate stack */}
           <PlateStack className="absolute top-1/2 -right-[1px] -translate-y-1/2 z-10" />
         </div>
 
         {/* ── Form panel ── */}
-        <div className="flex-1 flex flex-col justify-center px-8 sm:px-16 py-12 relative bg-transparent overflow-y-auto">
+        <div className="flex-1 flex items-center justify-center px-6 py-12 sm:px-12 relative bg-transparent">
 
-          <div className="w-full max-w-[380px] mx-auto">
+          <div className="w-full max-w-[360px]">
             {/* Mobile wordmark */}
-            <div className="lg:hidden flex flex-col items-center text-center mb-10">
-              <div className="h-14 w-14 flex items-center justify-center mb-4 bg-white/5 border border-white/10 rounded-2xl shadow-sm">
-                <Dumbbell className="h-6 w-6 text-white" />
+            <div className="lg:hidden flex flex-col items-center text-center mb-8">
+              <div className="h-14 w-14 flex items-center justify-center mb-4 bg-background/50 backdrop-blur-md text-foreground border border-black/10 dark:border-white/10 rounded-2xl shadow-sm">
+                <Dumbbell className="h-6 w-6 text-foreground" />
               </div>
-              <h1 className={`text-3xl font-extrabold tracking-tighter text-white`}>Jovifitx</h1>
+              <h1 className={`text-3xl font-extrabold tracking-tighter text-foreground`}>Jovifitx</h1>
             </div>
 
-            <div className="mb-10 text-center lg:text-left">
-              <h2 className={`text-4xl font-extrabold tracking-tighter text-white`}>
+            <div className="mb-8 text-center lg:text-left">
+              <h2 className={`text-3xl font-extrabold tracking-tighter text-foreground`}>
                 Welcome back
               </h2>
-              <p className="text-[15px] font-medium text-zinc-400 mt-2">Log in to your gym dashboard.</p>
+              <p className="text-[14px] font-medium text-muted-foreground mt-2">Log in to your gym dashboard.</p>
             </div>
 
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 {isLocalhost && (
                   <FormField control={form.control} name="gymSlug" render={({ field }) => (
-                    <FormItem className="space-y-2">
-                      <FormLabel className="text-[11px] font-bold text-zinc-400 uppercase tracking-widest">Gym slug</FormLabel>
+                    <FormItem className="space-y-1.5">
+                      <FormLabel className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Gym slug</FormLabel>
                       <FormControl>
                         <Input placeholder="fitzone" className={inputCls} {...field} />
                       </FormControl>
@@ -540,8 +537,8 @@ export default function LoginPage() {
                 )}
 
                 <FormField control={form.control} name="phone" render={({ field }) => (
-                  <FormItem className="space-y-2">
-                    <FormLabel className="text-[11px] font-bold text-zinc-400 uppercase tracking-widest">Phone number</FormLabel>
+                  <FormItem className="space-y-1.5">
+                    <FormLabel className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Phone number</FormLabel>
                     <FormControl>
                       <Input placeholder="9876543210" className={inputCls} {...field} />
                     </FormControl>
@@ -550,9 +547,9 @@ export default function LoginPage() {
                 )} />
 
                 <FormField control={form.control} name="password" render={({ field }) => (
-                  <FormItem className="space-y-2">
+                  <FormItem className="space-y-1.5">
                     <div className="flex items-center justify-between">
-                      <FormLabel className="text-[11px] font-bold text-zinc-400 uppercase tracking-widest">Password</FormLabel>
+                      <FormLabel className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Password</FormLabel>
                       <button
                         type="button"
                         onClick={handleForgotClick}
@@ -570,7 +567,7 @@ export default function LoginPage() {
                           {...field}
                         />
                         <button type="button" onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-primary transition-colors">
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors">
                           {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                         </button>
                       </div>
@@ -579,24 +576,22 @@ export default function LoginPage() {
                   </FormItem>
                 )} />
 
-                <div className="pt-2">
-                  <Button
-                    type="submit"
-                    disabled={loading}
-                    className={`w-full ${primaryBtnCls}`}
-                  >
-                    {loading
-                      ? <><Loader2 className="h-4 w-4 animate-spin" /> LOGGING IN</>
-                      : 'LOG IN'
-                    }
-                  </Button>
-                </div>
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className={`w-full mt-2 ${primaryBtnCls}`}
+                >
+                  {loading
+                    ? <><Loader2 className="h-4 w-4 animate-spin" /> LOGGING IN</>
+                    : 'LOG IN'
+                  }
+                </Button>
               </form>
             </Form>
 
-            <div className="mt-10 text-center text-[13px] text-zinc-500 font-medium">
+            <div className="mt-8 text-center text-[13px] text-muted-foreground font-medium">
               Don&apos;t have a gym account?{' '}
-              <a href="/signup" className="text-white font-bold hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-[1px]">
+              <a href="/signup" className="text-foreground font-bold hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-[1px]">
                 Create one
               </a>
             </div>
