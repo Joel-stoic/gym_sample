@@ -73,7 +73,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
     <div
       className={cn(
         'flex h-full w-[82vw] max-w-[280px] flex-shrink-0 flex-col overflow-hidden',
-        'bg-background border-r border-border',
+        'bg-card border-r border-border shadow-sm z-50',
         'md:w-64 md:max-w-none md:min-h-screen',
         inter.className
       )}
@@ -126,7 +126,7 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
                 'group relative flex items-center gap-3 border px-3 py-2.5 text-[12.5px] font-medium transition-colors sm:gap-3 sm:px-3 sm:py-2.5 sm:text-[13px]',
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground',
                 isActive
-                  ? 'border-transparent bg-accent text-foreground rounded-xl'
+                  ? 'border-transparent bg-primary text-primary-foreground rounded-xl shadow-sm'
                   : 'border-transparent text-muted-foreground hover:bg-muted hover:text-foreground active:bg-accent rounded-xl'
               )}
             >

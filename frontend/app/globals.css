@@ -55,23 +55,23 @@ html, body {
 
 :root {
   --background: #f1faee;
-  --foreground: #212529;
+  --foreground: #000000;
   --card: #ffffff;
-  --card-foreground: #212529;
+  --card-foreground: #000000;
   --popover: #ffffff;
-  --popover-foreground: #212529;
+  --popover-foreground: #000000;
   --primary: #212529;
   --primary-foreground: #ffffff;
   --secondary: #212529;
   --secondary-foreground: #f1faee;
   --muted: #f1faee;
-  --muted-foreground: #6c757d;
+  --muted-foreground: #52525b;
   --accent: #f1faee;
-  --accent-foreground: #212529;
+  --accent-foreground: #000000;
   --destructive: #ef4444;
-  --border: #e2ece0;
-  --input: #e2ece0;
-  --ring: #212529;
+  --border: #a1a1aa;
+  --input: #a1a1aa;
+  --ring: #000000;
   --radius: 0.5rem;
 }
 
