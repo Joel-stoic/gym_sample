@@ -61,11 +61,11 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-30 flex-shrink-0 flex items-center justify-between px-4 py-5 md:px-6 border-b border-black/10 dark:border-white/10 ${inter.className}`}
+      className={`sticky top-0 z-30 flex-shrink-0 flex items-center justify-between px-4 py-5 md:px-6 border-b border-border ${inter.className}`}
       style={{
-        background: 'color-mix(in srgb, var(--background) 80%, transparent)',
+        backgroundColor: 'var(--background)',
         backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)'
+        WebkitBackdropFilter: 'blur(16px)',
       }}
     >
       {/* Left: hamburger (mobile) + page title */}
