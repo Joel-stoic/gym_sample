@@ -58,7 +58,9 @@ import {
   Users,
   Flame,
   CheckCircle2,
-  XCircle
+  XCircle,
+  UserCheck,
+  UserMinus
 } from 'lucide-react'
 
 import { formatDate } from '@/src/lib/utils'
