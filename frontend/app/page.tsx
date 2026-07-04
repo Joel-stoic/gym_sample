@@ -2,6 +2,7 @@
 
 import { Inter } from 'next/font/google'
 import { ArrowRight, Users, CheckCircle, CreditCard, Activity, BarChart, Smartphone, ShieldCheck, ChevronRight, Search, Plus } from 'lucide-react'
+import LightRays from '@/components/ui/LightRays'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-body' })
 
@@ -10,21 +11,35 @@ export default function HomePage() {
     <div className={`${inter.variable} min-h-screen bg-background text-foreground font-[family-name:var(--font-body)] relative overflow-hidden selection:bg-primary/10`}>
       
       {/* ── Grid System Lines (Linear SaaS style) ── */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]">
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Light Rays Background */}
+        <div className="absolute inset-0 overflow-hidden" style={{ clipPath: 'inset(0 0 0 0)' }}>
+          <LightRays 
+            raysOrigin="top-center" 
+            raysColor="#a855f7" 
+            raysSpeed={1.5}
+            rayLength={1.8}
+            lightSpread={1.5}
+            saturation={1.2}
+            className="opacity-60 dark:opacity-40"
+          />
+        </div>
         {/* Dot pattern */}
         <div 
-          className="absolute inset-0"
+          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
           style={{
             backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 1px)',
             backgroundSize: '32px 32px'
           }}
         />
         {/* Subtle grid lines */}
-        <div className="absolute top-0 bottom-0 left-[10%] w-[1px] bg-foreground" />
-        <div className="absolute top-0 bottom-0 left-[50%] w-[1px] bg-foreground hidden md:block" />
-        <div className="absolute top-0 bottom-0 right-[10%] w-[1px] bg-foreground" />
-        <div className="absolute left-0 right-0 top-[20%] h-[1px] bg-foreground" />
-        <div className="absolute left-0 right-0 top-[60%] h-[1px] bg-foreground hidden md:block" />
+        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
+          <div className="absolute top-0 bottom-0 left-[10%] w-[1px] bg-foreground" />
+          <div className="absolute top-0 bottom-0 left-[50%] w-[1px] bg-foreground hidden md:block" />
+          <div className="absolute top-0 bottom-0 right-[10%] w-[1px] bg-foreground" />
+          <div className="absolute left-0 right-0 top-[20%] h-[1px] bg-foreground" />
+          <div className="absolute left-0 right-0 top-[60%] h-[1px] bg-foreground hidden md:block" />
+        </div>
       </div>
 
       {/* ── Header ── */}
