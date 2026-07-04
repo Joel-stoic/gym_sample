@@ -79,31 +79,31 @@ const STATUS_CONFIG: Record<
   NEW: {
     label: 'New',
     className:
-      'bg-blue-500/10 text-blue-400 border border-blue-500/20'
+      'bg-background text-foreground border border-border dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20'
   },
 
   CONTACTED: {
     label: 'Contacted',
     className:
-      'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'
+      'bg-background text-foreground border border-border dark:bg-yellow-500/10 dark:text-yellow-400 dark:border-yellow-500/20'
   },
 
   DEMO_DONE: {
     label: 'Demo Done',
     className:
-      'bg-violet-500/10 text-violet-400 border border-violet-500/20'
+      'bg-background text-foreground border border-border dark:bg-violet-500/10 dark:text-violet-400 dark:border-violet-500/20'
   },
 
   CONVERTED: {
     label: 'Converted',
     className:
-      'bg-green-500/10 text-green-400 border border-green-500/20'
+      'bg-background text-foreground border border-border dark:bg-green-500/10 dark:text-green-400 dark:border-green-500/20'
   },
 
   LOST: {
     label: 'Lost',
     className:
-      'bg-red-500/10 text-red-400 border border-red-500/20'
+      'bg-background text-foreground border border-border dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20'
   }
 }
 
@@ -224,17 +224,15 @@ export default function LeadsPage() {
 
   /* ───────────────── STATS ───────────────── */
 
-  const converted = leads.filter(
+  const convertedLeads = leads.filter(
     (l) => l.status === 'CONVERTED'
   ).length
 
-  const lost = leads.filter(
+  const lostLeads = leads.filter(
     (l) => l.status === 'LOST'
   ).length
 
-  const newLeads = leads.filter(
-    (l) => l.status === 'NEW'
-  ).length
+  const totalLeads = leads.length
 
   /* ───────────────── UI ───────────────── */
 
@@ -409,24 +407,22 @@ export default function LeadsPage() {
       {!loading && (
         <div className="grid gap-4 md:grid-cols-3">
           <StatsCard
-            title="New Leads"
-            value={newLeads}
+            title="Active Leads"
+            value={totalLeads}
             icon={Users}
-            iconClassName="bg-violet-600/15 text-violet-400"
+            iconClassName="bg-background text-foreground border border-border dark:bg-violet-600/15 dark:text-violet-400 dark:border-transparent"
           />
-
           <StatsCard
             title="Converted"
-            value={converted}
-            icon={CheckCircle2}
-            iconClassName="bg-green-500/15 text-green-400"
+            value={convertedLeads}
+            icon={UserCheck}
+            iconClassName="bg-background text-foreground border border-border dark:bg-green-500/15 dark:text-green-400 dark:border-transparent"
           />
-
           <StatsCard
             title="Lost"
-            value={lost}
-            icon={XCircle}
-            iconClassName="bg-red-500/15 text-red-400"
+            value={lostLeads}
+            icon={UserMinus}
+            iconClassName="bg-background text-foreground border border-border dark:bg-red-500/15 dark:text-red-400 dark:border-transparent"
           />
         </div>
       )}
@@ -580,7 +576,7 @@ function LeadCard({
   const config = STATUS_CONFIG[lead.status]
 
   return (
-    <div className="rounded-lg border border-border bg-background p-5 transition hover:border-violet-500/30">
+    <div className="rounded-lg border border-border bg-background p-5 transition hover:border-primary dark:hover:border-violet-500/30">
       {/* TOP */}
 
       <div className="mb-4 flex items-start justify-between">

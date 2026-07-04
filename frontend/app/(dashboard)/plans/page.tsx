@@ -104,7 +104,7 @@ function PlanCard({
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
           <div
-            className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl ${inactive ? 'bg-muted text-muted-foreground' : 'bg-violet-500/10 text-violet-500'}`}
+            className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl ${inactive ? 'bg-muted text-muted-foreground' : 'bg-background text-foreground border border-border dark:bg-violet-500/10 dark:text-violet-500 dark:border-transparent'}`}
           >
             <CreditCard className="h-4 w-4" />
           </div>
@@ -200,7 +200,7 @@ function PlanCard({
         )}
 
         <span
-          className={`ml-auto rounded-md px-2.5 py-1 text-[11px] font-medium border ${inactive ? 'bg-muted/50 text-muted-foreground border-border' : 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20'}`}
+          className={`ml-auto rounded-md px-2.5 py-1 text-[11px] font-medium border ${inactive ? 'bg-muted/50 text-muted-foreground border-border' : 'bg-background text-foreground border-border dark:bg-emerald-500/10 dark:text-emerald-500 dark:border-emerald-500/20'}`}
         >
           {inactive ? 'Inactive' : 'Active'}
         </span>
@@ -258,7 +258,7 @@ export default function PlansPage() {
           
         >
           <div
-            className="flex h-12 w-12 items-center justify-center rounded-md bg-violet-500/10 text-violet-500"
+            className="flex h-12 w-12 items-center justify-center rounded-md bg-background border border-border text-foreground dark:bg-violet-500/10 dark:text-violet-500 dark:border-transparent"
           >
             <CreditCard className="h-5 w-5" />
           </div>

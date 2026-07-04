@@ -83,8 +83,8 @@ function RoleBadge({ role }: { role: string }) {
       className={cn(
         'inline-flex items-center gap-1.5 rounded-md px-2 py-0.5 text-[11px] font-semibold tracking-wide uppercase ring-1 ring-inset',
         isTrainer
-          ? 'bg-amber-500/10 text-amber-400 ring-amber-500/20'
-          : 'bg-violet-500/10 text-violet-400 ring-violet-500/20'
+          ? 'bg-background text-foreground ring-border dark:bg-amber-500/10 dark:text-amber-400 dark:ring-amber-500/20'
+          : 'bg-background text-foreground ring-border dark:bg-violet-500/10 dark:text-violet-400 dark:ring-violet-500/20'
       )}
     >
       {isTrainer ? (
@@ -361,7 +361,7 @@ export default function StaffPage() {
       <Dialog open={!!deleteId} onOpenChange={(isOpen) => !isOpen && setDeleteId(null)}>
         <DialogContent className="border-border bg-background text-foreground rounded-md shadow-2xl sm:max-w-sm">
           <DialogHeader>
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-md bg-red-500/10 mb-2">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-md bg-background border border-border dark:bg-red-500/10 dark:border-transparent mb-2">
               <AlertTriangle className="h-6 w-6 text-red-500" />
             </div>
             <DialogTitle className="text-center text-lg font-semibold">Remove Staff Member?</DialogTitle>
@@ -441,7 +441,7 @@ export default function StaffPage() {
                     <DropdownMenuSeparator className="bg-accent my-1" />
                     
                     <DropdownMenuItem
-                      className="gap-2.5 rounded-lg cursor-pointer text-red-400 hover:bg-red-500/10 hover:text-red-300 focus:bg-red-500/10 focus:text-red-300"
+                      className="gap-2.5 rounded-lg cursor-pointer text-destructive hover:bg-destructive/10 hover:text-destructive focus:bg-destructive/10 focus:text-destructive dark:text-red-400 dark:hover:bg-red-500/10 dark:hover:text-red-300 dark:focus:bg-red-500/10 dark:focus:text-red-300"
                       onClick={() => setDeleteId(member.id)}
                     >
                       <Trash2 className="h-4 w-4" />
@@ -457,7 +457,7 @@ export default function StaffPage() {
               <div className="flex flex-col justify-between h-auto gap-4">
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 text-sm text-zinc-300 group-hover:text-zinc-200 transition-colors">
-                    <div className="flex h-7 w-7 items-center justify-center bg-violet-500/10 text-violet-500 rounded-md">
+                    <div className="flex h-7 w-7 items-center justify-center bg-background border border-border text-foreground rounded-md dark:bg-violet-500/10 dark:text-violet-500 dark:border-transparent">
                       <Phone className="h-3.5 w-3.5" />
                     </div>
                     <span>{member.phone}</span>
@@ -465,7 +465,7 @@ export default function StaffPage() {
                   
                   {member.email && (
                     <div className="flex items-center gap-3 text-sm text-zinc-300 group-hover:text-zinc-200 transition-colors">
-                      <div className="flex h-7 w-7 items-center justify-center bg-violet-500/10 text-violet-500 rounded-md">
+                      <div className="flex h-7 w-7 items-center justify-center bg-background border border-border text-foreground rounded-md dark:bg-violet-500/10 dark:text-violet-500 dark:border-transparent">
                         <Mail className="h-3.5 w-3.5" />
                       </div>
                       <span className="truncate">{member.email}</span>

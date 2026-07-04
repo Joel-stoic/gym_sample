@@ -56,7 +56,7 @@ function Section({
     <div className="rounded-md border border-border bg-card p-6 sm:p-8">
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center /20 text-violet-400 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
+          <div className="flex h-10 w-10 items-center justify-center text-foreground bg-background border border-border rounded-md shadow-sm dark:bg-violet-500/10 dark:text-violet-400 dark:border-transparent">
             <Icon size={18} />
           </div>
           <h2 className="text-[15px] font-semibold text-foreground">{title}</h2>
@@ -190,7 +190,7 @@ function DefaultPasswordsModal({
         <div className="p-6">
           <DialogHeader className="mb-5">
             <div
-              className="mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-violet-500/10 border border-violet-500/20"
+              className="mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-background border border-border dark:bg-violet-500/10 dark:border-violet-500/20"
             >
               <KeyRound size={20} className="text-violet-400" />
             </div>
@@ -205,7 +205,7 @@ function DefaultPasswordsModal({
             </p>
           </DialogHeader>
 
-          <div className="mb-6 h-px bg-violet-500/20" />
+          <div className="mb-6 h-px bg-border dark:bg-violet-500/20" />
 
           <div className="space-y-5">
             <div className="space-y-2">
@@ -525,13 +525,13 @@ export default function SettingsPage() {
 
               return (
                 <div className={`rounded-md border p-6 ${isExpired
-                  ? 'border-red-500/20 bg-red-500/5'
-                  : 'border-emerald-500/20 bg-emerald-500/5'}`}
+                  ? 'border-border bg-background dark:border-red-500/20 dark:bg-red-500/5'
+                  : 'border-border bg-background dark:border-emerald-500/20 dark:bg-emerald-500/5'}`}
                 >
                   <div className="flex items-center gap-4">
                     <div className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl ${isExpired
-                      ? 'bg-red-500/20 text-red-400'
-                      : 'bg-emerald-500/20 text-emerald-400'}`}
+                      ? 'bg-background text-destructive dark:bg-red-500/20 dark:text-red-400'
+                      : 'bg-background text-foreground dark:bg-emerald-500/20 dark:text-emerald-400'}`}
                     >
                       {isExpired ? <XCircle size={20} /> : <CheckCircle size={20} />}
                     </div>
@@ -550,8 +550,8 @@ export default function SettingsPage() {
                     </div>
                     <div className="ml-auto flex-shrink-0">
                       <span className={`rounded-md border px-4 py-1.5 text-[12px] font-medium ${isExpired
-                        ? 'border-red-500/30 bg-red-500/10 text-red-400'
-                        : 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400'}`}
+                        ? 'border-border bg-background text-destructive dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-400'
+                        : 'border-border bg-background text-foreground dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-400'}`}
                       >
                         {isExpired ? 'Expired' : 'Free Trial'}
                       </span>
@@ -694,13 +694,13 @@ export default function SettingsPage() {
                   /* ── Production-grade read-only state ── */
                   <div className="flex flex-col gap-4">
                     <div className="flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-4">
-                      <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400">
+                      <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-background border border-border text-foreground dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-transparent">
                         <ShieldCheck size={18} />
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2">
                           <p className="text-[14px] font-medium text-foreground">Password secured</p>
-                          <span className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-400">
+                          <span className="rounded-md border border-border bg-background px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-foreground dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-400">
                             Active
                           </span>
                         </div>

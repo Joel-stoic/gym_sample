@@ -141,8 +141,8 @@ const NotificationPage = () => {
                 {/* ICON */}
                 <div className={`h-12 w-12 rounded-md flex items-center justify-center border flex-shrink-0
                   ${notif.status === 'SENT'
-                    ? 'bg-green-500/10 border-green-500/20'
-                    : 'bg-red-500/10 border-red-500/20'
+                    ? 'bg-background border-border dark:bg-green-500/10 dark:border-green-500/20'
+                    : 'bg-background border-border dark:bg-red-500/10 dark:border-red-500/20'
                   }`}>
                   {notif.status === 'SENT'
                     ? <CheckCircle2 className="h-5 w-5 text-green-400" />
@@ -164,8 +164,8 @@ const NotificationPage = () => {
 
                     <div className={`px-3 py-1 rounded-xl text-xs font-medium border whitespace-nowrap flex-shrink-0
                       ${notif.status === 'SENT'
-                        ? 'bg-green-500/10 border-green-500/20 text-green-400'
-                        : 'bg-red-500/10 border-red-500/20 text-red-400'
+                        ? 'bg-background border-border text-foreground dark:bg-green-500/10 dark:border-green-500/20 dark:text-green-400'
+                        : 'bg-background border-border text-destructive dark:bg-red-500/10 dark:border-red-500/20 dark:text-red-400'
                       }`}>
                       {notif.status === 'SENT' ? (
                         <span className="flex items-center gap-1">

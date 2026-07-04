@@ -127,14 +127,14 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
                 onClick={() => handleSelect(member)}
                 className="flex w-full items-center gap-3 px-4 py-2.5 text-left transition-colors hover:bg-muted"
               >
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md bg-violet-500/10 text-[11px] font-semibold text-violet-500">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md bg-background text-[11px] font-semibold text-foreground border border-border dark:bg-violet-500/10 dark:text-violet-500 dark:border-transparent">
                   {member.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-medium text-foreground">{member.name}</p>
                   <p className="text-[11px] text-muted-foreground">{member.phone}</p>
                 </div>
-                <span className="flex-shrink-0 rounded-md bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-400">
+                <span className="flex-shrink-0 rounded-md bg-background border border-border px-2 py-0.5 text-[10px] font-medium text-foreground dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-transparent">
                   Active
                 </span>
               </button>
@@ -254,7 +254,7 @@ export default function AttendancePage() {
             <DialogTrigger asChild>
               <Button 
                 variant="ghost"
-                className="flex-1 sm:flex-none h-10 rounded-md bg-violet-500/10 px-5 text-[13px] font-medium   transition-all hover:bg-violet-500/20 border border-violet-500/20 hover:shadow-md"
+                className="flex-1 sm:flex-none h-10 rounded-md bg-primary text-primary-foreground dark:bg-violet-500/10 dark:text-violet-500 px-5 text-[13px] font-medium transition-all dark:hover:bg-violet-500/20 border border-transparent dark:border-violet-500/20 hover:shadow-md hover:bg-primary/90"
               >
                 <UserCheck className="mr-2 h-4 w-4" />
                 Mark Attendance
@@ -271,7 +271,7 @@ export default function AttendancePage() {
 
                 {selectedMember && (
                   <div className="flex items-center gap-3 rounded-md border border-border bg-card px-4 py-3">
-                    <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md bg-violet-500/10 text-[11px] font-semibold text-violet-500">
+                    <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md bg-background text-[11px] font-semibold text-foreground border border-border dark:bg-violet-500/10 dark:text-violet-500 dark:border-transparent">
                       {selectedMember.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
                     </div>
                     <div className="min-w-0 flex-1">
@@ -309,9 +309,9 @@ export default function AttendancePage() {
         </div>
       ) : (
         <div className="grid gap-4 md:grid-cols-3">
-          <StatsCard title="Present Today" value={todayCount}             icon={CalendarCheck} iconClassName="bg-green-500/15 text-green-400"  />
-          <StatsCard title="QR Check-ins"  value={todayAttendance.length} icon={QrCode}        iconClassName="bg-violet-500/15 text-violet-400" />
-          <StatsCard title="Activity"      value="Live"                   icon={Activity}      iconClassName="bg-blue-500/15 text-blue-400"     />
+          <StatsCard title="Present Today" value={todayCount}             icon={CalendarCheck} iconClassName="bg-background text-foreground border border-border dark:bg-green-500/15 dark:text-green-400 dark:border-transparent"  />
+          <StatsCard title="QR Check-ins"  value={todayAttendance.length} icon={QrCode}        iconClassName="bg-background text-foreground border border-border dark:bg-violet-500/15 dark:text-violet-400 dark:border-transparent" />
+          <StatsCard title="Activity"      value="Live"                   icon={Activity}      iconClassName="bg-background text-foreground border border-border dark:bg-blue-500/15 dark:text-blue-400 dark:border-transparent"     />
         </div>
       )}
 

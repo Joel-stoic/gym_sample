@@ -103,7 +103,7 @@ function MembershipProgressBar({ start, expiry }: { start: string; expiry: strin
   const elapsed = differenceInDays(today, startDate)
   const daysLeft = differenceInDays(expiryDate, today)
   const pct = Math.min(100, Math.max(0, Math.round((elapsed / total) * 100)))
-  const barColor = daysLeft <= 0 ? 'bg-red-500' : daysLeft <= 7 ? 'bg-orange-500' : 'bg-violet-500'
+  const barColor = daysLeft <= 0 ? 'bg-foreground dark:bg-red-500' : daysLeft <= 7 ? 'bg-foreground dark:bg-orange-500' : 'bg-primary dark:bg-violet-500'
   return (
     <div className="mt-5">
       <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
@@ -183,7 +183,7 @@ function PaymentCard({ payment }: { payment: Payment }) {
   return (
     <div className="rounded-xl border border-border bg-background/20 overflow-hidden">
       <div className="px-4 py-3 flex items-center gap-3">
-        <IconBox className="bg-green-500/10"><CreditCard className="h-4 w-4 text-green-400" /></IconBox>
+        <IconBox className="bg-background border border-border dark:bg-green-500/10 dark:border-transparent"><CreditCard className="h-4 w-4 text-foreground dark:text-green-400" /></IconBox>
         <div className="flex-1 min-w-0">
           <p className="text-sm font-medium text-foreground truncate">{payment.plan?.name ?? 'Membership'}</p>
           <p className="text-xs text-muted-foreground mt-0.5">{payment.paymentMethod} · {formatDate(payment.createdAt)}</p>
@@ -484,8 +484,8 @@ function AddPaymentModal({ open, onClose, memberId, memberName, onSaved }: {
                 className={cn(
                   'rounded-xl border py-2 text-xs font-medium transition-all duration-150',
                   paymentMethod === m
-                    ? 'border-violet-500 bg-violet-500/20 text-violet-300'
-                    : 'border-border bg-card text-muted-foreground hover:text-zinc-300 hover:border-white/20',
+                    ? 'border-border bg-primary text-primary-foreground dark:border-violet-500 dark:bg-violet-500/20 dark:text-violet-300'
+                    : 'border-border bg-card text-muted-foreground hover:text-foreground hover:border-border dark:hover:text-zinc-300 dark:hover:border-white/20',
                 )}
               >
                 {m}
@@ -689,7 +689,7 @@ export default function MemberDetailPage() {
           <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
             <button
               onClick={() => setAddPaymentOpen(true)}
-              className="flex items-center gap-1.5 h-9 px-4 rounded-xl border border-green-500/30 bg-green-500/10 text-green-400 hover:bg-green-500/20 hover:border-green-500/50 text-sm font-medium transition-all duration-150"
+              className="flex items-center gap-1.5 h-9 px-4 rounded-xl border border-border bg-background text-foreground hover:bg-accent text-sm font-medium transition-all duration-150 dark:border-green-500/30 dark:bg-green-500/10 dark:text-green-400 dark:hover:bg-green-500/20 dark:hover:border-green-500/50"
             >
               <Plus className="h-3.5 w-3.5" />
               Add Payment
@@ -762,7 +762,7 @@ export default function MemberDetailPage() {
                   <p className="text-[11px] text-muted-foreground mt-0.5">Visits</p>
                 </div>
                 <div className="rounded-xl border border-border bg-background/20 p-3 text-center">
-                  <div className="h-9 w-9 rounded-lg bg-green-500/10 flex items-center justify-center mx-auto mb-2">
+                  <div className="h-9 w-9 rounded-lg bg-background border border-border flex items-center justify-center mx-auto mb-2 dark:bg-green-500/10 dark:border-transparent">
                     <Wallet className="h-4 w-4 text-green-400" />
                   </div>
                   <p className="text-xl font-bold text-foreground">{member.payments?.length || 0}</p>
@@ -794,13 +794,13 @@ export default function MemberDetailPage() {
                   <MembershipProgressBar start={member.membershipStart} expiry={member.membershipExpiry} />
                 )}
                 {daysLeft !== null && daysLeft <= 7 && daysLeft > 0 && (
-                  <div className="mt-4 rounded-xl bg-orange-500/10 border border-orange-500/20 px-3 py-2.5 flex items-center gap-2 text-orange-400 text-xs">
+                  <div className="mt-4 rounded-xl bg-background border border-border px-3 py-2.5 flex items-center gap-2 text-foreground text-xs dark:bg-orange-500/10 dark:border-orange-500/20 dark:text-orange-400">
                     <AlertCircle className="h-3.5 w-3.5 flex-shrink-0" />
                     Expiring in {daysLeft} {daysLeft === 1 ? 'day' : 'days'}
                   </div>
                 )}
                 {daysLeft !== null && daysLeft <= 0 && (
-                  <div className="mt-4 rounded-xl bg-red-500/10 border border-red-500/20 px-3 py-2.5 flex items-center gap-2 text-red-400 text-xs">
+                  <div className="mt-4 rounded-xl bg-background border border-border px-3 py-2.5 flex items-center gap-2 text-foreground text-xs dark:bg-red-500/10 dark:border-red-500/20 dark:text-red-400">
                     <AlertCircle className="h-3.5 w-3.5 flex-shrink-0" />Membership expired
                   </div>
                 )}
@@ -823,7 +823,7 @@ export default function MemberDetailPage() {
                   <p className="text-sm">No payments yet</p>
                   <button
                     onClick={() => setAddPaymentOpen(true)}
-                    className="flex items-center gap-1.5 text-xs text-green-400 hover:text-green-300 border border-green-500/20 bg-green-500/10 rounded-lg px-3 py-1.5 transition-all"
+                    className="flex items-center gap-1.5 text-xs text-foreground hover:text-foreground border border-border bg-background rounded-lg px-3 py-1.5 transition-all dark:text-green-400 dark:hover:text-green-300 dark:border-green-500/20 dark:bg-green-500/10"
                   >
                     <Plus className="h-3 w-3" />Record first payment
                   </button>

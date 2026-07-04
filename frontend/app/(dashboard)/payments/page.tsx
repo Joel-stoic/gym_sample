@@ -252,7 +252,7 @@ function DeleteConfirmModal({
           <button
             onClick={handleDelete}
             disabled={deleting}
-            className="flex flex-1 items-center justify-center gap-2 rounded-xl py-2.5 text-[13px] font-semibold text-red-500 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 transition-all hover:opacity-90 disabled:opacity-50"
+            className="flex flex-1 items-center justify-center gap-2 rounded-xl py-2.5 text-[13px] font-semibold text-destructive bg-background border border-border hover:bg-destructive hover:text-destructive-foreground transition-all hover:opacity-90 disabled:opacity-50 dark:text-red-500 dark:bg-red-500/10 dark:hover:bg-red-500/20 dark:border-red-500/20"
           >
             {deleting
               ? <Loader2 size={13} className="animate-spin" />
@@ -656,7 +656,7 @@ function CollectDueModal({
           </button>
         </div>
 
-        <div className="mb-4 flex items-center gap-2 rounded-xl border border-amber-500/20 bg-amber-500/10 px-3 py-2.5">
+        <div className="mb-4 flex items-center gap-2 rounded-xl border border-border bg-background px-3 py-2.5 dark:border-amber-500/20 dark:bg-amber-500/10">
           <AlertCircle size={14} className="text-amber-400" />
           <span className="text-[13px] text-amber-400">
             Total pending: {toRupees(state.pendingAmt)}

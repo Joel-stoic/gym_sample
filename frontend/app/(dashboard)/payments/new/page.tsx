@@ -47,9 +47,9 @@ type PaymentForm = z.infer<typeof paymentSchema>
 
 // ─── Status config ─────────────────────────────────────
 const STATUS_CONFIG = {
-  PAID:    { label: 'Fully Paid', color: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', icon: CheckCircle },
-  PARTIAL: { label: 'Partial',    color: 'text-amber-400',   bg: 'bg-amber-500/10',   border: 'border-amber-500/20',   icon: AlertCircle },
-  PENDING: { label: 'Pending',    color: 'text-orange-400',  bg: 'bg-orange-500/10',  border: 'border-orange-500/20',  icon: Clock       },
+  PAID:    { label: 'Fully Paid', color: 'text-foreground dark:text-emerald-400', bg: 'bg-background dark:bg-emerald-500/10', border: 'border-border dark:border-emerald-500/20', icon: CheckCircle },
+  PARTIAL: { label: 'Partial',    color: 'text-foreground dark:text-amber-400',   bg: 'bg-background dark:bg-amber-500/10',   border: 'border-border dark:border-amber-500/20',   icon: AlertCircle },
+  PENDING: { label: 'Pending',    color: 'text-foreground dark:text-orange-400',  bg: 'bg-background dark:bg-orange-500/10',  border: 'border-border dark:border-orange-500/20',  icon: Clock       },
 }
 
 const toDateInputValue = (d: Date) => d.toISOString().split('T')[0]
@@ -533,7 +533,7 @@ export default function NewPaymentPage() {
 
           <div className="rounded-lg border border-border bg-background p-5">
             <div className="mb-5 flex items-center gap-3">
-              <div className="rounded-md /15 p-3 text-violet-400 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
+              <div className="rounded-md bg-background border border-border p-3 text-foreground dark:bg-violet-500/15 dark:text-violet-400 dark:border-transparent">
                 <IndianRupee className="h-5 w-5" />
               </div>
               <div>

@@ -102,10 +102,10 @@ const card = 'rounded-md p-5'
 const statusCfg: Record<string, {
   color: string; bg: string; border: string; icon: any; label: string
 }> = {
-  SCHEDULED: { color: 'text-fuchsia-400', bg: 'bg-fuchsia-500/10', border: 'border-fuchsia-500/20', icon: Clock, label: 'Scheduled' },
-  COMPLETED: { color: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', icon: CheckCircle, label: 'Completed' },
-  CANCELLED: { color: 'text-red-400', bg: 'bg-red-500/10', border: 'border-red-500/20', icon: XCircle, label: 'Cancelled' },
-  NO_SHOW: { color: 'text-orange-400', bg: 'bg-orange-500/10', border: 'border-orange-500/20', icon: AlertCircle, label: 'No Show' },
+  SCHEDULED: { color: 'text-foreground dark:text-fuchsia-400', bg: 'bg-background dark:bg-fuchsia-500/10', border: 'border-border dark:border-fuchsia-500/20', icon: Clock, label: 'Scheduled' },
+  COMPLETED: { color: 'text-foreground dark:text-emerald-400', bg: 'bg-background dark:bg-emerald-500/10', border: 'border-border dark:border-emerald-500/20', icon: CheckCircle, label: 'Completed' },
+  CANCELLED: { color: 'text-foreground dark:text-red-400', bg: 'bg-background dark:bg-red-500/10', border: 'border-border dark:border-red-500/20', icon: XCircle, label: 'Cancelled' },
+  NO_SHOW: { color: 'text-foreground dark:text-orange-400', bg: 'bg-background dark:bg-orange-500/10', border: 'border-border dark:border-orange-500/20', icon: AlertCircle, label: 'No Show' },
 }
 
 // ─── Add Package Modal ────────────────────────────────────────────────────────
@@ -681,19 +681,19 @@ export default function PtPage() {
         {/* Right: Actions */}
         <div className="flex flex-wrap items-center gap-2">
           <button onClick={() => setShowEnroll(true)}
-            className="flex items-center gap-2 h-10 px-4 rounded-md text-[13px] font-medium text-foreground bg-card hover:bg-accent bg-card hover:bg-accent  border border-border transition-all">
+            className="flex items-center gap-2 h-10 px-4 rounded-md text-[13px] font-medium text-foreground bg-background hover:bg-accent border border-border transition-all">
             <Users className="h-4 w-4" /> Enroll Member
           </button>
           
           {isOwnerOrManager && (
             <button onClick={() => setShowPackage(true)}
-              className="flex items-center gap-2 h-10 px-4 rounded-md text-[13px] font-medium text-foreground bg-card hover:bg-accent bg-card hover:bg-accent  border border-border transition-all">
+              className="flex items-center gap-2 h-10 px-4 rounded-md text-[13px] font-medium text-foreground bg-background hover:bg-accent border border-border transition-all">
               <Package className="h-4 w-4" /> New Package
             </button>
           )}
 
           <button onClick={() => setShowSchedule(true)}
-            className="flex items-center gap-2 h-10 px-5 rounded-md text-[13px] font-medium  bg-violet-500/10 hover:bg-violet-500/20  border border-violet-500/20 transition-all hover:shadow-md">
+            className="flex items-center gap-2 h-10 px-5 rounded-md text-[13px] font-medium bg-background text-foreground hover:bg-accent border border-border transition-all hover:shadow-md dark:bg-violet-500/10 dark:hover:bg-violet-500/20 dark:border-violet-500/20">
             <Plus className="h-4 w-4" /> Schedule Session
           </button>
         </div>
@@ -702,11 +702,11 @@ export default function PtPage() {
       {/* ── Stats Bar ── */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
         {[
-          { label: 'Total Sessions', value: sessions.length, icon: Dumbbell, color: 'text-fuchsia-500 dark:text-fuchsia-400', bg: 'bg-fuchsia-500/10' },
-          { label: 'Upcoming', value: upcoming.length, icon: Clock, color: 'text-violet-500 dark:text-violet-400', bg: 'bg-violet-500/10' },
-          { label: 'Completed', value: completed, icon: CheckCircle, color: 'text-emerald-500 dark:text-emerald-400', bg: 'bg-emerald-500/10' },
-          { label: 'Packages', value: packages.length, icon: Package, color: 'text-amber-500 dark:text-amber-400', bg: 'bg-amber-500/10' },
-          { label: 'Enrollments', value: enrollments.length, icon: Users, color: 'text-blue-500 dark:text-blue-400', bg: 'bg-blue-500/10' },
+          { label: 'Total Sessions', value: sessions.length, icon: Dumbbell, color: 'text-foreground dark:text-fuchsia-400', bg: 'bg-background border border-border dark:bg-fuchsia-500/10 dark:border-transparent' },
+          { label: 'Upcoming', value: upcoming.length, icon: Clock, color: 'text-foreground dark:text-violet-400', bg: 'bg-background border border-border dark:bg-violet-500/10 dark:border-transparent' },
+          { label: 'Completed', value: completed, icon: CheckCircle, color: 'text-foreground dark:text-emerald-400', bg: 'bg-background border border-border dark:bg-emerald-500/10 dark:border-transparent' },
+          { label: 'Packages', value: packages.length, icon: Package, color: 'text-foreground dark:text-amber-400', bg: 'bg-background border border-border dark:bg-amber-500/10 dark:border-transparent' },
+          { label: 'Enrollments', value: enrollments.length, icon: Users, color: 'text-foreground dark:text-blue-400', bg: 'bg-background border border-border dark:bg-blue-500/10 dark:border-transparent' },
         ].map(stat => (
           <div key={stat.label}
             className="group relative overflow-hidden rounded-md border border-border bg-background/30  p-4 transition-all hover:bg-background/40 shadow-sm">
@@ -731,7 +731,7 @@ export default function PtPage() {
             <div className="inline-flex items-center gap-1 p-1 rounded-md border border-border bg-card overflow-x-auto w-full sm:w-auto">
               {['ALL', 'SCHEDULED', 'COMPLETED', 'CANCELLED', 'NO_SHOW'].map(s => (
                 <button key={s} onClick={() => setStatusFilter(s)}
-                  className={`px-4 py-1.5 rounded-md text-[12px] font-medium transition-all whitespace-nowrap ${statusFilter === s ? 'bg-background shadow-sm text-violet-500 dark:text-violet-400' : 'text-muted-foreground hover:text-foreground'}`}>
+                  className={`px-4 py-1.5 rounded-md text-[12px] font-medium transition-all whitespace-nowrap ${statusFilter === s ? 'bg-background shadow-sm text-foreground dark:text-violet-400' : 'text-muted-foreground hover:text-foreground'}`}>
                   {s === 'ALL' ? 'All' : s === 'NO_SHOW' ? 'No Show' : s.charAt(0) + s.slice(1).toLowerCase()}
                 </button>
               ))}

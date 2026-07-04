@@ -77,14 +77,14 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 // ─── Meal time color ──────────────────────────────────────
 const mealColors: Record<string, string> = {
-    Breakfast: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-    Lunch: 'bg-green-500/10 text-green-400 border-green-500/20',
-    Dinner: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-    'Pre-workout': 'bg-violet-500/10 text-violet-400 border-violet-500/20',
-    'Post-workout': 'bg-pink-500/10 text-pink-400 border-pink-500/20',
-    Snacks: 'bg-orange-500/10 text-orange-400 border-orange-500/20',
+    Breakfast: 'bg-background text-foreground border-border dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20',
+    Lunch: 'bg-background text-foreground border-border dark:bg-green-500/10 dark:text-green-400 dark:border-green-500/20',
+    Dinner: 'bg-background text-foreground border-border dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20',
+    'Pre-workout': 'bg-background text-foreground border-border dark:bg-violet-500/10 dark:text-violet-400 dark:border-violet-500/20',
+    'Post-workout': 'bg-background text-foreground border-border dark:bg-pink-500/10 dark:text-pink-400 dark:border-pink-500/20',
+    Snacks: 'bg-background text-foreground border-border dark:bg-orange-500/10 dark:text-orange-400 dark:border-orange-500/20',
 }
-const defaultMealColor = 'bg-zinc-500/10 text-zinc-400 border-zinc-500/20'
+const defaultMealColor = 'bg-background text-foreground border-border dark:bg-zinc-500/10 dark:text-zinc-400 dark:border-zinc-500/20'
 
 // ─── Diet Plan Card ───────────────────────────────────────
 function DietPlanCard({
