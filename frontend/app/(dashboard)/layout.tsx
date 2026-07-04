@@ -33,12 +33,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   if (!isAuthenticated) return null
 
   return (
-  <div className="fixed inset-0 flex overflow-hidden bg-background">
-    <Sidebar />
+    <div style={{ position: 'fixed', inset: 0, display: 'flex', background: 'var(--background)' }}>
+      <Sidebar />
 
-    <div className="flex flex-1 flex-col min-w-0 md:ml-64 overflow-hidden">
-      <main className="flex-1 min-h-0 overflow-y-auto">
-        <div className="sticky top-0 z-40">
+      <main className="md:ml-64" style={{ flex: 1, minWidth: 0, overflowY: 'auto' }}>
+        <div style={{ position: 'sticky', top: 0, zIndex: 50 }}>
           <Header />
         </div>
         <div className="p-4 md:p-6">
@@ -46,6 +45,5 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
       </main>
     </div>
-  </div>
-)
+  )
 }
