@@ -148,7 +148,7 @@ function AddPackageModal({ onClose, onSuccess }: {
               value={description} onChange={e => setDescription(e.target.value)} />
           </div>
           <button onClick={handleSave} disabled={saving}
-            className="w-full h-11 flex items-center justify-center gap-2 rounded-xl text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent dark:bg-white/5 dark:hover:bg-white/10  border border-border text-foreground hover:-translate-y-0.5 mt-2 disabled:opacity-50">
+            className="w-full h-11 flex items-center justify-center gap-2 rounded-xl text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent bg-card hover:bg-accent  border border-border text-foreground hover:-translate-y-0.5 mt-2 disabled:opacity-50">
             {saving && <Loader2 className="h-4 w-4 animate-spin" />}
             {saving ? 'Creating...' : 'Create Package'}
           </button>
@@ -246,7 +246,7 @@ function ScheduleSessionModal({ enrollments, trainers, onClose, onSuccess }: {
                       setShowDropdown(false)
                       setMemberSearch('')
                     }}
-                    className="w-full px-3 py-2.5 text-left border-b border-white/[0.05] last:border-0 transition-colors"
+                    className="w-full px-3 py-2.5 text-left border-b border-border last:border-0 transition-colors"
                     style={{ background: 'transparent' }}
                     onMouseEnter={ev => (ev.currentTarget.style.background = '#ffffff05')}
                     onMouseLeave={ev => (ev.currentTarget.style.background = 'transparent')}>
@@ -298,7 +298,7 @@ function ScheduleSessionModal({ enrollments, trainers, onClose, onSuccess }: {
           </div>
 
           <button onClick={handleSave} disabled={saving}
-            className="w-full h-11 flex items-center justify-center gap-2 rounded-xl text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent dark:bg-white/5 dark:hover:bg-white/10  border border-border text-foreground hover:-translate-y-0.5 mt-2 disabled:opacity-50">
+            className="w-full h-11 flex items-center justify-center gap-2 rounded-xl text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent bg-card hover:bg-accent  border border-border text-foreground hover:-translate-y-0.5 mt-2 disabled:opacity-50">
             {saving && <Loader2 className="h-4 w-4 animate-spin" />}
             {saving ? 'Scheduling...' : 'Schedule Session'}
           </button>
@@ -399,7 +399,7 @@ function EnrollMemberModal({ packages, onClose, onSuccess }: {
                 {members.map(m => (
                   <button key={m.id}
                     onClick={() => { setMemberId(m.id); setSelectedMember(m.name); setMembers([]) }}
-                    className="w-full px-3 py-2.5 text-left transition-colors border-b border-white/[0.05] last:border-0"
+                    className="w-full px-3 py-2.5 text-left transition-colors border-b border-border last:border-0"
                     style={{ background: 'transparent' }}
                     onMouseEnter={e => (e.currentTarget.style.background = '#ffffff05')}
                     onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
@@ -459,7 +459,7 @@ function EnrollMemberModal({ packages, onClose, onSuccess }: {
           </div>
 
           <button onClick={handleSave} disabled={saving || !memberId || !packageId}
-            className="w-full h-11 flex items-center justify-center gap-2 rounded-xl text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent dark:bg-white/5 dark:hover:bg-white/10  border border-border text-foreground hover:-translate-y-0.5 mt-2 disabled:opacity-50">
+            className="w-full h-11 flex items-center justify-center gap-2 rounded-xl text-[13px] font-medium transition-all duration-150 bg-card hover:bg-accent bg-card hover:bg-accent  border border-border text-foreground hover:-translate-y-0.5 mt-2 disabled:opacity-50">
             {saving && <Loader2 className="h-4 w-4 animate-spin" />}
             {saving ? 'Enrolling...' : 'Enroll Member'}
           </button>
@@ -657,13 +657,13 @@ export default function PtPage() {
         {/* Right: Actions */}
         <div className="flex flex-wrap items-center gap-2">
           <button onClick={() => setShowEnroll(true)}
-            className="flex items-center gap-2 h-10 px-4 rounded-md text-[13px] font-medium text-foreground bg-card hover:bg-accent dark:bg-white/5 dark:hover:bg-white/10  border border-border transition-all">
+            className="flex items-center gap-2 h-10 px-4 rounded-md text-[13px] font-medium text-foreground bg-card hover:bg-accent bg-card hover:bg-accent  border border-border transition-all">
             <Users className="h-4 w-4" /> Enroll Member
           </button>
           
           {isOwnerOrManager && (
             <button onClick={() => setShowPackage(true)}
-              className="flex items-center gap-2 h-10 px-4 rounded-md text-[13px] font-medium text-foreground bg-card hover:bg-accent dark:bg-white/5 dark:hover:bg-white/10  border border-border transition-all">
+              className="flex items-center gap-2 h-10 px-4 rounded-md text-[13px] font-medium text-foreground bg-card hover:bg-accent bg-card hover:bg-accent  border border-border transition-all">
               <Package className="h-4 w-4" /> New Package
             </button>
           )}
@@ -839,7 +839,7 @@ export default function PtPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {packages.map(pkg => (
-                <div key={pkg.id} className="rounded-md p-5 border border-border bg-card transition-all hover:bg-black/10 dark:hover:bg-white/10">
+                <div key={pkg.id} className="rounded-md p-5 border border-border bg-card transition-all hover:bg-black/10 hover:bg-accent">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1 min-w-0">
                       <p className="text-[14px] font-bold text-foreground">{pkg.name}</p>

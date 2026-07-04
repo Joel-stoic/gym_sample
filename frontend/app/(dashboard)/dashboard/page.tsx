@@ -75,12 +75,12 @@ function MetricCard({
   return (
     <div className={`relative overflow-hidden rounded-md border p-3.5 sm:p-5 transition-all duration-200 ${redAccent
       ? 'border-red-500/20 bg-red-500/10 hover:border-red-500/30'
-      : 'border-border bg-card hover:border-white/[0.10]'
+      : 'border-border bg-card hover:border-border'
       }`}>
       {redAccent && (
         <div className="pointer-events-none absolute -right-4 -top-4 h-20 w-20 rounded-md bg-red-500 opacity-20 blur-2xl" />
       )}
-      <div className={`mb-3 sm:mb-4 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-xl ${iconClass ?? 'bg-white/[0.06] text-foreground'}`}>
+      <div className={`mb-3 sm:mb-4 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-xl ${iconClass ?? 'bg-accent text-foreground'}`}>
         <Icon size={16} />
       </div>
       <p className="font-['Syne'] text-lg sm:text-2xl font-bold tracking-tight text-foreground truncate">{value}</p>
@@ -103,7 +103,7 @@ function RevenueRangeToggle({
   onChange: (r: RevenueMonths) => void
 }) {
   return (
-    <div className="flex gap-1 rounded-lg border border-border bg-white/[0.03] p-1">
+    <div className="flex gap-1 rounded-lg border border-border bg-card p-1">
       {RANGE_OPTIONS.map(({ label, months }) => (
         <button
           key={months}
@@ -195,7 +195,7 @@ function ActivityItem({
   name: string; action: string; amount?: string; time: string; type: 'payment' | 'checkin'
 }) {
   return (
-    <div className="flex items-center gap-3 border-b border-white/[0.05] py-3 last:border-0">
+    <div className="flex items-center gap-3 border-b border-border py-3 last:border-0">
       <div className={`h-2 w-2 flex-shrink-0 rounded-md ${type === 'payment' ? 'bg-emerald-400' : 'bg-violet-400'
         }`} />
       <p className="flex-1 text-[12px] text-muted-foreground">
@@ -389,7 +389,7 @@ export default function DashboardPage() {
               </ResponsiveContainer>
 
               {/* Divider */}
-              <div className="my-4 sm:my-5 h-px bg-white/[0.04]" />
+              <div className="my-4 sm:my-5 h-px bg-card" />
 
               {/* Stats row */}
               <RevenueStats data={monthlyRevenue} />

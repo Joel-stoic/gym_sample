@@ -282,7 +282,7 @@ export default function LeadsPage() {
                           <Input
                             placeholder="Ravi Kumar"
                             {...field}
-                            className="border-border bg-white/[0.03]"
+                            className="border-border bg-card"
                           />
                         </FormControl>
 
@@ -304,7 +304,7 @@ export default function LeadsPage() {
                           <Input
                             placeholder="9876543210"
                             {...field}
-                            className="border-border bg-white/[0.03]"
+                            className="border-border bg-card"
                           />
                         </FormControl>
 
@@ -327,7 +327,7 @@ export default function LeadsPage() {
                           defaultValue={field.value}
                         >
                           <FormControl>
-                            <SelectTrigger className="border-border bg-white/[0.03]">
+                            <SelectTrigger className="border-border bg-card">
                               <SelectValue placeholder="Lead source" />
                             </SelectTrigger>
                           </FormControl>
@@ -373,7 +373,7 @@ export default function LeadsPage() {
                           <Input
                             placeholder="Interested in fat loss..."
                             {...field}
-                            className="border-border bg-white/[0.03]"
+                            className="border-border bg-card"
                           />
                         </FormControl>
 
@@ -544,20 +544,20 @@ function SkeletonCard() {
     <div className="animate-pulse rounded-lg border border-border bg-background p-5">
       <div className="mb-4 flex items-start justify-between">
         <div className="space-y-2">
-          <div className="h-5 w-32 rounded bg-white/[0.06]" />
-          <div className="h-3 w-20 rounded bg-white/[0.04]" />
+          <div className="h-5 w-32 rounded bg-accent" />
+          <div className="h-3 w-20 rounded bg-card" />
         </div>
 
-        <div className="h-8 w-8 rounded-xl bg-white/[0.05]" />
+        <div className="h-8 w-8 rounded-xl bg-accent" />
       </div>
 
       <div className="space-y-3">
-        <div className="h-4 w-40 rounded bg-white/[0.05]" />
-        <div className="h-4 w-32 rounded bg-white/[0.05]" />
+        <div className="h-4 w-40 rounded bg-accent" />
+        <div className="h-4 w-32 rounded bg-accent" />
       </div>
 
       <div className="mt-5 flex items-center justify-between">
-        <div className="h-6 w-20 rounded-md bg-white/[0.05]" />
+        <div className="h-6 w-20 rounded-md bg-accent" />
       </div>
     </div>
   )
@@ -659,7 +659,7 @@ function LeadCard({
       {/* NOTES */}
 
       {lead.notes && (
-        <div className="mt-4 rounded-md border border-white/[0.05] bg-white/[0.02] p-3">
+        <div className="mt-4 rounded-md border border-border bg-card p-3">
           <p className="text-sm text-muted-foreground">
             {lead.notes}
           </p>

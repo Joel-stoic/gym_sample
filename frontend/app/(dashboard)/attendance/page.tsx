@@ -107,7 +107,7 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
           value={query}
           onChange={handleChange}
           placeholder="Search by name or phone..."
-          className="w-full rounded-xl border border-border bg-white/[0.03] py-2.5 pl-9 pr-9 text-sm text-foreground placeholder:text-muted-foreground focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30"
+          className="w-full rounded-xl border border-border bg-card py-2.5 pl-9 pr-9 text-sm text-foreground placeholder:text-muted-foreground focus:border-violet-500/50 focus:outline-none focus:ring-1 focus:ring-violet-500/30"
         />
         {query && (
           <button onClick={handleClear} className="absolute right-3 text-muted-foreground hover:text-foreground">
@@ -174,11 +174,11 @@ function TabButton({ active, onClick, children }: { active: boolean; onClick: ()
       className={`relative flex-1 sm:flex-none min-w-[120px] rounded-[20px] px-6 py-2.5 text-[14px] font-semibold transition-all duration-300 ${
         active 
           ? 'text-foreground' 
-          : 'text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5'
+          : 'text-muted-foreground hover:text-foreground hover:bg-black/5 hover:bg-accent'
       }`}
     >
       {active && (
-        <span className="absolute inset-0 rounded-[20px] bg-white dark:bg-white/15 shadow-sm border border-black/5 dark:border-white/10" style={{ zIndex: -1 }} />
+        <span className="absolute inset-0 rounded-[20px] bg-white bg-card shadow-sm border border-black/5 border-border" style={{ zIndex: -1 }} />
       )}
       <span className="relative z-10">{children}</span>
     </button>
@@ -247,7 +247,7 @@ export default function AttendancePage() {
           <Button
             variant="ghost"
             onClick={() => queryClient.invalidateQueries({ queryKey: ['attendance-today'] })}
-            className="h-10 rounded-md bg-black/5 px-5 text-[13px] font-medium text-foreground  transition-all hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 border border-border hover:shadow-sm"
+            className="h-10 rounded-md bg-black/5 px-5 text-[13px] font-medium text-foreground  transition-all hover:bg-black/10 bg-card hover:bg-accent border border-border hover:shadow-sm"
           >
             <RefreshCw className="mr-2 h-4 w-4" />
             Refresh

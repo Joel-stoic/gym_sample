@@ -190,7 +190,7 @@ export default function AdminDashboardPage() {
               <div
                 key={gym.id}
                 onClick={() => router.push(`/admin/gyms/${gym.id}`)}
-                className="px-6 py-4 flex items-center justify-between hover:bg-white/[0.02] transition-colors cursor-pointer group"
+                className="px-6 py-4 flex items-center justify-between hover:bg-accent transition-colors cursor-pointer group"
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <div className="w-8 h-8 /20 flex items-center justify-center text-violet-400 text-xs font-bold flex-shrink-0 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">

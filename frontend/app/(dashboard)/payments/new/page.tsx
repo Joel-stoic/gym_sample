@@ -247,7 +247,7 @@ export default function NewPaymentPage() {
                     <FormControl>
                       <div className="relative">
                         <input
-                          className="h-12 w-full rounded-xl border border-border bg-white/[0.03] px-4 text-[13px] text-foreground outline-none placeholder:text-muted-foreground transition-all focus:border-violet-500/50"
+                          className="h-12 w-full rounded-xl border border-border bg-card px-4 text-[13px] text-foreground outline-none placeholder:text-muted-foreground transition-all focus:border-violet-500/50"
                           placeholder="Search member by name or phone..."
                           value={selectedMember ? `${selectedMember.name} — ${selectedMember.phone}` : memberSearch}
                           onChange={e => {
@@ -275,7 +275,7 @@ export default function NewPaymentPage() {
                                   setShowMemberDropdown(false)
                                   field.onChange(m.id)
                                 }}
-                                className="w-full border-b border-white/[0.05] px-4 py-3 text-left last:border-0 transition-colors hover:bg-muted"
+                                className="w-full border-b border-border px-4 py-3 text-left last:border-0 transition-colors hover:bg-muted"
                               >
                                 <p className="text-[13px] font-medium text-foreground">{m.name}</p>
                                 <p className="text-xs text-muted-foreground">{m.phone} · {m.status}</p>
@@ -311,7 +311,7 @@ export default function NewPaymentPage() {
                       value={field.value}
                     >
                       <FormControl>
-                        <SelectTrigger className="h-12 border-border bg-white/[0.03] text-foreground">
+                        <SelectTrigger className="h-12 border-border bg-card text-foreground">
                           <SelectValue placeholder="Select plan" />
                         </SelectTrigger>
                       </FormControl>
@@ -337,7 +337,7 @@ export default function NewPaymentPage() {
                     Plan Amount (₹)
                     <Lock size={11} className="text-muted-foreground" />
                   </label>
-                  <div className="flex h-12 cursor-not-allowed select-none items-center rounded-xl border border-white/[0.05] bg-white/[0.015] px-4 text-[13px]">
+                  <div className="flex h-12 cursor-not-allowed select-none items-center rounded-xl border border-border bg-white/[0.015] px-4 text-[13px]">
                     {planAmount > 0
                       ? <span className="text-muted-foreground">₹{planAmount}</span>
                       : <span className="text-muted-foreground">Select a plan first</span>
@@ -361,7 +361,7 @@ export default function NewPaymentPage() {
                           max={planAmount}
                           {...field}
                           onChange={e => { field.onChange(e); handleDiscountChange(e.target.value) }}
-                          className="h-12 border-border bg-white/[0.03] text-foreground"
+                          className="h-12 border-border bg-card text-foreground"
                         />
                       </FormControl>
                       <FormMessage />
@@ -386,7 +386,7 @@ export default function NewPaymentPage() {
                           min={0}
                           {...field}
                           onChange={e => { field.onChange(e); handleAdditionalFeeChange(e.target.value) }}
-                          className="h-12 border-border bg-white/[0.03] text-foreground"
+                          className="h-12 border-border bg-card text-foreground"
                         />
                       </FormControl>
                       <p className="text-[11px] text-muted-foreground">Joining fee, locker, etc.</p>
@@ -417,7 +417,7 @@ export default function NewPaymentPage() {
                         min={0}
                         max={netDue}
                         {...field}
-                        className="h-12 border-border bg-white/[0.03] text-foreground"
+                        className="h-12 border-border bg-card text-foreground"
                       />
                     </FormControl>
                     <FormMessage />
@@ -458,7 +458,7 @@ export default function NewPaymentPage() {
                       <input
                         type="date"
                         {...field}
-                        className="h-12 w-full rounded-xl border border-border bg-white/[0.03] px-4 text-[13px] text-foreground outline-none transition-all focus:border-violet-500/50"
+                        className="h-12 w-full rounded-xl border border-border bg-card px-4 text-[13px] text-foreground outline-none transition-all focus:border-violet-500/50"
                         style={{ colorScheme: 'dark' }}
                       />
                     </FormControl>
@@ -479,7 +479,7 @@ export default function NewPaymentPage() {
                     <FormLabel className="text-[#d4d4dc]">Payment Method</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
-                        <SelectTrigger className="h-12 border-border bg-white/[0.03] text-foreground">
+                        <SelectTrigger className="h-12 border-border bg-card text-foreground">
                           <SelectValue placeholder="Select payment method" />
                         </SelectTrigger>
                       </FormControl>
@@ -507,7 +507,7 @@ export default function NewPaymentPage() {
                       <Input
                         placeholder="Optional notes..."
                         {...field}
-                        className="h-12 border-border bg-white/[0.03] text-foreground"
+                        className="h-12 border-border bg-card text-foreground"
                       />
                     </FormControl>
                     <FormMessage />
@@ -615,7 +615,7 @@ export default function NewPaymentPage() {
                 { icon: Smartphone,  label: 'UPI'         },
                 { icon: CreditCard,  label: 'Card / Online' },
               ].map(({ icon: Icon, label }) => (
-                <div key={label} className="flex items-center gap-3 rounded-md border border-white/[0.05] bg-white/[0.02] p-3">
+                <div key={label} className="flex items-center gap-3 rounded-md border border-border bg-card p-3">
                   <Icon className="h-4 w-4 text-violet-400" />
                   <span className="text-sm text-[#d4d4dc]">{label}</span>
                 </div>

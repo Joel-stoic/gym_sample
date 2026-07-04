@@ -581,7 +581,7 @@ export default function AdminGymDetailPage() {
                   }} className="text-[11px] text-violet-400 hover:text-violet-300">Edit</button>
                 </div>
                 {tenant.trialEndsAt ? (
-                  <div className="rounded-xl bg-white/[0.02] border border-border px-3 py-2.5">
+                  <div className="rounded-xl bg-card border border-border px-3 py-2.5">
                     <p className="text-sm text-foreground">{formatDate(tenant.trialEndsAt)}</p>
                     <p className={`text-xs mt-0.5 ${trialDays! < 0 ? 'text-red-400' : trialDays! <= 5 ? 'text-amber-400' : 'text-foreground/30'
                       }`}>
@@ -604,7 +604,7 @@ export default function AdminGymDetailPage() {
                   </button>
                 </div>
                 {tenant.gracePeriodEndsAt ? (
-                  <div className="rounded-xl bg-white/[0.02] border border-border px-3 py-2.5">
+                  <div className="rounded-xl bg-card border border-border px-3 py-2.5">
                     <p className="text-sm text-foreground">{formatDate(tenant.gracePeriodEndsAt)}</p>
                     <p className={`text-xs mt-0.5 ${graceDays! < 0 ? 'text-red-400' : 'text-sky-400'}`}>
                       {graceDays! < 0 ? 'Grace period ended' : `${graceDays}d remaining`}
@@ -631,7 +631,7 @@ export default function AdminGymDetailPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
 
                 {/* Reset password */}
-                <div className="rounded-xl bg-white/[0.02] border border-border p-4">
+                <div className="rounded-xl bg-card border border-border p-4">
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0">
                       <KeyRound size={15} className="text-amber-400" />
@@ -654,7 +654,7 @@ export default function AdminGymDetailPage() {
                 </div>
 
                 {/* Impersonate */}
-                <div className="rounded-xl bg-white/[0.02] border border-border p-4">
+                <div className="rounded-xl bg-card border border-border p-4">
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 /10 flex items-center justify-center flex-shrink-0 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
                       <LogIn size={15} className="text-violet-400" />
@@ -685,7 +685,7 @@ export default function AdminGymDetailPage() {
                 </div>
 
                 {/* QR Code */}
-                <div className="rounded-xl bg-white/[0.02] border border-border p-4">
+                <div className="rounded-xl bg-card border border-border p-4">
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
                       <QrCode size={15} className="text-emerald-400" />
@@ -718,7 +718,7 @@ export default function AdminGymDetailPage() {
               </div>
 
               {/* ── Owners list ── */}
-              <div className="rounded-xl bg-white/[0.02] border border-border overflow-hidden">
+              <div className="rounded-xl bg-card border border-border overflow-hidden">
                 <div className="flex items-center justify-between px-4 py-3 border-b border-border">
                   <div>
                     <p className="text-sm font-medium text-foreground flex items-center gap-2">

@@ -58,18 +58,18 @@ interface StaffMember {
 // ─── Skeleton ────────────────────────────────────────────
 function StaffCardSkeleton() {
   return (
-    <div className="rounded-md border border-white/[0.04] bg-white/[0.02] p-5 space-y-4 animate-pulse">
+    <div className="rounded-md border border-border bg-card p-5 space-y-4 animate-pulse">
       <div className="flex items-start justify-between">
         <div className="space-y-2.5">
-          <div className="h-4 w-32 bg-white/[0.06] rounded-md" />
-          <div className="h-5 w-20 bg-white/[0.06] rounded-md" />
+          <div className="h-4 w-32 bg-accent rounded-md" />
+          <div className="h-5 w-20 bg-accent rounded-md" />
         </div>
-        <div className="h-8 w-8 bg-white/[0.06] rounded-lg" />
+        <div className="h-8 w-8 bg-accent rounded-lg" />
       </div>
-      <div className="border-t border-white/[0.05] my-3" />
+      <div className="border-t border-border my-3" />
       <div className="space-y-3 pt-1">
-        <div className="h-3.5 w-36 bg-white/[0.06] rounded-md" />
-        <div className="h-3.5 w-44 bg-white/[0.06] rounded-md" />
+        <div className="h-3.5 w-36 bg-accent rounded-md" />
+        <div className="h-3.5 w-44 bg-accent rounded-md" />
       </div>
     </div>
   )
@@ -397,8 +397,8 @@ export default function StaffPage() {
               className={cn(
                 'group relative rounded-md border p-5 transition-colors duration-200',
                 member.isActive
-                  ? 'bg-white/[0.02] border-border hover:bg-white/[0.04] hover:border-white/[0.12]'
-                  : 'bg-background/20 border-white/[0.03] opacity-75 hover:opacity-100'
+                  ? 'bg-card border-border hover:bg-accent hover:border-border'
+                  : 'bg-background/20 border-border opacity-75 hover:opacity-100'
               )}
             >
               {/* Header */}
@@ -415,14 +415,14 @@ export default function StaffPage() {
                     <Button
                       size="icon"
                       variant="ghost"
-                      className="h-8 w-8 rounded-lg text-zinc-400 hover:text-foreground hover:bg-white/[0.08] focus-visible:ring-1 focus-visible:ring-violet-500"
+                      className="h-8 w-8 rounded-lg text-zinc-400 hover:text-foreground hover:bg-accent focus-visible:ring-1 focus-visible:ring-violet-500"
                     >
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-48 border-border bg-background text-foreground p-1 rounded-xl shadow-xl">
                     <DropdownMenuItem
-                      className="gap-2.5 rounded-lg cursor-pointer hover:bg-white/[0.06] focus:bg-white/[0.06]"
+                      className="gap-2.5 rounded-lg cursor-pointer hover:bg-accent focus:bg-accent"
                       onClick={() => { setEditingStaff(member); setEditOpen(true) }}
                     >
                       <Pencil className="h-4 w-4 text-zinc-400" />
@@ -430,7 +430,7 @@ export default function StaffPage() {
                     </DropdownMenuItem>
                     
                     <DropdownMenuItem
-                      className="gap-2.5 rounded-lg cursor-pointer hover:bg-white/[0.06] focus:bg-white/[0.06]"
+                      className="gap-2.5 rounded-lg cursor-pointer hover:bg-accent focus:bg-accent"
                       disabled={sendingLink === member.id}
                       onClick={() => resendLink(member.id, member.name)}
                     >
@@ -438,7 +438,7 @@ export default function StaffPage() {
                       {sendingLink === member.id ? 'Sending...' : 'Resend Login Link'}
                     </DropdownMenuItem>
 
-                    <DropdownMenuSeparator className="bg-white/[0.06] my-1" />
+                    <DropdownMenuSeparator className="bg-accent my-1" />
                     
                     <DropdownMenuItem
                       className="gap-2.5 rounded-lg cursor-pointer text-red-400 hover:bg-red-500/10 hover:text-red-300 focus:bg-red-500/10 focus:text-red-300"
@@ -451,7 +451,7 @@ export default function StaffPage() {
                 </DropdownMenu>
               </div>
 
-              <div className="border-t border-white/[0.05] mb-4 transition-colors group-hover:border-border" />
+              <div className="border-t border-border mb-4 transition-colors group-hover:border-border" />
 
               {/* Contact Info & Status */}
               <div className="flex flex-col justify-between h-auto gap-4">

@@ -35,20 +35,20 @@ function filterNotifications(notifications: any[], range: FilterRange) {
 const NotificationSkeleton = () => (
   <div className="rounded-lg border border-border bg-gradient-to-b from-white/[0.04] to-white/[0.02] p-5 animate-pulse">
     <div className="flex items-start gap-4">
-      <div className="h-12 w-12 rounded-md bg-white/[0.06] border border-border flex-shrink-0" />
+      <div className="h-12 w-12 rounded-md bg-accent border border-border flex-shrink-0" />
       <div className="flex-1 min-w-0">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
-            <div className="h-4 w-40 rounded bg-white/[0.06]" />
-            <div className="h-3 w-full rounded bg-white/[0.05] mt-3" />
-            <div className="h-3 w-3/4 rounded bg-white/[0.05] mt-2" />
+            <div className="h-4 w-40 rounded bg-accent" />
+            <div className="h-3 w-full rounded bg-accent mt-3" />
+            <div className="h-3 w-3/4 rounded bg-accent mt-2" />
           </div>
-          <div className="h-7 w-16 rounded-xl bg-white/[0.06]" />
+          <div className="h-7 w-16 rounded-xl bg-accent" />
         </div>
         <div className="flex flex-wrap items-center gap-4 mt-5">
-          <div className="h-3 w-24 rounded bg-white/[0.05]" />
-          <div className="h-3 w-28 rounded bg-white/[0.05]" />
-          <div className="h-3 w-20 rounded bg-white/[0.05]" />
+          <div className="h-3 w-24 rounded bg-accent" />
+          <div className="h-3 w-28 rounded bg-accent" />
+          <div className="h-3 w-20 rounded bg-accent" />
         </div>
       </div>
     </div>
@@ -89,7 +89,7 @@ const NotificationPage = () => {
         </div>
 
         {/* FILTER TOGGLE */}
-        <div className="flex gap-1 rounded-xl border border-border bg-white/[0.03] p-1">
+        <div className="flex gap-1 rounded-xl border border-border bg-card p-1">
           {FILTER_OPTIONS.map((opt) => (
             <button
               key={opt.value}
@@ -123,7 +123,7 @@ const NotificationPage = () => {
             <NotificationSkeleton />
           </>
         ) : filtered.length === 0 ? (
-          <div className="rounded-lg border border-border bg-white/[0.03] py-20 flex flex-col items-center justify-center">
+          <div className="rounded-lg border border-border bg-card py-20 flex flex-col items-center justify-center">
             <BellDot className="h-12 w-12 text-zinc-600 mb-4" />
             <h3 className="text-lg font-semibold text-foreground">No notifications</h3>
             <p className="text-sm text-muted-foreground mt-2">
@@ -184,26 +184,26 @@ const NotificationPage = () => {
                   {/* Structured info pills */}
                   <div className="flex flex-wrap gap-2 mt-3">
                     {notif.member?.phone && (
-                      <div className="flex items-center gap-1.5 rounded-lg border border-border bg-white/[0.03] px-2.5 py-1.5">
+                      <div className="flex items-center gap-1.5 rounded-lg border border-border bg-card px-2.5 py-1.5">
                         <Phone className="h-3.5 w-3.5 text-green-400 flex-shrink-0" />
                         <span className="text-xs text-foreground font-medium">{notif.member.phone}</span>
                       </div>
                     )}
                     {notif.member?.plan?.name && (
-                      <div className="flex items-center gap-1.5 rounded-lg border border-border bg-white/[0.03] px-2.5 py-1.5">
+                      <div className="flex items-center gap-1.5 rounded-lg border border-border bg-card px-2.5 py-1.5">
                         <CreditCard className="h-3.5 w-3.5 text-violet-400 flex-shrink-0" />
                         <span className="text-xs text-foreground font-medium">{notif.member.plan.name}</span>
                       </div>
                     )}
                     {notif.member?.membershipExpiry && (
-                      <div className="flex items-center gap-1.5 rounded-lg border border-border bg-white/[0.03] px-2.5 py-1.5">
+                      <div className="flex items-center gap-1.5 rounded-lg border border-border bg-card px-2.5 py-1.5">
                         <CalendarClock className="h-3.5 w-3.5 text-red-400 flex-shrink-0" />
                         <span className="text-xs text-foreground font-medium">
                           Expires {format(new Date(notif.member.membershipExpiry), 'd MMM yyyy')}
                         </span>
                       </div>
                     )}
-                    <div className="flex items-center gap-1.5 rounded-lg border border-border bg-white/[0.03] px-2.5 py-1.5">
+                    <div className="flex items-center gap-1.5 rounded-lg border border-border bg-card px-2.5 py-1.5">
                       <User className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0" />
                       <span className="text-xs text-zinc-400">
                         {formatDistanceToNow(new Date(notif.createdAt), { addSuffix: true })}

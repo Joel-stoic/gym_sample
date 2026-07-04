@@ -60,7 +60,7 @@ interface WeightSummary {
 // ─── Panel wrapper ────────────────────────────────────────
 function Panel({ children, className }: { children: React.ReactNode; className?: string }) {
     return (
-        <div className={cn('rounded-md border border-border bg-white/[0.03] p-5', className)}>
+        <div className={cn('rounded-md border border-border bg-card p-5', className)}>
             {children}
         </div>
     )
@@ -114,7 +114,7 @@ function DietPlanCard({
                         !expanded
                     )
                 }
-                className="w-full px-6 py-5 flex items-start justify-between text-left hover:bg-white/[0.02] transition-all"
+                className="w-full px-6 py-5 flex items-start justify-between text-left hover:bg-accent transition-all"
             >
 
                 <div className="flex-1 min-w-0">
@@ -148,7 +148,7 @@ function DietPlanCard({
 
                     <div className="flex flex-wrap items-center gap-3">
 
-                        <div className="flex items-center gap-1.5 text-sm text-muted-foreground bg-white/[0.05] border border-white/[0.05] rounded-xl px-3 py-1.5">
+                        <div className="flex items-center gap-1.5 text-sm text-muted-foreground bg-accent border border-border rounded-xl px-3 py-1.5">
 
                             <Calendar className="h-4 w-4" />
 
@@ -193,7 +193,7 @@ function DietPlanCard({
 
                 <div className="ml-4 flex-shrink-0">
 
-                    <div className="h-10 w-10 rounded-xl bg-white/[0.03] border border-white/[0.05] flex items-center justify-center">
+                    <div className="h-10 w-10 rounded-xl bg-card border border-border flex items-center justify-center">
 
                         {expanded ? (
                             <ChevronUp className="h-5 w-5 text-zinc-400" />
@@ -211,13 +211,13 @@ function DietPlanCard({
 
             {expanded && (
 
-                <div className="px-6 pb-6 border-t border-white/[0.05]">
+                <div className="px-6 pb-6 border-t border-border">
 
                     {/* DESCRIPTION */}
 
                     {plan.description && (
 
-                        <div className="mt-5 rounded-md border border-white/[0.05] bg-background/20 p-5">
+                        <div className="mt-5 rounded-md border border-border bg-background/20 p-5">
 
                             <p className="text-[15px] leading-7 text-zinc-300">
                                 {plan.description}
@@ -244,7 +244,7 @@ function DietPlanCard({
 
                                     <div
                                         key={meal.id}
-                                        className="rounded-md border border-border bg-background/20 p-5 hover:border-white/[0.1] transition-all"
+                                        className="rounded-md border border-border bg-background/20 p-5 hover:border-border transition-all"
                                     >
 
                                         {/* MEAL HEADER */}
@@ -599,7 +599,7 @@ export default function MemberDietWeightPage() {
                 <div className="flex items-center gap-3">
                     <button
                         onClick={() => router.back()}
-                        className="h-9 w-9 rounded-xl border border-border bg-white/[0.03] flex items-center justify-center text-zinc-400 hover:text-foreground transition-colors"
+                        className="h-9 w-9 rounded-xl border border-border bg-card flex items-center justify-center text-zinc-400 hover:text-foreground transition-colors"
                     >
                         <ArrowLeft className="h-4 w-4" />
                     </button>

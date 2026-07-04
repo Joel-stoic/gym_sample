@@ -78,7 +78,7 @@ function InfoRow({
   action?: React.ReactNode
 }) {
   return (
-    <div className="flex items-center justify-between border-b border-white/[0.05] py-4 last:border-0">
+    <div className="flex items-center justify-between border-b border-border py-4 last:border-0">
       <span className="text-[13px] text-muted-foreground">{label}</span>
       <div className="flex items-center gap-3">
         <span className={`text-[14px] font-medium text-foreground ${mono ? 'font-mono' : ''}`}>
@@ -92,14 +92,14 @@ function InfoRow({
 
 // ─── Styled input ─────────────────────────────────────
 const inputClass =
-  'h-11 rounded-xl border border-border bg-white/[0.04] px-4 text-[14px] text-foreground placeholder:text-muted-foreground focus:border-violet-500/50 focus:outline-none focus:ring-0 w-full transition-colors'
+  'h-11 rounded-xl border border-border bg-card px-4 text-[14px] text-foreground placeholder:text-muted-foreground focus:border-violet-500/50 focus:outline-none focus:ring-0 w-full transition-colors'
 
 // ─── Edit button ──────────────────────────────────────
 function EditButton({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="flex items-center gap-2 rounded-xl border border-border bg-white/[0.04] px-4 h-9 text-[13px] font-medium text-muted-foreground hover:text-foreground hover:bg-white/[0.08] transition-all"
+      className="flex items-center gap-2 rounded-xl border border-border bg-card px-4 h-9 text-[13px] font-medium text-muted-foreground hover:text-foreground hover:bg-accent transition-all"
     >
       <Pencil size={14} />
       Edit
@@ -112,7 +112,7 @@ function CancelButton({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="flex items-center gap-2 rounded-xl border border-border bg-white/[0.04] px-4 h-9 text-[13px] font-medium text-muted-foreground hover:text-foreground hover:bg-white/[0.08] transition-all"
+      className="flex items-center gap-2 rounded-xl border border-border bg-card px-4 h-9 text-[13px] font-medium text-muted-foreground hover:text-foreground hover:bg-accent transition-all"
     >
       <X size={14} />
       Cancel
@@ -272,7 +272,7 @@ function DefaultPasswordsModal({
             <button
               onClick={handleSave}
               disabled={saving}
-              className="flex-1 h-11 flex items-center justify-center gap-2 rounded-xl text-[14px] font-medium transition-all duration-150 bg-card hover:bg-accent dark:bg-white/5 dark:hover:bg-white/10  border border-border text-foreground disabled:opacity-50"
+              className="flex-1 h-11 flex items-center justify-center gap-2 rounded-xl text-[14px] font-medium transition-all duration-150 bg-card hover:bg-accent bg-card hover:bg-accent  border border-border text-foreground disabled:opacity-50"
             >
               {saving && <Loader2 size={16} className="animate-spin" />}
               {saving ? 'Saving...' : 'Save Passwords'}
@@ -452,14 +452,14 @@ export default function SettingsPage() {
                         <button
                           type="button"
                           onClick={handleCancelGym}
-                          className="h-11 rounded-xl border border-border bg-white/[0.04] px-6 text-[14px] font-medium text-muted-foreground transition-colors hover:bg-white/[0.08] hover:text-foreground"
+                          className="h-11 rounded-xl border border-border bg-card px-6 text-[14px] font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
                           disabled={gymLoading}
-                          className="flex h-11 items-center gap-2 px-6 rounded-xl text-[14px] font-medium transition-all duration-150 bg-card hover:bg-accent dark:bg-white/5 dark:hover:bg-white/10  border border-border text-foreground disabled:opacity-50"
+                          className="flex h-11 items-center gap-2 px-6 rounded-xl text-[14px] font-medium transition-all duration-150 bg-card hover:bg-accent bg-card hover:bg-accent  border border-border text-foreground disabled:opacity-50"
                         >
                           {gymLoading && <Loader2 size={16} className="animate-spin" />}
                           {gymLoading ? 'Saving...' : 'Save Changes'}
@@ -498,7 +498,7 @@ export default function SettingsPage() {
                   </div>
                   <button
                     onClick={() => setShowDefaultPwModal(true)}
-                    className="flex h-10 flex-shrink-0 items-center justify-center gap-2 rounded-xl px-5 text-[14px] font-medium transition-all duration-150 bg-card hover:bg-accent dark:bg-white/5 dark:hover:bg-white/10  border border-border text-foreground hover:-translate-y-0.5"
+                    className="flex h-10 flex-shrink-0 items-center justify-center gap-2 rounded-xl px-5 text-[14px] font-medium transition-all duration-150 bg-card hover:bg-accent bg-card hover:bg-accent  border border-border text-foreground hover:-translate-y-0.5"
                   >
                     <ShieldCheck size={16} />
                     Set Passwords
@@ -511,10 +511,10 @@ export default function SettingsPage() {
             {gymInfo === null ? (
               <div className="rounded-md border border-border bg-card p-6">
                 <div className="flex items-center gap-4">
-                  <div className="h-12 w-12 rounded-xl bg-white/[0.06] animate-pulse" />
+                  <div className="h-12 w-12 rounded-xl bg-accent animate-pulse" />
                   <div className="space-y-3">
-                    <div className="h-4 w-28 rounded-lg bg-white/[0.06] animate-pulse" />
-                    <div className="h-3.5 w-40 rounded-lg bg-white/[0.06] animate-pulse" />
+                    <div className="h-4 w-28 rounded-lg bg-accent animate-pulse" />
+                    <div className="h-3.5 w-40 rounded-lg bg-accent animate-pulse" />
                   </div>
                 </div>
               </div>
@@ -675,14 +675,14 @@ export default function SettingsPage() {
                         <button
                           type="button"
                           onClick={handleCancelPassword}
-                          className="h-11 rounded-xl border border-border bg-white/[0.04] px-6 text-[14px] font-medium text-muted-foreground transition-colors hover:bg-white/[0.08] hover:text-foreground"
+                          className="h-11 rounded-xl border border-border bg-card px-6 text-[14px] font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
                           disabled={passLoading}
-                          className="flex h-11 items-center gap-2 px-6 rounded-xl text-[14px] font-medium transition-all duration-150 bg-card hover:bg-accent dark:bg-white/5 dark:hover:bg-white/10  border border-border text-foreground disabled:opacity-50"
+                          className="flex h-11 items-center gap-2 px-6 rounded-xl text-[14px] font-medium transition-all duration-150 bg-card hover:bg-accent bg-card hover:bg-accent  border border-border text-foreground disabled:opacity-50"
                         >
                           {passLoading && <Loader2 size={16} className="animate-spin" />}
                           {passLoading ? 'Changing...' : 'Change Password'}
@@ -693,7 +693,7 @@ export default function SettingsPage() {
                 ) : (
                   /* ── Production-grade read-only state ── */
                   <div className="flex flex-col gap-4">
-                    <div className="flex items-center gap-4 rounded-xl border border-border bg-white/[0.02] px-5 py-4">
+                    <div className="flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-4">
                       <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400">
                         <ShieldCheck size={18} />
                       </div>
@@ -712,7 +712,7 @@ export default function SettingsPage() {
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-2.5 rounded-xl border border-white/[0.05] bg-white/[0.015] px-4 py-3">
+                    <div className="flex items-start gap-2.5 rounded-xl border border-border bg-white/[0.015] px-4 py-3">
                       <ShieldAlert size={14} className="mt-0.5 flex-shrink-0 text-muted-foreground" />
                       <p className="text-[12px] leading-relaxed text-muted-foreground">
                         For account security, use a unique password you don't reuse elsewhere. Changing it will not sign out other devices.

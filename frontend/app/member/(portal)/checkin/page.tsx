@@ -163,7 +163,7 @@ export default function CheckInPage() {
       <div className="flex items-center gap-3 border-b border-border p-5">
         <button
           onClick={() => { reset(); router.back() }}
-          className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.06] text-foreground transition-all hover:bg-white/[0.10] active:scale-95"
+          className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent text-foreground transition-all hover:bg-accent active:scale-95"
         >
           <ArrowLeft size={16} />
         </button>
@@ -261,7 +261,7 @@ export default function CheckInPage() {
             )}
             <button
               onClick={() => router.push('/member')}
-              className="w-full rounded-md border border-white/[0.10] py-3 text-[13px] font-medium text-foreground transition-all hover:bg-muted active:scale-95"
+              className="w-full rounded-md border border-border py-3 text-[13px] font-medium text-foreground transition-all hover:bg-muted active:scale-95"
             >
               Back to Home
             </button>

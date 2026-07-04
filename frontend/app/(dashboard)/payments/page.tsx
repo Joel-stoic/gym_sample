@@ -417,7 +417,7 @@ function EditPaymentModal({
             </div>
           </div>
 
-          <div className="rounded-xl border border-black/5 dark:border-white/5 bg-card p-3">
+          <div className="rounded-xl border border-black/5 border-border bg-card p-3">
             <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Bill Summary</p>
             <div className="space-y-1.5 text-[13px]">
               <div className="flex justify-between text-muted-foreground">
@@ -436,7 +436,7 @@ function EditPaymentModal({
                   <span>+ ₹{feeAmt}</span>
                 </div>
               )}
-              <div className="mt-2 flex justify-between border-t border-black/5 dark:border-white/5 pt-2 font-semibold text-foreground">
+              <div className="mt-2 flex justify-between border-t border-black/5 border-border pt-2 font-semibold text-foreground">
                 <span>Final Amount Due:</span>
                 <span>₹{netDue}</span>
               </div>
@@ -867,7 +867,7 @@ export default function PaymentsPage() {
             style={{ opacity: isFetching && payments.length > 0 ? 0.6 : 1, transition: 'opacity 0.15s' }}
           >
             {/* desktop header */}
-            <div className="hidden md:grid grid-cols-8 border-b border-border bg-white/[0.02] px-6 py-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <div className="hidden md:grid grid-cols-8 border-b border-border bg-card px-6 py-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               <div>Member</div>
               <div>Plan</div>
               <div>Method</div>
@@ -889,7 +889,7 @@ export default function PaymentsPage() {
                 return (
                   <div
                     key={payment.id}
-                    className="grid grid-cols-8 items-center border-b border-white/[0.04] px-6 py-4 transition-colors hover:bg-white/[0.02]"
+                    className="grid grid-cols-8 items-center border-b border-border px-6 py-4 transition-colors hover:bg-accent"
                   >
                     {/* member */}
                     <div>
@@ -904,7 +904,7 @@ export default function PaymentsPage() {
 
                     {/* method */}
                     <div>
-                      <div className="inline-flex items-center gap-2 rounded-md border border-border bg-white/[0.03] px-3 py-1.5">
+                      <div className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-3 py-1.5">
                         <Icon className="h-3.5 w-3.5 text-violet-400" />
                         <span className="text-xs text-[#d4d4dc]">
                           {METHOD_LABELS[payment.paymentMethod] || payment.paymentMethod}
@@ -1015,7 +1015,7 @@ export default function PaymentsPage() {
                     {/* plan + method */}
                     <div className="flex items-center justify-between gap-3">
                       <p className="text-sm text-[#d4d4dc]">{payment.plan?.name}</p>
-                      <div className="inline-flex flex-shrink-0 items-center gap-1.5 rounded-md border border-border bg-white/[0.03] px-2.5 py-1">
+                      <div className="inline-flex flex-shrink-0 items-center gap-1.5 rounded-md border border-border bg-card px-2.5 py-1">
                         <Icon className="h-3 w-3 text-violet-400" />
                         <span className="text-[11px] text-[#d4d4dc]">
                           {METHOD_LABELS[payment.paymentMethod] || payment.paymentMethod}

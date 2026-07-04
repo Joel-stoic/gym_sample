@@ -45,14 +45,14 @@ function MemberDetailSkeleton() {
       <div className="space-y-5 pb-10">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl border border-border bg-white/[0.03]" />
+            <div className="h-9 w-9 rounded-xl border border-border bg-card" />
             <div className="space-y-2"><Bone className="h-5 w-36" /><Bone className="h-3 w-24" /></div>
           </div>
           <Bone className="h-9 w-28 rounded-xl" />
         </div>
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
           <div className="space-y-4">
-            <div className="rounded-md border border-border bg-white/[0.03] p-5">
+            <div className="rounded-md border border-border bg-card p-5">
               <div className="flex flex-col items-center pb-5 border-b border-border">
                 <Bone className="h-20 w-20 rounded-md mb-3" /><Bone className="h-4 w-28 mb-2" />
                 <Bone className="h-5 w-16 rounded-md mb-3" /><Bone className="h-7 w-24 rounded-lg" />
@@ -67,7 +67,7 @@ function MemberDetailSkeleton() {
           </div>
           <div className="xl:col-span-2 space-y-4">
             {[1, 2].map(i => (
-              <div key={i} className="rounded-md border border-border bg-white/[0.03] p-5">
+              <div key={i} className="rounded-md border border-border bg-card p-5">
                 <Bone className="h-3 w-28 mb-4" />
                 <div className="space-y-2">
                   {[1, 2, 3].map(j => (
@@ -127,7 +127,7 @@ function MembershipProgressBar({ start, expiry }: { start: string; expiry: strin
 
 function Panel({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn('rounded-md border border-border bg-white/[0.03]  p-5', className)}>
+    <div className={cn('rounded-md border border-border bg-card  p-5', className)}>
       {children}
     </div>
   )
@@ -195,7 +195,7 @@ function PaymentCard({ payment }: { payment: Payment }) {
           </div>
           <button
             onClick={() => setExpanded(v => !v)}
-            className="h-7 w-7 rounded-lg border border-border bg-white/[0.03] flex items-center justify-center text-muted-foreground hover:text-violet-400 hover:border-violet-500/30 transition-colors ml-1"
+            className="h-7 w-7 rounded-lg border border-border bg-card flex items-center justify-center text-muted-foreground hover:text-violet-400 hover:border-violet-500/30 transition-colors ml-1"
           >
             {expanded ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
           </button>
@@ -205,7 +205,7 @@ function PaymentCard({ payment }: { payment: Payment }) {
       {expanded && (
         <div className="border-t border-border px-4 pt-3 pb-4 space-y-2">
           {planPrice !== null && (
-            <div className="rounded-xl bg-white/[0.02] border border-white/[0.04] px-3 py-2">
+            <div className="rounded-xl bg-card border border-border px-3 py-2">
               <p className="text-[11px] uppercase tracking-widest text-zinc-600 mb-2 font-semibold">Amount Breakdown</p>
               <PaymentDetailRow label="Plan Price" value={toRupees(planPrice)} />
               {discount > 0 && (
@@ -235,14 +235,14 @@ function PaymentCard({ payment }: { payment: Payment }) {
           )}
 
           {(membershipStart || membershipExpiry) && (
-            <div className="rounded-xl bg-white/[0.02] border border-white/[0.04] px-3 py-2">
+            <div className="rounded-xl bg-card border border-border px-3 py-2">
               <p className="text-[11px] uppercase tracking-widest text-zinc-600 mb-2 font-semibold">Plan Period</p>
               {membershipStart && <PaymentDetailRow label="Start Date" value={format(parseISO(membershipStart), 'd MMM yyyy')} />}
               {membershipExpiry && <PaymentDetailRow label="Expiry Date" value={format(parseISO(membershipExpiry), 'd MMM yyyy')} />}
             </div>
           )}
 
-          <div className="rounded-xl bg-white/[0.02] border border-white/[0.04] px-3 py-2">
+          <div className="rounded-xl bg-card border border-border px-3 py-2">
             <p className="text-[11px] uppercase tracking-widest text-zinc-600 mb-2 font-semibold">Transaction Details</p>
             <PaymentDetailRow label={<span className="flex items-center gap-1"><Receipt className="h-3 w-3" />Method</span>} value={payment.paymentMethod} />
             <PaymentDetailRow label={<span className="flex items-center gap-1"><Clock className="h-3 w-3" />Date & Time</span>} value={format(parseISO(payment.createdAt), 'd MMM yyyy, h:mm a')} />
@@ -279,9 +279,9 @@ function Input({ value, onChange, placeholder, type = 'text', disabled, min }: {
       type={type} value={value} min={min} disabled={disabled}
       onChange={(e) => onChange(e.target.value)} placeholder={placeholder}
       className={cn(
-        'w-full rounded-xl border border-border bg-white/[0.04] px-3.5 py-2.5',
+        'w-full rounded-xl border border-border bg-card px-3.5 py-2.5',
         'text-sm text-foreground placeholder:text-zinc-600',
-        'focus:outline-none focus:border-violet-500/60 focus:bg-white/[0.06] transition-colors duration-150',
+        'focus:outline-none focus:border-violet-500/60 focus:bg-accent transition-colors duration-150',
         disabled && 'opacity-50 cursor-not-allowed',
       )}
     />
@@ -326,7 +326,7 @@ function Modal({ open, onClose, title, children, wide }: {
       <div className={cn('relative z-10 w-full rounded-md border border-border bg-card shadow-2xl p-6 max-h-[90vh] overflow-y-auto', wide ? 'max-w-lg' : 'max-w-md')}>
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-base font-semibold text-foreground">{title}</h2>
-          <button onClick={onClose} className="h-8 w-8 rounded-lg border border-border bg-white/[0.03] flex items-center justify-center text-zinc-400 hover:text-foreground transition-colors">
+          <button onClick={onClose} className="h-8 w-8 rounded-lg border border-border bg-card flex items-center justify-center text-zinc-400 hover:text-foreground transition-colors">
             <X className="h-4 w-4" />
           </button>
         </div>
@@ -431,7 +431,7 @@ function AddPaymentModal({ open, onClose, memberId, memberName, onSaved }: {
 
         {/* Live preview bar */}
         {selectedPlan && (
-          <div className="rounded-xl bg-white/[0.02] border border-white/[0.04] px-3 py-2.5 grid grid-cols-3 gap-2 text-center">
+          <div className="rounded-xl bg-card border border-border px-3 py-2.5 grid grid-cols-3 gap-2 text-center">
             <div>
               <p className="text-[10px] text-zinc-600 uppercase tracking-widest mb-0.5">Plan Price</p>
               <p className="text-sm font-semibold text-foreground">₹{(planPrice / 100).toFixed(0)}</p>
@@ -485,7 +485,7 @@ function AddPaymentModal({ open, onClose, memberId, memberName, onSaved }: {
                   'rounded-xl border py-2 text-xs font-medium transition-all duration-150',
                   paymentMethod === m
                     ? 'border-violet-500 bg-violet-500/20 text-violet-300'
-                    : 'border-border bg-white/[0.02] text-muted-foreground hover:text-zinc-300 hover:border-white/20',
+                    : 'border-border bg-card text-muted-foreground hover:text-zinc-300 hover:border-white/20',
                 )}
               >
                 {m}
@@ -511,7 +511,7 @@ function AddPaymentModal({ open, onClose, memberId, memberName, onSaved }: {
             onChange={(e) => setNotes(e.target.value)}
             placeholder="Optional"
             rows={2}
-            className="w-full rounded-xl border border-border bg-white/[0.04] px-3.5 py-2.5 text-sm text-foreground placeholder:text-zinc-600 resize-none focus:outline-none focus:border-violet-500/60 focus:bg-white/[0.06] transition-colors duration-150"
+            className="w-full rounded-xl border border-border bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-zinc-600 resize-none focus:outline-none focus:border-violet-500/60 focus:bg-accent transition-colors duration-150"
           />
         </div>
 
@@ -519,7 +519,7 @@ function AddPaymentModal({ open, onClose, memberId, memberName, onSaved }: {
         <div className="flex gap-2 pt-1">
           <button
             onClick={onClose}
-            className="flex-1 rounded-xl border border-border bg-white/[0.03] py-2.5 text-sm text-zinc-400 hover:text-foreground transition-colors"
+            className="flex-1 rounded-xl border border-border bg-card py-2.5 text-sm text-zinc-400 hover:text-foreground transition-colors"
           >
             Cancel
           </button>
@@ -595,11 +595,11 @@ function EditProfileModal({ open, onClose, member, onSaved }: {
         <div>
           <FieldLabel>Notes</FieldLabel>
           <textarea value={form.notes} onChange={e => field('notes')(e.target.value)} placeholder="Internal notes (optional)" rows={2}
-            className="w-full rounded-xl border border-border bg-white/[0.04] px-3.5 py-2.5 text-sm text-foreground placeholder:text-zinc-600 resize-none focus:outline-none focus:border-violet-500/60 focus:bg-white/[0.06] transition-colors duration-150"
+            className="w-full rounded-xl border border-border bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-zinc-600 resize-none focus:outline-none focus:border-violet-500/60 focus:bg-accent transition-colors duration-150"
           />
         </div>
         <div className="flex gap-2 pt-1">
-          <button onClick={onClose} className="flex-1 rounded-xl border border-border bg-white/[0.03] py-2.5 text-sm text-zinc-400 hover:text-foreground transition-colors">Cancel</button>
+          <button onClick={onClose} className="flex-1 rounded-xl border border-border bg-card py-2.5 text-sm text-zinc-400 hover:text-foreground transition-colors">Cancel</button>
           <button onClick={handleSave} disabled={saving} className="flex-1 py-2.5 text-sm text-foreground font-medium flex items-center justify-center gap-2 transition-colors bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
             {saving ? <span className="h-4 w-4 rounded-md border-2 border-white/30 border-t-white animate-spin" /> : <Save className="h-3.5 w-3.5" />}
             Save Changes
@@ -675,7 +675,7 @@ export default function MemberDetailPage() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => router.back()}
-              className="h-9 w-9 rounded-xl border border-border bg-white/[0.03] flex items-center justify-center text-zinc-400 hover:text-foreground transition-colors flex-shrink-0"
+              className="h-9 w-9 rounded-xl border border-border bg-card flex items-center justify-center text-zinc-400 hover:text-foreground transition-colors flex-shrink-0"
             >
               <ArrowLeft className="h-4 w-4" />
             </button>
