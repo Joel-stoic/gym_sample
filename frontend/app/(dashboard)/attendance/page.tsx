@@ -150,15 +150,15 @@ function MemberSearch({ onSelect }: { onSelect: (member: Member) => void }) {
 
 function StatsCard({ title, value, icon: Icon, iconClassName }: any) {
   return (
-    <div className="group relative overflow-hidden rounded-3xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 p-6 backdrop-blur-xl transition-all hover:shadow-lg hover:border-violet-500/30">
+    <div className="group relative overflow-hidden rounded-3xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 p-5 backdrop-blur-xl transition-all hover:shadow-lg hover:border-violet-500/30">
       <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
       <div className="relative flex items-center justify-between">
         <div>
-          <p className="text-[13px] font-medium uppercase tracking-wider text-muted-foreground">{title}</p>
-          <h3 className="mt-2 text-4xl font-bold tracking-tight text-foreground">{value}</h3>
+          <p className="text-[12px] font-medium uppercase tracking-wider text-muted-foreground">{title}</p>
+          <h3 className="mt-1.5 text-3xl font-bold tracking-tight text-foreground">{value}</h3>
         </div>
-        <div className={`rounded-2xl p-3.5 shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${iconClassName}`}>
-          <Icon className="h-6 w-6" />
+        <div className={`rounded-2xl p-3 shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${iconClassName}`}>
+          <Icon className="h-5 w-5" />
         </div>
       </div>
     </div>
@@ -301,21 +301,19 @@ export default function AttendancePage() {
         </div>
       </div>
 
-      {/* Stats — Today tab only */}
-      {activeTab === 'today' && (
-        loading ? (
-          <div className="grid gap-4 md:grid-cols-3">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="h-28 animate-pulse rounded-3xl border border-border bg-card" />
-            ))}
-          </div>
-        ) : (
-          <div className="grid gap-4 md:grid-cols-3">
-            <StatsCard title="Present Today" value={todayCount}             icon={CalendarCheck} iconClassName="bg-green-500/15 text-green-400"  />
-            <StatsCard title="QR Check-ins"  value={todayAttendance.length} icon={QrCode}        iconClassName="bg-violet-500/15 text-violet-400" />
-            <StatsCard title="Activity"      value="Live"                   icon={Activity}      iconClassName="bg-blue-500/15 text-blue-400"     />
-          </div>
-        )
+      {/* Stats — Always visible */}
+      {loading ? (
+        <div className="grid gap-4 md:grid-cols-3">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="h-24 animate-pulse rounded-3xl border border-border bg-card" />
+          ))}
+        </div>
+      ) : (
+        <div className="grid gap-4 md:grid-cols-3">
+          <StatsCard title="Present Today" value={todayCount}             icon={CalendarCheck} iconClassName="bg-green-500/15 text-green-400"  />
+          <StatsCard title="QR Check-ins"  value={todayAttendance.length} icon={QrCode}        iconClassName="bg-violet-500/15 text-violet-400" />
+          <StatsCard title="Activity"      value="Live"                   icon={Activity}      iconClassName="bg-blue-500/15 text-blue-400"     />
+        </div>
       )}
 
       {/* Tab switcher */}
