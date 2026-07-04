@@ -61,9 +61,9 @@ export default function Header() {
 
   return (
     <header
-  className={`flex-shrink-0 flex items-center justify-between px-4 py-5 md:px-6 border-b border-border ${inter.className}`}
-  style={{ backgroundColor: 'var(--background)' }}
->
+      className={`flex-shrink-0 flex items-center justify-between px-4 py-5 md:px-6 border-b border-border ${inter.className}`}
+      style={{ backgroundColor: 'var(--background)' }}
+    >
       {/* Left: hamburger (mobile) + page title */}
       <div className="flex items-center gap-4">
         {/* Hamburger — mobile only */}
