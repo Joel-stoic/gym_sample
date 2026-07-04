@@ -173,13 +173,10 @@ function TabButton({ active, onClick, children }: { active: boolean; onClick: ()
       onClick={onClick}
       className={`relative flex-1 sm:flex-none min-w-[120px] rounded-[20px] px-6 py-2.5 text-[14px] font-semibold transition-all duration-300 ${
         active 
-          ? 'text-foreground' 
-          : 'text-muted-foreground hover:text-foreground hover:bg-black/5 hover:bg-accent'
+          ? 'bg-background shadow-sm text-foreground border border-border' 
+          : 'text-muted-foreground hover:text-foreground hover:bg-accent border border-transparent'
       }`}
     >
-      {active && (
-        <span className="absolute inset-0 rounded-[20px] bg-white bg-card shadow-sm border border-black/5 border-border" style={{ zIndex: -1 }} />
-      )}
       <span className="relative z-10">{children}</span>
     </button>
   )
