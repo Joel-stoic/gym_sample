@@ -77,7 +77,7 @@ export default function HomePage() {
             The operating system for your gym
           </div>
           
-          <h1 className="font-bold leading-[1.05] text-5xl sm:text-6xl md:text-7xl tracking-tighter text-foreground mb-6">
+          <h1 className="font-bold leading-[1.05] text-4xl sm:text-6xl md:text-7xl tracking-tighter text-foreground mb-6">
             Run your gym. <br />
             <span className="text-muted-foreground">Like clockwork.</span>
           </h1>
@@ -114,33 +114,33 @@ export default function HomePage() {
                 <div className="w-2.5 h-2.5 rounded-full bg-border" />
                 <div className="w-2.5 h-2.5 rounded-full bg-border" />
               </div>
-              <div className="text-[10px] font-medium text-muted-foreground select-none">app.jovifitx.com</div>
+              <div className="text-[10px] font-medium text-muted-foreground select-none hidden sm:block">app.jovifitx.com</div>
               <div className="w-10" /> {/* Spacer */}
             </div>
 
             {/* Mock Dashboard Area */}
-            <div className="p-5 space-y-5">
+            <div className="p-4 sm:p-5 space-y-4 sm:space-y-5">
               
               {/* Header inside Mock */}
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Active Gym</div>
-                  <div className="text-xs font-semibold text-foreground">Jovifitx Fitness Club</div>
+                  <div className="text-[9px] sm:text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Active Gym</div>
+                  <div className="text-[11px] sm:text-xs font-semibold text-foreground">Jovifitx Fitness Club</div>
                 </div>
-                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
+                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] sm:text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Live
                 </div>
               </div>
 
               {/* Stats Grid inside Mock */}
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 {[
                   { label: 'Members', val: '312', change: '+12' },
-                  { label: 'Today check-in', val: '84', change: 'Live' },
-                  { label: 'Revenue (MTD)', val: '₹2.1L', change: '84%' },
+                  { label: 'Check-ins', val: '84', change: 'Live' },
+                  { label: 'Revenue', val: '₹2.1L', change: '84%' },
                 ].map((stat, i) => (
-                  <div key={i} className="p-3 rounded-lg border border-border bg-card">
-                    <div className="text-[9px] text-muted-foreground font-medium uppercase">{stat.label}</div>
+                  <div key={i} className="p-2 sm:p-3 rounded-lg border border-border bg-card">
+                    <div className="text-[8px] sm:text-[9px] text-muted-foreground font-medium uppercase truncate">{stat.label}</div>
                     <div className="text-sm font-semibold tracking-tight text-foreground mt-1">{stat.val}</div>
                     <div className="text-[8px] text-muted-foreground mt-0.5">{stat.change}</div>
                   </div>
@@ -161,14 +161,14 @@ export default function HomePage() {
                         <div className="w-6 h-6 rounded bg-secondary flex items-center justify-center text-[9px] font-semibold text-muted-foreground border border-border">
                           {user.initials}
                         </div>
-                        <div>
-                          <div className="text-[10px] font-semibold text-foreground">{user.name}</div>
-                          <div className="text-[8px] text-muted-foreground">{user.plan}</div>
+                        <div className="min-w-0">
+                          <div className="text-[9px] sm:text-[10px] font-semibold text-foreground truncate">{user.name}</div>
+                          <div className="text-[7px] sm:text-[8px] text-muted-foreground truncate">{user.plan}</div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-[8px] text-muted-foreground">{user.time}</span>
-                        <span className={`text-[8px] px-1.5 py-0.5 rounded border ${user.statusBg} font-medium`}>
+                      <div className="flex flex-col sm:flex-row items-end sm:items-center gap-1 sm:gap-2">
+                        <span className="text-[7px] sm:text-[8px] text-muted-foreground">{user.time}</span>
+                        <span className={`text-[7px] sm:text-[8px] px-1 sm:px-1.5 py-0.5 rounded border ${user.statusBg} font-medium`}>
                           {user.status}
                         </span>
                       </div>
