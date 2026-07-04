@@ -165,7 +165,7 @@ export default function SignupPage() {
   // ── Success screen ────────────────────────────────────────────────────────
   if (success) {
     return (
-      <div className={`min-h-screen flex flex-col lg:flex-row bg-[#000000] ${inter.className} relative`}>
+      <div className={`dark min-h-screen flex flex-col lg:flex-row bg-[#000000] ${inter.className} relative`}>
         <BackgroundLayer />
         
         <BrandPanel />
@@ -224,7 +224,7 @@ export default function SignupPage() {
 
   // ── Signup form ───────────────────────────────────────────────────────────
   return (
-    <div className={`min-h-screen flex flex-col lg:flex-row bg-[#000000] ${inter.className} relative`}>
+    <div className={`dark min-h-screen flex flex-col lg:flex-row bg-[#000000] ${inter.className} relative`}>
       <BackgroundLayer />
       
       <BrandPanel />

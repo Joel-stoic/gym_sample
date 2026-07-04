@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-body' })
 
 export default function HomePage() {
   return (
-    <div className={`${inter.variable} min-h-screen bg-gradient-to-b from-background via-background to-[#000000] text-foreground font-[family-name:var(--font-body)] relative overflow-x-hidden selection:bg-primary/10`}>
+    <div className={`dark ${inter.variable} min-h-screen bg-gradient-to-b from-background via-background to-[#000000] text-foreground font-[family-name:var(--font-body)] relative overflow-x-hidden selection:bg-primary/10`}>
       
       <div 
         className="absolute inset-0 z-0 pointer-events-none"

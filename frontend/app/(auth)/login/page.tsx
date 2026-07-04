@@ -441,7 +441,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className={`min-h-screen bg-background flex items-stretch ${inter.className}`}>
+    <div className={`dark min-h-screen bg-background flex items-stretch ${inter.className}`}>
 
       {/* ── Brand panel ─────────────────────────────────────────────────── */}
       <div className="relative hidden lg:flex lg:w-[45%] flex-col justify-between overflow-hidden bg-background px-16 py-12 border-r border-border">
