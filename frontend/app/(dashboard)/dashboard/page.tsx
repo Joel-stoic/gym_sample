@@ -80,8 +80,8 @@ function MetricCard({
       {redAccent && (
         <div className="pointer-events-none absolute -right-4 -top-4 h-20 w-20 rounded-md bg-red-500 opacity-20 blur-2xl" />
       )}
-      <div className={`mb-3 sm:mb-4 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-xl ${iconClass ?? 'bg-accent text-foreground'}`}>
-        <Icon size={16} />
+      <div className={`mb-3 sm:mb-4 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl ${iconClass ?? 'bg-accent text-foreground'}`}>
+        <Icon size={18} />
       </div>
       <p className="font-['Syne'] text-lg sm:text-2xl font-bold tracking-tight text-foreground truncate">{value}</p>
       {sub && <p className="mt-1 text-[11px] text-muted-foreground truncate">{sub}</p>}
@@ -248,7 +248,7 @@ export default function DashboardPage() {
           value={metrics?.members?.total ?? 0}
           sub={`+${metrics?.members?.newThisMonth ?? 0} new this month`}
           icon={Users}
-          iconClass="bg-violet-600/20 text-violet-400"
+          iconClass="bg-violet-100 text-violet-600 dark:bg-violet-600/20 dark:text-violet-400"
         />
         <MetricCard
           title="Active Members"
@@ -257,14 +257,14 @@ export default function DashboardPage() {
             ? Math.round(((metrics.members.active ?? 0) / metrics.members.total) * 100)
             : 0}% retention`}
           icon={UserCheck}
-          iconClass="bg-emerald-500/20 text-emerald-400"
+          iconClass="bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400"
         />
         <MetricCard
           title="Today's Attendance"
           value={metrics?.attendance?.today ?? 0}
           sub="check-ins today"
           icon={CalendarCheck}
-          iconClass="bg-blue-500/20 text-blue-400"
+          iconClass="bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400"
         />
         <MetricCard
           redAccent
@@ -272,7 +272,7 @@ export default function DashboardPage() {
           value={metrics?.members?.expired ?? 0}
           sub="inactive memberships"
           icon={UserX}
-          iconClass="bg-red-500/20 text-red-400"
+          iconClass="bg-red-100 text-red-600 dark:bg-red-500/20 dark:text-red-400"
         />
         <MetricCard
           redAccent
@@ -280,7 +280,7 @@ export default function DashboardPage() {
           value={metrics?.members?.expiringThisWeek ?? 0}
           sub="expiring this week"
           icon={TrendingUp}
-          iconClass="bg-red-500/20 text-red-400"
+          iconClass="bg-amber-100 text-amber-600 dark:bg-amber-500/20 dark:text-amber-400"
         />
       </div>
 
@@ -292,21 +292,21 @@ export default function DashboardPage() {
             value={toRupees(metrics.revenue.thisMonth ?? 0)}
             sub="this month"
             icon={IndianRupee}
-            iconClass="bg-emerald-500/20 text-emerald-400"
+            iconClass="bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400"
           />
           <MetricCard
             title="PT Revenue"
             value={toRupees(metrics.revenue.ptThisMonth ?? 0)}
             sub="personal training"
             icon={IndianRupee}
-            iconClass="bg-blue-500/20 text-blue-400"
+            iconClass="bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400"
           />
           <MetricCard
             title="Total Revenue"
             value={toRupees(metrics.revenue.totalThisMonth ?? 0)}
             sub="membership + PT"
             icon={IndianRupee}
-            iconClass="bg-violet-600/20 text-violet-400"
+            iconClass="bg-violet-100 text-violet-600 dark:bg-violet-600/20 dark:text-violet-400"
           />
           <MetricCard
             redAccent
@@ -314,7 +314,7 @@ export default function DashboardPage() {
             value={toRupees(metrics.revenue.pendingDues ?? 0)}
             sub="unpaid"
             icon={AlertCircle}
-            iconClass="bg-red-500/20 text-red-400"
+            iconClass="bg-red-100 text-red-600 dark:bg-red-500/20 dark:text-red-400"
           />
         </div>
       )}
