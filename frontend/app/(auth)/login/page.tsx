@@ -59,19 +59,19 @@ type NewPasswordForm = z.infer<typeof newPasswordSchema>
 
 // ─── Shared Styles ─────────────────────────────────────────────────────────────
 const inputCls =
-  'h-12 bg-background/50 backdrop-blur-sm border border-border/50 text-foreground placeholder:text-muted-foreground ' +
-  'focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary rounded-md transition-colors shadow-none text-[14px] ' +
+  'h-12 bg-black/5 dark:bg-white/5 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground placeholder:text-muted-foreground ' +
+  'focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary rounded-xl transition-all shadow-inner text-[14px] ' +
   '[&:-webkit-autofill]:[-webkit-text-fill-color:white] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0px_1000px_#121212_inset] ' +
   '[&:-webkit-autofill]:[transition:background-color_9999s_ease-in-out_0s]'
 
 const primaryBtnCls =
-  'h-12 rounded-md text-[14px] font-semibold tracking-wide text-primary-foreground bg-primary ' +
-  'hover:bg-primary/95 disabled:opacity-50 disabled:cursor-not-allowed transition-colors ' +
+  'h-12 rounded-xl text-[14px] font-semibold tracking-wide text-primary-foreground bg-primary ' +
+  'hover:bg-primary/90 hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed transition-all shadow-lg ' +
   'flex items-center justify-center gap-2'
 
 const ghostBtnCls =
-  'h-12 rounded-md text-[14px] font-medium text-muted-foreground bg-transparent border border-border/50 ' +
-  'hover:border-primary hover:text-foreground transition-colors'
+  'h-12 rounded-xl text-[14px] font-medium text-muted-foreground bg-transparent border border-black/10 dark:border-white/10 ' +
+  'hover:bg-black/5 dark:hover:bg-white/5 hover:text-foreground transition-all'
 
 // ─── Signature element: plate stack ───────────────────────────────────────────
 function PlateStack({ vertical = true, className = '' }: { vertical?: boolean; className?: string }) {
@@ -85,7 +85,7 @@ function PlateStack({ vertical = true, className = '' }: { vertical?: boolean; c
         <div
           key={i}
           style={vertical ? { width: s, height: 2 } : { height: s, width: 2 }}
-          className={`rounded-md ${i === 3 ? 'bg-primary' : 'bg-border/30'}`}
+          className={`rounded-full ${i === 3 ? 'bg-primary' : 'bg-black/20 dark:bg-white/20'}`}
         />
       ))}
     </div>
@@ -218,25 +218,25 @@ function ForgotPasswordModal({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className={`!bg-background/90 backdrop-blur-2xl !text-foreground border border-border/50 p-0 overflow-hidden gap-0 rounded-xl sm:max-w-[420px] ${inter.className}`}>
+      <DialogContent className={`!bg-background/80 dark:!bg-black/60 backdrop-blur-3xl !text-foreground border border-black/10 dark:border-white/10 p-0 overflow-hidden gap-0 rounded-2xl sm:max-w-[420px] shadow-2xl ${inter.className}`}>
         <div className="p-8">
           <DialogHeader className="mb-6">
             <div className="flex items-center justify-between mb-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-md bg-background/50 border border-border/50">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 shadow-inner">
                 {stepMeta.icon}
               </div>
               <div className="flex items-center gap-2" aria-hidden="true">
                 {[0, 1, 2].map(i => (
                   <div
                     key={i}
-                    className={`h-1 rounded-md transition-all duration-300 ${
-                      i <= stepIndex ? 'w-6 bg-primary' : 'w-2 bg-border/50'
+                    className={`h-1 rounded-full transition-all duration-300 ${
+                      i <= stepIndex ? 'w-8 bg-primary' : 'w-2 bg-black/10 dark:bg-white/10'
                     }`}
                   />
                 ))}
               </div>
             </div>
-            <DialogTitle className={`text-2xl font-bold tracking-tight text-foreground`}>
+            <DialogTitle className={`text-2xl font-extrabold tracking-tight text-foreground`}>
               {stepMeta.title}
             </DialogTitle>
           </DialogHeader>
@@ -249,7 +249,7 @@ function ForgotPasswordModal({
                 </p>
                 <FormField control={phoneForm.control} name="phone" render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider">Phone number</FormLabel>
+                    <FormLabel className="text-[12px] font-bold text-muted-foreground uppercase tracking-wider">Phone number</FormLabel>
                     <FormControl><Input placeholder="9876543210" className={inputCls} {...field} /></FormControl>
                     <FormMessage className="text-[12px] text-red-500" />
                   </FormItem>
@@ -269,17 +269,17 @@ function ForgotPasswordModal({
             <Form {...otpForm}>
               <form onSubmit={otpForm.handleSubmit(onOtpSubmit)} className="space-y-5">
                 <p className="text-[14px] leading-relaxed text-muted-foreground">
-                  OTP sent to <span className="text-foreground font-medium">{phone}</span> on WhatsApp.
+                  OTP sent to <span className="text-foreground font-semibold">{phone}</span> on WhatsApp.
                 </p>
                 <FormField control={otpForm.control} name="otp" render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider">6-digit code</FormLabel>
+                    <FormLabel className="text-[12px] font-bold text-muted-foreground uppercase tracking-wider">6-digit code</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="000000"
                         maxLength={6}
                         inputMode="numeric"
-                        className={`${inputCls} tracking-[0.75em] text-center text-xl font-medium tabular-nums h-14 text-primary`}
+                        className={`${inputCls} tracking-[0.75em] text-center text-xl font-bold tabular-nums h-14 text-primary bg-primary/5 border-primary/20 focus-visible:ring-primary/50`}
                         {...field}
                       />
                     </FormControl>
@@ -287,10 +287,10 @@ function ForgotPasswordModal({
                   </FormItem>
                 )} />
                 <div className="flex items-center justify-between">
-                  <button type="button" onClick={() => setStep('phone')} className="flex items-center gap-1.5 text-[13px] text-muted-foreground hover:text-foreground transition-colors">
+                  <button type="button" onClick={() => setStep('phone')} className="flex items-center gap-1.5 text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors">
                     <ArrowLeft size={14} /> Change number
                   </button>
-                  <button type="button" onClick={handleResend} disabled={resendWait > 0 || loading} className="text-[13px] font-medium text-primary hover:text-primary/80 disabled:text-muted-foreground transition-colors">
+                  <button type="button" onClick={handleResend} disabled={resendWait > 0 || loading} className="text-[13px] font-bold text-primary hover:text-primary/80 disabled:text-muted-foreground transition-colors">
                     {resendWait > 0 ? `Resend in ${resendWait}s` : 'Resend OTP'}
                   </button>
                 </div>
@@ -311,7 +311,7 @@ function ForgotPasswordModal({
                 <p className="text-[14px] leading-relaxed text-muted-foreground">OTP verified. Set your new password below.</p>
                 <FormField control={pwForm.control} name="newPassword" render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider">New password</FormLabel>
+                    <FormLabel className="text-[12px] font-bold text-muted-foreground uppercase tracking-wider">New password</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Input type={showPw ? 'text' : 'password'} className={`${inputCls} pr-11`} {...field} />
@@ -325,7 +325,7 @@ function ForgotPasswordModal({
                 )} />
                 <FormField control={pwForm.control} name="confirmPassword" render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider">Confirm password</FormLabel>
+                    <FormLabel className="text-[12px] font-bold text-muted-foreground uppercase tracking-wider">Confirm password</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Input type={showCfm ? 'text' : 'password'} className={`${inputCls} pr-11`} {...field} />
@@ -348,12 +348,12 @@ function ForgotPasswordModal({
           {step === 'done' && (
             <div className="text-center space-y-6 py-4">
               <div className="flex justify-center">
-                <div className="h-16 w-16 rounded-md bg-background/50 border border-primary/20 flex items-center justify-center shadow-sm">
+                <div className="h-16 w-16 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shadow-inner">
                   <Check size={28} className="text-primary" strokeWidth={2.5} />
                 </div>
               </div>
               <div>
-                <p className={`text-2xl font-bold tracking-tight text-foreground`}>Password reset</p>
+                <p className={`text-2xl font-extrabold tracking-tight text-foreground`}>Password reset</p>
                 <p className="mt-2 text-[14px] text-muted-foreground">You can log in with your new password now.</p>
               </div>
               <button onClick={onClose} className={`w-full ${primaryBtnCls}`}>Back to login</button>
@@ -435,10 +435,10 @@ export default function LoginPage() {
   }
 
   return (
-    <div className={`min-h-screen flex items-stretch relative overflow-hidden ${inter.className}`}>
+    <div className={`min-h-screen flex items-center justify-center relative overflow-hidden bg-background p-4 sm:p-8 ${inter.className}`}>
       
       {/* ── Background Grid & Light Rays ── */}
-      <div className="absolute inset-0 z-0 pointer-events-none bg-background">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 overflow-hidden" style={{ clipPath: 'inset(0 0 0 0)' }}>
           <LightRays 
             raysOrigin="top-center" 
@@ -463,135 +463,140 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* ── Brand panel ── */}
-      <div className="relative hidden lg:flex lg:w-[45%] flex-col justify-between overflow-hidden bg-background/40 backdrop-blur-md px-16 py-12 border-r border-border/20 z-10 shadow-2xl">
-        <div className="relative z-10 flex items-center gap-3">
-          <div className="h-10 w-10 flex items-center justify-center bg-background/50 backdrop-blur-md text-foreground border border-border/50 rounded-md shadow-sm">
-            <Dumbbell className="h-5 w-5 text-foreground" />
-          </div>
-          <span className={`text-2xl font-bold tracking-tighter text-foreground mt-1`}>
-            Jovifitx
-          </span>
-        </div>
-
-        <div className="relative z-10 max-w-md">
-          <h1 className={`text-5xl md:text-6xl font-bold tracking-tighter leading-[1.05] text-foreground mb-8`}>
-            Run the floor.<br /><span className="text-muted-foreground">Not the spreadsheets.</span>
-          </h1>
-
-          <ul className="space-y-5">
-            {capabilities.map(({ icon: Icon, label }) => (
-              <li key={label} className="flex items-center gap-4">
-                <div className="h-8 w-8 shrink-0 border border-border/50 bg-background/50 rounded-md flex items-center justify-center">
-                  <Icon size={14} className="text-primary" />
-                </div>
-                <span className={`text-xs font-bold uppercase tracking-wider text-muted-foreground`}>{label}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <p className="relative z-10 text-[12px] font-medium tracking-[0.1em] text-muted-foreground uppercase">
-          Built for gyms across India.
-        </p>
-
-        {/* Minimalist plate stack */}
-        <PlateStack className="absolute top-1/2 -right-[1px] -translate-y-1/2 z-10" />
-      </div>
-
-      {/* ── Form panel ── */}
-      <div className="flex-1 flex items-center justify-center px-6 py-12 relative z-10 bg-background/60 backdrop-blur-xl">
-
-        <div className="relative z-10 w-full max-w-[400px]">
-          {/* Mobile wordmark */}
-          <div className="lg:hidden flex flex-col items-center text-center mb-10">
-            <div className="h-14 w-14 flex items-center justify-center mb-4 bg-background/50 backdrop-blur-md text-foreground border border-border/50 rounded-md shadow-sm">
-              <Dumbbell className="h-6 w-6 text-foreground" />
+      {/* ── Floating Glass Card ── */}
+      <div className="relative z-10 flex w-full max-w-[1000px] bg-background/60 dark:bg-black/40 backdrop-blur-3xl border border-black/10 dark:border-white/10 rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.4)] overflow-hidden min-h-[600px]">
+        
+        {/* ── Brand panel ── */}
+        <div className="hidden lg:flex w-[45%] flex-col justify-between overflow-hidden bg-black/5 dark:bg-white/5 px-12 py-12 border-r border-black/10 dark:border-white/10 relative">
+          
+          <div className="relative z-10 flex items-center gap-3">
+            <div className="h-10 w-10 flex items-center justify-center bg-background/50 backdrop-blur-md text-foreground border border-black/10 dark:border-white/10 rounded-xl shadow-sm">
+              <Dumbbell className="h-5 w-5 text-foreground" />
             </div>
-            <h1 className={`text-4xl font-bold tracking-tighter text-foreground`}>Jovifitx</h1>
+            <span className={`text-2xl font-extrabold tracking-tighter text-foreground mt-1`}>
+              Jovifitx
+            </span>
           </div>
 
-          <div className="mb-10">
-            <h2 className={`text-3xl font-bold tracking-tighter text-foreground`}>
-              Welcome back
-            </h2>
-            <p className="text-[14px] text-muted-foreground mt-2">Log in to your gym dashboard.</p>
+          <div className="relative z-10">
+            <h1 className={`text-5xl font-extrabold tracking-tighter leading-[1.05] text-foreground mb-8`}>
+              Run the floor.<br /><span className="text-muted-foreground">Not the spreadsheets.</span>
+            </h1>
+
+            <ul className="space-y-5">
+              {capabilities.map(({ icon: Icon, label }) => (
+                <li key={label} className="flex items-center gap-4">
+                  <div className="h-8 w-8 shrink-0 border border-black/10 dark:border-white/10 bg-background/50 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                    <Icon size={14} className="text-primary" />
+                  </div>
+                  <span className={`text-[11px] font-bold uppercase tracking-wider text-muted-foreground`}>{label}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-              {isLocalhost && (
-                <FormField control={form.control} name="gymSlug" render={({ field }) => (
-                  <FormItem className="space-y-2">
-                    <FormLabel className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider">Gym slug</FormLabel>
+          <p className="relative z-10 text-[11px] font-bold tracking-[0.15em] text-muted-foreground uppercase">
+            Built for gyms across India.
+          </p>
+
+          {/* Minimalist plate stack */}
+          <PlateStack className="absolute top-1/2 -right-[1px] -translate-y-1/2 z-10" />
+        </div>
+
+        {/* ── Form panel ── */}
+        <div className="flex-1 flex items-center justify-center px-6 py-12 sm:px-12 relative bg-transparent">
+
+          <div className="w-full max-w-[360px]">
+            {/* Mobile wordmark */}
+            <div className="lg:hidden flex flex-col items-center text-center mb-8">
+              <div className="h-14 w-14 flex items-center justify-center mb-4 bg-background/50 backdrop-blur-md text-foreground border border-black/10 dark:border-white/10 rounded-2xl shadow-sm">
+                <Dumbbell className="h-6 w-6 text-foreground" />
+              </div>
+              <h1 className={`text-3xl font-extrabold tracking-tighter text-foreground`}>Jovifitx</h1>
+            </div>
+
+            <div className="mb-8 text-center lg:text-left">
+              <h2 className={`text-3xl font-extrabold tracking-tighter text-foreground`}>
+                Welcome back
+              </h2>
+              <p className="text-[14px] font-medium text-muted-foreground mt-2">Log in to your gym dashboard.</p>
+            </div>
+
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                {isLocalhost && (
+                  <FormField control={form.control} name="gymSlug" render={({ field }) => (
+                    <FormItem className="space-y-1.5">
+                      <FormLabel className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Gym slug</FormLabel>
+                      <FormControl>
+                        <Input placeholder="fitzone" className={inputCls} {...field} />
+                      </FormControl>
+                      <FormMessage className="text-[12px] text-red-500" />
+                    </FormItem>
+                  )} />
+                )}
+
+                <FormField control={form.control} name="phone" render={({ field }) => (
+                  <FormItem className="space-y-1.5">
+                    <FormLabel className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Phone number</FormLabel>
                     <FormControl>
-                      <Input placeholder="fitzone" className={inputCls} {...field} />
+                      <Input placeholder="9876543210" className={inputCls} {...field} />
                     </FormControl>
                     <FormMessage className="text-[12px] text-red-500" />
                   </FormItem>
                 )} />
-              )}
 
-              <FormField control={form.control} name="phone" render={({ field }) => (
-                <FormItem className="space-y-2">
-                  <FormLabel className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider">Phone number</FormLabel>
-                  <FormControl>
-                    <Input placeholder="9876543210" className={inputCls} {...field} />
-                  </FormControl>
-                  <FormMessage className="text-[12px] text-red-500" />
-                </FormItem>
-              )} />
-
-              <FormField control={form.control} name="password" render={({ field }) => (
-                <FormItem className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <FormLabel className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider">Password</FormLabel>
-                    <button
-                      type="button"
-                      onClick={handleForgotClick}
-                      className="text-[12px] font-medium text-primary hover:text-primary/80 transition-colors"
-                    >
-                      Forgot password?
-                    </button>
-                  </div>
-                  <FormControl>
-                    <div className="relative">
-                      <Input
-                        type={showPassword ? 'text' : 'password'}
-                        placeholder="••••••••"
-                        className={`${inputCls} pr-11`}
-                        {...field}
-                      />
-                      <button type="button" onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors">
-                        {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                <FormField control={form.control} name="password" render={({ field }) => (
+                  <FormItem className="space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <FormLabel className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Password</FormLabel>
+                      <button
+                        type="button"
+                        onClick={handleForgotClick}
+                        className="text-[12px] font-bold text-primary hover:text-primary/80 transition-colors"
+                      >
+                        Forgot password?
                       </button>
                     </div>
-                  </FormControl>
-                  <FormMessage className="text-[12px] text-red-500" />
-                </FormItem>
-              )} />
+                    <FormControl>
+                      <div className="relative">
+                        <Input
+                          type={showPassword ? 'text' : 'password'}
+                          placeholder="••••••••"
+                          className={`${inputCls} pr-11`}
+                          {...field}
+                        />
+                        <button type="button" onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors">
+                          {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                        </button>
+                      </div>
+                    </FormControl>
+                    <FormMessage className="text-[12px] text-red-500" />
+                  </FormItem>
+                )} />
 
-              <Button
-                type="submit"
-                disabled={loading}
-                className={`w-full mt-4 ${primaryBtnCls}`}
-              >
-                {loading
-                  ? <><Loader2 className="h-4 w-4 animate-spin" /> LOGGING IN</>
-                  : 'LOG IN'
-                }
-              </Button>
-            </form>
-          </Form>
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className={`w-full mt-2 ${primaryBtnCls}`}
+                >
+                  {loading
+                    ? <><Loader2 className="h-4 w-4 animate-spin" /> LOGGING IN</>
+                    : 'LOG IN'
+                  }
+                </Button>
+              </form>
+            </Form>
 
-          <div className="mt-10 text-center text-[13px] text-muted-foreground">
-            Don&apos;t have a gym account?{' '}
-            <a href="/signup" className="text-foreground font-medium hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-[1px]">
-              Create one
-            </a>
+            <div className="mt-8 text-center text-[13px] text-muted-foreground font-medium">
+              Don&apos;t have a gym account?{' '}
+              <a href="/signup" className="text-foreground font-bold hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-[1px]">
+                Create one
+              </a>
+            </div>
+
           </div>
-
         </div>
       </div>
 

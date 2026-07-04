@@ -40,17 +40,17 @@ type SignupForm = z.infer<typeof signupSchema>
 
 // ─── Shared styles (matches LoginPage) ─────────────────────────────────────────
 const inputCls =
-  'h-12 bg-background/50 backdrop-blur-sm border border-border/50 text-foreground placeholder:text-muted-foreground ' +
-  'focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary rounded-md transition-colors shadow-none text-[14px] ' +
+  'h-12 bg-black/5 dark:bg-white/5 backdrop-blur-md border border-black/10 dark:border-white/10 text-foreground placeholder:text-muted-foreground ' +
+  'focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary rounded-xl transition-all shadow-inner text-[14px] ' +
   '[&:-webkit-autofill]:[-webkit-text-fill-color:white] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0px_1000px_#121212_inset] ' +
   '[&:-webkit-autofill]:[transition:background-color_9999s_ease-in-out_0s]'
 
 const primaryBtnCls =
-  'h-12 rounded-md text-[14px] font-semibold tracking-wide text-primary-foreground bg-primary ' +
-  'hover:bg-primary/95 disabled:opacity-50 disabled:cursor-not-allowed transition-colors ' +
+  'h-12 rounded-xl text-[14px] font-semibold tracking-wide text-primary-foreground bg-primary ' +
+  'hover:bg-primary/90 hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed transition-all shadow-lg ' +
   'flex items-center justify-center gap-2'
 
-const labelCls = 'text-[12px] font-semibold text-muted-foreground uppercase tracking-wider'
+const labelCls = 'text-[11px] font-bold text-muted-foreground uppercase tracking-wider'
 
 // ─── Signature element: plate stack (matches LoginPage) ────────────────────────
 function PlateStack({ vertical = true, className = '' }: { vertical?: boolean; className?: string }) {
@@ -64,7 +64,7 @@ function PlateStack({ vertical = true, className = '' }: { vertical?: boolean; c
         <div
           key={i}
           style={vertical ? { width: s, height: 2 } : { height: s, width: 2 }}
-          className={`rounded-md ${i === 3 ? 'bg-primary' : 'bg-border/30'}`}
+          className={`rounded-full ${i === 3 ? 'bg-primary' : 'bg-black/20 dark:bg-white/20'}`}
         />
       ))}
     </div>
@@ -80,34 +80,34 @@ const capabilities = [
 // ─── Brand panel (shared shell for both the form and success screens) ──────────
 function BrandPanel() {
   return (
-    <div className="relative hidden lg:flex lg:w-[45%] flex-col justify-between overflow-hidden bg-background/40 backdrop-blur-md px-16 py-12 border-r border-border/20 z-10 shadow-2xl">
+    <div className="hidden lg:flex w-[45%] flex-col justify-between overflow-hidden bg-black/5 dark:bg-white/5 px-12 py-12 border-r border-black/10 dark:border-white/10 relative">
       <div className="relative z-10 flex items-center gap-3">
-        <div className="h-10 w-10 flex items-center justify-center bg-background/50 backdrop-blur-md text-foreground border border-border/50 rounded-md shadow-sm">
+        <div className="h-10 w-10 flex items-center justify-center bg-background/50 backdrop-blur-md text-foreground border border-black/10 dark:border-white/10 rounded-xl shadow-sm">
           <Dumbbell className="h-5 w-5 text-foreground" />
         </div>
-        <span className={`text-2xl font-bold tracking-tighter text-foreground mt-1`}>
+        <span className={`text-2xl font-extrabold tracking-tighter text-foreground mt-1`}>
           Jovifitx
         </span>
       </div>
 
       <div className="relative z-10 max-w-md">
-        <h1 className={`text-5xl md:text-6xl font-bold tracking-tighter leading-[1.05] text-foreground mb-8`}>
+        <h1 className={`text-5xl md:text-6xl font-extrabold tracking-tighter leading-[1.05] text-foreground mb-8`}>
           Run the floor.<br /><span className="text-muted-foreground">Not the spreadsheets.</span>
         </h1>
 
         <ul className="space-y-5">
           {capabilities.map(({ icon: Icon, label }) => (
             <li key={label} className="flex items-center gap-4">
-              <div className="h-8 w-8 shrink-0 border border-border/50 bg-background/50 rounded-md flex items-center justify-center">
+              <div className="h-8 w-8 shrink-0 border border-black/10 dark:border-white/10 bg-background/50 backdrop-blur-sm rounded-lg flex items-center justify-center">
                 <Icon size={14} className="text-primary" />
               </div>
-              <span className={`text-xs font-bold uppercase tracking-wider text-muted-foreground`}>{label}</span>
+              <span className={`text-[11px] font-bold uppercase tracking-wider text-muted-foreground`}>{label}</span>
             </li>
           ))}
         </ul>
       </div>
 
-      <p className="relative z-10 text-[12px] font-medium tracking-[0.1em] text-muted-foreground uppercase">
+      <p className="relative z-10 text-[11px] font-bold tracking-[0.15em] text-muted-foreground uppercase">
         Built for gyms across India.
       </p>
 
@@ -194,54 +194,57 @@ export default function SignupPage() {
   // ── Success screen ────────────────────────────────────────────────────────
   if (success) {
     return (
-      <div className={`min-h-screen flex items-stretch relative overflow-hidden ${inter.className}`}>
+      <div className={`min-h-screen flex items-center justify-center relative overflow-hidden bg-background p-4 sm:p-8 ${inter.className}`}>
         <BackgroundLayer />
-        <BrandPanel />
+        
+        <div className="relative z-10 flex w-full max-w-[1000px] bg-background/60 dark:bg-black/40 backdrop-blur-3xl border border-black/10 dark:border-white/10 rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.4)] overflow-hidden min-h-[600px]">
+          <BrandPanel />
 
-        <div className="flex-1 flex items-center justify-center px-6 py-12 relative z-10 bg-background/60 backdrop-blur-xl">
-          <div className="w-full max-w-[400px] text-center">
+          <div className="flex-1 flex items-center justify-center px-6 py-12 sm:px-12 relative bg-transparent">
+            <div className="w-full max-w-[360px] text-center">
 
-            <div className="lg:hidden flex flex-col items-center mb-8">
-              <div className="h-14 w-14 flex items-center justify-center mb-4 bg-background/50 backdrop-blur-md text-foreground border border-border/50 rounded-md shadow-sm">
-                <Dumbbell className="h-6 w-6 text-foreground" />
+              <div className="lg:hidden flex flex-col items-center mb-8">
+                <div className="h-14 w-14 flex items-center justify-center mb-4 bg-background/50 backdrop-blur-md text-foreground border border-black/10 dark:border-white/10 rounded-2xl shadow-sm">
+                  <Dumbbell className="h-6 w-6 text-foreground" />
+                </div>
+                <h1 className={`text-3xl font-extrabold tracking-tighter text-foreground`}>Jovifitx</h1>
               </div>
-              <h1 className={`text-4xl font-bold tracking-tighter text-foreground`}>Jovifitx</h1>
-            </div>
 
-            <div className="flex justify-center mb-6">
-              <div className="h-16 w-16 rounded-md bg-background/50 border border-primary/20 flex items-center justify-center shadow-sm">
-                <Check size={28} className="text-primary" strokeWidth={2.5} />
+              <div className="flex justify-center mb-6">
+                <div className="h-16 w-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center shadow-inner">
+                  <Check size={28} className="text-primary" strokeWidth={2.5} />
+                </div>
               </div>
-            </div>
 
-            <h2 className={`text-3xl font-bold tracking-tighter text-foreground`}>
-              Gym Registered
-            </h2>
-            <p className="text-[14px] text-muted-foreground mt-2">
-              <span className="text-foreground font-medium">{success.gymName}</span> is ready to go.
-            </p>
+              <h2 className={`text-3xl font-extrabold tracking-tighter text-foreground`}>
+                Gym Registered
+              </h2>
+              <p className="text-[14px] font-medium text-muted-foreground mt-2">
+                <span className="text-foreground font-bold">{success.gymName}</span> is ready to go.
+              </p>
 
-            <div className="mt-8 text-left">
-              <p className={labelCls}>Your dashboard URL</p>
-              <div className="mt-2 flex items-center gap-2 bg-background/50 backdrop-blur-sm border border-border/50 rounded-md px-4 py-3">
-                <p className="flex-1 font-mono text-[13px] text-primary truncate">{success.url}</p>
-                <button onClick={copyUrl} className="text-muted-foreground hover:text-primary transition-colors shrink-0" aria-label="Copy URL">
-                  <Copy size={15} />
-                </button>
+              <div className="mt-8 text-left">
+                <p className={labelCls}>Your dashboard URL</p>
+                <div className="mt-2 flex items-center gap-2 bg-black/5 dark:bg-white/5 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-xl px-4 py-3">
+                  <p className="flex-1 font-mono text-[13px] font-bold text-primary truncate">{success.url}</p>
+                  <button onClick={copyUrl} className="text-muted-foreground hover:text-primary transition-colors shrink-0" aria-label="Copy URL">
+                    <Copy size={15} />
+                  </button>
+                </div>
+                <p className="mt-2 text-[12px] font-medium text-muted-foreground">Bookmark this — it&apos;s your gym&apos;s login page.</p>
               </div>
-              <p className="mt-2 text-[12px] text-muted-foreground">Bookmark this — it&apos;s your gym&apos;s login page.</p>
+
+              <button
+                onClick={() => {
+                  localStorage.setItem('gymSlug', success.slug)
+                  router.push('/login')
+                }}
+                className={`w-full mt-8 ${primaryBtnCls}`}
+              >
+                GO TO LOGIN
+              </button>
+
             </div>
-
-            <button
-              onClick={() => {
-                localStorage.setItem('gymSlug', success.slug)
-                router.push('/login')
-              }}
-              className={`w-full mt-8 ${primaryBtnCls}`}
-            >
-              GO TO LOGIN
-            </button>
-
           </div>
         </div>
       </div>
@@ -250,132 +253,135 @@ export default function SignupPage() {
 
   // ── Signup form ───────────────────────────────────────────────────────────
   return (
-    <div className={`min-h-screen flex items-stretch relative overflow-hidden ${inter.className}`}>
+    <div className={`min-h-screen flex items-center justify-center relative overflow-hidden bg-background p-4 sm:p-8 ${inter.className}`}>
       <BackgroundLayer />
-      <BrandPanel />
+      
+      <div className="relative z-10 flex w-full max-w-[1000px] bg-background/60 dark:bg-black/40 backdrop-blur-3xl border border-black/10 dark:border-white/10 rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.4)] overflow-hidden min-h-[600px]">
+        <BrandPanel />
 
-      <div className="flex-1 flex items-center justify-center px-6 py-12 relative z-10 bg-background/60 backdrop-blur-xl">
-        <div className="w-full max-w-[400px]">
+        <div className="flex-1 flex items-center justify-center px-6 py-12 sm:px-12 relative bg-transparent">
+          <div className="w-full max-w-[360px]">
 
-          <div className="lg:hidden flex flex-col items-center text-center mb-10">
-            <div className="h-14 w-14 flex items-center justify-center mb-4 bg-background/50 backdrop-blur-md text-foreground border border-border/50 rounded-md shadow-sm">
-              <Dumbbell className="h-6 w-6 text-foreground" />
+            <div className="lg:hidden flex flex-col items-center text-center mb-8">
+              <div className="h-14 w-14 flex items-center justify-center mb-4 bg-background/50 backdrop-blur-md text-foreground border border-black/10 dark:border-white/10 rounded-2xl shadow-sm">
+                <Dumbbell className="h-6 w-6 text-foreground" />
+              </div>
+              <h1 className={`text-3xl font-extrabold tracking-tighter text-foreground`}>Jovifitx</h1>
             </div>
-            <h1 className={`text-4xl font-bold tracking-tighter text-foreground`}>Jovifitx</h1>
+
+            <div className="mb-8 text-center lg:text-left">
+              <h2 className={`text-3xl font-extrabold tracking-tighter text-foreground`}>
+                Create your gym
+              </h2>
+              <p className="text-[14px] font-medium text-muted-foreground mt-2">Set up your dashboard in a couple of minutes.</p>
+            </div>
+
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+
+                <FormField control={form.control} name="ownerName" render={({ field }) => (
+                  <FormItem className="space-y-1.5">
+                    <FormLabel className={labelCls}>Your name</FormLabel>
+                    <FormControl><Input placeholder="John Doe" className={inputCls} {...field} /></FormControl>
+                    <FormMessage className="text-[12px] text-red-500" />
+                  </FormItem>
+                )} />
+
+                <FormField control={form.control} name="gymName" render={({ field }) => (
+                  <FormItem className="space-y-1.5">
+                    <FormLabel className={labelCls}>Gym name</FormLabel>
+                    <FormControl><Input placeholder="Fitzone Gym" className={inputCls} {...field} /></FormControl>
+                    <FormMessage className="text-[12px] text-red-500" />
+                  </FormItem>
+                )} />
+
+                <FormField control={form.control} name="email" render={({ field }) => (
+                  <FormItem className="space-y-1.5">
+                    <FormLabel className={labelCls}>
+                      Email <span className="normal-case text-muted-foreground font-normal tracking-normal">(optional)</span>
+                    </FormLabel>
+                    <FormControl><Input placeholder="owner@yourgym.com" type="email" className={inputCls} {...field} /></FormControl>
+                    <FormMessage className="text-[12px] text-red-500" />
+                  </FormItem>
+                )} />
+
+                <FormField control={form.control} name="phone" render={({ field }) => (
+                  <FormItem className="space-y-1.5">
+                    <FormLabel className={labelCls}>Phone number</FormLabel>
+                    <FormControl><Input placeholder="9876543210" type="tel" className={inputCls} {...field} /></FormControl>
+                    <FormMessage className="text-[12px] text-red-500" />
+                  </FormItem>
+                )} />
+
+                <FormField control={form.control} name="password" render={({ field }) => (
+                  <FormItem className="space-y-1.5">
+                    <FormLabel className={labelCls}>Password</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <Input
+                          placeholder="••••••••"
+                          type={showPassword ? 'text' : 'password'}
+                          className={`${inputCls} pr-11`}
+                          {...field}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(v => !v)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors"
+                          tabIndex={-1}
+                          aria-label={showPassword ? 'Hide password' : 'Show password'}
+                        >
+                          {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                        </button>
+                      </div>
+                    </FormControl>
+                    <FormMessage className="text-[12px] text-red-500" />
+                  </FormItem>
+                )} />
+
+                <FormField control={form.control} name="confirmPassword" render={({ field }) => (
+                  <FormItem className="space-y-1.5">
+                    <FormLabel className={labelCls}>Confirm password</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <Input
+                          placeholder="••••••••"
+                          type={showConfirmPassword ? 'text' : 'password'}
+                          className={`${inputCls} pr-11`}
+                          {...field}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowConfirmPassword(v => !v)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors"
+                          tabIndex={-1}
+                          aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+                        >
+                          {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                        </button>
+                      </div>
+                    </FormControl>
+                    <FormMessage className="text-[12px] text-red-500" />
+                  </FormItem>
+                )} />
+
+                <Button type="submit" disabled={loading} className={`w-full mt-2 ${primaryBtnCls}`}>
+                  {loading
+                    ? <><Loader2 className="h-4 w-4 animate-spin" /> CREATING YOUR GYM</>
+                    : 'CREATE GYM ACCOUNT'
+                  }
+                </Button>
+              </form>
+            </Form>
+
+            <div className="mt-8 text-center text-[13px] text-muted-foreground font-medium">
+              Already have a gym account?{' '}
+              <a href="/login" className="text-foreground font-bold hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-[1px]">
+                Log in
+              </a>
+            </div>
+
           </div>
-
-          <div className="mb-8">
-            <h2 className={`text-3xl font-bold tracking-tighter text-foreground`}>
-              Create your gym
-            </h2>
-            <p className="text-[14px] text-muted-foreground mt-2">Set up your dashboard in a couple of minutes.</p>
-          </div>
-
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-
-              <FormField control={form.control} name="ownerName" render={({ field }) => (
-                <FormItem className="space-y-2">
-                  <FormLabel className={labelCls}>Your name</FormLabel>
-                  <FormControl><Input placeholder="John Doe" className={inputCls} {...field} /></FormControl>
-                  <FormMessage className="text-[12px] text-red-500" />
-                </FormItem>
-              )} />
-
-              <FormField control={form.control} name="gymName" render={({ field }) => (
-                <FormItem className="space-y-2">
-                  <FormLabel className={labelCls}>Gym name</FormLabel>
-                  <FormControl><Input placeholder="Fitzone Gym" className={inputCls} {...field} /></FormControl>
-                  <FormMessage className="text-[12px] text-red-500" />
-                </FormItem>
-              )} />
-
-              <FormField control={form.control} name="email" render={({ field }) => (
-                <FormItem className="space-y-2">
-                  <FormLabel className={labelCls}>
-                    Email <span className="normal-case text-muted-foreground font-normal tracking-normal">(optional)</span>
-                  </FormLabel>
-                  <FormControl><Input placeholder="owner@yourgym.com" type="email" className={inputCls} {...field} /></FormControl>
-                  <FormMessage className="text-[12px] text-red-500" />
-                </FormItem>
-              )} />
-
-              <FormField control={form.control} name="phone" render={({ field }) => (
-                <FormItem className="space-y-2">
-                  <FormLabel className={labelCls}>Phone number</FormLabel>
-                  <FormControl><Input placeholder="9876543210" type="tel" className={inputCls} {...field} /></FormControl>
-                  <FormMessage className="text-[12px] text-red-500" />
-                </FormItem>
-              )} />
-
-              <FormField control={form.control} name="password" render={({ field }) => (
-                <FormItem className="space-y-2">
-                  <FormLabel className={labelCls}>Password</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <Input
-                        placeholder="••••••••"
-                        type={showPassword ? 'text' : 'password'}
-                        className={`${inputCls} pr-11`}
-                        {...field}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword(v => !v)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors"
-                        tabIndex={-1}
-                        aria-label={showPassword ? 'Hide password' : 'Show password'}
-                      >
-                        {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                      </button>
-                    </div>
-                  </FormControl>
-                  <FormMessage className="text-[12px] text-red-500" />
-                </FormItem>
-              )} />
-
-              <FormField control={form.control} name="confirmPassword" render={({ field }) => (
-                <FormItem className="space-y-2">
-                  <FormLabel className={labelCls}>Confirm password</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <Input
-                        placeholder="••••••••"
-                        type={showConfirmPassword ? 'text' : 'password'}
-                        className={`${inputCls} pr-11`}
-                        {...field}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowConfirmPassword(v => !v)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors"
-                        tabIndex={-1}
-                        aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
-                      >
-                        {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                      </button>
-                    </div>
-                  </FormControl>
-                  <FormMessage className="text-[12px] text-red-500" />
-                </FormItem>
-              )} />
-
-              <Button type="submit" disabled={loading} className={`w-full mt-2 ${primaryBtnCls}`}>
-                {loading
-                  ? <><Loader2 className="h-4 w-4 animate-spin" /> CREATING YOUR GYM</>
-                  : 'CREATE GYM ACCOUNT'
-                }
-              </Button>
-            </form>
-          </Form>
-
-          <div className="mt-8 text-center text-[13px] text-muted-foreground">
-            Already have a gym account?{' '}
-            <a href="/login" className="text-foreground font-medium hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-[1px]">
-              Log in
-            </a>
-          </div>
-
         </div>
       </div>
     </div>
