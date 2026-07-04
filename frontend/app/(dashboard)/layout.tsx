@@ -33,12 +33,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   if (!isAuthenticated) return null
 
   return (
-  <div className="fixed inset-0 flex bg-background">
+  <div className="fixed inset-0 flex overflow-hidden bg-background">
     <Sidebar />
 
-    <div className="flex flex-1 flex-col min-w-0 md:ml-64 h-full">
+    <div className="flex flex-1 flex-col min-w-0 md:ml-64 overflow-hidden">
       <Header />
-      <main className="flex-1 overflow-y-auto p-4 md:p-6">
+      <main className="flex-1 min-h-0 overflow-y-auto p-4 md:p-6">
         {children}
       </main>
     </div>
