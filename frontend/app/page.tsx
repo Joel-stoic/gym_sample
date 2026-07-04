@@ -8,9 +8,15 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-body' })
 
 export default function HomePage() {
   return (
-    <div className={`${inter.variable} min-h-screen bg-background text-foreground font-[family-name:var(--font-body)] relative overflow-x-hidden selection:bg-primary/10`}>
+    <div className={`${inter.variable} min-h-screen bg-gradient-to-b from-background via-background to-[#000000] text-foreground font-[family-name:var(--font-body)] relative overflow-x-hidden selection:bg-primary/10`}>
       
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          maskImage: 'linear-gradient(to bottom, white 400px, transparent 1000px)',
+          WebkitMaskImage: 'linear-gradient(to bottom, white 400px, transparent 1000px)'
+        }}
+      >
         {/* Light Rays Background */}
         <div className="absolute inset-0 overflow-hidden flex justify-center" style={{ clipPath: 'inset(0 0 0 0)' }}>
           <div className="absolute top-[-10%] w-[300px] h-[300px] bg-white/[0.08] blur-[80px] rounded-full mix-blend-screen sm:hidden" />
