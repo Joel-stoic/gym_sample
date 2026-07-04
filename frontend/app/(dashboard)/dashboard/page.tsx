@@ -73,19 +73,19 @@ function MetricCard({
   iconClass?: string
 }) {
   return (
-    <div className={`relative overflow-hidden rounded-2xl border p-4 sm:p-5 transition-all duration-200 ${redAccent
+    <div className={`relative overflow-hidden rounded-2xl border p-3.5 sm:p-5 transition-all duration-200 ${redAccent
       ? 'border-red-500/20 bg-red-500/10 hover:border-red-500/30'
       : 'border-border bg-card hover:border-white/[0.10]'
       }`}>
       {redAccent && (
         <div className="pointer-events-none absolute -right-4 -top-4 h-20 w-20 rounded-full bg-red-500 opacity-20 blur-2xl" />
       )}
-      <div className={`mb-3 sm:mb-4 flex h-9 w-9 items-center justify-center rounded-xl ${iconClass ?? 'bg-white/[0.06] text-foreground'}`}>
+      <div className={`mb-3 sm:mb-4 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-xl ${iconClass ?? 'bg-white/[0.06] text-foreground'}`}>
         <Icon size={16} />
       </div>
-      <p className="font-['Syne'] text-xl sm:text-2xl font-bold tracking-tight text-foreground">{value}</p>
-      {sub && <p className="mt-1 text-[11px] text-muted-foreground">{sub}</p>}
-      <p className="mt-2 sm:mt-3 text-[10px] sm:text-[11px] font-medium uppercase tracking-widest text-muted-foreground">{title}</p>
+      <p className="font-['Syne'] text-lg sm:text-2xl font-bold tracking-tight text-foreground truncate">{value}</p>
+      {sub && <p className="mt-1 text-[11px] text-muted-foreground truncate">{sub}</p>}
+      <p className="mt-2 sm:mt-3 text-[10px] sm:text-[11px] font-medium uppercase tracking-widest text-muted-foreground line-clamp-2 leading-snug">{title}</p>
     </div>
   )
 }
@@ -148,11 +148,11 @@ function RevenueStats({ data }: { data: { month: string; revenue: number }[] }) 
   ]
 
   return (
-    <div className="flex gap-2 sm:gap-3 pb-1">
+    <div className="grid grid-cols-1 min-[450px]:grid-cols-3 gap-2 sm:gap-3 pb-1">
       {stats.map(({ label, value }) => (
         <div
           key={label}
-          className="flex flex-1 flex-col gap-1.5 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.07] px-3 sm:px-4 py-3 sm:py-3.5"
+          className="flex flex-col gap-1.5 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.07] px-3 sm:px-4 py-3 sm:py-3.5"
         >
           <span className="text-[12px] sm:text-[14px] font-semibold text-emerald-300">{value}</span>
           <span className="text-[10px] sm:text-[11px] tracking-wide text-emerald-600">{label}</span>
@@ -326,12 +326,14 @@ export default function DashboardPage() {
         <div className="rounded-2xl border border-border bg-card p-4 sm:p-6 lg:col-span-2">
 
           {/* Header */}
-          <div className="mb-5 sm:mb-6 flex items-center justify-between gap-3">
+          <div className="mb-5 sm:mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <p className="text-[14px] sm:text-[15px] font-semibold text-foreground">Monthly Revenue</p>
               <p className="mt-0.5 text-[11px] sm:text-[12px] text-muted-foreground">Membership + PT earnings over time</p>
             </div>
-            <RevenueRangeToggle value={revenueRange} onChange={setRevenueRange} />
+            <div className="self-start sm:self-auto">
+              <RevenueRangeToggle value={revenueRange} onChange={setRevenueRange} />
+            </div>
           </div>
 
           {/* Chart */}
