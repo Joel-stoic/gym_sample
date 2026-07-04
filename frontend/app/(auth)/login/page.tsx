@@ -418,23 +418,23 @@ export default function LoginPage() {
   return (
     <div className={`min-h-screen flex flex-col lg:flex-row bg-[#000000] ${inter.className}`}>
       
-      {/* ── Background Light Rays ── */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden flex justify-center">
-        <LightRays 
-          raysOrigin="top-center" 
-          raysColor="#ffffff" 
-          raysSpeed={1.0}
-          rayLength={3.0}
-          lightSpread={2.5}
-          saturation={0}
-          className="opacity-60 mix-blend-screen w-full max-w-[1400px]"
-        />
-      </div>
-
       {/* ── Brand panel (Left Half) ── */}
-      <div className="hidden lg:flex w-1/2 flex-col justify-between px-16 xl:px-24 py-16 border-r border-[#1a1a1a] relative z-10 bg-transparent">
+      <div className="hidden lg:flex w-1/2 flex-col justify-between px-16 xl:px-24 py-16 border-r border-[#1a1a1a] relative z-10 bg-black overflow-hidden">
         
-        <div className="flex items-center gap-3">
+        {/* ── Background Light Rays (Left Panel Only) ── */}
+        <div className="absolute inset-0 z-0 pointer-events-none flex justify-center">
+          <LightRays 
+            raysOrigin="top-center" 
+            raysColor="#ffffff" 
+            raysSpeed={1.0}
+            rayLength={3.0}
+            lightSpread={2.5}
+            saturation={0}
+            className="opacity-60 mix-blend-screen w-full max-w-[1400px]"
+          />
+        </div>
+
+        <div className="flex items-center gap-3 relative z-10">
           <div className="h-8 w-8 flex items-center justify-center bg-[#090909] border border-[#1a1a1a] rounded-md shadow-sm">
             <Dumbbell className="h-4 w-4 text-white" />
           </div>
