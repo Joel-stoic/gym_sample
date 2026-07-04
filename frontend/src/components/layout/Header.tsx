@@ -21,7 +21,7 @@ const pageTitles: Record<string, string> = {
   '/pt': 'Personal training',
   '/leads': 'Add Leads',
   '/staff': 'Add Staff',
-  '/notification':'Notification',
+  '/notification': 'Notification',
   '/settings': 'Settings',
 }
 
@@ -61,7 +61,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 right-0 left-0 md:left-64 z-50 flex flex-shrink-0 items-center justify-between px-4 py-5 md:px-6 bg-background/80 backdrop-blur-xl border-b border-black/10 dark:border-white/10 ${inter.className}`}
+      className={`sticky top-0 z-30 flex-shrink-0 flex items-center justify-between px-4 py-5 md:px-6 border-b border-black/10 dark:border-white/10 ${inter.className}`}
+      style={{ background: 'hsl(var(--background) / 0.8)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}
     >
       {/* Left: hamburger (mobile) + page title */}
       <div className="flex items-center gap-4">
