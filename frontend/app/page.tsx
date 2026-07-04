@@ -65,7 +65,7 @@ export default function HomePage() {
       </header>
 
       {/* ── Hero ── */}
-      <main className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 pt-20 sm:pt-28 pb-28 lg:pb-36 grid lg:grid-cols-2 gap-16 lg:gap-12 items-center">
+      <main className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 pt-32 sm:pt-28 pb-28 lg:pb-36 grid lg:grid-cols-2 gap-16 lg:gap-12 items-center">
         
         {/* Left: Text Content */}
         <div className="flex flex-col items-start text-left">
