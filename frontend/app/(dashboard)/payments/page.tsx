@@ -351,34 +351,39 @@ function EditPaymentModal({
         <div className="space-y-4">
 
           <div>
-            <FieldLabel>Plan *</FieldLabel>
+            <FieldLabel>Selected Plan *</FieldLabel>
             {loadingPlans ? (
               <div className="flex items-center gap-2 text-sm text-muted-foreground py-2">
                 <Loader2 size={13} className="animate-spin" />
                 Loading plans…
               </div>
             ) : (
-              <select
-                value={planId}
-                onChange={e => handlePlanChange(e.target.value)}
-                className="w-full rounded-xl px-3 py-2.5 text-[14px] text-foreground outline-none transition-all"
-                style={{ background: 'var(--background)', border: '1px solid var(--border)' }}
-                onFocus={e => (e.currentTarget.style.border = '1px solid #7c3aed44')}
-                onBlur={e  => (e.currentTarget.style.border = '1px solid #ffffff0a')}
-              >
-                <option value="">— Select plan —</option>
-                {plans.map(p => (
-                  <option key={p.id} value={p.id}>
-                    {p.name} — ₹{p.price / 100} / {p.durationMonths}mo
-                  </option>
-                ))}
-              </select>
+              <>
+                <select
+                  value={planId}
+                  onChange={e => handlePlanChange(e.target.value)}
+                  className="w-full rounded-xl px-3 py-2.5 text-[14px] text-foreground outline-none transition-all"
+                  style={{ background: 'var(--background)', border: '1px solid var(--border)' }}
+                  onFocus={e => (e.currentTarget.style.border = '1px solid #7c3aed44')}
+                  onBlur={e  => (e.currentTarget.style.border = '1px solid #ffffff0a')}
+                >
+                  <option value="">— Select plan —</option>
+                  {plans.map(p => (
+                    <option key={p.id} value={p.id}>
+                      {p.name} — ₹{p.price / 100} / {p.durationMonths}mo
+                    </option>
+                  ))}
+                </select>
+                <p className="mt-1.5 text-[11px] text-muted-foreground">
+                  Choose the plan the member is paying for. Changing this resets discount and fees.
+                </p>
+              </>
             )}
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-4">
             <div>
-              <FieldLabel>Discount (₹)</FieldLabel>
+              <FieldLabel>Discount Given (₹)</FieldLabel>
               <StyledInput
                 type="number"
                 value={discount}
@@ -387,12 +392,15 @@ function EditPaymentModal({
                 min={0}
                 max={planAmount}
               />
+              <p className="mt-1.5 text-[10px] leading-snug text-muted-foreground">
+                Any price concession given.
+              </p>
             </div>
             <div>
               <FieldLabel>
                 <span className="flex items-center gap-1.5">
                   <PlusCircle size={11} className="text-amber-400" />
-                  Additional Fee (₹)
+                  Extra Fee (₹)
                 </span>
               </FieldLabel>
               <StyledInput
@@ -402,20 +410,40 @@ function EditPaymentModal({
                 placeholder="0"
                 min={0}
               />
+              <p className="mt-1.5 text-[10px] leading-snug text-muted-foreground">
+                E.g. Admission / registration.
+              </p>
             </div>
           </div>
 
-          {netDue > 0 && (
-            <div className="flex items-center justify-between text-[12px] text-muted-foreground px-1">
-              <span>Plan: <span className="text-foreground">₹{planAmount}</span></span>
-              {discAmt > 0 && <span className="text-red-400">−₹{discAmt}</span>}
-              {feeAmt  > 0 && <span className="text-amber-400">+₹{feeAmt}</span>}
-              <span>Net: <span className="text-green-400 font-medium">₹{netDue}</span></span>
+          <div className="rounded-xl border border-black/5 dark:border-white/5 bg-black/5 dark:bg-white/5 p-3">
+            <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Bill Summary</p>
+            <div className="space-y-1.5 text-[13px]">
+              <div className="flex justify-between text-muted-foreground">
+                <span>Base Plan Price:</span>
+                <span>₹{planAmount}</span>
+              </div>
+              {discAmt > 0 && (
+                <div className="flex justify-between text-red-500/90 dark:text-red-400">
+                  <span>Discount Applied:</span>
+                  <span>− ₹{discAmt}</span>
+                </div>
+              )}
+              {feeAmt > 0 && (
+                <div className="flex justify-between text-amber-500/90 dark:text-amber-400">
+                  <span>Extra Fees:</span>
+                  <span>+ ₹{feeAmt}</span>
+                </div>
+              )}
+              <div className="mt-2 flex justify-between border-t border-black/5 dark:border-white/5 pt-2 font-semibold text-foreground">
+                <span>Final Amount Due:</span>
+                <span>₹{netDue}</span>
+              </div>
             </div>
-          )}
+          </div>
 
           <div>
-            <FieldLabel>Amount Paid (₹) *</FieldLabel>
+            <FieldLabel>Amount Paid by Member (₹) *</FieldLabel>
             <StyledInput
               type="number"
               value={paidAmount}
@@ -424,25 +452,30 @@ function EditPaymentModal({
               min={0}
               max={netDue}
             />
-            <p className="mt-1 text-[11px] text-muted-foreground">
+            <p className="mt-1.5 text-[11px] leading-relaxed text-muted-foreground">
+              How much money the member has actually paid so far. <br/>
+              <span className="font-medium text-foreground">Status: </span>
               {paid >= netDue && netDue > 0
-                ? '✓ Fully paid'
+                ? <span className="text-green-500 font-medium">Fully Paid ✓</span>
                 : paid > 0
-                  ? `Partial — ₹${pending.toFixed(0)} pending`
-                  : 'Pending payment'}
+                  ? <span className="text-amber-500 font-medium">Partial Payment (₹{pending.toFixed(0)} still pending)</span>
+                  : <span className="text-red-500 font-medium">Unpaid (Full ₹{netDue} pending)</span>}
             </p>
           </div>
 
           <div>
-            <FieldLabel>Membership Start Date</FieldLabel>
+            <FieldLabel>Plan Start Date</FieldLabel>
             <StyledInput
               type="date"
               value={startDate}
               onChange={setStartDate}
             />
+            <p className="mt-1.5 text-[11px] leading-snug text-muted-foreground">
+              The date this gym plan activates for the member.
+            </p>
             {previewExpiry && (
-              <p className="mt-1 text-[11px] text-muted-foreground">
-                Expiry: <span className="text-violet-400">{format(previewExpiry, 'd MMM yyyy')}</span>
+              <p className="mt-1 text-[11px] font-medium text-foreground">
+                Estimated Expiry: <span className="text-violet-500 dark:text-violet-400">{format(previewExpiry, 'd MMM yyyy')}</span>
               </p>
             )}
           </div>
