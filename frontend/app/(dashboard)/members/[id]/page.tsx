@@ -27,63 +27,27 @@ import { cn } from '@/lib/utils'
 function Bone({ className, style }: { className?: string; style?: React.CSSProperties }) {
   return (
     <div
-      className={cn('rounded-lg', className)}
-      style={{
-        background: 'linear-gradient(90deg, #1a1a26 25%, #22223a 50%, #1a1a26 75%)',
-        backgroundSize: '200% 100%',
-        animation: 'shimmer 1.5s infinite',
-        ...style,
-      }}
+      className={cn('rounded-lg bg-muted animate-pulse', className)}
+      style={style}
     />
   )
 }
 
 function MemberDetailSkeleton() {
   return (
-    <>
-      <style>{`@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}`}</style>
-      <div className="space-y-5 pb-10">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl border border-border bg-card" />
-            <div className="space-y-2"><Bone className="h-5 w-36" /><Bone className="h-3 w-24" /></div>
-          </div>
-          <Bone className="h-9 w-28 rounded-xl" />
+    <div className="space-y-5 pb-10">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <Bone className="h-9 w-9 rounded-xl" />
+          <div className="space-y-2"><Bone className="h-5 w-36" /><Bone className="h-3 w-24" /></div>
         </div>
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-          <div className="space-y-4">
-            <div className="rounded-md border border-border bg-card p-5">
-              <div className="flex flex-col items-center pb-5 border-b border-border">
-                <Bone className="h-20 w-20 rounded-md mb-3" /><Bone className="h-4 w-28 mb-2" />
-                <Bone className="h-5 w-16 rounded-md mb-3" /><Bone className="h-7 w-24 rounded-lg" />
-              </div>
-              <div className="pt-4 space-y-3">
-                {[1, 2, 3].map(i => <div key={i} className="flex items-center gap-3"><Bone className="h-3.5 w-3.5 flex-shrink-0" /><Bone className="h-3.5 flex-1" style={{ maxWidth: `${100 - i * 15}%` }} /></div>)}
-              </div>
-              <div className="grid grid-cols-2 gap-3 mt-5">
-                {[0, 1].map(i => <div key={i} className="rounded-xl border border-border bg-background/20 p-3 flex flex-col items-center"><Bone className="h-9 w-9 rounded-lg mb-2" /><Bone className="h-6 w-8 mb-1" /><Bone className="h-3 w-10" /></div>)}
-              </div>
-            </div>
-          </div>
-          <div className="xl:col-span-2 space-y-4">
-            {[1, 2].map(i => (
-              <div key={i} className="rounded-md border border-border bg-card p-5">
-                <Bone className="h-3 w-28 mb-4" />
-                <div className="space-y-2">
-                  {[1, 2, 3].map(j => (
-                    <div key={j} className="rounded-xl border border-border bg-background/20 px-4 py-3 flex items-center gap-3">
-                      <Bone className="h-9 w-9 rounded-xl flex-shrink-0" />
-                      <div className="flex-1 space-y-1.5"><Bone className="h-3.5 w-32" /><Bone className="h-3 w-24" /></div>
-                      <div className="text-right space-y-1.5"><Bone className="h-3.5 w-16 ml-auto" /><Bone className="h-5 w-12 rounded-md ml-auto" /></div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <Bone className="h-9 w-28 rounded-xl" />
       </div>
-    </>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+         <Bone className="h-64 rounded-xl" />
+         <Bone className="h-64 rounded-xl" />
+      </div>
+    </div>
   )
 }
 
@@ -103,17 +67,17 @@ function MembershipProgressBar({ start, expiry }: { start: string; expiry: strin
   const elapsed = differenceInDays(today, startDate)
   const daysLeft = differenceInDays(expiryDate, today)
   const pct = Math.min(100, Math.max(0, Math.round((elapsed / total) * 100)))
-  const barColor = daysLeft <= 0 ? 'bg-foreground dark:bg-red-500' : daysLeft <= 7 ? 'bg-foreground dark:bg-orange-500' : 'bg-primary dark:bg-violet-500'
+  const barColor = daysLeft <= 0 ? 'bg-red-500' : daysLeft <= 7 ? 'bg-orange-500' : 'bg-violet-500'
   return (
     <div className="mt-5">
       <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
         <span>{daysLeft <= 0 ? 'Expired' : `${daysLeft} days left`}</span>
         <span>{pct}% used</span>
       </div>
-      <div className="h-2 bg-zinc-800 rounded-md overflow-hidden">
+      <div className="h-2 bg-muted rounded-md overflow-hidden">
         <div className={cn('h-full rounded-md transition-all duration-500', barColor)} style={{ width: `${pct}%` }} />
       </div>
-      <div className="flex items-center justify-between text-[11px] text-zinc-600 mt-2">
+      <div className="flex items-center justify-between text-[11px] text-muted-foreground mt-2">
         <span>{format(startDate, 'd MMM yyyy')}</span>
         <span>{format(expiryDate, 'd MMM yyyy')}</span>
       </div>
@@ -127,137 +91,34 @@ function MembershipProgressBar({ start, expiry }: { start: string; expiry: strin
 
 function Panel({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn('rounded-md border border-border bg-card  p-5', className)}>
+    <div className={cn('rounded-xl border border-border bg-card p-5 shadow-sm', className)}>
       {children}
     </div>
   )
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
-  return <p className="text-[13px] uppercase tracking-[0.18em] text-violet-400 font-extrabold mb-4">{children}</p>
+  return <p className="text-[13px] uppercase tracking-[0.1em] text-muted-foreground font-semibold mb-4">{children}</p>
 }
 
 function EmptyState({ icon: Icon, label }: { icon: any; label: string }) {
   return (
-    <div className="py-12 flex flex-col items-center justify-center gap-2 text-zinc-600">
-      <Icon className="h-7 w-7" /><p className="text-sm">{label}</p>
+    <div className="py-12 flex flex-col items-center justify-center gap-2 text-muted-foreground">
+      <Icon className="h-8 w-8 opacity-50" /><p className="text-sm font-medium">{label}</p>
     </div>
   )
 }
 
-function ListRow({ children }: { children: React.ReactNode }) {
-  return <div className="rounded-xl border border-border bg-background/20 px-4 py-3 flex items-center gap-3">{children}</div>
-}
-
-function IconBox({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <div className={cn('h-9 w-9 rounded-xl flex items-center justify-center flex-shrink-0', className)}>{children}</div>
-}
-
-// ─────────────────────────────────────────────
-// Payment detail card
-// ─────────────────────────────────────────────
-
-function PaymentDetailRow({ label, value, valueClass }: {
-  label: React.ReactNode; value: React.ReactNode; valueClass?: string
-}) {
+function DetailRow({ icon, label, value }: { icon: React.ReactNode, label: string, value: React.ReactNode }) {
   return (
-    <div className="flex items-center justify-between py-1.5">
-      <span className="text-xs text-muted-foreground">{label}</span>
-      <span className={cn('text-xs font-medium text-right', valueClass ?? 'text-zinc-200')}>{value}</span>
-    </div>
-  )
-}
-
-function PaymentCard({ payment }: { payment: Payment }) {
-  const [expanded, setExpanded] = useState(false)
-  const planPrice = (payment as any).amount ?? null
-  const discount = (payment as any).discount ?? 0
-  const additionalFee = (payment as any).additionalFee ?? 0
-  const finalAmount = payment.finalAmount
-  const collectedBy = (payment as any).collectedBy ?? null
-  const netDue = planPrice !== null ? planPrice - discount + additionalFee : null
-  const remainingDue = netDue !== null ? Math.max(0, netDue - finalAmount) : null
-  const membershipStart = (payment as any).membershipStart ?? null
-  const membershipExpiry = (payment as any).membershipExpiry ?? null
-
-  return (
-    <div className="rounded-xl border border-border bg-background/20 overflow-hidden">
-      <div className="px-4 py-3 flex items-center gap-3">
-        <IconBox className="bg-background border border-border dark:bg-green-500/10 dark:border-transparent"><CreditCard className="h-4 w-4 text-foreground dark:text-green-400" /></IconBox>
-        <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-foreground truncate">{payment.plan?.name ?? 'Membership'}</p>
-          <p className="text-xs text-muted-foreground mt-0.5">{payment.paymentMethod} · {formatDate(payment.createdAt)}</p>
-        </div>
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <div className="text-right">
-            <p className="text-sm font-semibold text-green-400">{toRupees(finalAmount)}</p>
-            <div className="mt-1 flex justify-end"><StatusBadge status={payment.status} /></div>
-          </div>
-          <button
-            onClick={() => setExpanded(v => !v)}
-            className="h-7 w-7 rounded-lg border border-border bg-card flex items-center justify-center text-muted-foreground hover:text-violet-400 hover:border-violet-500/30 transition-colors ml-1"
-          >
-            {expanded ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
-          </button>
-        </div>
+    <div className="flex items-start gap-3">
+      <div className="mt-0.5 text-muted-foreground opacity-80 *:h-4 *:w-4">
+        {icon}
       </div>
-
-      {expanded && (
-        <div className="border-t border-border px-4 pt-3 pb-4 space-y-2">
-          {planPrice !== null && (
-            <div className="rounded-xl bg-card border border-border px-3 py-2">
-              <p className="text-[11px] uppercase tracking-widest text-zinc-600 mb-2 font-semibold">Amount Breakdown</p>
-              <PaymentDetailRow label="Plan Price" value={toRupees(planPrice)} />
-              {discount > 0 && (
-                <PaymentDetailRow
-                  label={<span className="flex items-center gap-1"><MinusCircle className="h-3 w-3 text-orange-400" />Discount</span>}
-                  value={`− ${toRupees(discount)}`} valueClass="text-orange-400"
-                />
-              )}
-              {additionalFee > 0 && (
-                <PaymentDetailRow
-                  label={<span className="flex items-center gap-1"><PlusCircle className="h-3 w-3 text-blue-400" />Additional Fee</span>}
-                  value={`+ ${toRupees(additionalFee)}`} valueClass="text-blue-400"
-                />
-              )}
-              {(discount > 0 || additionalFee > 0) && (
-                <div className="border-t border-border mt-1.5 pt-1.5">
-                  <PaymentDetailRow label="Net Due" value={toRupees(netDue!)} valueClass="text-foreground font-semibold" />
-                </div>
-              )}
-              <div className={cn('border-t border-border mt-1.5 pt-1.5', discount === 0 && additionalFee === 0 && 'border-t-0 mt-0 pt-0')}>
-                <PaymentDetailRow label="Amount Paid" value={toRupees(finalAmount)} valueClass="text-green-400 font-bold" />
-              </div>
-              {remainingDue! > 0 && (
-                <PaymentDetailRow label="Remaining Due" value={toRupees(remainingDue!)} valueClass="text-red-400 font-semibold" />
-              )}
-            </div>
-          )}
-
-          {(membershipStart || membershipExpiry) && (
-            <div className="rounded-xl bg-card border border-border px-3 py-2">
-              <p className="text-[11px] uppercase tracking-widest text-zinc-600 mb-2 font-semibold">Plan Period</p>
-              {membershipStart && <PaymentDetailRow label="Start Date" value={format(parseISO(membershipStart), 'd MMM yyyy')} />}
-              {membershipExpiry && <PaymentDetailRow label="Expiry Date" value={format(parseISO(membershipExpiry), 'd MMM yyyy')} />}
-            </div>
-          )}
-
-          <div className="rounded-xl bg-card border border-border px-3 py-2">
-            <p className="text-[11px] uppercase tracking-widest text-zinc-600 mb-2 font-semibold">Transaction Details</p>
-            <PaymentDetailRow label={<span className="flex items-center gap-1"><Receipt className="h-3 w-3" />Method</span>} value={payment.paymentMethod} />
-            <PaymentDetailRow label={<span className="flex items-center gap-1"><Clock className="h-3 w-3" />Date & Time</span>} value={format(parseISO(payment.createdAt), 'd MMM yyyy, h:mm a')} />
-            {collectedBy?.name && (
-              <PaymentDetailRow
-                label={<span className="flex items-center gap-1"><UserCheck className="h-3 w-3" />Collected By</span>}
-                value={<span className="flex items-center gap-1 justify-end">{collectedBy.name}{collectedBy.role && <span className="text-[10px] text-zinc-600 ml-1">· {collectedBy.role}</span>}</span>}
-              />
-            )}
-            {(payment as any).notes && (
-              <PaymentDetailRow label="Notes" value={(payment as any).notes} valueClass="text-zinc-400 text-right max-w-[60%] whitespace-normal" />
-            )}
-          </div>
-        </div>
-      )}
+      <div>
+        <p className="text-xs text-muted-foreground mb-0.5">{label}</p>
+        <p className="text-sm font-medium text-foreground">{value}</p>
+      </div>
     </div>
   )
 }
@@ -267,7 +128,7 @@ function PaymentCard({ payment }: { payment: Payment }) {
 // ─────────────────────────────────────────────
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
-  return <label className="block text-xs text-zinc-400 mb-1.5 font-medium">{children}</label>
+  return <label className="block text-xs text-muted-foreground mb-1.5 font-medium">{children}</label>
 }
 
 function Input({ value, onChange, placeholder, type = 'text', disabled, min }: {
@@ -279,9 +140,9 @@ function Input({ value, onChange, placeholder, type = 'text', disabled, min }: {
       type={type} value={value} min={min} disabled={disabled}
       onChange={(e) => onChange(e.target.value)} placeholder={placeholder}
       className={cn(
-        'w-full rounded-xl border border-border bg-card px-3.5 py-2.5',
-        'text-sm text-foreground placeholder:text-zinc-600',
-        'focus:outline-none focus:border-violet-500/60 focus:bg-accent transition-colors duration-150',
+        'w-full rounded-xl border border-border bg-background px-3.5 py-2.5',
+        'text-sm text-foreground placeholder:text-muted-foreground',
+        'focus:outline-none focus:border-primary focus:bg-accent transition-colors duration-150',
         disabled && 'opacity-50 cursor-not-allowed',
       )}
     />
@@ -295,8 +156,8 @@ function FSelect({ value, onChange, children, disabled }: {
     <select
       value={value} onChange={(e) => onChange(e.target.value)} disabled={disabled}
       className={cn(
-        'w-full rounded-xl border border-border bg-card px-3.5 py-2.5 text-sm text-foreground',
-        'focus:outline-none focus:border-violet-500/60 transition-colors duration-150',
+        'w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm text-foreground',
+        'focus:outline-none focus:border-primary transition-colors duration-150',
         disabled && 'opacity-50 cursor-not-allowed',
       )}
     >
@@ -322,11 +183,11 @@ function Modal({ open, onClose, title, children, wide }: {
   if (!open) return null
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-background/70 " onClick={onClose} />
-      <div className={cn('relative z-10 w-full rounded-md border border-border bg-card shadow-2xl p-6 max-h-[90vh] overflow-y-auto', wide ? 'max-w-lg' : 'max-w-md')}>
+      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" onClick={onClose} />
+      <div className={cn('relative z-10 w-full rounded-xl border border-border bg-card shadow-2xl p-6 max-h-[90vh] overflow-y-auto', wide ? 'max-w-lg' : 'max-w-md')}>
         <div className="flex items-center justify-between mb-5">
-          <h2 className="text-base font-semibold text-foreground">{title}</h2>
-          <button onClick={onClose} className="h-8 w-8 rounded-lg border border-border bg-card flex items-center justify-center text-zinc-400 hover:text-foreground transition-colors">
+          <h2 className="text-lg font-semibold text-foreground">{title}</h2>
+          <button onClick={onClose} className="h-8 w-8 rounded-lg border border-border bg-card flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors">
             <X className="h-4 w-4" />
           </button>
         </div>
@@ -376,7 +237,7 @@ function AddPaymentModal({ open, onClose, memberId, memberName, onSaved }: {
   const netDue = planPrice - discountPaise + addFeePaise
   const paidPreview = paidAmount === '' ? netDue : Math.min(Math.round(Number(paidAmount) * 100), netDue)
   const payStatus = paidPreview <= 0 ? 'PENDING' : paidPreview < netDue ? 'PARTIAL' : 'PAID'
-  const statusColor = payStatus === 'PAID' ? 'text-green-400' : payStatus === 'PARTIAL' ? 'text-orange-400' : 'text-muted-foreground'
+  const statusColor = payStatus === 'PAID' ? 'text-green-500' : payStatus === 'PARTIAL' ? 'text-orange-500' : 'text-muted-foreground'
 
   const handleSubmit = async () => {
     if (!planId) return toast.error('Please select a plan')
@@ -407,16 +268,14 @@ function AddPaymentModal({ open, onClose, memberId, memberName, onSaved }: {
 
   return (
     <Modal open={open} onClose={onClose} title="Record Payment" wide>
-      {/* Member chip */}
-      <div className="flex items-center gap-2 mb-5 px-3 py-2 /10 border border-violet-500/20 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
-        <div className="h-6 w-6 rounded-md /30 flex items-center justify-center text-[10px] font-bold text-violet-300 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
+      <div className="flex items-center gap-2 mb-5 px-3 py-2 border border-primary/20 bg-primary/5 rounded-lg text-primary">
+        <div className="h-6 w-6 rounded-md bg-primary/10 flex items-center justify-center text-[10px] font-bold">
           {memberName[0]?.toUpperCase()}
         </div>
-        <span className="text-sm text-violet-300 font-medium">{memberName}</span>
+        <span className="text-sm font-medium">{memberName}</span>
       </div>
 
       <div className="space-y-4">
-        {/* Plan selector */}
         <div>
           <FieldLabel>Plan *</FieldLabel>
           <FSelect value={planId} onChange={setPlanId} disabled={plansLoading}>
@@ -429,51 +288,33 @@ function AddPaymentModal({ open, onClose, memberId, memberName, onSaved }: {
           </FSelect>
         </div>
 
-        {/* Live preview bar */}
         {selectedPlan && (
-          <div className="rounded-xl bg-card border border-border px-3 py-2.5 grid grid-cols-3 gap-2 text-center">
+          <div className="rounded-xl bg-muted border border-border px-3 py-2.5 grid grid-cols-3 gap-2 text-center">
             <div>
-              <p className="text-[10px] text-zinc-600 uppercase tracking-widest mb-0.5">Plan Price</p>
+              <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-0.5">Plan Price</p>
               <p className="text-sm font-semibold text-foreground">₹{(planPrice / 100).toFixed(0)}</p>
             </div>
             <div>
-              <p className="text-[10px] text-zinc-600 uppercase tracking-widest mb-0.5">Net Due</p>
+              <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-0.5">Net Due</p>
               <p className="text-sm font-semibold text-foreground">₹{(netDue / 100).toFixed(0)}</p>
             </div>
             <div>
-              <p className="text-[10px] text-zinc-600 uppercase tracking-widest mb-0.5">Status</p>
+              <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-0.5">Status</p>
               <p className={cn('text-sm font-semibold', statusColor)}>{payStatus}</p>
             </div>
           </div>
         )}
 
-        {/* Discount + Additional Fee */}
         <div className="grid grid-cols-2 gap-3">
-          <div>
-            <FieldLabel>Discount (₹)</FieldLabel>
-            <Input value={discount} onChange={setDiscount} placeholder="0" type="number" min="0" />
-          </div>
-          <div>
-            <FieldLabel>Additional Fee (₹)</FieldLabel>
-            <Input value={additionalFee} onChange={setAdditionalFee} placeholder="0" type="number" min="0" />
-          </div>
+          <div><FieldLabel>Discount (₹)</FieldLabel><Input value={discount} onChange={setDiscount} placeholder="0" type="number" min="0" /></div>
+          <div><FieldLabel>Additional Fee (₹)</FieldLabel><Input value={additionalFee} onChange={setAdditionalFee} placeholder="0" type="number" min="0" /></div>
         </div>
 
-        {/* Amount Paid */}
         <div>
-          <FieldLabel>
-            Amount Paid (₹){' '}
-            <span className="text-zinc-600 normal-case font-normal">— blank = full payment</span>
-          </FieldLabel>
-          <Input
-            value={paidAmount}
-            onChange={setPaidAmount}
-            placeholder={selectedPlan ? `${(netDue / 100).toFixed(0)}` : '0'}
-            type="number" min="0"
-          />
+          <FieldLabel>Amount Paid (₹) <span className="text-muted-foreground normal-case font-normal">— blank = full payment</span></FieldLabel>
+          <Input value={paidAmount} onChange={setPaidAmount} placeholder={selectedPlan ? `${(netDue / 100).toFixed(0)}` : '0'} type="number" min="0" />
         </div>
 
-        {/* Payment Method pill selector */}
         <div>
           <FieldLabel>Payment Method *</FieldLabel>
           <div className="grid grid-cols-4 gap-2">
@@ -484,8 +325,8 @@ function AddPaymentModal({ open, onClose, memberId, memberName, onSaved }: {
                 className={cn(
                   'rounded-xl border py-2 text-xs font-medium transition-all duration-150',
                   paymentMethod === m
-                    ? 'border-border bg-primary text-primary-foreground dark:border-violet-500 dark:bg-violet-500/20 dark:text-violet-300'
-                    : 'border-border bg-card text-muted-foreground hover:text-foreground hover:border-border dark:hover:text-zinc-300 dark:hover:border-white/20',
+                    ? 'border-primary bg-primary text-primary-foreground'
+                    : 'border-border bg-background text-muted-foreground hover:bg-accent hover:text-foreground'
                 )}
               >
                 {m}
@@ -494,43 +335,23 @@ function AddPaymentModal({ open, onClose, memberId, memberName, onSaved }: {
           </div>
         </div>
 
-        {/* Plan Start Date */}
         <div>
-          <FieldLabel>
-            Plan Start Date{' '}
-            <span className="text-zinc-600 normal-case font-normal">— blank = today</span>
-          </FieldLabel>
+          <FieldLabel>Plan Start Date <span className="text-muted-foreground normal-case font-normal">— blank = today</span></FieldLabel>
           <Input value={planStartDate} onChange={setPlanStartDate} type="date" />
         </div>
 
-        {/* Notes */}
         <div>
           <FieldLabel>Notes</FieldLabel>
           <textarea
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            placeholder="Optional"
-            rows={2}
-            className="w-full rounded-xl border border-border bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-zinc-600 resize-none focus:outline-none focus:border-violet-500/60 focus:bg-accent transition-colors duration-150"
+            value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Optional" rows={2}
+            className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground resize-none focus:outline-none focus:border-primary transition-colors duration-150"
           />
         </div>
 
-        {/* Actions */}
         <div className="flex gap-2 pt-1">
-          <button
-            onClick={onClose}
-            className="flex-1 rounded-xl border border-border bg-card py-2.5 text-sm text-zinc-400 hover:text-foreground transition-colors"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={handleSubmit}
-            disabled={saving || !planId}
-            className="flex-1 py-2.5 text-sm text-foreground font-medium flex items-center justify-center gap-2 transition-colors bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
-          >
-            {saving
-              ? <span className="h-4 w-4 rounded-md border-2 border-white/30 border-t-white animate-spin" />
-              : <CreditCard className="h-3.5 w-3.5" />}
+          <button onClick={onClose} className="flex-1 rounded-xl border border-border bg-background py-2.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">Cancel</button>
+          <button onClick={handleSubmit} disabled={saving || !planId} className="flex-1 rounded-xl py-2.5 text-sm text-primary-foreground bg-primary hover:opacity-90 font-medium flex items-center justify-center gap-2 transition-colors">
+            {saving ? <span className="h-4 w-4 rounded-md border-2 border-white/30 border-t-white animate-spin" /> : <CreditCard className="h-3.5 w-3.5" />}
             Record Payment
           </button>
         </div>
@@ -595,12 +416,12 @@ function EditProfileModal({ open, onClose, member, onSaved }: {
         <div>
           <FieldLabel>Notes</FieldLabel>
           <textarea value={form.notes} onChange={e => field('notes')(e.target.value)} placeholder="Internal notes (optional)" rows={2}
-            className="w-full rounded-xl border border-border bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-zinc-600 resize-none focus:outline-none focus:border-violet-500/60 focus:bg-accent transition-colors duration-150"
+            className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground resize-none focus:outline-none focus:border-primary transition-colors duration-150"
           />
         </div>
         <div className="flex gap-2 pt-1">
-          <button onClick={onClose} className="flex-1 rounded-xl border border-border bg-card py-2.5 text-sm text-zinc-400 hover:text-foreground transition-colors">Cancel</button>
-          <button onClick={handleSave} disabled={saving} className="flex-1 py-2.5 text-sm text-foreground font-medium flex items-center justify-center gap-2 transition-colors bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
+          <button onClick={onClose} className="flex-1 rounded-xl border border-border bg-background py-2.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">Cancel</button>
+          <button onClick={handleSave} disabled={saving} className="flex-1 rounded-xl py-2.5 text-sm text-primary-foreground bg-primary hover:opacity-90 font-medium flex items-center justify-center gap-2 transition-colors">
             {saving ? <span className="h-4 w-4 rounded-md border-2 border-white/30 border-t-white animate-spin" /> : <Save className="h-3.5 w-3.5" />}
             Save Changes
           </button>
@@ -614,11 +435,20 @@ function EditProfileModal({ open, onClose, member, onSaved }: {
 // Main Page
 // ─────────────────────────────────────────────
 
+type TabType = 'overview' | 'payments' | 'attendance'
+
+const TABS: { id: TabType, label: string }[] = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'payments', label: 'Payments' },
+  { id: 'attendance', label: 'Attendance' }
+]
+
 export default function MemberDetailPage() {
   const { id } = useParams()
   const router = useRouter()
   const queryClient = useQueryClient()
 
+  const [activeTab, setActiveTab] = useState<TabType>('overview')
   const [editProfileOpen, setEditProfileOpen] = useState(false)
   const [addPaymentOpen, setAddPaymentOpen] = useState(false)
 
@@ -668,206 +498,237 @@ export default function MemberDetailPage() {
         onSaved={handlePaymentSaved}
       />
 
-      <div className="space-y-5 pb-10">
+      <div className="pb-10">
+        
+        {/* ── Header Card ── */}
+        <div className="bg-card border border-border p-6 rounded-2xl shadow-sm">
+          <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+            <div className="flex items-center gap-5">
+              <button
+                onClick={() => router.back()}
+                className="h-10 w-10 rounded-full border border-border bg-background flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors flex-shrink-0"
+              >
+                <ArrowLeft className="h-4 w-4" />
+              </button>
+              
+              <div className="h-16 w-16 rounded-2xl border border-primary/20 flex items-center justify-center text-2xl font-bold text-primary bg-primary/10 shadow-sm flex-shrink-0">
+                {getInitials(member.name)}
+              </div>
+              
+              <div>
+                <h1 className="text-2xl font-bold text-foreground leading-tight flex items-center gap-3">
+                  {member.name}
+                  <StatusBadge status={member.status} />
+                </h1>
+                <p className="text-sm text-muted-foreground mt-1">Member since {formatDate(member.createdAt)}</p>
+              </div>
+            </div>
 
-        {/* ── Header ── */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => router.back()}
-              className="h-9 w-9 rounded-xl border border-border bg-card flex items-center justify-center text-zinc-400 hover:text-foreground transition-colors flex-shrink-0"
-            >
-              <ArrowLeft className="h-4 w-4" />
-            </button>
-            <div>
-              <h1 className="text-xl font-bold text-foreground leading-tight">{member.name}</h1>
-              <p className="text-xs text-muted-foreground mt-0.5">Member since {formatDate(member.createdAt)}</p>
+            <div className="flex items-center gap-2 flex-wrap pl-[68px] md:pl-0">
+              <Button
+                onClick={() => setEditProfileOpen(true)}
+                variant="outline"
+                className="h-10 gap-2 border-border bg-background hover:bg-muted text-foreground font-medium rounded-xl shadow-sm"
+              >
+                <Pencil className="h-4 w-4" /> Edit Profile
+              </Button>
+              <Button
+                onClick={() => router.push(`/members/${id}/diet`)}
+                variant="outline"
+                className="h-10 gap-2 border-border bg-background hover:bg-muted text-foreground font-medium rounded-xl shadow-sm"
+              >
+                <Utensils className="h-4 w-4" /> Diet & Weight
+              </Button>
+              <Button
+                onClick={() => setAddPaymentOpen(true)}
+                className="h-10 gap-2 bg-primary text-primary-foreground hover:opacity-90 font-medium rounded-xl shadow-sm border-0"
+              >
+                <Plus className="h-4 w-4" /> Record Payment
+              </Button>
             </div>
           </div>
 
-          {/* ── Action buttons ── */}
-          <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
-            <button
-              onClick={() => setAddPaymentOpen(true)}
-              className="flex items-center gap-1.5 h-9 px-4 rounded-xl border border-border bg-background text-foreground hover:bg-accent text-sm font-medium transition-all duration-150 dark:border-green-500/30 dark:bg-green-500/10 dark:text-green-400 dark:hover:bg-green-500/20 dark:hover:border-green-500/50"
-            >
-              <Plus className="h-3.5 w-3.5" />
-              Add Payment
-            </button>
-            <Button
-              onClick={() => router.push(`/members/${id}/diet`)}
-              className="text-foreground h-9 px-4 text-sm gap-2 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm"
-            >
-              <Utensils className="h-3.5 w-3.5" />
-              Diet & Weight
-            </Button>
+          {/* ── Tabs Navigation ── */}
+          <div className="flex items-center gap-6 border-b border-border mt-8 -mb-6 px-1">
+            {TABS.map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={cn(
+                  "pb-3 text-sm font-medium transition-colors relative",
+                  activeTab === tab.id ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                {tab.label}
+                {activeTab === tab.id && (
+                  <span className="absolute bottom-[-1px] left-0 right-0 h-[2px] bg-primary rounded-t-full" />
+                )}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* ── Layout ── */}
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-
-          {/* ── LEFT ── */}
-          <div className="space-y-4">
-            <Panel>
-              <div className="flex flex-col items-center text-center pb-5 border-b border-border">
-                <div className="h-20 w-20 rounded-md /20 border border-violet-500/30 flex items-center justify-center text-xl font-bold text-violet-400 mb-3 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
-                  {getInitials(member.name)}
-                </div>
-                <h2 className="text-base font-semibold text-foreground">{member.name}</h2>
-                <div className="mt-2"><StatusBadge status={member.status} /></div>
-                <button
-                  onClick={() => setEditProfileOpen(true)}
-                  className="mt-4 flex items-center gap-1.5 text-xs text-zinc-400 hover:text-violet-400 transition-colors border border-border hover:border-violet-500/40 rounded-lg px-3 py-1.5"
-                >
-                  <Pencil className="h-3 w-3" />Edit Profile
-                </button>
-              </div>
-
-              <div className="pt-4 space-y-3">
-                <div className="flex items-center gap-3 text-sm text-zinc-300">
-                  <Phone className="h-3.5 w-3.5 text-violet-400 flex-shrink-0" />
-                  <span className="truncate">{member.phone}</span>
-                </div>
-                {member.email && (
-                  <div className="flex items-center gap-3 text-sm text-zinc-300">
-                    <Mail className="h-3.5 w-3.5 text-violet-400 flex-shrink-0" /><span className="truncate">{member.email}</span>
-                  </div>
-                )}
-                {member.address && (
-                  <div className="flex items-center gap-3 text-sm text-zinc-300">
-                    <MapPin className="h-3.5 w-3.5 text-violet-400 flex-shrink-0" /><span className="truncate">{member.address}</span>
-                  </div>
-                )}
-                {member.dateOfBirth && (
-                  <div className="flex items-center gap-3 text-sm text-zinc-300">
-                    <Calendar className="h-3.5 w-3.5 text-violet-400 flex-shrink-0" />
-                    <span>{format(parseISO(member.dateOfBirth), 'd MMM yyyy')}</span>
-                  </div>
-                )}
-                {member.gender && (
-                  <div className="flex items-center gap-3 text-sm text-zinc-300">
-                    <User className="h-3.5 w-3.5 text-violet-400 flex-shrink-0" />
-                    <span className="capitalize">{member.gender.toLowerCase()}</span>
-                  </div>
-                )}
-              </div>
-
-              <div className="grid grid-cols-2 gap-3 mt-5">
-                <div className="rounded-xl border border-border bg-background/20 p-3 text-center">
-                  <div className="h-9 w-9 /10 flex items-center justify-center mx-auto mb-2 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
-                    <Activity className="h-4 w-4 text-violet-400" />
-                  </div>
-                  <p className="text-xl font-bold text-foreground">{member.attendance?.length || 0}</p>
-                  <p className="text-[11px] text-muted-foreground mt-0.5">Visits</p>
-                </div>
-                <div className="rounded-xl border border-border bg-background/20 p-3 text-center">
-                  <div className="h-9 w-9 rounded-lg bg-background border border-border flex items-center justify-center mx-auto mb-2 dark:bg-green-500/10 dark:border-transparent">
-                    <Wallet className="h-4 w-4 text-green-400" />
-                  </div>
-                  <p className="text-xl font-bold text-foreground">{member.payments?.length || 0}</p>
-                  <p className="text-[11px] text-muted-foreground mt-0.5">Payments</p>
-                </div>
-              </div>
-            </Panel>
-
-            {member.plan && (
+        {/* ── Tab Content ── */}
+        <div className="mt-8">
+          
+          {/* OVERVIEW TAB */}
+          {activeTab === 'overview' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              
+              {/* Personal Details */}
               <Panel>
-                <SectionLabel>Membership</SectionLabel>
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-muted-foreground">Plan</span>
-                    <div className="flex items-center gap-1.5 text-sm font-medium text-foreground">
-                      <Crown className="h-3.5 w-3.5 text-yellow-400" />{member.plan.name}
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-muted-foreground">Duration</span>
-                    <span className="text-sm text-foreground">{member.plan.durationDays} days</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-muted-foreground">Fee</span>
-                    <span className="text-sm font-semibold text-green-400">{toRupees(member.plan.price)}</span>
-                  </div>
+                <SectionLabel>Personal Details</SectionLabel>
+                <div className="space-y-5">
+                  <DetailRow icon={<Phone/>} label="Phone" value={member.phone} />
+                  {member.email && <DetailRow icon={<Mail/>} label="Email" value={member.email} />}
+                  {member.address && <DetailRow icon={<MapPin/>} label="Address" value={member.address} />}
+                  {member.dateOfBirth && <DetailRow icon={<Calendar/>} label="Date of Birth" value={format(parseISO(member.dateOfBirth), 'd MMM yyyy')} />}
+                  {member.gender && <DetailRow icon={<User/>} label="Gender" value={<span className="capitalize">{member.gender.toLowerCase()}</span>} />}
                 </div>
-                {member.membershipStart && member.membershipExpiry && (
-                  <MembershipProgressBar start={member.membershipStart} expiry={member.membershipExpiry} />
-                )}
-                {daysLeft !== null && daysLeft <= 7 && daysLeft > 0 && (
-                  <div className="mt-4 rounded-xl bg-background border border-border px-3 py-2.5 flex items-center gap-2 text-foreground text-xs dark:bg-orange-500/10 dark:border-orange-500/20 dark:text-orange-400">
-                    <AlertCircle className="h-3.5 w-3.5 flex-shrink-0" />
-                    Expiring in {daysLeft} {daysLeft === 1 ? 'day' : 'days'}
+              </Panel>
+
+              {/* Current Plan */}
+              <Panel>
+                <SectionLabel>Current Plan</SectionLabel>
+                {member.plan ? (
+                  <div className="space-y-4">
+                    <div className="flex flex-col">
+                      <p className="text-xl font-bold text-foreground flex items-center gap-2">
+                        <Crown className="h-5 w-5 text-yellow-500" /> {member.plan.name}
+                      </p>
+                      <p className="text-sm font-medium text-muted-foreground mt-1">{member.plan.durationDays} days · <span className="text-foreground">{toRupees(member.plan.price)}</span></p>
+                    </div>
+                    
+                    {member.membershipStart && member.membershipExpiry && (
+                      <MembershipProgressBar start={member.membershipStart} expiry={member.membershipExpiry} />
+                    )}
+                    
+                    {daysLeft !== null && daysLeft <= 7 && daysLeft > 0 && (
+                      <div className="mt-4 rounded-xl bg-orange-500/10 border border-orange-500/20 px-4 py-3 flex items-center gap-2 text-orange-600 dark:text-orange-400 text-sm font-medium">
+                        <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                        Expiring in {daysLeft} {daysLeft === 1 ? 'day' : 'days'}
+                      </div>
+                    )}
+                    {daysLeft !== null && daysLeft <= 0 && (
+                      <div className="mt-4 rounded-xl bg-red-500/10 border border-red-500/20 px-4 py-3 flex items-center gap-2 text-red-600 dark:text-red-400 text-sm font-medium">
+                        <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                        Membership expired
+                      </div>
+                    )}
                   </div>
-                )}
-                {daysLeft !== null && daysLeft <= 0 && (
-                  <div className="mt-4 rounded-xl bg-background border border-border px-3 py-2.5 flex items-center gap-2 text-foreground text-xs dark:bg-red-500/10 dark:border-red-500/20 dark:text-red-400">
-                    <AlertCircle className="h-3.5 w-3.5 flex-shrink-0" />Membership expired
-                  </div>
+                ) : (
+                  <EmptyState icon={Crown} label="No active membership" />
                 )}
               </Panel>
-            )}
-          </div>
-
-          {/* ── RIGHT ── */}
-          <div className="xl:col-span-2 space-y-4">
-
-            {/* Payment History */}
-            <Panel>
-              <div className="flex items-center justify-between mb-4">
-                <SectionLabel>Payment History</SectionLabel>
+              
+              {/* Quick Stats */}
+              <div className="grid grid-cols-2 gap-5 col-span-1 md:col-span-2">
+                 <Panel className="flex items-center gap-5 p-6 hover:border-primary/30 transition-colors">
+                    <div className="h-14 w-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                       <Activity className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                       <p className="text-3xl font-bold text-foreground">{member.attendance?.length || 0}</p>
+                       <p className="text-sm font-medium text-muted-foreground">Total Visits</p>
+                    </div>
+                 </Panel>
+                 <Panel className="flex items-center gap-5 p-6 hover:border-green-500/30 transition-colors">
+                    <div className="h-14 w-14 rounded-2xl bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+                       <Wallet className="h-6 w-6 text-green-500" />
+                    </div>
+                    <div>
+                       <p className="text-3xl font-bold text-foreground">{member.payments?.length || 0}</p>
+                       <p className="text-sm font-medium text-muted-foreground">Total Payments</p>
+                    </div>
+                 </Panel>
               </div>
+            </div>
+          )}
 
-              {!member.payments?.length ? (
-                <div className="py-10 flex flex-col items-center justify-center gap-3 text-zinc-600">
-                  <CreditCard className="h-7 w-7" />
-                  <p className="text-sm">No payments yet</p>
-                  <button
-                    onClick={() => setAddPaymentOpen(true)}
-                    className="flex items-center gap-1.5 text-xs text-foreground hover:text-foreground border border-border bg-background rounded-lg px-3 py-1.5 transition-all dark:text-green-400 dark:hover:text-green-300 dark:border-green-500/20 dark:bg-green-500/10"
-                  >
-                    <Plus className="h-3 w-3" />Record first payment
-                  </button>
-                </div>
-              ) : (
-                <div className="space-y-2">
-                  {member.payments.map((payment: Payment) => (
-                    <PaymentCard key={payment.id} payment={payment} />
-                  ))}
-                </div>
-              )}
-            </Panel>
+          {/* PAYMENTS TAB */}
+          {activeTab === 'payments' && (
+             <Panel className="p-0 overflow-hidden shadow-sm">
+                {!member.payments?.length ? (
+                   <EmptyState icon={CreditCard} label="No payments recorded" />
+                ) : (
+                   <div className="overflow-x-auto">
+                     <table className="w-full text-sm text-left">
+                       <thead className="text-xs text-muted-foreground uppercase bg-muted/40 border-b border-border">
+                         <tr>
+                           <th className="px-6 py-4 font-medium">Date</th>
+                           <th className="px-6 py-4 font-medium">Plan</th>
+                           <th className="px-6 py-4 font-medium">Amount</th>
+                           <th className="px-6 py-4 font-medium">Method</th>
+                           <th className="px-6 py-4 font-medium text-right">Status</th>
+                         </tr>
+                       </thead>
+                       <tbody className="divide-y divide-border">
+                         {member.payments.map((p: any) => (
+                            <tr key={p.id} className="hover:bg-muted/30 transition-colors">
+                              <td className="px-6 py-4 whitespace-nowrap text-muted-foreground font-medium">
+                                {formatDate(p.createdAt)}
+                              </td>
+                              <td className="px-6 py-4 font-semibold text-foreground">
+                                {p.plan?.name || 'Membership'}
+                              </td>
+                              <td className="px-6 py-4 text-foreground font-bold">
+                                {toRupees(p.finalAmount)}
+                              </td>
+                              <td className="px-6 py-4">
+                                <span className="inline-flex items-center px-2 py-1 rounded-md bg-muted text-xs font-medium text-muted-foreground">
+                                  {p.paymentMethod}
+                                </span>
+                              </td>
+                              <td className="px-6 py-4 text-right">
+                                <StatusBadge status={p.status} />
+                              </td>
+                            </tr>
+                         ))}
+                       </tbody>
+                     </table>
+                   </div>
+                )}
+             </Panel>
+          )}
 
-            {/* Attendance */}
-            <Panel>
-              <SectionLabel>Recent Attendance</SectionLabel>
-              {!member.attendance?.length ? (
-                <EmptyState icon={Calendar} label="No attendance records" />
-              ) : (
-                <div className="space-y-2">
-                  {member.attendance.map((record: Attendance) => (
-                    <ListRow key={record.id}>
-                      <IconBox className="/10 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
-                        <CheckCircle2 className="h-4 w-4 text-green-400" />
-                      </IconBox>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-foreground">
-                          {format(parseISO(record.checkInAt), 'EEEE, d MMM yyyy')}
-                        </p>
-                        <p className="text-xs text-muted-foreground mt-0.5">
-                          {format(parseISO(record.checkInAt), 'h:mm a')}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground flex-shrink-0">
-                        {record.markedBy === 'QR_SCAN'
-                          ? <><QrCode className="h-3.5 w-3.5" />QR Scan</>
-                          : <><User className="h-3.5 w-3.5" />Manual</>}
-                      </div>
-                    </ListRow>
-                  ))}
-                </div>
-              )}
+          {/* ATTENDANCE TAB */}
+          {activeTab === 'attendance' && (
+            <Panel className="p-0 overflow-hidden shadow-sm">
+               {!member.attendance?.length ? (
+                  <EmptyState icon={Calendar} label="No attendance records" />
+               ) : (
+                  <div className="overflow-x-auto">
+                     <table className="w-full text-sm text-left">
+                       <thead className="text-xs text-muted-foreground uppercase bg-muted/40 border-b border-border">
+                         <tr>
+                           <th className="px-6 py-4 font-medium">Date</th>
+                           <th className="px-6 py-4 font-medium">Time</th>
+                           <th className="px-6 py-4 font-medium text-right">Check-in Method</th>
+                         </tr>
+                       </thead>
+                       <tbody className="divide-y divide-border">
+                         {member.attendance.map((a: any) => (
+                            <tr key={a.id} className="hover:bg-muted/30 transition-colors">
+                              <td className="px-6 py-4 font-semibold text-foreground whitespace-nowrap">
+                                {format(parseISO(a.checkInAt), 'EEEE, d MMM yyyy')}
+                              </td>
+                              <td className="px-6 py-4 text-muted-foreground font-medium">
+                                {format(parseISO(a.checkInAt), 'h:mm a')}
+                              </td>
+                              <td className="px-6 py-4 text-right">
+                                 <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-muted text-xs font-medium text-muted-foreground">
+                                    {a.markedBy === 'QR_SCAN' ? <><QrCode className="h-3.5 w-3.5" /> QR Scan</> : <><User className="h-3.5 w-3.5" /> Manual</>}
+                                 </div>
+                              </td>
+                            </tr>
+                         ))}
+                       </tbody>
+                     </table>
+                  </div>
+               )}
             </Panel>
-          </div>
+          )}
+
         </div>
       </div>
     </>
