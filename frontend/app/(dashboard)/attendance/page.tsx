@@ -243,12 +243,11 @@ export default function AttendancePage() {
   return (
     <div className="space-y-8" style={{ fontFamily: "'DM Sans', sans-serif" }}>
       <div className="flex items-center justify-end">
-        <div className="flex gap-2">
+        <div className="flex gap-3">
           <Button
-            variant="outline"
-            size="sm"
+            variant="ghost"
             onClick={() => queryClient.invalidateQueries({ queryKey: ['attendance-today'] })}
-            className="border-border bg-card text-foreground hover:bg-muted"
+            className="h-10 rounded-full bg-black/5 px-5 text-[13px] font-medium text-foreground backdrop-blur-md transition-all hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 hover:shadow-sm"
           >
             <RefreshCw className="mr-2 h-4 w-4" />
             Refresh
@@ -256,7 +255,10 @@ export default function AttendancePage() {
 
           <Dialog open={dialogOpen} onOpenChange={handleDialogChange}>
             <DialogTrigger asChild>
-              <Button className="bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-full text-foreground">
+              <Button 
+                variant="ghost"
+                className="h-10 rounded-full bg-violet-500/10 px-5 text-[13px] font-medium text-violet-600 dark:text-violet-400 backdrop-blur-md transition-all hover:bg-violet-500/20 border border-violet-500/20 hover:shadow-[0_0_15px_rgba(139,92,246,0.15)]"
+              >
                 <UserCheck className="mr-2 h-4 w-4" />
                 Mark Attendance
               </Button>
