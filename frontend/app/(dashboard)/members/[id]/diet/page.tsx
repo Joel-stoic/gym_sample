@@ -220,48 +220,35 @@ function AddDietModal({
     const [notes, setNotes] = useState('')
     const [validFrom, setValidFrom] = useState('')
     const [validTo, setValidTo] = useState('')
-    const [meals, setMeals] = useState<Meal[]>([
-        { time: 'Breakfast', items: [''], calories: null },
-        { time: 'Lunch', items: [''], calories: null },
-        { time: 'Dinner', items: [''], calories: null },
-    ])
+    
+    const mealTimes = ['Breakfast', 'Lunch', 'Dinner', 'Pre-workout', 'Post-workout', 'Snacks']
+    
+    // Store simple raw text and calories for each possible meal time
+    const [mealsData, setMealsData] = useState<Record<string, { rawText: string, calories: string }>>({
+        Breakfast: { rawText: '', calories: '' },
+        Lunch: { rawText: '', calories: '' },
+        Dinner: { rawText: '', calories: '' },
+        'Pre-workout': { rawText: '', calories: '' },
+        'Post-workout': { rawText: '', calories: '' },
+        Snacks: { rawText: '', calories: '' }
+    })
     
     const [saving, setSaving] = useState(false)
-
-    const mealTimes = ['Breakfast', 'Lunch', 'Dinner', 'Pre-workout', 'Post-workout', 'Snacks']
-
-    const addMeal = () => setMeals([...meals, { time: 'Snacks', items: [''], calories: null }])
-    const removeMeal = (i: number) => setMeals(meals.filter((_, idx) => idx !== i))
-
-    const updateMealItem = (mealIdx: number, itemIdx: number, val: string) => {
-        const updated = [...meals]
-        updated[mealIdx].items[itemIdx] = val
-        setMeals(updated)
-    }
-
-    const addItem = (mealIdx: number) => {
-        const updated = [...meals]
-        updated[mealIdx].items.push('')
-        setMeals(updated)
-    }
-
-    const removeItem = (mealIdx: number, itemIdx: number) => {
-        const updated = [...meals]
-        updated[mealIdx].items = updated[mealIdx].items.filter((_, i) => i !== itemIdx)
-        setMeals(updated)
-    }
-
 
     const handleSave = async () => {
         if (!title.trim()) { toast.error('Diet plan title is required'); return }
 
-        const cleanMeals = meals
-            .map(m => ({
-                time: m.time,
-                items: m.items.filter(i => i.trim()),
+        // Parse textareas into structured Meal arrays
+        const cleanMeals = mealTimes.map(time => {
+            const m = mealsData[time]
+            const items = m.rawText.split('\n').map(i => i.trim()).filter(Boolean)
+            if (items.length === 0) return null
+            return {
+                time,
+                items,
                 calories: m.calories ? Number(m.calories) : undefined
-            }))
-            .filter(m => m.items.length > 0)
+            }
+        }).filter(Boolean)
 
         if (cleanMeals.length === 0) { toast.error('Add at least one meal with food items'); return }
 
@@ -290,119 +277,90 @@ function AddDietModal({
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" onClick={onClose} />
-            <div className="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-card border border-border shadow-2xl">
-                <div className="sticky top-0 z-20 bg-card border-b border-border px-6 py-4 flex items-center justify-between">
+            <div className="relative z-10 w-full max-w-5xl max-h-[90vh] flex flex-col rounded-2xl bg-card border border-border shadow-2xl overflow-hidden">
+                <div className="flex-shrink-0 bg-card border-b border-border px-6 py-4 flex items-center justify-between">
                     <h2 className="text-lg font-bold text-foreground">Create Diet Plan</h2>
                     <button onClick={onClose} className="h-8 w-8 rounded-lg border border-border bg-background flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors">
                         <X className="h-4 w-4" />
                     </button>
                 </div>
 
-                <div className="p-6 space-y-8">
+                <div className="flex-1 overflow-y-auto p-6">
+                    <div className="flex flex-col lg:flex-row gap-8">
+                        {/* ── LEFT: DETAILS ── */}
+                        <div className="lg:w-[35%] space-y-6">
+                            <div>
+                                <SectionLabel>Plan Details</SectionLabel>
+                                <div className="space-y-4">
+                                    <input className={inputCls} placeholder="Plan Title * (e.g. 4-Week Fat Loss)" value={title} onChange={e => setTitle(e.target.value)} />
+                                    <input className={inputCls} placeholder="Short Description (optional)" value={description} onChange={e => setDescription(e.target.value)} />
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Valid From</label>
+                                            <input type="date" className={inputCls} value={validFrom} onChange={(e) => setValidFrom(e.target.value)} />
+                                        </div>
+                                        <div>
+                                            <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Valid To (optional)</label>
+                                            <input type="date" className={inputCls} value={validTo} onChange={e => setValidTo(e.target.value)} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <SectionLabel>Trainer Notes</SectionLabel>
+                                <textarea
+                                    className={cn(inputCls, 'resize-none h-24')}
+                                    placeholder="Additional instructions or notes for the member (optional)"
+                                    value={notes}
+                                    onChange={e => setNotes(e.target.value)}
+                                />
+                            </div>
+                        </div>
 
-                    {/* Basic info */}
-                    <div>
-                        <SectionLabel>Plan Details</SectionLabel>
-                        <div className="space-y-4">
-                            <input className={inputCls} placeholder="Plan Title * (e.g. 4-Week Fat Loss)" value={title} onChange={e => setTitle(e.target.value)} />
-                            <input className={inputCls} placeholder="Short Description (optional)" value={description} onChange={e => setDescription(e.target.value)} />
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Valid From</label>
-                                    <input type="date" className={inputCls} value={validFrom} onChange={(e) => setValidFrom(e.target.value)} />
-                                </div>
-                                <div>
-                                    <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Valid To (optional)</label>
-                                    <input type="date" className={inputCls} value={validTo} onChange={e => setValidTo(e.target.value)} />
-                                </div>
+                        {/* ── RIGHT: MEALS ── */}
+                        <div className="lg:w-[65%]">
+                            <div className="flex items-center justify-between mb-4">
+                                <SectionLabel>Meals</SectionLabel>
+                                <span className="text-xs text-muted-foreground font-medium bg-muted px-2.5 py-1 rounded-md">Leave empty to skip</span>
+                            </div>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {mealTimes.map((time) => {
+                                    const color = mealColors[time] || defaultMealColor
+                                    return (
+                                        <div key={time} className="rounded-xl border border-border bg-muted/30 p-4 transition-colors hover:border-border/80">
+                                            <div className="flex items-center justify-between mb-3">
+                                                <span className={cn('text-xs font-bold px-2 py-1 rounded-md border', color)}>
+                                                    {time}
+                                                </span>
+                                                <div className="relative w-[85px]">
+                                                    <input
+                                                        type="number"
+                                                        placeholder="kcal"
+                                                        value={mealsData[time].calories}
+                                                        onChange={e => setMealsData(p => ({ ...p, [time]: { ...p[time], calories: e.target.value } }))}
+                                                        className="w-full bg-background border border-border rounded-lg pl-3 pr-8 py-1.5 text-xs text-foreground outline-none focus:border-primary"
+                                                    />
+                                                    <span className="absolute right-2 top-1.5 text-[10px] text-muted-foreground font-medium">kcal</span>
+                                                </div>
+                                            </div>
+
+                                            <textarea
+                                                className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary transition-colors resize-none h-24 placeholder:text-muted-foreground/40 leading-relaxed"
+                                                placeholder={`e.g. 2 whole eggs\n1 cup oats\n1 apple`}
+                                                value={mealsData[time].rawText}
+                                                onChange={e => setMealsData(p => ({ ...p, [time]: { ...p[time], rawText: e.target.value } }))}
+                                            />
+                                        </div>
+                                    )
+                                })}
                             </div>
                         </div>
                     </div>
-
-                    {/* Meals */}
-                    <div>
-                        <div className="flex items-center justify-between mb-4">
-                            <SectionLabel>Meals</SectionLabel>
-                            <button onClick={addMeal} className="h-8 px-3 rounded-lg border border-border bg-background hover:bg-muted text-xs font-medium text-foreground flex items-center gap-1.5 transition-colors">
-                                <Plus className="h-3 w-3" /> Add Meal
-                            </button>
-                        </div>
-
-                        <div className="space-y-4">
-                            {meals.map((meal, mealIdx) => (
-                                <div key={mealIdx} className="rounded-xl border border-border bg-muted/30 p-4 relative group">
-                                    {meals.length > 1 && (
-                                        <button 
-                                            onClick={() => removeMeal(mealIdx)} 
-                                            className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-red-500 text-white flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
-                                        >
-                                            <Minus className="h-3 w-3" />
-                                        </button>
-                                    )}
-                                    <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
-                                        <select
-                                            value={meal.time}
-                                            onChange={e => { const u = [...meals]; u[mealIdx].time = e.target.value; setMeals(u) }}
-                                            className="bg-background border border-border rounded-lg px-3 py-2 text-sm font-medium text-foreground outline-none focus:border-primary flex-1"
-                                        >
-                                            {mealTimes.map(t => <option key={t} value={t}>{t}</option>)}
-                                        </select>
-                                        <div className="relative w-full sm:w-32">
-                                            <input
-                                                type="number"
-                                                placeholder="0"
-                                                value={meal.calories ?? ''}
-                                                onChange={e => { const u = [...meals]; u[mealIdx].calories = e.target.value ? Number(e.target.value) : null; setMeals(u) }}
-                                                className="w-full bg-background border border-border rounded-lg pl-3 pr-10 py-2 text-sm text-foreground outline-none focus:border-primary"
-                                            />
-                                            <span className="absolute right-3 top-2 text-xs text-muted-foreground font-medium">kcal</span>
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-3 pl-1 border-l-2 border-border ml-1">
-                                        {meal.items.map((item, itemIdx) => (
-                                            <div key={itemIdx} className="flex items-center gap-3 pl-3 relative group/item">
-                                                <input
-                                                    className="flex-1 bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors"
-                                                    placeholder={`Food item ${itemIdx + 1} (e.g. 2 whole eggs)`}
-                                                    value={item}
-                                                    onChange={e => updateMealItem(mealIdx, itemIdx, e.target.value)}
-                                                />
-                                                {meal.items.length > 1 && (
-                                                    <button 
-                                                        onClick={() => removeItem(mealIdx, itemIdx)} 
-                                                        className="h-8 w-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-red-500 hover:bg-red-500/10 transition-colors"
-                                                    >
-                                                        <Trash2 className="h-4 w-4" />
-                                                    </button>
-                                                )}
-                                            </div>
-                                        ))}
-                                        <div className="pl-3 mt-2">
-                                            <button onClick={() => addItem(mealIdx)} className="text-xs font-medium text-primary hover:text-primary/80 flex items-center gap-1.5 transition-colors">
-                                                <Plus className="h-3 w-3" /> Add another item
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Notes */}
-                    <div>
-                        <SectionLabel>Trainer Notes</SectionLabel>
-                        <textarea
-                            className={cn(inputCls, 'resize-none h-24')}
-                            placeholder="Additional instructions or notes for the member (optional)"
-                            value={notes}
-                            onChange={e => setNotes(e.target.value)}
-                        />
-                    </div>
                 </div>
                 
-                {/* Footer Action */}
-                <div className="sticky bottom-0 z-20 bg-card border-t border-border p-4 flex justify-end gap-3">
+                {/* ── FOOTER ── */}
+                <div className="flex-shrink-0 bg-card border-t border-border p-4 flex justify-end gap-3">
                     <button
                         onClick={onClose}
                         className="px-5 py-2.5 rounded-xl border border-border bg-background text-sm font-medium text-foreground hover:bg-muted transition-colors"
