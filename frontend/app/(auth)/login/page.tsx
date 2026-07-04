@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import axios from 'axios'
-import { Inter } from 'next/font/google'
+import { Bebas_Neue, Inter } from 'next/font/google'
 import { useAuthStore } from '@/src/store/authStore'
 import { setAccessToken, setTenantSlug } from '@/src/lib/auth'
 import { Button } from '@/components/ui/button'
@@ -24,9 +24,9 @@ import {
   MessageSquare, Check, Users, Receipt, CalendarCheck,
 } from 'lucide-react'
 import { toast } from 'sonner'
-import LightRays from '@/src/components/ui/LightRays'
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
+const bebas = Bebas_Neue({ weight: '400', subsets: ['latin'] })
 const inter = Inter({ subsets: ['latin'] })
 
 // ─── Schemas ──────────────────────────────────────────────────────────────────
@@ -58,20 +58,45 @@ type OtpForm         = z.infer<typeof otpSchema>
 type NewPasswordForm = z.infer<typeof newPasswordSchema>
 
 // ─── Shared Styles ─────────────────────────────────────────────────────────────
+// Monochrome base with flat violet accents for branding and interaction.
+// The autofill overrides below stop Chrome/Edge from painting saved-credential
+// fields white — without them, autofilled inputs break the dark theme (that's
+// what was happening in the screenshot: the browser painting its own colors
+// over your dark inputs, not a bug in the component itself).
+
 const inputCls =
-  'h-12 bg-[#090909] border border-[#1a1a1a] text-white placeholder:text-[#444444] ' +
-  'focus-visible:ring-1 focus-visible:ring-white/10 focus-visible:border-white/10 rounded-md transition-all text-[14px] px-4 ' +
-  '[&:-webkit-autofill]:[-webkit-text-fill-color:white] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0px_1000px_#090909_inset] ' +
+  'h-12 bg-card border border-border text-foreground placeholder:text-muted-foreground ' +
+  'focus-visible:ring-1 focus-visible:ring-violet-600 focus-visible:border-violet-600 rounded-md transition-colors shadow-none text-[14px] ' +
+  '[&:-webkit-autofill]:[-webkit-text-fill-color:white] [&:-webkit-autofill]:[-webkit-box-shadow:0_0_0px_1000px_#121212_inset] ' +
   '[&:-webkit-autofill]:[transition:background-color_9999s_ease-in-out_0s]'
 
 const primaryBtnCls =
-  'h-12 rounded-md text-[14px] font-bold tracking-wide text-black bg-white ' +
-  'hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all ' +
+  'h-12 rounded-md text-[14px] font-semibold tracking-wide text-foreground bg-violet-600 ' +
+  'hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors ' +
   'flex items-center justify-center gap-2'
 
 const ghostBtnCls =
-  'h-12 rounded-md text-[14px] font-semibold text-[#888888] bg-transparent border border-[#222222] ' +
-  'hover:bg-[#111111] hover:text-white transition-all'
+  'h-12 rounded-md text-[14px] font-medium text-muted-foreground bg-transparent border border-border ' +
+  'hover:border-violet-600 hover:text-foreground transition-colors'
+
+// ─── Signature element: plate stack ───────────────────────────────────────────
+function PlateStack({ vertical = true, className = '' }: { vertical?: boolean; className?: string }) {
+  const sizes = [16, 28, 40, 52, 40, 28, 16]
+  return (
+    <div
+      className={`flex ${vertical ? 'flex-col items-center' : 'items-center'} gap-[4px] ${className}`}
+      aria-hidden="true"
+    >
+      {sizes.map((s, i) => (
+        <div
+          key={i}
+          style={vertical ? { width: s, height: 2 } : { height: s, width: 2 }}
+          className={`rounded-md ${i === 3 ? 'bg-violet-600' : 'bg-background'}`}
+        />
+      ))}
+    </div>
+  )
+}
 
 // ─── Forgot Password Modal ────────────────────────────────────────────────────
 type ForgotStep = 'phone' | 'otp' | 'newPassword' | 'done'
@@ -189,35 +214,35 @@ function ForgotPasswordModal({
   }
 
   const stepMeta = {
-    phone:       { title: 'Forgot password',  icon: <KeyRound size={18} className="text-white" /> },
-    otp:         { title: 'Enter OTP',        icon: <MessageSquare size={18} className="text-white" /> },
-    newPassword: { title: 'New password',     icon: <KeyRound size={18} className="text-white" /> },
-    done:        { title: 'Password reset',   icon: <ShieldCheck size={18} className="text-white" /> },
+    phone:       { title: 'Forgot password',  icon: <KeyRound size={18} className="text-violet-500" /> },
+    otp:         { title: 'Enter OTP',        icon: <MessageSquare size={18} className="text-violet-500" /> },
+    newPassword: { title: 'New password',     icon: <KeyRound size={18} className="text-violet-500" /> },
+    done:        { title: 'Password reset',   icon: <ShieldCheck size={18} className="text-violet-500" /> },
   }[step]
 
   const stepIndex = { phone: 0, otp: 1, newPassword: 2, done: 3 }[step]
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className={`!bg-[#000000] !text-white border border-[#222222] p-0 overflow-hidden gap-0 rounded-xl sm:max-w-[420px] shadow-2xl ${inter.className}`}>
+      <DialogContent className={`!bg-background !text-foreground border border-border p-0 overflow-hidden gap-0 rounded-xl sm:max-w-[420px] ${inter.className}`}>
         <div className="p-8">
           <DialogHeader className="mb-6">
             <div className="flex items-center justify-between mb-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#090909] border border-[#1a1a1a]">
+              <div className="flex h-12 w-12 items-center justify-center rounded-md bg-card border border-border">
                 {stepMeta.icon}
               </div>
               <div className="flex items-center gap-2" aria-hidden="true">
                 {[0, 1, 2].map(i => (
                   <div
                     key={i}
-                    className={`h-[2px] rounded-full transition-all duration-300 ${
-                      i <= stepIndex ? 'w-8 bg-white' : 'w-4 bg-[#222222]'
+                    className={`h-1 rounded-md transition-all duration-300 ${
+                      i <= stepIndex ? 'w-6 bg-violet-600' : 'w-2 bg-background'
                     }`}
                   />
                 ))}
               </div>
             </div>
-            <DialogTitle className={`text-2xl font-bold tracking-tight text-white`}>
+            <DialogTitle className={`text-2xl font-normal tracking-wide text-foreground ${bebas.className}`}>
               {stepMeta.title}
             </DialogTitle>
           </DialogHeader>
@@ -225,12 +250,12 @@ function ForgotPasswordModal({
           {step === 'phone' && (
             <Form {...phoneForm}>
               <form onSubmit={phoneForm.handleSubmit(onPhoneSubmit)} className="space-y-5">
-                <p className="text-[14px] leading-relaxed text-[#888888]">
+                <p className="text-[14px] leading-relaxed text-muted-foreground">
                   Enter the phone number on your account. We&apos;ll send a code to your WhatsApp.
                 </p>
                 <FormField control={phoneForm.control} name="phone" render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel className="text-[11px] font-bold text-[#666666] uppercase tracking-wider">Phone number</FormLabel>
+                    <FormLabel className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider">Phone number</FormLabel>
                     <FormControl><Input placeholder="9876543210" className={inputCls} {...field} /></FormControl>
                     <FormMessage className="text-[12px] text-red-500" />
                   </FormItem>
@@ -249,18 +274,18 @@ function ForgotPasswordModal({
           {step === 'otp' && (
             <Form {...otpForm}>
               <form onSubmit={otpForm.handleSubmit(onOtpSubmit)} className="space-y-5">
-                <p className="text-[14px] leading-relaxed text-[#888888]">
-                  OTP sent to <span className="text-white font-semibold">{phone}</span> on WhatsApp.
+                <p className="text-[14px] leading-relaxed text-muted-foreground">
+                  OTP sent to <span className="text-foreground font-medium">{phone}</span> on WhatsApp.
                 </p>
                 <FormField control={otpForm.control} name="otp" render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel className="text-[11px] font-bold text-[#666666] uppercase tracking-wider">6-digit code</FormLabel>
+                    <FormLabel className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider">6-digit code</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="000000"
                         maxLength={6}
                         inputMode="numeric"
-                        className={`${inputCls} tracking-[0.75em] text-center text-xl font-bold tabular-nums h-14 text-white bg-[#090909] border-[#1a1a1a]`}
+                        className={`${inputCls} tracking-[0.75em] text-center text-xl font-medium tabular-nums h-14 text-violet-400`}
                         {...field}
                       />
                     </FormControl>
@@ -268,10 +293,10 @@ function ForgotPasswordModal({
                   </FormItem>
                 )} />
                 <div className="flex items-center justify-between">
-                  <button type="button" onClick={() => setStep('phone')} className="flex items-center gap-1.5 text-[12px] font-semibold text-[#888888] hover:text-white transition-colors">
+                  <button type="button" onClick={() => setStep('phone')} className="flex items-center gap-1.5 text-[13px] text-muted-foreground hover:text-foreground transition-colors">
                     <ArrowLeft size={14} /> Change number
                   </button>
-                  <button type="button" onClick={handleResend} disabled={resendWait > 0 || loading} className="text-[12px] font-bold text-white hover:text-white/80 disabled:text-[#444444] transition-colors">
+                  <button type="button" onClick={handleResend} disabled={resendWait > 0 || loading} className="text-[13px] font-medium text-violet-500 hover:text-violet-400 disabled:text-[#444444] transition-colors">
                     {resendWait > 0 ? `Resend in ${resendWait}s` : 'Resend OTP'}
                   </button>
                 </div>
@@ -289,14 +314,14 @@ function ForgotPasswordModal({
           {step === 'newPassword' && (
             <Form {...pwForm}>
               <form onSubmit={pwForm.handleSubmit(onPasswordSubmit)} className="space-y-5">
-                <p className="text-[14px] leading-relaxed text-[#888888]">OTP verified. Set your new password below.</p>
+                <p className="text-[14px] leading-relaxed text-muted-foreground">OTP verified. Set your new password below.</p>
                 <FormField control={pwForm.control} name="newPassword" render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel className="text-[11px] font-bold text-[#666666] uppercase tracking-wider">New password</FormLabel>
+                    <FormLabel className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider">New password</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Input type={showPw ? 'text' : 'password'} className={`${inputCls} pr-11`} {...field} />
-                        <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#666666] hover:text-white transition-colors">
+                        <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-violet-400 transition-colors">
                           {showPw ? <EyeOff size={16} /> : <Eye size={16} />}
                         </button>
                       </div>
@@ -306,11 +331,11 @@ function ForgotPasswordModal({
                 )} />
                 <FormField control={pwForm.control} name="confirmPassword" render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel className="text-[11px] font-bold text-[#666666] uppercase tracking-wider">Confirm password</FormLabel>
+                    <FormLabel className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider">Confirm password</FormLabel>
                     <FormControl>
                       <div className="relative">
                         <Input type={showCfm ? 'text' : 'password'} className={`${inputCls} pr-11`} {...field} />
-                        <button type="button" onClick={() => setShowCfm(!showCfm)} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#666666] hover:text-white transition-colors">
+                        <button type="button" onClick={() => setShowCfm(!showCfm)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-violet-400 transition-colors">
                           {showCfm ? <EyeOff size={16} /> : <Eye size={16} />}
                         </button>
                       </div>
@@ -329,13 +354,13 @@ function ForgotPasswordModal({
           {step === 'done' && (
             <div className="text-center space-y-6 py-4">
               <div className="flex justify-center">
-                <div className="h-16 w-16 rounded-xl bg-[#090909] border border-[#1a1a1a] flex items-center justify-center shadow-inner">
-                  <Check size={28} className="text-white" strokeWidth={2.5} />
+                <div className="h-16 w-16 rounded-md /10 border border-violet-500/20 flex items-center justify-center bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
+                  <Check size={28} className="text-violet-500" strokeWidth={2.5} />
                 </div>
               </div>
               <div>
-                <p className={`text-2xl font-bold tracking-tight text-white`}>Password reset</p>
-                <p className="mt-2 text-[14px] text-[#888888]">You can log in with your new password now.</p>
+                <p className={`text-2xl tracking-wide text-foreground ${bebas.className}`}>Password reset</p>
+                <p className="mt-2 text-[14px] text-muted-foreground">You can log in with your new password now.</p>
               </div>
               <button onClick={onClose} className={`w-full ${primaryBtnCls}`}>Back to login</button>
             </div>
@@ -416,75 +441,65 @@ export default function LoginPage() {
   }
 
   return (
-    <div className={`min-h-screen flex flex-col lg:flex-row bg-[#000000] ${inter.className} relative`}>
-      
-      {/* ── Background Light Rays (Centered on the Entire Screen) ── */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden flex justify-center">
-        <LightRays 
-          raysOrigin="top-center" 
-          raysColor="#ffffff" 
-          raysSpeed={1.0}
-          rayLength={3.0}
-          lightSpread={2.5}
-          saturation={0}
-          className="opacity-60 mix-blend-screen w-full min-w-[100vw]"
-        />
-      </div>
+    <div className={`min-h-screen bg-background flex items-stretch ${inter.className}`}>
 
-      {/* ── Brand panel (Left Half) ── */}
-      <div className="hidden lg:flex w-1/2 flex-col justify-between px-16 xl:px-24 py-16 border-r border-[#1a1a1a] relative z-10 bg-transparent">
-        
-        <div className="flex items-center gap-3">
-          <div className="h-8 w-8 flex items-center justify-center bg-[#090909] border border-[#1a1a1a] rounded-md shadow-sm">
-            <Dumbbell className="h-4 w-4 text-white" />
+      {/* ── Brand panel ─────────────────────────────────────────────────── */}
+      <div className="relative hidden lg:flex lg:w-[45%] flex-col justify-between overflow-hidden bg-background px-16 py-12 border-r border-border">
+
+        {/* Subtle noise/texture overlay for a premium feel */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} />
+
+        <div className="relative z-10 flex items-center gap-3">
+          <div className="h-10 w-10 flex items-center justify-center bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
+            <Dumbbell className="h-5 w-5 text-foreground" />
           </div>
-          <span className={`text-2xl font-black tracking-tighter text-white uppercase`}>
+          <span className={`text-2xl tracking-widest text-foreground mt-1 ${bebas.className}`}>
             JOVIFITX
           </span>
         </div>
 
-        <div className="max-w-xl -mt-20">
-          <h1 className={`text-[4.5rem] xl:text-[5rem] font-bold tracking-tight leading-[0.95] text-white mb-10`}>
-            Run the floor.<br /><span className="text-[#888888]">Not the spreadsheets.</span>
+        <div className="relative z-10 max-w-md">
+          <h1 className={`text-[4rem] leading-[0.9] text-foreground tracking-wide mb-8 ${bebas.className}`}>
+            RUN THE FLOOR.<br />NOT THE<br />SPREADSHEETS.
           </h1>
 
           <ul className="space-y-5">
             {capabilities.map(({ icon: Icon, label }) => (
               <li key={label} className="flex items-center gap-4">
-                <div className="h-7 w-7 shrink-0 border border-[#1a1a1a] bg-[#090909] rounded-md flex items-center justify-center">
-                  <Icon size={12} className="text-[#888888]" />
+                <div className="h-8 w-8 shrink-0 border border-[#333333] rounded-md flex items-center justify-center">
+                  <Icon size={14} className="text-violet-500" />
                 </div>
-                <span className={`text-[11px] font-bold uppercase tracking-widest text-[#888888]`}>{label}</span>
+                <span className={`text-[15px] tracking-widest text-muted-foreground ${bebas.className}`}>{label}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <p className="text-[11px] font-bold tracking-[0.2em] text-[#444444] uppercase">
+        <p className="relative z-10 text-[12px] font-medium tracking-[0.1em] text-muted-foreground uppercase">
           Built for gyms across India.
         </p>
 
-        {/* ── Minimalist connecting line exactly on border ── */}
-        <div className="absolute top-1/2 -right-[1px] -translate-y-1/2 w-8 h-[2px] bg-white z-20 shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
+        {/* Minimalist plate stack */}
+        <PlateStack className="absolute top-1/2 -right-[1px] -translate-y-1/2 z-10" />
       </div>
 
-      {/* ── Form panel (Right Half) ── */}
-      <div className="flex-1 flex flex-col justify-center px-8 sm:px-24 py-16 relative z-10 bg-transparent overflow-y-auto">
+      {/* ── Form panel ──────────────────────────────────────────────────── */}
+      <div className="flex-1 flex items-center justify-center px-6 py-12 relative bg-background">
 
-        <div className="w-full max-w-[400px] mx-auto">
+        <div className="relative z-10 w-full max-w-[400px]">
           {/* Mobile wordmark */}
-          <div className="lg:hidden flex flex-col mb-10 text-left">
-            <div className="h-10 w-10 flex items-center justify-center mb-4 bg-[#090909] border border-[#1a1a1a] rounded-md shadow-sm">
-              <Dumbbell className="h-5 w-5 text-white" />
+          <div className="lg:hidden flex flex-col items-center text-center mb-10">
+            <div className="h-14 w-14 flex items-center justify-center mb-4 bg-card hover:bg-accent text-card-foreground border border-border rounded-md shadow-sm">
+              <Dumbbell className="h-6 w-6 text-foreground" />
             </div>
-            <h1 className={`text-2xl font-black tracking-tighter text-white uppercase`}>JOVIFITX</h1>
+            <h1 className={`text-4xl tracking-widest text-foreground ${bebas.className}`}>JOVIFITX</h1>
           </div>
 
-          <div className="mb-10 text-left">
-            <h2 className={`text-3xl font-bold tracking-tight text-white`}>
-              Welcome back
+          <div className="mb-10">
+            <h2 className={`text-4xl text-foreground tracking-wide ${bebas.className}`}>
+              WELCOME BACK
             </h2>
-            <p className="text-[14px] text-[#888888] mt-2 font-normal">Log in to your gym dashboard.</p>
+            <p className="text-[14px] text-muted-foreground mt-2">Log in to your gym dashboard.</p>
           </div>
 
           <Form {...form}>
@@ -492,7 +507,7 @@ export default function LoginPage() {
               {isLocalhost && (
                 <FormField control={form.control} name="gymSlug" render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel className="text-[11px] font-bold text-[#666666] uppercase tracking-widest">Gym slug</FormLabel>
+                    <FormLabel className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider">Gym slug</FormLabel>
                     <FormControl>
                       <Input placeholder="fitzone" className={inputCls} {...field} />
                     </FormControl>
@@ -503,7 +518,7 @@ export default function LoginPage() {
 
               <FormField control={form.control} name="phone" render={({ field }) => (
                 <FormItem className="space-y-2">
-                  <FormLabel className="text-[11px] font-bold text-[#666666] uppercase tracking-widest">Phone number</FormLabel>
+                  <FormLabel className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider">Phone number</FormLabel>
                   <FormControl>
                     <Input placeholder="9876543210" className={inputCls} {...field} />
                   </FormControl>
@@ -514,11 +529,11 @@ export default function LoginPage() {
               <FormField control={form.control} name="password" render={({ field }) => (
                 <FormItem className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <FormLabel className="text-[11px] font-bold text-[#666666] uppercase tracking-widest">Password</FormLabel>
+                    <FormLabel className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wider">Password</FormLabel>
                     <button
                       type="button"
                       onClick={handleForgotClick}
-                      className="text-[12px] font-bold text-white hover:text-white/80 transition-colors"
+                      className="text-[12px] font-medium text-violet-400 hover:text-violet-300 transition-colors"
                     >
                       Forgot password?
                     </button>
@@ -532,7 +547,7 @@ export default function LoginPage() {
                         {...field}
                       />
                       <button type="button" onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 text-[#666666] hover:text-white transition-colors">
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-violet-400 transition-colors">
                         {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                       </button>
                     </div>
@@ -541,24 +556,22 @@ export default function LoginPage() {
                 </FormItem>
               )} />
 
-              <div className="pt-2">
-                <Button
-                  type="submit"
-                  disabled={loading}
-                  className={`w-full ${primaryBtnCls}`}
-                >
-                  {loading
-                    ? <><Loader2 className="h-4 w-4 animate-spin" /> LOGGING IN</>
-                    : 'LOG IN'
-                  }
-                </Button>
-              </div>
+              <Button
+                type="submit"
+                disabled={loading}
+                className={`w-full mt-4 ${primaryBtnCls}`}
+              >
+                {loading
+                  ? <><Loader2 className="h-4 w-4 animate-spin" /> LOGGING IN</>
+                  : 'LOG IN'
+                }
+              </Button>
             </form>
           </Form>
 
-          <div className="mt-8 text-[13px] text-[#666666] font-normal text-left">
+          <div className="mt-10 text-center text-[13px] text-[#666666]">
             Don&apos;t have a gym account?{' '}
-            <a href="/signup" className="text-white font-bold hover:text-white/80 transition-colors">
+            <a href="/signup" className="text-foreground font-medium hover:text-violet-400 transition-colors border-b border-white hover:border-violet-400 pb-[1px]">
               Create one
             </a>
           </div>
