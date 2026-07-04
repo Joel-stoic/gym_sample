@@ -61,15 +61,15 @@ function StaffCardSkeleton() {
     <div className="rounded-md border border-border bg-card p-5 space-y-4 animate-pulse">
       <div className="flex items-start justify-between">
         <div className="space-y-2.5">
-          <div className="h-4 w-32 bg-accent rounded-md" />
-          <div className="h-5 w-20 bg-accent rounded-md" />
+          <div className="h-4 w-32 bg-muted rounded-md" />
+          <div className="h-5 w-20 bg-muted rounded-md" />
         </div>
-        <div className="h-8 w-8 bg-accent rounded-lg" />
+        <div className="h-8 w-8 bg-muted rounded-lg" />
       </div>
       <div className="border-t border-border my-3" />
       <div className="space-y-3 pt-1">
-        <div className="h-3.5 w-36 bg-accent rounded-md" />
-        <div className="h-3.5 w-44 bg-accent rounded-md" />
+        <div className="h-4 w-36 bg-muted rounded-md" />
+        <div className="h-4 w-44 bg-muted rounded-md" />
       </div>
     </div>
   )

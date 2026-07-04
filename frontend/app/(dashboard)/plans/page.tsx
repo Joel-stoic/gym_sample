@@ -31,6 +31,44 @@ import {
 } from 'lucide-react'
 import type { Plan } from '@/src/types'
 import { useAuthStore } from '@/src/store/authStore'
+
+function PlansSkeleton() {
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <div className="h-7 w-24 animate-pulse rounded-md bg-muted mb-2" />
+          <div className="h-4 w-32 animate-pulse rounded-md bg-muted" />
+        </div>
+        <div className="h-10 w-28 animate-pulse rounded-md bg-muted" />
+      </div>
+      <div>
+        <div className="h-3 w-24 animate-pulse rounded-md bg-muted mb-3" />
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="flex flex-col gap-4 rounded-md p-5 border border-border bg-card">
+              <div className="flex items-start gap-3">
+                <div className="h-10 w-10 animate-pulse rounded-xl bg-muted flex-shrink-0" />
+                <div className="space-y-2 w-full">
+                  <div className="h-5 w-1/2 animate-pulse rounded-md bg-muted" />
+                  <div className="h-3 w-3/4 animate-pulse rounded-md bg-muted" />
+                </div>
+              </div>
+              <div className="border-t border-border" />
+              <div className="h-8 w-1/3 animate-pulse rounded-md bg-muted" />
+              <div className="flex items-center gap-3">
+                <div className="h-6 w-16 animate-pulse rounded-md bg-muted" />
+                <div className="h-6 w-20 animate-pulse rounded-md bg-muted" />
+                <div className="ml-auto h-6 w-16 animate-pulse rounded-md bg-muted" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ─── Plan Card ────────────────────────────────────────────────────────────────
 function PlanCard({
   plan,
@@ -183,14 +221,7 @@ export default function PlansPage() {
   const inactivePlans = (plans as Plan[]).filter((p) => !p.isActive)
 
   if (loading) {
-    return (
-      <div className="flex h-64 items-center justify-center">
-        <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 animate-spin rounded-md border-2 border-violet-500 border-t-transparent" />
-          <p className="text-[12px] text-muted-foreground">Loading plans...</p>
-        </div>
-      </div>
-    )
+    return <PlansSkeleton />
   }
 
   return (

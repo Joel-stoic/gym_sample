@@ -12,6 +12,37 @@ import {
 import { format, parseISO, isFuture } from 'date-fns'
 import { useDashboardStore } from '@/src/store/dashboardStore'
 
+function PTSkeleton() {
+  return (
+    <div className="space-y-5 pb-10">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="h-10 w-64 animate-pulse rounded-md bg-muted" />
+        <div className="flex gap-2">
+          <div className="h-10 w-32 animate-pulse rounded-md bg-muted" />
+          <div className="h-10 w-32 animate-pulse rounded-md bg-muted" />
+        </div>
+      </div>
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        {[...Array(5)].map((_, i) => (
+          <div key={i} className="h-24 animate-pulse rounded-md bg-muted border border-border" />
+        ))}
+      </div>
+      <div className="rounded-lg p-5 border border-border bg-card shadow-sm">
+        <div className="flex justify-between mb-6">
+          <div className="h-6 w-32 animate-pulse rounded-md bg-muted" />
+          <div className="h-8 w-64 animate-pulse rounded-md bg-muted" />
+        </div>
+        <div className="space-y-2">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="h-20 animate-pulse rounded-md bg-muted border border-border" />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface PtSession {
@@ -606,14 +637,7 @@ export default function PtPage() {
   const completed = sessions.filter(s => s.status === 'COMPLETED').length
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-[60vh]">
-        <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 animate-spin rounded-md border-2 border-violet-500 border-t-transparent" />
-          <p className="text-[12px] text-muted-foreground">Loading PT data...</p>
-        </div>
-      </div>
-    )
+    return <PTSkeleton />
   }
 
   return (
