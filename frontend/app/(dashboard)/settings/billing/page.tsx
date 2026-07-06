@@ -1,20 +1,98 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Bebas_Neue, Inter } from 'next/font/google'
 import { AlertCircle, Calendar, Users, Download, CreditCard, CheckCircle2 } from 'lucide-react'
+import { toast } from 'sonner'
+import Script from 'next/script'
 
 const bebas = Bebas_Neue({ weight: '400', subsets: ['latin'] })
 const inter = Inter({ subsets: ['latin'] })
 
 export default function BillingPage() {
   const [isExpired, setIsExpired] = useState(false)
+  const [isProcessing, setIsProcessing] = useState(false)
 
   const billingHistory = [
     { id: 'INV-001', date: '15 Aug 2024', plan: 'Growth Plan - Yearly', amount: 19190, status: 'Paid' },
     { id: 'INV-002', date: '15 Aug 2023', plan: 'Growth Plan - Yearly', amount: 19190, status: 'Paid' },
     { id: 'INV-003', date: '15 Aug 2022', plan: 'Starter Plan - Yearly', amount: 9590, status: 'Paid' },
   ]
+
+  const loadRazorpay = async () => {
+    return new Promise((resolve) => {
+      if ((window as any).Razorpay) {
+        resolve(true)
+        return
+      }
+      const script = document.createElement('script')
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js'
+      script.onload = () => resolve(true)
+      script.onerror = () => resolve(false)
+      document.body.appendChild(script)
+    })
+  }
+
+  const handlePayment = async (type: 'monthly' | 'yearly') => {
+    setIsProcessing(true)
+    const isLoaded = await loadRazorpay()
+    if (!isLoaded) {
+      toast.error('Failed to load Razorpay SDK. Please check your connection.')
+      setIsProcessing(false)
+      return
+    }
+
+    const amount = type === 'monthly' ? 199900 : 1919000 // in paise
+
+    const options = {
+      key: 'rzp_test_YourTestKeyHere',
+      amount: amount.toString(),
+      currency: 'INR',
+      name: 'JoVifitX',
+      description: 'Gym Management Software Subscription',
+      order_id: 'order_mock_123456', // Mock ID - replace with backend response later
+      handler: function (response: any) {
+        toast.success('Payment successful! Your subscription has been renewed.', {
+          duration: 4000,
+          style: {
+            background: '#0F0F1A',
+            border: '1px solid #ffffff10',
+            borderLeft: '4px solid #22C55E',
+            color: '#FFFFFF'
+          }
+        })
+        setIsProcessing(false)
+      },
+      prefill: {
+        name: 'Demo Gym Owner',
+        email: 'owner@demogym.com',
+        contact: '9999999999',
+      },
+      theme: {
+        color: '#D05B37',
+      },
+      modal: {
+        ondismiss: function () {
+          toast('Payment cancelled.', {
+            duration: 2000,
+            style: {
+              background: '#0F0F1A',
+              border: '1px solid #ffffff10',
+              color: '#6B7280'
+            }
+          })
+          setIsProcessing(false)
+        },
+      },
+    }
+
+    const rzp = new (window as any).Razorpay(options)
+    rzp.on('payment.failed', function (response: any) {
+      toast.error('Payment failed. Please try again.')
+      setIsProcessing(false)
+    })
+    rzp.open()
+  }
 
   return (
     <div className={`p-4 md:p-8 space-y-6 ${inter.className}`}>
@@ -103,11 +181,19 @@ export default function BillingPage() {
           <h3 className={`text-2xl text-white tracking-widest mb-6 uppercase ${bebas.className}`}>Renew your plan</h3>
           
           <div className="flex flex-col sm:flex-row gap-4 mb-6">
-            <button className="flex-1 bg-[#13131F] border border-[#ffffff20] text-white hover:border-[#D05B37] hover:bg-[#D05B37]/5 px-4 py-3.5 rounded-[6px] font-semibold text-sm transition-all text-center">
-              Renew Monthly — ₹1,999
+            <button 
+              onClick={() => handlePayment('monthly')}
+              disabled={isProcessing}
+              className="flex-1 bg-[#13131F] border border-[#ffffff20] text-white hover:border-[#D05B37] hover:bg-[#D05B37]/5 px-4 py-3.5 rounded-[6px] font-semibold text-sm transition-all text-center disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isProcessing ? 'Processing...' : 'Renew Monthly — ₹1,999'}
             </button>
-            <button className="flex-1 bg-[#D05B37] text-white hover:bg-[#D05B37]/90 hover:shadow-[0_0_20px_rgba(208,91,55,0.3)] px-4 py-3.5 rounded-[6px] font-semibold text-sm transition-all text-center relative overflow-hidden group">
-              <span className="relative z-10">Renew Yearly — ₹19,190</span>
+            <button 
+              onClick={() => handlePayment('yearly')}
+              disabled={isProcessing}
+              className="flex-1 bg-[#D05B37] text-white hover:bg-[#D05B37]/90 hover:shadow-[0_0_20px_rgba(208,91,55,0.3)] px-4 py-3.5 rounded-[6px] font-semibold text-sm transition-all text-center relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <span className="relative z-10">{isProcessing ? 'Processing...' : 'Renew Yearly — ₹19,190'}</span>
               <div className="absolute top-0 right-0 w-16 h-16 bg-white/20 blur-2xl group-hover:translate-x-full transition-transform duration-700" />
             </button>
           </div>
