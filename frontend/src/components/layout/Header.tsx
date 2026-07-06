@@ -7,6 +7,7 @@ import { useSidebar } from '@/src/store/sidebarStore'
 import { useTheme } from 'next-themes'
 import { Menu, Moon, Sun } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { toast } from 'sonner'
 
 // ─── Fonts ────────────────────────────────────────────────────────────────────
 const bebas = Bebas_Neue({ weight: '400', subsets: ['latin'] })
@@ -87,15 +88,18 @@ export default function Header() {
       {/* Right: toggle + role badge + avatar */}
       <div className="flex items-center gap-3">
         {mounted && (
-          <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="flex h-9 w-9 items-center justify-center rounded-sm border border-border bg-card transition-all hover:bg-muted"
-          >
-            {theme === 'dark' 
-              ? <Sun className="h-4 w-4 text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]" /> 
-              : <Moon className="h-4 w-4 text-blue-500 drop-shadow-[0_0_8px_rgba(59,130,246,0.3)]" />
-            }
-          </button>
+          <div className="relative group flex">
+            <button
+              onClick={() => toast.info('Light theme is coming soon! ✨', { description: 'We are preparing a massive UI update.' })}
+              title="Coming soon"
+              className="flex h-9 w-9 items-center justify-center rounded-sm border border-border bg-card transition-all hover:bg-muted cursor-not-allowed"
+            >
+              <Sun className="h-4 w-4 text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]" />
+            </button>
+            <div className="absolute top-full mt-2 right-0 px-2.5 py-1.5 bg-zinc-900 border border-zinc-800 rounded-md shadow-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none w-max z-[100] origin-top-right">
+              <p className="text-[11px] font-semibold text-zinc-300">Coming soon</p>
+            </div>
+          </div>
         )}
         <span
           className="hidden sm:inline-flex items-center justify-center rounded-sm border border-border bg-card px-3 py-1.5 text-[10px] font-bold tracking-widest uppercase text-muted-foreground"
