@@ -88,16 +88,17 @@ export default function Header() {
       {/* Right: toggle + role badge + avatar */}
       <div className="flex items-center gap-3">
         {mounted && (
-          <div className="relative group flex">
+          <div className="relative group flex items-center justify-center">
             <button
-              onClick={() => toast.info('Light theme is coming soon! ✨', { description: 'We are preparing a massive UI update.' })}
+              onClick={() => toast('Light theme in development', { description: 'A massive UI update is currently underway.' })}
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-zinc-400 backdrop-blur-md transition-all duration-300 hover:bg-white/10 hover:text-zinc-100 hover:border-white/20 active:scale-95 cursor-not-allowed shadow-sm"
               title="Coming soon"
-              className="flex h-9 w-9 items-center justify-center rounded-sm border border-border bg-card transition-all hover:bg-muted cursor-not-allowed"
             >
-              <Sun className="h-4 w-4 text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.3)]" />
+              <Moon className="h-4 w-4" />
             </button>
-            <div className="absolute top-full mt-2 right-0 px-2.5 py-1.5 bg-zinc-900 border border-zinc-800 rounded-md shadow-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none w-max z-[100] origin-top-right">
-              <p className="text-[11px] font-semibold text-zinc-300">Coming soon</p>
+            <div className="absolute top-full mt-3 right-0 px-3 py-2 bg-zinc-950/90 backdrop-blur-xl border border-white/10 rounded-lg shadow-[0_8px_30px_rgb(0,0,0,0.5)] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 pointer-events-none w-max z-[100] flex items-center gap-2 origin-top-right">
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
+              <p className="text-[10px] font-bold tracking-widest text-zinc-300 uppercase">Coming soon</p>
             </div>
           </div>
         )}
